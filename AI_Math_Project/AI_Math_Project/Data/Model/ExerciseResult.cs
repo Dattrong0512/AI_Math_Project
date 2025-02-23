@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace AI_Math_Project.Model;
+namespace AI_Math_Project.Data.Model;
 
-[Table("Test_Result")]
-public partial class TestResult
+[Table("Exercise_Result")]
+public partial class ExerciseResult
 {
     [Key]
-    [Column("test_result_id")]
-    public int TestResultId { get; set; }
+    [Column("exercise_result_id")]
+    public int ExerciseResultId { get; set; }
 
-    [Column("test_id")]
-    public int? TestId { get; set; }
+    [Column("exercise_id")]
+    public int? ExerciseId { get; set; }
 
     [Column("enrollment_id")]
     public int? EnrollmentId { get; set; }
@@ -22,17 +22,14 @@ public partial class TestResult
     [Column("score", TypeName = "decimal(2, 2)")]
     public decimal? Score { get; set; }
 
-    [Column("completion_time")]
-    public short? CompletionTime { get; set; }
-
     [Column("done_at", TypeName = "datetime")]
     public DateTime? DoneAt { get; set; }
 
     [ForeignKey("EnrollmentId")]
-    [InverseProperty("TestResults")]
+    [InverseProperty("ExerciseResults")]
     public virtual Enrollment? Enrollment { get; set; }
 
-    [ForeignKey("TestId")]
-    [InverseProperty("TestResults")]
-    public virtual Test? Test { get; set; }
+    [ForeignKey("ExerciseId")]
+    [InverseProperty("ExerciseResults")]
+    public virtual Exercise? Exercise { get; set; }
 }

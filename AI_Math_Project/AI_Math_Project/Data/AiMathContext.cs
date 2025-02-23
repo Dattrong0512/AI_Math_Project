@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using AI_Math_Project.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace AI_Math_Project.Model;
+namespace AI_Math_Project.Data;
 
 public partial class AiMathContext : DbContext
 {
-    public AiMathContext()
-    {
-    }
+    private readonly ILogger<AiMathContext> logger;
 
-    public AiMathContext(DbContextOptions<AiMathContext> options)
-        : base(options)
+    //Receive a DbContextOptions and pass to parent class
+    //DI injects 2 services into this class and the constructor
+    //is only launched when there is a request to the service in HttpRequests or GetRequiredService(Take services 
+    //has been register in DI
+    public AiMathContext(DbContextOptions<AiMathContext> options,
+        ILogger<AiMathContext> _logger) : base(options)
     {
+        logger = _logger;
+        logger.LogInformation("Database da duoc khoi tao");
+        logger.LogInformation($"options: {options}");
     }
-
     public virtual DbSet<Administrator> Administrators { get; set; }
 
     public virtual DbSet<Chapter> Chapters { get; set; }
@@ -60,19 +65,6 @@ public partial class AiMathContext : DbContext
     public virtual DbSet<TokenTransaction> TokenTransactions { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if(!optionsBuilder.IsConfigured)
-        {
-            var configuration = new ConfigurationBuilder()
-                                .AddJsonFile("appsettings.json")
-                                .Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-
-
-        }
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

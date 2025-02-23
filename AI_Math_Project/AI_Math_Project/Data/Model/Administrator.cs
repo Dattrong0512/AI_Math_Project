@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace AI_Math_Project.Model;
+namespace AI_Math_Project.Data.Model;
 
 [Index("Email", Name = "UQ__Administ__AB6E6164BB0559FB", IsUnique = true)]
 public partial class Administrator
