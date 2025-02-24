@@ -20,9 +20,6 @@ public partial class Exercise
     [Column("lesson_id")]
     public int? LessonId { get; set; }
 
-    [Column("exercise_score", TypeName = "decimal(2, 2)")]
-    public decimal? ExerciseScore { get; set; }
-
     [InverseProperty("Exercise")]
     public virtual ICollection<ExerciseDetail> ExerciseDetails { get; set; } = new List<ExerciseDetail>();
 

@@ -23,7 +23,8 @@ public partial class TokenPackage
     [Column("price", TypeName = "decimal(10, 2)")]
     public decimal? Price { get; set; }
 
-    [Column("description", TypeName = "text")]
+    [Column("description")]
+    [StringLength(255)]
     public string? Description { get; set; }
 
     [InverseProperty("TokenPackage")]

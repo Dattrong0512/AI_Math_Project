@@ -22,7 +22,8 @@ public partial class Plan
     [Column("duration_days")]
     public int? DurationDays { get; set; }
 
-    [Column("description", TypeName = "text")]
+    [Column("description")]
+    [StringLength(255)]
     public string? Description { get; set; }
 
     [InverseProperty("Plan")]

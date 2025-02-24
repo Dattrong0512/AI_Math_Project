@@ -1,4 +1,6 @@
 ﻿using AI_Math_Project.Data;
+using AI_Math_Project.Interfaces;
+using AI_Math_Project.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,7 +26,7 @@ var connectionStrings = builder.Configuration.GetConnectionString("DefaultConnec
 //DbContext is a layer, which present for database
 //DbContext need DbContextOption to configuring parameter for DbContext
 //Register a services to DI DbcontextOption into a DbContext.
-builder.Services.AddDbContext<AiMathContext>(options =>
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
 
     options.UseSqlServer(connectionStrings, sqlServerOptions =>
     {
@@ -38,10 +40,14 @@ builder.Services.AddDbContext<AiMathContext>(options =>
 );
 
 
+
+//Register DI for Repo
+builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<AiMathContext>();
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
 }
 
 // Configure the HTTP request pipeline.

@@ -19,7 +19,7 @@ public partial class TestResult
     [Column("enrollment_id")]
     public int? EnrollmentId { get; set; }
 
-    [Column("score", TypeName = "decimal(2, 2)")]
+    [Column("score", TypeName = "decimal(4, 2)")]
     public decimal? Score { get; set; }
 
     [Column("completion_time")]

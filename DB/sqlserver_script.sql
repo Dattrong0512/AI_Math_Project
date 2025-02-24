@@ -1,5 +1,5 @@
-CREATE DATABASE AI_MATH;
 USE AI_MATH;
+
 DROP TABLE IF EXISTS Error_Report;
 DROP TABLE IF EXISTS Notifications;
 DROP TABLE IF EXISTS Chat_Message;
@@ -9,10 +9,13 @@ DROP TABLE IF EXISTS Lesson_Progress;
 DROP TABLE IF EXISTS Exercise_Result;
 DROP TABLE IF EXISTS Test_Result;
 DROP TABLE IF EXISTS Exercise_Detail;
-DROP TABLE IF EXISTS Exercise;
 DROP TABLE IF EXISTS Test_Detail;
-DROP TABLE IF EXISTS Question;
+DROP TABLE IF EXISTS Choice_Answer;
+DROP TABLE IF EXISTS Matching_Answer;
+DROP TABLE IF EXISTS Fill_Answer;
+DROP TABLE IF EXISTS Exercise;
 DROP TABLE IF EXISTS Test;
+DROP TABLE IF EXISTS Question;
 DROP TABLE IF EXISTS Lesson;
 DROP TABLE IF EXISTS Chapter;
 DROP TABLE IF EXISTS Enrollment;
@@ -23,7 +26,6 @@ DROP TABLE IF EXISTS Token_Package;
 DROP TABLE IF EXISTS Payment;
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Administrators;
-
 
 CREATE TABLE Administrators (
     admin_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -59,7 +61,7 @@ CREATE TABLE Token_Package (
     package_name NVARCHAR(100) NOT NULL,
     tokens INT,
     price DECIMAL(10,2),
-    description TEXT
+    description NVARCHAR(255),
 );
 
 CREATE TABLE Token_Transaction (
@@ -77,7 +79,7 @@ CREATE TABLE Plans (
     plan_name NVARCHAR(100) NOT NULL,
     price DECIMAL(10,2),
     duration_days INT,
-    description TEXT
+    description NVARCHAR(255)
 );
 
 CREATE TABLE Plan_Transaction (
@@ -94,7 +96,7 @@ CREATE TABLE Enrollment (
     user_id INT FOREIGN KEY REFERENCES Users(user_id) ON DELETE CASCADE,
     grade SMALLINT CHECK (grade IN (1, 2, 3, 4, 5)),
     enrollment_date DATE,
-    avg_score DECIMAL(2,2),
+    avg_score DECIMAL(4,2),
     semester SMALLINT CHECK (semester IN (1, 2, 3)),
     start_year SMALLINT,
     end_year SMALLINT
@@ -119,42 +121,64 @@ CREATE TABLE Lesson (
 CREATE TABLE Test (
     test_id INT IDENTITY(1,1) PRIMARY KEY,
     chapter_id INT FOREIGN KEY REFERENCES Chapter(chapter_id) ON DELETE CASCADE,
-    test_name NVARCHAR(100),
-    test_score DECIMAL(2,2)
+    test_name NVARCHAR(100)
 );
 
 CREATE TABLE Question (
     question_id INT IDENTITY(1,1) PRIMARY KEY,
-    question_type VARCHAR(100) NOT NULL,
+    question_type VARCHAR(20) CHECK (question_type IN ('multiple_choice','fill_in_blank','matching')),
+	difficulty SMALLINT CHECK (difficulty IN (1,2,3,4)),
     lesson_id INT FOREIGN KEY REFERENCES Lesson(lesson_id) ON DELETE CASCADE,
-    right_answer TEXT,
-    question_content NVARCHAR(255)
+    img_url VARCHAR(100) DEFAULT NULL,
+    question_content NVARCHAR(255),
+	pdf_solution VARCHAR(100)
 );
+
+CREATE TABLE Choice_Answer (
+	answer_id INT IDENTITY(1,1) PRIMARY KEY,
+	question_id INT FOREIGN KEY REFERENCES Question(question_id) ON DELETE CASCADE,
+	content NVARCHAR(100),
+	is_correct BIT,
+	img_url VARCHAR(100) DEFAULT NULL,
+);
+
+CREATE TABLE Matching_Answer (
+	answer_id INT IDENTITY(1,1) PRIMARY KEY,
+	question_id INT FOREIGN KEY REFERENCES Question(question_id)ON DELETE CASCADE,
+	correct_answer NVARCHAR(100) NOT NULL,
+	img_url VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Fill_Answer (
+	answer_id INT IDENTITY(1,1) PRIMARY KEY,
+	question_id INT FOREIGN KEY REFERENCES Question(question_id) ON DELETE CASCADE,
+	correct_answer NVARCHAR(100) NOT NULL,
+	position SMALLINT NOT NULL
+)
 
 CREATE TABLE Test_Detail (
     test_detail_id INT IDENTITY(1,1) PRIMARY KEY,
     test_id INT FOREIGN KEY REFERENCES Test(test_id),
-    question_id INT FOREIGN KEY REFERENCES Question(question_id)
+    question_id INT FOREIGN KEY REFERENCES Question(question_id) ON DELETE CASCADE,
 );
 
 CREATE TABLE Exercise (
     exercise_id INT IDENTITY(1,1) PRIMARY KEY,
     exercise_name NVARCHAR(100) NOT NULL,
     lesson_id INT FOREIGN KEY REFERENCES Lesson(lesson_id) ON DELETE CASCADE,
-    exercise_score DECIMAL(2,2)
 );
 
 CREATE TABLE Exercise_Detail (
     exercise_detail_id INT IDENTITY(1,1) PRIMARY KEY,
     exercise_id INT FOREIGN KEY REFERENCES Exercise(exercise_id),
-    question_id INT FOREIGN KEY REFERENCES Question(question_id)
+    question_id INT FOREIGN KEY REFERENCES Question(question_id) ON DELETE CASCADE,
 );
 
 CREATE TABLE Test_Result (
     test_result_id INT IDENTITY(1,1) PRIMARY KEY,
     test_id INT FOREIGN KEY REFERENCES Test(test_id) ON DELETE CASCADE,
     enrollment_id INT FOREIGN KEY REFERENCES Enrollment(enrollment_id) ON DELETE CASCADE,
-    score DECIMAL(2,2),
+    score DECIMAL(4,2),
     completion_time SMALLINT,
     done_at DATETIME
 );
@@ -163,11 +187,9 @@ CREATE TABLE Exercise_Result (
     exercise_result_id INT IDENTITY(1,1) PRIMARY KEY,
     exercise_id INT FOREIGN KEY REFERENCES Exercise(exercise_id) ON DELETE CASCADE,
     enrollment_id INT FOREIGN KEY REFERENCES Enrollment(enrollment_id) ON DELETE CASCADE,
-    score DECIMAL(2,2),
+    score DECIMAL(4,2),
     done_at DATETIME
 );
-
-
 
 CREATE TABLE Lesson_Progress (
     learning_progress_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -221,26 +243,26 @@ CREATE TABLE Error_Report (
     resolved BIT DEFAULT 0 
 );
 
-DBCC CHECKIDENT ('Error_Report', RESEED, 0);
-DBCC CHECKIDENT ('Notifications', RESEED, 0);
-DBCC CHECKIDENT ('Chat_Message', RESEED, 0);
-DBCC CHECKIDENT ('Chat', RESEED, 0);
-DBCC CHECKIDENT ('Comment', RESEED, 0);
-DBCC CHECKIDENT ('Lesson_Progress', RESEED, 0);
-DBCC CHECKIDENT ('Exercise_Result', RESEED, 0);
-DBCC CHECKIDENT ('Test_Result', RESEED, 0);
-DBCC CHECKIDENT ('Exercise_Detail', RESEED, 0);
-DBCC CHECKIDENT ('Exercise', RESEED, 0);
-DBCC CHECKIDENT ('Test_Detail', RESEED, 0);
-DBCC CHECKIDENT ('Question', RESEED, 0);
-DBCC CHECKIDENT ('Test', RESEED, 0);
-DBCC CHECKIDENT ('Lesson', RESEED, 0);
-DBCC CHECKIDENT ('Chapter', RESEED, 0);
-DBCC CHECKIDENT ('Enrollment', RESEED, 0);
-DBCC CHECKIDENT ('Plan_Transaction', RESEED, 0);
-DBCC CHECKIDENT ('Plans', RESEED, 0);
-DBCC CHECKIDENT ('Token_Transaction', RESEED, 0);
-DBCC CHECKIDENT ('Token_Package', RESEED, 0);
-DBCC CHECKIDENT ('Payment', RESEED, 0);
-DBCC CHECKIDENT ('Users', RESEED, 0);
-DBCC CHECKIDENT ('Administrators', RESEED, 0);
+DBCC CHECKIDENT ('Error_Report', RESEED, 1);
+DBCC CHECKIDENT ('Notifications', RESEED, 1);
+DBCC CHECKIDENT ('Chat_Message', RESEED, 1);
+DBCC CHECKIDENT ('Chat', RESEED, 1);
+DBCC CHECKIDENT ('Comment', RESEED, 1);
+DBCC CHECKIDENT ('Lesson_Progress', RESEED, 1);
+DBCC CHECKIDENT ('Exercise_Result', RESEED, 1);
+DBCC CHECKIDENT ('Test_Result', RESEED, 1);
+DBCC CHECKIDENT ('Exercise_Detail', RESEED, 1);
+DBCC CHECKIDENT ('Exercise', RESEED, 1);
+DBCC CHECKIDENT ('Test_Detail', RESEED, 1);
+DBCC CHECKIDENT ('Question', RESEED, 1);
+DBCC CHECKIDENT ('Test', RESEED, 1);
+DBCC CHECKIDENT ('Lesson', RESEED, 1);
+DBCC CHECKIDENT ('Chapter', RESEED, 1);
+DBCC CHECKIDENT ('Enrollment', RESEED, 1);
+DBCC CHECKIDENT ('Plan_Transaction', RESEED, 1);
+DBCC CHECKIDENT ('Plans', RESEED, 1);
+DBCC CHECKIDENT ('Token_Transaction', RESEED, 1);
+DBCC CHECKIDENT ('Token_Package', RESEED, 1);
+DBCC CHECKIDENT ('Payment', RESEED, 1);
+DBCC CHECKIDENT ('Users', RESEED, 1);
+DBCC CHECKIDENT ('Administrators', RESEED, 1);

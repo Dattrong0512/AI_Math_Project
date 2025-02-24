@@ -22,7 +22,7 @@ public partial class Enrollment
     [Column("enrollment_date")]
     public DateOnly? EnrollmentDate { get; set; }
 
-    [Column("avg_score", TypeName = "decimal(2, 2)")]
+    [Column("avg_score", TypeName = "decimal(4, 2)")]
     public decimal? AvgScore { get; set; }
 
     [Column("semester")]

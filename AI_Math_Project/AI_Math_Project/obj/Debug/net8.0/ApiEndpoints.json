@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "ContainingType": "AI_Math_Project.Controller.ChapterController",
+    "Method": "GetAllChapter",
+    "RelativePath": "api/Chapter/getAllChapter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AI_Math_Project.Controller.ChapterController",
+    "Method": "GetDetailChapters",
+    "RelativePath": "api/Chapter/getDetailChapters",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

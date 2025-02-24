@@ -20,9 +20,6 @@ public partial class Test
     [StringLength(100)]
     public string? TestName { get; set; }
 
-    [Column("test_score", TypeName = "decimal(2, 2)")]
-    public decimal? TestScore { get; set; }
-
     [ForeignKey("ChapterId")]
     [InverseProperty("Tests")]
     public virtual Chapter? Chapter { get; set; }

@@ -4,6 +4,31 @@
     "title": "AI_Math_Project",
     "version": "1.0"
   },
-  "paths": { },
+  "paths": {
+    "/api/Chapter/getAllChapter": {
+      "get": {
+        "tags": [
+          "Chapter"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Chapter/getDetailChapters": {
+      "get": {
+        "tags": [
+          "Chapter"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
   "components": { }
 }

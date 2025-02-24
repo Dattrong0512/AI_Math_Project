@@ -19,7 +19,7 @@ public partial class ExerciseResult
     [Column("enrollment_id")]
     public int? EnrollmentId { get; set; }
 
-    [Column("score", TypeName = "decimal(2, 2)")]
+    [Column("score", TypeName = "decimal(4, 2)")]
     public decimal? Score { get; set; }
 
     [Column("done_at", TypeName = "datetime")]
