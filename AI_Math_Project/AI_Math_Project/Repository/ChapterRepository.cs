@@ -26,33 +26,39 @@ namespace AI_Math_Project.Repository
         }
         public async Task<List<ChapterDto>> GetAllDetailChapters()
         {
+            // Truy vấn các Chapter từ cơ sở dữ liệu
+            var chapters = await _context.Chapters.ToListAsync();
 
+            // Khởi tạo danh sách kết quả
+            var result = new List<ChapterDto>();
 
-            var queryChapter = await _context.Chapters
-                .Join(
-                    _context.Lessons, // Bảng cần JOIN (Lesson)
-                    c => c.ChapterId,  // Khóa chính từ bảng Chapter
-                    l => l.ChapterId,  // Khóa ngoại từ bảng Lesson
-                    (c, l) => new ChapterDto // Chọn dữ liệu cần thiết
+            // Lặp qua từng Chapter và lấy các bài học (Lessons) liên quan
+            foreach (var chapter in chapters)
+            {
+                // Lấy các bài học tương ứng với ChapterId của chương hiện tại
+                var lessons = await _context.Lessons
+                    .Where(l => l.ChapterId == chapter.ChapterId)
+                    .Select(l => new LessionDto
                     {
-                        Grade = c.Grade,
-                        ChapterOrder = c.ChapterOrder,
-                        ChapterName = c.ChapterName,
-                        Lessons = new List<LessionDto> // Mỗi dòng chỉ có 1 bài học
-                        {
-
-                            new LessionDto
-                            {
-                                LessonOrder = l.LessonOrder,
-                                LessonName = l.LessonName
-                            }
-                        }
+                        LessonOrder = l.LessonOrder,
+                        LessonName = l.LessonName
                     })
-                .ToListAsync();
+                    .ToListAsync();
 
-            return queryChapter;
+                // Thêm Chapter và Lessons vào kết quả
+                result.Add(new ChapterDto
+                {
+                    Grade = chapter.Grade,
+                    ChapterOrder = chapter.ChapterOrder,
+                    ChapterName = chapter.ChapterName,
+                    Lessons = lessons
+                });
+            }
 
+            return result;
         }
+
+
 
     }
 }
