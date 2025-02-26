@@ -8,12 +8,26 @@
             <summary>
              Return all chapters of all class
             </summary>
+            /// <remarks>
+            - **grade**: The grade level
+            - **chapterOrder**: The order of the chapter in the curriculum.
+            - **chapterName**: The name of the chapter.
+            - **lessons**: Null, because this api just return information about grade and chapters, not include lessions in chapter
+            </remarks>
             <returns>return list of chapters of classes </returns>
         </member>
         <member name="M:AI_Math_Project.Controller.ChapterController.GetDetailChapters">
             <summary>
              Returns detailed information of each lesson in the chapters
             </summary>
+            <remarks>
+            - **grade**: The grade level
+            - **chapterOrder**: The order of the chapter in the curriculum.
+            - **chapterName**: The name of the chapter.
+            - **lessons**: A list of lessons within the chapter. Each lesson includes:
+              - **lessonOrder**: The order of the lesson within the chapter.
+              - **lessonName**: The name of the lesson.
+            </remarks>
             <returns>return list of chapters of classes </returns>
         </member>
     </members>

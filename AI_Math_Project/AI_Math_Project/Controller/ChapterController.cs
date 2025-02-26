@@ -8,15 +8,13 @@ using System.Net.Mime;
 using AI_Math_Project.DTO;
 namespace AI_Math_Project.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
     [ApiController]
     public class ChapterController : ControllerBase
     {
         IChapterRepository _chapter;
-
-
         public ChapterController(IChapterRepository chapter)
         {
             _chapter = chapter;
@@ -25,6 +23,12 @@ namespace AI_Math_Project.Controller
         /// <summary>
         ///  Return all chapters of all class
         /// </summary>
+        /// /// <remarks>
+        /// - **grade**: The grade level
+        /// - **chapterOrder**: The order of the chapter in the curriculum.
+        /// - **chapterName**: The name of the chapter.
+        /// - **lessons**: Null, because this api just return information about grade and chapters, not include lessions in chapter
+        /// </remarks>
         /// <returns>return list of chapters of classes </returns>
         [HttpGet("chapters")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ChapterDto>))]
@@ -36,6 +40,14 @@ namespace AI_Math_Project.Controller
         /// <summary>
         ///  Returns detailed information of each lesson in the chapters
         /// </summary>
+        /// <remarks>
+        /// - **grade**: The grade level
+        /// - **chapterOrder**: The order of the chapter in the curriculum.
+        /// - **chapterName**: The name of the chapter.
+        /// - **lessons**: A list of lessons within the chapter. Each lesson includes:
+        ///   - **lessonOrder**: The order of the lesson within the chapter.
+        ///   - **lessonName**: The name of the lesson.
+        /// </remarks>
         /// <returns>return list of chapters of classes </returns>
         [HttpGet("chapters/details")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ChapterDto>))]

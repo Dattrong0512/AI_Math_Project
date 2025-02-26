@@ -2,7 +2,7 @@
   {
     "ContainingType": "AI_Math_Project.Controller.ChapterController",
     "Method": "GetAllChapter",
-    "RelativePath": "api/Chapter/chapters",
+    "RelativePath": "api/chapters",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -27,11 +27,26 @@
   {
     "ContainingType": "AI_Math_Project.Controller.ChapterController",
     "Method": "GetDetailChapters",
-    "RelativePath": "api/Chapter/chapters/details",
+    "RelativePath": "api/chapters/details",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AI_Math_Project.DTO.ChapterDto, AI_Math_Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
   }
 ]
