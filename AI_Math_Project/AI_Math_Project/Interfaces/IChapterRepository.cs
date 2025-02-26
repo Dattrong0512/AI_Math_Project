@@ -5,7 +5,7 @@ namespace AI_Math_Project.Interfaces
 {
     public interface IChapterRepository
     {
-        Task<List<Chapter>> GetAllChapters();
+        Task<List<ChapterDto>> GetAllChapters();
         Task<List<ChapterDto>> GetAllDetailChapters();
     }
 }

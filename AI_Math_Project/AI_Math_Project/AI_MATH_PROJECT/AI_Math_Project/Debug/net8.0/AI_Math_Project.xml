@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AI_Math_Project</name>
+    </assembly>
+    <members>
+        <member name="M:AI_Math_Project.Controller.ChapterController.GetAllChapter">
+            <summary>
+             Return all chapters of all class
+            </summary>
+            <returns>return list of chapters of classes </returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.ChapterController.GetDetailChapters">
+            <summary>
+             Returns detailed information of each lesson in the chapters
+            </summary>
+            <returns>return list of chapters of classes </returns>
+        </member>
+    </members>
+</doc>

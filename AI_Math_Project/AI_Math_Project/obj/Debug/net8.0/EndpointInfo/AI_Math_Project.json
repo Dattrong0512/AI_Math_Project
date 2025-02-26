@@ -1,27 +1,59 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "AI_Math_Project",
-    "version": "1.0"
+    "title": "Math AI Api",
+    "description": "This is all api services provide for AI Math product",
+    "termsOfService": "https://example.com/terms",
+    "contact": {
+      "name": "Email",
+      "email": "trongleviet05@gmail.com"
+    },
+    "license": {
+      "name": "License",
+      "url": "https://example.com/license"
+    },
+    "version": "v1"
   },
   "paths": {
-    "/api/Chapter/getAllChapter": {
+    "/api/Chapter/chapters": {
       "get": {
         "tags": [
           "Chapter"
         ],
+        "summary": "Return all chapters of all class",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChapterDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/Chapter/getDetailChapters": {
+    "/api/Chapter/chapters/details": {
       "get": {
         "tags": [
           "Chapter"
         ],
+        "summary": "Returns detailed information of each lesson in the chapters",
         "responses": {
           "200": {
             "description": "OK"
@@ -30,5 +62,79 @@
       }
     }
   },
-  "components": { }
+  "components": {
+    "schemas": {
+      "ChapterDto": {
+        "type": "object",
+        "properties": {
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chapterOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chapterName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessionDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LessionDto": {
+        "type": "object",
+        "properties": {
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      }
+    }
+  }
 }

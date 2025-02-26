@@ -2,6 +2,7 @@
 using AI_Math_Project.Data.Model;
 using AI_Math_Project.DTO;
 using AI_Math_Project.Interfaces;
+using AI_Math_Project.Mappers.ChapterMappers;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
@@ -17,12 +18,13 @@ namespace AI_Math_Project.Repository
         }
 
 
-        public async Task<List<Chapter>> GetAllChapters()
+        public async Task<List<ChapterDto>> GetAllChapters()
         {
 
             var listChapter = await _context.Chapters.ToListAsync();
 
-            return listChapter;
+            var listChapterDto = ChapterMappers.ToChapterDtoList(listChapter);
+            return listChapterDto;
         }
         public async Task<List<ChapterDto>> GetAllDetailChapters()
         {
@@ -57,8 +59,5 @@ namespace AI_Math_Project.Repository
 
             return result;
         }
-
-
-
     }
 }

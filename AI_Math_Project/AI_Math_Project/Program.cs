@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,32 @@ builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Math AI Api",
+        Description = "This is all api services provide for AI Math product",
+        TermsOfService = new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "Email",
+            Email = "trongleviet05@gmail.com"
+        },
+        License = new OpenApiLicense
+        {
+            Name = "License",
+            Url = new Uri("https://example.com/license")
+        }
+    });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
+}).AddSwaggerGenNewtonsoftSupport();
+
+
+
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -34,9 +61,6 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
         sqlServerOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
     }),
     ServiceLifetime.Scoped
-    //// Inject LoggerFactory vào DbContext để hỗ trợ `ILogger<T>` ghi log trong trường hợp truy vấn
-    //var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-    //options.UseLoggerFactory(loggerFactory);
 );
 
 
