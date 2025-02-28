@@ -82,6 +82,51 @@
           }
         }
       }
+    },
+    "/api/chapters/grade/{grade}/details": {
+      "get": {
+        "tags": [
+          "Chapter"
+        ],
+        "summary": "Returns detailed information of each lesson in the chapters classified by class",
+        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChapterDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

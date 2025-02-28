@@ -48,13 +48,32 @@ namespace AI_Math_Project.Controller
         ///   - **lessonOrder**: The order of the lesson within the chapter.
         ///   - **lessonName**: The name of the lesson.
         /// </remarks>
-        /// <returns>return list of chapters of classes </returns>
+        /// <returns>return detail list of chapters of classes </returns>
         [HttpGet("chapters/details")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ChapterDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetDetailChapters()
         {
             return Ok(await _chapter.GetAllDetailChapters());
+        }
+        /// <summary>
+        ///  Returns detailed information of each lesson in the chapters classified by class
+        /// </summary>
+        /// <remarks>
+        /// - **grade**: The grade level
+        /// - **chapterOrder**: The order of the chapter in the curriculum.
+        /// - **chapterName**: The name of the chapter.
+        /// - **lessons**: A list of lessons within the chapter. Each lesson includes:
+        ///   - **lessonOrder**: The order of the lesson within the chapter.
+        ///   - **lessonName**: The name of the lesson.
+        /// </remarks>
+        /// <returns>return detail list of chapters of classes classified by class</returns>
+        [HttpGet("chapters/grade/{grade:int}/details/")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ChapterDto>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetDetailChaptersClassifed([FromRoute] int grade)
+        {
+            return Ok(await _chapter.GetAllDetailChaptersClassified(grade));
         }
     }
 }

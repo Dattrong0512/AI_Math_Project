@@ -28,7 +28,21 @@
               - **lessonOrder**: The order of the lesson within the chapter.
               - **lessonName**: The name of the lesson.
             </remarks>
-            <returns>return list of chapters of classes </returns>
+            <returns>return detail list of chapters of classes </returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.ChapterController.GetDetailChaptersClassifed(System.Int32)">
+            <summary>
+             Returns detailed information of each lesson in the chapters classified by class
+            </summary>
+            <remarks>
+            - **grade**: The grade level
+            - **chapterOrder**: The order of the chapter in the curriculum.
+            - **chapterName**: The name of the chapter.
+            - **lessons**: A list of lessons within the chapter. Each lesson includes:
+              - **lessonOrder**: The order of the lesson within the chapter.
+              - **lessonName**: The name of the lesson.
+            </remarks>
+            <returns>return detail list of chapters of classes classified by class</returns>
         </member>
     </members>
 </doc>

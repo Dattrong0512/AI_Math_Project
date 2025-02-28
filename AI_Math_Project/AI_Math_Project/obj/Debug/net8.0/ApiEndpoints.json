@@ -48,5 +48,36 @@
         "StatusCode": 404
       }
     ]
+  },
+  {
+    "ContainingType": "AI_Math_Project.Controller.ChapterController",
+    "Method": "GetDetailChaptersClassifed",
+    "RelativePath": "api/chapters/grade/{grade}/details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grade",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AI_Math_Project.DTO.ChapterDto, AI_Math_Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
   }
 ]

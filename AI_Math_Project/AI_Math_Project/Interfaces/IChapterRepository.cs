@@ -7,5 +7,6 @@ namespace AI_Math_Project.Interfaces
     {
         Task<List<ChapterDto>> GetAllChapters();
         Task<List<ChapterDto>> GetAllDetailChapters();
+        Task<List<ChapterDto>> GetAllDetailChaptersClassified(int grade);
     }
 }
