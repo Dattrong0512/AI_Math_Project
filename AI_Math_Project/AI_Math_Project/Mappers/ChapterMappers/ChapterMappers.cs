@@ -24,6 +24,7 @@ namespace AI_Math_Project.Mappers.ChapterMappers
                 Grade = chapter.Grade,
                 ChapterOrder = chapter.ChapterOrder,
                 ChapterName = chapter.ChapterName,
+                Semester  = chapter.Semester,
                 Lessons = null
             };
             return dto;

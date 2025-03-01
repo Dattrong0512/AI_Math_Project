@@ -1,10 +1,10 @@
 ﻿using AI_Math_Project.Data;
-using AI_Math_Project.Data.Model;
 using AI_Math_Project.DTO;
 using AI_Math_Project.Interfaces;
 using AI_Math_Project.Mappers.ChapterMappers;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using System.Security.Cryptography;
 
 namespace AI_Math_Project.Repository
 {
@@ -34,6 +34,8 @@ namespace AI_Math_Project.Repository
             // Khởi tạo danh sách kết quả
             var result = new List<ChapterDto>();
 
+
+            
             // Lặp qua từng Chapter và lấy các bài học (Lessons) liên quan
             foreach (var chapter in chapters)
             {
@@ -53,6 +55,7 @@ namespace AI_Math_Project.Repository
                     Grade = chapter.Grade,
                     ChapterOrder = chapter.ChapterOrder,
                     ChapterName = chapter.ChapterName,
+                    Semester  = chapter.Semester,
                     Lessons = lessons
                 });
             }
@@ -88,10 +91,10 @@ namespace AI_Math_Project.Repository
                     Grade = chapter.Grade,
                     ChapterOrder = chapter.ChapterOrder,
                     ChapterName = chapter.ChapterName,
+                    Semester = chapter.Semester,
                     Lessons = lessons
                 });
             }
-
             return result;
         }
     }

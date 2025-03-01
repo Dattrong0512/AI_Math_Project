@@ -55,7 +55,7 @@
           "Chapter"
         ],
         "summary": "Returns detailed information of each lesson in the chapters",
-        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
+        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **episode**: Episode \r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
         "responses": {
           "200": {
             "description": "OK",
@@ -89,7 +89,7 @@
           "Chapter"
         ],
         "summary": "Returns detailed information of each lesson in the chapters classified by class",
-        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
+        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **episode**: Episode \r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
         "parameters": [
           {
             "name": "grade",
@@ -146,6 +146,11 @@
           },
           "chapterName": {
             "type": "string",
+            "nullable": true
+          },
+          "semester": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "lessons": {

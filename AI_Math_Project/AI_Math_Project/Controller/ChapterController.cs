@@ -43,6 +43,7 @@ namespace AI_Math_Project.Controller
         /// <remarks>
         /// - **grade**: The grade level
         /// - **chapterOrder**: The order of the chapter in the curriculum.
+        /// - **semester**: semester
         /// - **chapterName**: The name of the chapter.
         /// - **lessons**: A list of lessons within the chapter. Each lesson includes:
         ///   - **lessonOrder**: The order of the lesson within the chapter.
@@ -63,6 +64,7 @@ namespace AI_Math_Project.Controller
         /// - **grade**: The grade level
         /// - **chapterOrder**: The order of the chapter in the curriculum.
         /// - **chapterName**: The name of the chapter.
+        /// - **semester**: semester 
         /// - **lessons**: A list of lessons within the chapter. Each lesson includes:
         ///   - **lessonOrder**: The order of the lesson within the chapter.
         ///   - **lessonName**: The name of the lesson.
@@ -75,5 +77,6 @@ namespace AI_Math_Project.Controller
         {
             return Ok(await _chapter.GetAllDetailChaptersClassified(grade));
         }
+
     }
 }

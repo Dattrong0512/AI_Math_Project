@@ -23,6 +23,9 @@ public partial class Chapter
     [Column("grade")]
     public short? Grade { get; set; }
 
+    [Column("semester")]
+    public short? Semester { get; set; }
+
     [Column("description", TypeName = "text")]
     public string? Description { get; set; }
 

@@ -23,6 +23,7 @@
             <remarks>
             - **grade**: The grade level
             - **chapterOrder**: The order of the chapter in the curriculum.
+            - **episode**: Episode 
             - **chapterName**: The name of the chapter.
             - **lessons**: A list of lessons within the chapter. Each lesson includes:
               - **lessonOrder**: The order of the lesson within the chapter.
@@ -38,6 +39,7 @@
             - **grade**: The grade level
             - **chapterOrder**: The order of the chapter in the curriculum.
             - **chapterName**: The name of the chapter.
+            - **episode**: Episode 
             - **lessons**: A list of lessons within the chapter. Each lesson includes:
               - **lessonOrder**: The order of the lesson within the chapter.
               - **lessonName**: The name of the lesson.
