@@ -1,12 +1,17 @@
 ﻿using AI_Math_Project.Data;
+using AI_Math_Project.Data.Model;
 using AI_Math_Project.DTO;
 using AI_Math_Project.DTO.LessionProgressDto;
 using AI_Math_Project.Interfaces;
 using AI_Math_Project.Mappers.LessionProgressMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.Identity.Client;
 using System.Linq;
+
+
+
 
 namespace AI_Math_Project.Repository
 {
@@ -51,6 +56,7 @@ namespace AI_Math_Project.Repository
 
                 listLPDto.Add(new LessionProgressDto {
 
+                    LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
 
                      LearningProgress = lp.LearningProgress,
@@ -97,6 +103,7 @@ namespace AI_Math_Project.Repository
                 listLPDto.Add(new LessionProgressDto
                 {
 
+                    LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
 
                     LearningProgress = lp.LearningProgress,
@@ -109,5 +116,40 @@ namespace AI_Math_Project.Repository
             }
             return listLPDto;
         }
+
+
+        public async Task<LessionProgressDto?> UpdateLearningProgress(int idProgress, short learningProgress)
+        {
+
+            int record = await _context.LessonProgresses
+            .Where(lp => lp.LearningProgressId == idProgress)
+            .ExecuteUpdateAsync(setter => setter
+                .SetProperty(lp => lp.LearningProgress, learningProgress)
+             );
+
+
+            if (record == 0)
+            {
+                return null;
+            }
+            else
+                return await GetInfoOneLessionProgress(idProgress);
+
+        }
+        public async Task<LessionProgressDto?> GetInfoOneLessionProgress(int lpId)
+        {
+            LessonProgress? lp = await _context.LessonProgresses
+                .Where(lp => lp.LearningProgressId == lpId)
+                .Include(lp => lp.Lesson)
+                .FirstOrDefaultAsync();
+
+            if (lp == null)
+            {
+                return null; 
+            }
+
+            return lp.ToLessionProgressDto(); // ✅ Trả về DTO
+        }
+
     }
 }

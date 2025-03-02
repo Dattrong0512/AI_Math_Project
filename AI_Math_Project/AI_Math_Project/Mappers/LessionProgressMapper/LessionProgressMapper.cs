@@ -11,6 +11,7 @@ namespace AI_Math_Project.Mappers.LessionProgressMapper
         {
             LessionProgressDto lessionDto = new LessionProgressDto
             {
+                LearningProgressId = lession.LearningProgressId,
                 LessonId = lession.LessonId,
                 LearningProgress = lession.LearningProgress,
                 IsCompleted = lession.IsCompleted,

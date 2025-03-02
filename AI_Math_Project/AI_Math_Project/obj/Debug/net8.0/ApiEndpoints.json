@@ -146,5 +146,26 @@
         "StatusCode": 404
       }
     ]
+  },
+  {
+    "ContainingType": "AI_Math_Project.Controller.LessionProgressController",
+    "Method": "UpdateLearningProgress",
+    "RelativePath": "update/lessionprogressID/{idProgress}/learningprogress/{learningProgress}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idProgress",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "learningProgress",
+        "Type": "System.Int16",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

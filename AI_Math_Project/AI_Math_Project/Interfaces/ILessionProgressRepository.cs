@@ -6,5 +6,7 @@ namespace AI_Math_Project.Interfaces
     {
         Task<List<LessionProgressDto>> GetAllInfLessionProgress(int id);
         Task<List<LessionProgressDto>> GetAllInfLessionProgressClassified(int id, int semester);
+        Task<LessionProgressDto?> UpdateLearningProgress(int idProgress, short learningProgress);
+        Task<LessionProgressDto?> GetInfoOneLessionProgress(int lpId);
     }
 }

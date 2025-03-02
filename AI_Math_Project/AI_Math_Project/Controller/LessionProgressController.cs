@@ -82,5 +82,40 @@ namespace AI_Math_Project.Controller
         {
             return Ok(await _lessionProgress.GetAllInfLessionProgressClassified(id,semester));
         }
+
+        /// <summary>
+        /// Updates the learning progress of a specific lesson progress record.
+        /// </summary>
+        /// <remarks>
+        /// This API updates the user's learning progress for a specific lesson.
+        /// 
+        /// **Request:**
+        /// The request should include:
+        /// - **idProgress** (int): The unique identifier of the lesson progress.
+        /// - **learningProgress** (short): The updated progress percentage of the lesson.
+        ///
+        /// **Response:**
+        /// If successful, the response will return the updated lesson progress information:
+        /// - **learningProgressId**: The unique identifier of the lesson progress.
+        /// - **lessonId**: The unique identifier of the lesson.
+        /// - **learningProgress**: The updated progress of the user in the lesson (e.g., percentage completed).
+        /// - **isCompleted**: A boolean indicating whether the lesson is completed.
+        /// - **lesson**: An object containing lesson details:
+        ///   - **lessonOrder**: The order of the lesson in the study plan.
+        ///   - **lessonName**: The name of the lesson.
+        ///   - **lessonContent**: A link to the lesson content.
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// PATCH /update/lessionprogressID/13/learningprogress/23
+        /// </remarks>
+        /// <returns>Returns the updated learning progress information.</returns>
+        [HttpPatch("/update/lessionprogressID/{idProgress:int}/learningprogress/{learningProgress}")]
+        public async Task<IActionResult> UpdateLearningProgress([FromRoute] int idProgress, [FromRoute] short learningProgress)
+        {
+            return Ok(await _lessionProgress.UpdateLearningProgress(idProgress, learningProgress));
+        }
+
+
     }
 }

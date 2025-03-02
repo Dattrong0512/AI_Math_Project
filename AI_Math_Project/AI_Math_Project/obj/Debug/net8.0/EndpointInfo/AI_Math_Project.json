@@ -226,6 +226,40 @@
           }
         }
       }
+    },
+    "/update/lessionprogressID/{idProgress}/learningprogress/{learningProgress}": {
+      "patch": {
+        "tags": [
+          "LessionProgress"
+        ],
+        "summary": "Updates the learning progress of a specific lesson progress record.",
+        "description": "This API updates the user's learning progress for a specific lesson.\r\n\r\n**Request:**\r\nThe request should include:\r\n- **idProgress** (int): The unique identifier of the lesson progress.\r\n- **learningProgress** (short): The updated progress percentage of the lesson.\r\n            \r\n**Response:**\r\nIf successful, the response will return the updated lesson progress information:\r\n- **learningProgressId**: The unique identifier of the lesson progress.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The updated progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: A link to the lesson content.\r\n            \r\n**Example Request:**\r\n```http\r\nPATCH /update/lessionprogressID/13/learningprogress/23",
+        "parameters": [
+          {
+            "name": "idProgress",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "learningProgress",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -288,6 +322,10 @@
       "LessionProgressDto": {
         "type": "object",
         "properties": {
+          "learningProgressId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "lessonId": {
             "type": "integer",
             "format": "int32",
