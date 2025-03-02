@@ -23,7 +23,7 @@
             <remarks>
             - **grade**: The grade level
             - **chapterOrder**: The order of the chapter in the curriculum.
-            - **episode**: Episode 
+            - **semester**: semester
             - **chapterName**: The name of the chapter.
             - **lessons**: A list of lessons within the chapter. Each lesson includes:
               - **lessonOrder**: The order of the lesson within the chapter.
@@ -39,12 +39,56 @@
             - **grade**: The grade level
             - **chapterOrder**: The order of the chapter in the curriculum.
             - **chapterName**: The name of the chapter.
-            - **episode**: Episode 
+            - **semester**: semester 
             - **lessons**: A list of lessons within the chapter. Each lesson includes:
               - **lessonOrder**: The order of the lesson within the chapter.
               - **lessonName**: The name of the lesson.
             </remarks>
             <returns>return detail list of chapters of classes classified by class</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.LessionProgressController.GetLessionProgressById(System.Int32)">
+            <summary>
+            Returns all information of the study program the user has registered for.
+            </summary>
+            <remarks>
+            This API retrieves the user's study program information, including lesson details and learning progress.
+            
+            **Request:**
+            The request should include userID.
+            
+            **Response:**
+            The response will return a list of lessons, each containing:
+            - **lessonId**: The unique identifier of the lesson.
+            - **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).
+            - **isCompleted**: A boolean indicating whether the lesson is completed.
+            - **lesson**: An object containing lesson details:
+              - **lessonOrder**: The order of the lesson in the study plan.
+              - **lessonName**: The name of the lesson.
+              - **lessonContent**: The content of the lesson.
+            </remarks>
+            <returns>Returns all information of the study program the user has registered for.</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.LessionProgressController.GetLessionProgressById(System.Int32,System.Int32)">
+            <summary>
+            Returns all information of the study program classified by the semester the user has registered for.
+            </summary>
+            <remarks>
+            This API retrieves the user's study program information, including lesson details and learning progress.
+            
+            **Request:**
+            The request should include **userID** and **Semester**.
+            
+            **Response:**
+            The response will return a list of lessons, each containing:
+            - **lessonId**: The unique identifier of the lesson.
+            - **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).
+            - **isCompleted**: A boolean indicating whether the lesson is completed.
+            - **lesson**: An object containing lesson details:
+              - **lessonOrder**: The order of the lesson in the study plan.
+              - **lessonName**: The name of the lesson.
+              - **lessonContent**: The content of the lesson.
+            </remarks>
+            <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         </member>
     </members>
 </doc>

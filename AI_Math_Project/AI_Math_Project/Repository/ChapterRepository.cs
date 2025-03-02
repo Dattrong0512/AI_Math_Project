@@ -45,7 +45,8 @@ namespace AI_Math_Project.Repository
                     .Select(l => new LessionDto
                     {
                         LessonOrder = l.LessonOrder,
-                        LessonName = l.LessonName
+                        LessonName = l.LessonName,
+                        LessonContent = l.LessonContent
                     })
                     .ToListAsync();
 
@@ -81,7 +82,8 @@ namespace AI_Math_Project.Repository
                     .Select(l => new LessionDto
                     {
                         LessonOrder = l.LessonOrder,
-                        LessonName = l.LessonName
+                        LessonName = l.LessonName,
+                        LessonContent = l.LessonContent
                     })
                     .ToListAsync();
 

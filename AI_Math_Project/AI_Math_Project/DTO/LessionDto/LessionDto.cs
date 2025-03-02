@@ -9,7 +9,9 @@ namespace AI_Math_Project.DTO
 
         [StringLength(100)]
         public string LessonName { get; set; } = null!;
-        //public int ? ChapterId { get; set; }
+
+        [StringLength(255)]
+        public string? LessonContent { get; set; }
     }
 
 }

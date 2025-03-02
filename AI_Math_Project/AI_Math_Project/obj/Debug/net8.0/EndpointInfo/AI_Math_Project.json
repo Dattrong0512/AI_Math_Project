@@ -55,7 +55,7 @@
           "Chapter"
         ],
         "summary": "Returns detailed information of each lesson in the chapters",
-        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **episode**: Episode \r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
+        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **semester**: semester\r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
         "responses": {
           "200": {
             "description": "OK",
@@ -89,7 +89,7 @@
           "Chapter"
         ],
         "summary": "Returns detailed information of each lesson in the chapters classified by class",
-        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **episode**: Episode \r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
+        "description": "- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **semester**: semester \r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
         "parameters": [
           {
             "name": "grade",
@@ -110,6 +110,105 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/ChapterDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/id/{id}": {
+      "get": {
+        "tags": [
+          "LessionProgress"
+        ],
+        "summary": "Returns all information of the study program the user has registered for.",
+        "description": "This API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include userID.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LessionProgressDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/id/{id}/semester/{semester}": {
+      "get": {
+        "tags": [
+          "LessionProgress"
+        ],
+        "summary": "Returns all information of the study program classified by the semester the user has registered for.",
+        "description": "This API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include **userID** and **Semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "semester",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LessionProgressDto"
                   }
                 }
               }
@@ -176,6 +275,35 @@
             "minLength": 0,
             "type": "string",
             "nullable": true
+          },
+          "lessonContent": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LessionProgressDto": {
+        "type": "object",
+        "properties": {
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "learningProgress": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isCompleted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/LessionDto"
           }
         },
         "additionalProperties": false

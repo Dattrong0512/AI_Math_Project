@@ -67,6 +67,9 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 
 //Register DI for Repo
 builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
+builder.Services.AddScoped<ILessionProgressRepository, LessionProgressRepository>();
+
+
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
