@@ -46,6 +46,34 @@
             </remarks>
             <returns>return detail list of chapters of classes classified by class</returns>
         </member>
+        <member name="M:AI_Math_Project.Controller.EnrollmentController.GetInfoEnrollmentById(System.Int32)">
+             <summary>
+             Retrieves all enrollment information for a specific user.
+             </summary>
+             <remarks>
+             This API retrieves enrollment records for a given user, including details such as grade, semester, and academic year.
+            
+             **Request:**
+             The request should include:
+             - **id** (int): The unique identifier of the user.
+            
+             **Response:**
+             The response will return a list of enrollment records, each containing:
+             - **enrollmentId**: The unique identifier of the enrollment.
+             - **userId**: The unique identifier of the user.
+             - **grade**: The grade level associated with the enrollment.
+             - **enrollmentDate**: The date when the user enrolled.
+             - **avgScore**: The average score of the user in this enrollment (nullable).
+             - **semester**: The semester in which the user is enrolled.
+             - **startYear**: The academic start year.
+             - **endYear**: The academic end year.
+            
+             **Example Request:**
+             ```http
+             GET /getinfo/id/10
+             </remarks>
+             <returns>Returns all enrollment records for the specified user.</returns>
+        </member>
         <member name="M:AI_Math_Project.Controller.LessionProgressController.GetLessionProgressById(System.Int32)">
             <summary>
             Returns all information of the study program the user has registered for.
