@@ -3,7 +3,7 @@
 ## Description
 This is a web server project that serves a Web API and other methods to provide for the AI MATH application.
 
-## Server Deploy: [Server](https://aimathproject20250226152156.azurewebsites.net/swagger/index.html)
+## Server Deploy: [Server](https://aimathprojectv2.azurewebsites.net/swagger/index.html)
 
 
 ## Instructions to run the project
