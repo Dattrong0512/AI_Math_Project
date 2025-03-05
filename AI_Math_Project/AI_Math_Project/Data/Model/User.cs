@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AI_Math_Project.Data.Model;
 
-[Index("Email", Name = "UQ__Users__AB6E61642C0C9611", IsUnique = true)]
+[Index("Email", Name = "UQ__Users__AB6E61645A2A8495", IsUnique = true)]
 public partial class User
 {
     [Key]

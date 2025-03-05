@@ -32,4 +32,7 @@ public partial class ExerciseResult
     [ForeignKey("ExerciseId")]
     [InverseProperty("ExerciseResults")]
     public virtual Exercise? Exercise { get; set; }
+
+    [InverseProperty("ExerciseResult")]
+    public virtual ICollection<ExerciseDetailResult> ExerciseDetailResults { get; set; } = new List<ExerciseDetailResult>();
 }

@@ -23,6 +23,9 @@ public partial class ExerciseDetail
     [InverseProperty("ExerciseDetails")]
     public virtual Exercise? Exercise { get; set; }
 
+    [InverseProperty("ExerciseDetail")]
+    public virtual ICollection<ExerciseDetailResult> ExerciseDetailResults { get; set; } = new List<ExerciseDetailResult>();
+
     [ForeignKey("QuestionId")]
     [InverseProperty("ExerciseDetails")]
     public virtual Question? Question { get; set; }

@@ -21,7 +21,7 @@ public partial class MatchingAnswer
     public string CorrectAnswer { get; set; } = null!;
 
     [Column("img_url")]
-    [StringLength(100)]
+    [StringLength(300)]
     [Unicode(false)]
     public string ImgUrl { get; set; } = null!;
 

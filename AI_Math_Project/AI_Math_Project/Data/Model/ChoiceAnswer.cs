@@ -24,7 +24,7 @@ public partial class ChoiceAnswer
     public bool? IsCorrect { get; set; }
 
     [Column("img_url")]
-    [StringLength(100)]
+    [StringLength(300)]
     [Unicode(false)]
     public string? ImgUrl { get; set; }
 

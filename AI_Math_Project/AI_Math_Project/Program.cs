@@ -69,7 +69,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 builder.Services.AddScoped<IChapterRepository, ChapterRepository>();
 builder.Services.AddScoped<ILessionProgressRepository, LessionProgressRepository>();
 builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
-
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
 
 var app = builder.Build();

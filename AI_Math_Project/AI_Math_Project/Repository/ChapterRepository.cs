@@ -28,18 +28,17 @@ namespace AI_Math_Project.Repository
         }
         public async Task<List<ChapterDto>> GetAllDetailChapters()
         {
-            // Truy vấn các Chapter từ cơ sở dữ liệu
+      
             var chapters = await _context.Chapters.ToListAsync();
 
-            // Khởi tạo danh sách kết quả
             var result = new List<ChapterDto>();
 
 
             
-            // Lặp qua từng Chapter và lấy các bài học (Lessons) liên quan
+         
             foreach (var chapter in chapters)
             {
-                // Lấy các bài học tương ứng với ChapterId của chương hiện tại
+       
                 var lessons = await _context.Lessons
                     .Where(l => l.ChapterId == chapter.ChapterId)
                     .Select(l => new LessionDto
@@ -50,7 +49,7 @@ namespace AI_Math_Project.Repository
                     })
                     .ToListAsync();
 
-                // Thêm Chapter và Lessons vào kết quả
+         
                 result.Add(new ChapterDto
                 {
                     Grade = chapter.Grade,
@@ -66,17 +65,15 @@ namespace AI_Math_Project.Repository
 
         public async Task<List<ChapterDto>> GetAllDetailChaptersClassified(int grade)
         {
-            // Truy vấn các Chapter từ cơ sở dữ liệu
+          
             var chapters = await _context.Chapters.Where(c => c.Grade == grade).
                 ToListAsync();
 
-            // Khởi tạo danh sách kết quả
             var result = new List<ChapterDto>();
 
-            // Lặp qua từng Chapter và lấy các bài học (Lessons) liên quan
             foreach (var chapter in chapters)
             {
-                // Lấy các bài học tương ứng với ChapterId của chương hiện tại
+               
                 var lessons = await _context.Lessons
                     .Where(l => l.ChapterId == chapter.ChapterId)
                     .Select(l => new LessionDto
@@ -87,7 +84,6 @@ namespace AI_Math_Project.Repository
                     })
                     .ToListAsync();
 
-                // Thêm Chapter và Lessons vào kết quả
                 result.Add(new ChapterDto
                 {
                     Grade = chapter.Grade,

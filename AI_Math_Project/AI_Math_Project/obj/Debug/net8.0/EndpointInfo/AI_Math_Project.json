@@ -305,6 +305,40 @@
           }
         }
       }
+    },
+    "/api/Question/GetQuestionByGradeAndId/grade/{grade}/lessionOrder/{lessionorder}": {
+      "get": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "Retrieves all questions associated with a specific grade and lesson order.",
+        "description": "This API returns a list of questions for a given study program, filtered by grade level and lesson order.\r\n            \r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **lessionOrder** (int): The sequential order of the lesson.\r\n            \r\n**Response Format:**\r\nThe response will return a list of questions, each containing:\r\n- **questionId** (int): The unique identifier of the question.\r\n- **questionType** (string): The type of question (e.g., \"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n- **difficulty** (int): The difficulty level of the question.\r\n- **lessonId** (int): The identifier of the associated lesson.\r\n- **imgUrl** (string, nullable): The URL of an image related to the question.\r\n- **questionContent** (string): The text content of the question.\r\n- **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n- **choiceAnswers** (array): List of multiple-choice answers (if applicable):\r\n  - **answerId** (int): The unique identifier of the answer choice.\r\n  - **content** (string, nullable): The text of the answer choice (if applicable).\r\n  - **isCorrect** (bool): Whether this choice is the correct answer.\r\n  - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n- **fillAnswers** (array): List of correct answers for fill-in-the-blank questions (if applicable):\r\n  - **answerId** (int): The unique identifier of the correct answer.\r\n  - **correctAnswer** (string): The correct text answer that should be filled in.\r\n  - **position** (short): The position of the blank in the question (for multi-blank questions).\r\n- **matchingAnswers** (array): List of matching question pairs (if applicable):\r\n  - **answerId** (int): The unique identifier of the matching answer.\r\n  - **correctAnswer** (string): The correct match for the question.\r\n  - **imgUrl** (string, nullable): An image URL representing the matching item.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/GetQuestionByGradeAndId/grade/1/lessionOrder/1\r\n```",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lessionorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

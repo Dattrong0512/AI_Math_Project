@@ -26,4 +26,7 @@ public partial class TestDetail
     [ForeignKey("TestId")]
     [InverseProperty("TestDetails")]
     public virtual Test? Test { get; set; }
+
+    [InverseProperty("TestDetail")]
+    public virtual ICollection<TestDetailResult> TestDetailResults { get; set; } = new List<TestDetailResult>();
 }

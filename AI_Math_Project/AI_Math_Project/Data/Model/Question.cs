@@ -25,7 +25,7 @@ public partial class Question
     public int? LessonId { get; set; }
 
     [Column("img_url")]
-    [StringLength(100)]
+    [StringLength(300)]
     [Unicode(false)]
     public string? ImgUrl { get; set; }
 
