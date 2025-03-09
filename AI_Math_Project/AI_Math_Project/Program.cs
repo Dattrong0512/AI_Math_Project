@@ -1,12 +1,15 @@
 ﻿using AI_Math_Project.Data;
 using AI_Math_Project.Interfaces;
 using AI_Math_Project.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +41,34 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     options.IncludeXmlComments(xmlPath);
+
+
+    //var jwtSecurityScheme = new OpenApiSecurityScheme
+    //{
+    //    Name = "JWT Authentication",
+    //    Description = "Enter your JWT token in this field",
+    //    In = ParameterLocation.Header,
+    //    Type = SecuritySchemeType.Http,
+    //    Scheme = "bearer",
+    //    BearerFormat = "JWT"
+    //};
+    //options.AddSecurityDefinition("Bearer", jwtSecurityScheme);
+
+
+    //var securityRequirement = new OpenApiSecurityRequirement
+    //{
+    //    {
+    //        new OpenApiSecurityScheme
+    //        {
+    //            Reference = new OpenApiReference{
+    //                Type = ReferenceType.SecurityScheme,
+    //                Id = "Bearer"
+    //            }
+    //        },
+    //        new string []{}
+    //    }
+    //};
+
 }).AddSwaggerGenNewtonsoftSupport();
 
 
@@ -72,6 +103,54 @@ builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 
 
+////Setup JWT
+//builder.Services
+//    .AddAuthentication(x =>
+//    {
+//        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//    })
+//    .AddJwtBearer(x =>
+//    {
+//        x.SaveToken = true;
+//        x.TokenValidationParameters = new TokenValidationParameters
+//        {
+//            ValidateIssuer = false,
+//            ValidateAudience = false,
+//            ValidateLifetime = false,
+//            ValidIssuer = builder.Configuration["JWT:Issuer"],
+//            ValidAudience = builder.Configuration["JWT:Audience"],
+//            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"] ?? "DefaultSecretKey123"))
+//        };
+//    });
+
+
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy(
+//        "AdminOnly",
+//        policyBuilder => policyBuilder.RequireAssertion(
+//            context => context.User.HasClaim(claim => claim.Type == "Role")
+//            && context.User.FindFirst(claim => claim.Type == "Role").Value == "1"));
+
+//    options.AddPolicy(
+//        "StaffOnly",
+//               policyBuilder => policyBuilder.RequireAssertion(
+//                              context => context.User.HasClaim(claim => claim.Type == "Role")
+//                                         && context.User.FindFirst(claim => claim.Type == "Role").Value == "2"));
+//    options.AddPolicy(
+//        "AdminOrStaff",
+//        policyBuilder => policyBuilder.RequireAssertion(
+//                       context => context.User.HasClaim(claim => claim.Type == "Role")
+//                                  && (context.User.FindFirst(claim => claim.Type == "Role").Value == "1"
+//                                             || context.User.FindFirst(claim => claim.Type == "Role").Value == "2")));
+//});
+
+
+
+
+
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
@@ -87,6 +166,7 @@ if (app.Environment.IsDevelopment()||app.Environment.IsProduction())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -497,6 +497,14 @@
         },
         "additionalProperties": { }
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter your JWT token in this field",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
   }
 }
