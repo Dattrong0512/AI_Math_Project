@@ -16,13 +16,12 @@ public partial class Notification
     public int? UserId { get; set; }
 
     [Column("notification_type")]
-    [StringLength(50)]
+    [StringLength(10)]
     [Unicode(false)]
     public string? NotificationType { get; set; }
 
     [Column("notification_title")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? NotificationTitle { get; set; }
 
     [Column("notification_message")]
@@ -33,7 +32,7 @@ public partial class Notification
     public DateTime? SentAt { get; set; }
 
     [Column("status")]
-    [StringLength(20)]
+    [StringLength(10)]
     [Unicode(false)]
     public string? Status { get; set; }
 

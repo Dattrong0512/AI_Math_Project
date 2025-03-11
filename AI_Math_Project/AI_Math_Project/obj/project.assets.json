@@ -5253,11 +5253,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hi\\Desktop\\AI_MATH_PROJECT\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project.csproj",
+      "projectUniqueName": "C:\\Users\\Hi\\Desktop\\DO AN TOT NGHIEP\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project.csproj",
       "projectName": "AI_Math_Project",
-      "projectPath": "C:\\Users\\Hi\\Desktop\\AI_MATH_PROJECT\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project.csproj",
+      "projectPath": "C:\\Users\\Hi\\Desktop\\DO AN TOT NGHIEP\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project.csproj",
       "packagesPath": "C:\\Users\\Hi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hi\\Desktop\\AI_MATH_PROJECT\\AI_Math_Project\\AI_Math_Project\\obj\\",
+      "outputPath": "C:\\Users\\Hi\\Desktop\\DO AN TOT NGHIEP\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -26,7 +26,8 @@ public partial class Chapter
     [Column("semester")]
     public short? Semester { get; set; }
 
-    [Column("description", TypeName = "text")]
+    [Column("description")]
+    [StringLength(255)]
     public string? Description { get; set; }
 
     [InverseProperty("Chapter")]

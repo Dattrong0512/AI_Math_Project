@@ -27,8 +27,7 @@ public partial class Comment
     public string? CommentContent { get; set; }
 
     [Column("status")]
-    [StringLength(100)]
-    [Unicode(false)]
+    [StringLength(20)]
     public string? Status { get; set; }
 
     [Column("created_at", TypeName = "datetime")]

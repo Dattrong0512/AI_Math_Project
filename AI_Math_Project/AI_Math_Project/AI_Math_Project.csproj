@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <BaseOutputPath>AI_MATH_PROJECT\AI_Math_Project</BaseOutputPath>
-	 <NoWarn>1591,8602</NoWarn>
+	 <NoWarn>1591,8602,1570</NoWarn>
 
   </PropertyGroup>
 

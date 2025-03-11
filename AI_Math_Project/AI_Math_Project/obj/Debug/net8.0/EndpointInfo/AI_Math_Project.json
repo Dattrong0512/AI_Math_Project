@@ -128,7 +128,7 @@
         }
       }
     },
-    "/getinfo/id/{id}": {
+    "/api/enrollment/id/{id}": {
       "get": {
         "tags": [
           "Enrollment"
@@ -173,13 +173,113 @@
         }
       }
     },
+    "/api/lesson/grade/{grade}/chapterorder/{chapterorder}/lessonorder/{lessonorder}": {
+      "get": {
+        "tags": [
+          "Lession"
+        ],
+        "summary": "Retrieves the details of a lesson associated with a specific grade, chapter, and lesson order.",
+        "description": "This API returns the details of a lesson, filtered by grade level, chapter order, and lesson order.\r\n\r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **chapterorder** (int): The sequential order of the chapter.\r\n- **lessonorder** (int): The sequential order of the lesson within the chapter.\r\n\r\n**Response Format:**\r\nThe response will return the details of the lesson, including:\r\n- **lessonOrder** (short?): The order of the lesson within the chapter. Nullable to allow for optional lesson orders.\r\n- **lessonName** (string): The name of the lesson.\r\n- **lessonContent** (string, nullable): The content of the lesson, if available. This can be null if no content is provided.\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/lesson/grade/1/chapterorder/1/lessonorder/1\r\n```",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "chapterorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lessonorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lesson/grade/{grade}/chapter/{chapterorder}": {
+      "post": {
+        "tags": [
+          "Lession"
+        ],
+        "summary": "Creates a new lesson associated with a specific grade and chapter order.",
+        "description": "This API creates a new lesson and saves it in the system. The lesson is created with the provided grade level, chapter order, and lesson data.\r\n\r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **chapterorder** (int): The sequential order of the chapter in the study program.\r\n- **lessonDto** (LessonDto): The details of the lesson to be created. This should include:\r\n  - **lessonOrder** (short?): The order of the lesson within the chapter.\r\n  - **lessonName** (string): The name of the lesson.\r\n  - **lessonContent** (string, nullable): The content of the lesson (optional).\r\n\r\n**Response Format:**\r\n- **201 Created**: If the lesson is successfully created, the response will include the created `LessonDto` and the URL of the new lesson.\r\n- **400 Bad Request**: If the lesson could not be created, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/lesson/grade/1/chapter/1\r\nContent-Type: application/json\r\n{\r\n  \"lessonOrder\": 2,\r\n  \"lessonName\": \"Vị trí tiết 2\",\r\n  \"lessonContent\": \"linkyoutube\"\r\n}\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 201 Created\r\nLocation: /api/lesson/grade/1/chapter/1/lessonorder/2\r\n{\r\n  \"lessonOrder\": 2,\r\n  \"lessonName\": \"Vị trí tiết 2\",\r\n  \"lessonContent\": \"linkyoutube\"\r\n}",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "chapterorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LessonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/id/{id}": {
       "get": {
         "tags": [
           "LessionProgress"
         ],
         "summary": "Returns all information of the study program the user has registered for.",
-        "description": "This API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include userID.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.",
+        "description": "This API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include userID.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.\r\n **Example Request:**\r\n```http\r\nGET /api/lessionprogress/id/6",
         "parameters": [
           {
             "name": "id",
@@ -199,7 +299,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LessionProgressDto"
+                    "$ref": "#/components/schemas/LessonProgressDto"
                   }
                 }
               }
@@ -224,7 +324,7 @@
           "LessionProgress"
         ],
         "summary": "Returns all information of the study program classified by the semester the user has registered for.",
-        "description": "This API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include **userID** and **Semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.",
+        "description": "This API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include **userID** and **Semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.\r\n  **Example Request:**\r\n```http\r\nGET /api/lessionprogress/id/6/semester/1",
         "parameters": [
           {
             "name": "id",
@@ -253,7 +353,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/LessionProgressDto"
+                    "$ref": "#/components/schemas/LessonProgressDto"
                   }
                 }
               }
@@ -306,13 +406,13 @@
         }
       }
     },
-    "/api/Question/GetQuestionByGradeAndId/grade/{grade}/lessionOrder/{lessionorder}": {
+    "/grade/{grade}/lessionorder/{lessionorder}": {
       "get": {
         "tags": [
           "Question"
         ],
         "summary": "Retrieves all questions associated with a specific grade and lesson order.",
-        "description": "This API returns a list of questions for a given study program, filtered by grade level and lesson order.\r\n            \r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **lessionOrder** (int): The sequential order of the lesson.\r\n            \r\n**Response Format:**\r\nThe response will return a list of questions, each containing:\r\n- **questionId** (int): The unique identifier of the question.\r\n- **questionType** (string): The type of question (e.g., \"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n- **difficulty** (int): The difficulty level of the question.\r\n- **lessonId** (int): The identifier of the associated lesson.\r\n- **imgUrl** (string, nullable): The URL of an image related to the question.\r\n- **questionContent** (string): The text content of the question.\r\n- **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n- **choiceAnswers** (array): List of multiple-choice answers (if applicable):\r\n  - **answerId** (int): The unique identifier of the answer choice.\r\n  - **content** (string, nullable): The text of the answer choice (if applicable).\r\n  - **isCorrect** (bool): Whether this choice is the correct answer.\r\n  - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n- **fillAnswers** (array): List of correct answers for fill-in-the-blank questions (if applicable):\r\n  - **answerId** (int): The unique identifier of the correct answer.\r\n  - **correctAnswer** (string): The correct text answer that should be filled in.\r\n  - **position** (short): The position of the blank in the question (for multi-blank questions).\r\n- **matchingAnswers** (array): List of matching question pairs (if applicable):\r\n  - **answerId** (int): The unique identifier of the matching answer.\r\n  - **correctAnswer** (string): The correct match for the question.\r\n  - **imgUrl** (string, nullable): An image URL representing the matching item.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/GetQuestionByGradeAndId/grade/1/lessionOrder/1\r\n```",
+        "description": "This API returns a list of questions for a given study program, filtered by grade level and lesson order.\r\n            \r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **lessionOrder** (int): The sequential order of the lesson.\r\n            \r\n**Response Format:**\r\nThe response will return a list of questions, each containing:\r\n- **questionId** (int): The unique identifier of the question.\r\n- **questionType** (string): The type of question (e.g., \"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n- **difficulty** (int): The difficulty level of the question.\r\n- **lessonId** (int): The identifier of the associated lesson.\r\n- **imgUrl** (string, nullable): The URL of an image related to the question.\r\n- **questionContent** (string): The text content of the question.\r\n- **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n- **choiceAnswers** (array): List of multiple-choice answers (if applicable):\r\n  - **answerId** (int): The unique identifier of the answer choice.\r\n  - **content** (string, nullable): The text of the answer choice (if applicable).\r\n  - **isCorrect** (bool): Whether this choice is the correct answer.\r\n  - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n- **fillAnswers** (array): List of correct answers for fill-in-the-blank questions (if applicable):\r\n  - **answerId** (int): The unique identifier of the correct answer.\r\n  - **correctAnswer** (string): The correct text answer that should be filled in.\r\n  - **position** (short): The position of the blank in the question (for multi-blank questions).\r\n- **matchingAnswers** (array): List of matching question pairs (if applicable):\r\n  - **answerId** (int): The unique identifier of the matching answer.\r\n  - **correctAnswer** (string): The correct match for the question.\r\n  - **imgUrl** (string, nullable): An image URL representing the matching item.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/question/grade/1/lessionorder/1\r\n```",
         "parameters": [
           {
             "name": "grade",
@@ -368,7 +468,7 @@
           "lessons": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/LessionDto"
+              "$ref": "#/components/schemas/LessonDto"
             },
             "nullable": true
           }
@@ -420,7 +520,7 @@
         },
         "additionalProperties": false
       },
-      "LessionDto": {
+      "LessonDto": {
         "type": "object",
         "properties": {
           "lessonOrder": {
@@ -443,7 +543,7 @@
         },
         "additionalProperties": false
       },
-      "LessionProgressDto": {
+      "LessonProgressDto": {
         "type": "object",
         "properties": {
           "learningProgressId": {
@@ -465,7 +565,7 @@
             "nullable": true
           },
           "lesson": {
-            "$ref": "#/components/schemas/LessionDto"
+            "$ref": "#/components/schemas/LessonDto"
           }
         },
         "additionalProperties": false
@@ -496,14 +596,6 @@
           }
         },
         "additionalProperties": { }
-      }
-    },
-    "securitySchemes": {
-      "Bearer": {
-        "type": "http",
-        "description": "Enter your JWT token in this field",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
       }
     }
   }

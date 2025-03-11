@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AI_Math_Project.Data.Model;
 
-[Index("Email", Name = "UQ__Users__AB6E61645A2A8495", IsUnique = true)]
 public partial class User
 {
     [Key]
@@ -17,25 +16,23 @@ public partial class User
     [StringLength(100)]
     public string UserName { get; set; } = null!;
 
-    [Column("email")]
-    [StringLength(255)]
-    [Unicode(false)]
-    public string Email { get; set; } = null!;
-
-    [Column("user_password")]
-    [StringLength(255)]
-    [Unicode(false)]
-    public string UserPassword { get; set; } = null!;
-
     [Column("gender")]
     [StringLength(10)]
     [Unicode(false)]
     public string? Gender { get; set; }
 
+    [Column("balance")]
+    public int? Balance { get; set; }
+
+    [Column("is_premium")]
+    public bool? IsPremium { get; set; }
+
     [Column("dob")]
     public DateOnly? Dob { get; set; }
 
-    [Column("avatar", TypeName = "text")]
+    [Column("avatar")]
+    [StringLength(255)]
+    [Unicode(false)]
     public string? Avatar { get; set; }
 
     [Column("status")]
@@ -61,4 +58,8 @@ public partial class User
 
     [InverseProperty("User")]
     public virtual ICollection<TokenTransaction> TokenTransactions { get; set; } = new List<TokenTransaction>();
+
+    [ForeignKey("UserId")]
+    [InverseProperty("User")]
+    public virtual Account UserNavigation { get; set; } = null!;
 }

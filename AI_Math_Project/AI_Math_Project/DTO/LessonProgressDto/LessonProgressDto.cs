@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AI_Math_Project.DTO.LessionProgressDto
 {
-    public class LessionProgressDto
+    public class LessonProgressDto
     {
         public int LearningProgressId { get; set; }
 
@@ -13,7 +13,7 @@ namespace AI_Math_Project.DTO.LessionProgressDto
 
         public bool? IsCompleted { get; set; }
 
-        public LessionDto? Lesson { get; set; }
+        public LessonDto? Lesson { get; set; }
     
 
 }

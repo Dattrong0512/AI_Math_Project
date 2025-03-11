@@ -81,30 +81,9 @@
     ]
   },
   {
-    "ContainingType": "AI_Math_Project.Controller.QuestionController",
-    "Method": "GetQuestionByGrade",
-    "RelativePath": "api/Question/GetQuestionByGradeAndId/grade/{grade}/lessionOrder/{lessionorder}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "grade",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "lessionorder",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "AI_Math_Project.Controller.EnrollmentController",
     "Method": "GetInfoEnrollmentById",
-    "RelativePath": "getinfo/id/{id}",
+    "RelativePath": "api/enrollment/id/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -133,6 +112,95 @@
     ]
   },
   {
+    "ContainingType": "AI_Math_Project.Controller.LessionController",
+    "Method": "CreateLesson",
+    "RelativePath": "api/lesson/grade/{grade}/chapter/{chapterorder}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grade",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "chapterorder",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "lessonDto",
+        "Type": "AI_Math_Project.DTO.LessonDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AI_Math_Project.DTO.LessonDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AI_Math_Project.Controller.LessionController",
+    "Method": "GetLessonByID",
+    "RelativePath": "api/lesson/grade/{grade}/chapterorder/{chapterorder}/lessonorder/{lessonorder}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grade",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "chapterorder",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "lessonorder",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AI_Math_Project.DTO.LessonDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AI_Math_Project.Controller.QuestionController",
+    "Method": "GetQuestionByGrade",
+    "RelativePath": "grade/{grade}/lessionorder/{lessionorder}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grade",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "lessionorder",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AI_Math_Project.Controller.LessionProgressController",
     "Method": "GetLessionProgressById",
     "RelativePath": "id/{id}",
@@ -148,7 +216,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[AI_Math_Project.DTO.LessionProgressDto.LessionProgressDto, AI_Math_Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[AI_Math_Project.DTO.LessionProgressDto.LessonProgressDto, AI_Math_Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -184,7 +252,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[AI_Math_Project.DTO.LessionProgressDto.LessionProgressDto, AI_Math_Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[AI_Math_Project.DTO.LessionProgressDto.LessonProgressDto, AI_Math_Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],

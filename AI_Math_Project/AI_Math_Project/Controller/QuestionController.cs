@@ -5,7 +5,7 @@ using System.Net.Mime;
 
 namespace AI_Math_Project.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/question")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -53,11 +53,11 @@ namespace AI_Math_Project.Controller
         ///
         /// **Example Request:**
         /// ```http
-        /// GET /api/GetQuestionByGradeAndId/grade/1/lessionOrder/1
+        /// GET /api/question/grade/1/lessionorder/1
         /// ```
         /// </remarks>
         /// <returns>Returns a list of questions matching the specified grade and lesson order.</returns>
-        [HttpGet("GetQuestionByGradeAndId/grade/{grade:int}/lessionOrder/{lessionorder:int}")]
+        [HttpGet("/grade/{grade:int}/lessionorder/{lessionorder:int}")]
         public async Task<IActionResult> GetQuestionByGrade([FromRoute] int grade, int lessionorder)
         {
             return Ok(await _repo.GetAllQuestionByLessionID(grade, lessionorder));

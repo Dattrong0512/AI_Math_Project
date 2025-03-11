@@ -25,6 +25,10 @@ public partial class Chat
     [InverseProperty("Chat")]
     public virtual ICollection<ChatMessage> ChatMessages { get; set; } = new List<ChatMessage>();
 
+    [ForeignKey("SupportAgentId")]
+    [InverseProperty("Chats")]
+    public virtual Administrator? SupportAgent { get; set; }
+
     [ForeignKey("UserId")]
     [InverseProperty("Chats")]
     public virtual User? User { get; set; }

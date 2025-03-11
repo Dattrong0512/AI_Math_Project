@@ -6,7 +6,7 @@ using System.Net.Mime;
 
 namespace AI_Math_Project.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/enrollment")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -45,7 +45,7 @@ namespace AI_Math_Project.Controller
         /// </remarks>
         /// <returns>Returns all enrollment records for the specified user.</returns>
 
-        [HttpGet("/getinfo/id/{id:int}")]
+        [HttpGet("id/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EnrollmentDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetInfoEnrollmentById([FromRoute] int id)

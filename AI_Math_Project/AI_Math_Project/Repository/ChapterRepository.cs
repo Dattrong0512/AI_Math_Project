@@ -41,7 +41,7 @@ namespace AI_Math_Project.Repository
        
                 var lessons = await _context.Lessons
                     .Where(l => l.ChapterId == chapter.ChapterId)
-                    .Select(l => new LessionDto
+                    .Select(l => new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
@@ -76,7 +76,7 @@ namespace AI_Math_Project.Repository
                
                 var lessons = await _context.Lessons
                     .Where(l => l.ChapterId == chapter.ChapterId)
-                    .Select(l => new LessionDto
+                    .Select(l => new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,

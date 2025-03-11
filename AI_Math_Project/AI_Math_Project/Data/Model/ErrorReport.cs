@@ -10,8 +10,8 @@ namespace AI_Math_Project.Data.Model;
 public partial class ErrorReport
 {
     [Key]
-    [Column("report_id")]
-    public int ReportId { get; set; }
+    [Column("error_id")]
+    public int ErrorId { get; set; }
 
     [Column("user_id")]
     public int? UserId { get; set; }
@@ -21,7 +21,7 @@ public partial class ErrorReport
     public string? ErrorMessage { get; set; }
 
     [Column("error_type")]
-    [StringLength(100)]
+    [StringLength(10)]
     [Unicode(false)]
     public string? ErrorType { get; set; }
 

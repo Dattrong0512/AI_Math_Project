@@ -5,28 +5,28 @@ using System.Runtime.CompilerServices;
 
 namespace AI_Math_Project.Mappers.LessionProgressMapper
 {
-    public static class LessionProgressMapper
+    public static class LessonProgressMapper
     {
-        public static LessionProgressDto ToLessionProgressDto(this LessonProgress lession)
+        public static LessonProgressDto ToLessonProgressDto(this LessonProgress lession)
         {
-            LessionProgressDto lessionDto = new LessionProgressDto
+            LessonProgressDto lessionDto = new LessonProgressDto
             {
                 LearningProgressId = lession.LearningProgressId,
                 LessonId = lession.LessonId,
                 LearningProgress = lession.LearningProgress,
                 IsCompleted = lession.IsCompleted,
 
-                Lesson = lession.Lesson != null ? lession.Lesson.ToLessionDto() : null
+                Lesson = lession.Lesson != null ? lession.Lesson.ToLessonDto() : null
             };
 
             return lessionDto;
         }
-        public static List<LessionProgressDto> ToLessionProgressDtoList(this List<LessonProgress> listLP)
+        public static List<LessonProgressDto> ToLessonProgressDtoList(this List<LessonProgress> listLP)
         {
-            List<LessionProgressDto> listLPDto = new List<LessionProgressDto> { };
+            List<LessonProgressDto> listLPDto = new List<LessonProgressDto> { };
             foreach (var LP in listLP)
             {
-                listLPDto.Add(LP.ToLessionProgressDto());
+                listLPDto.Add(LP.ToLessonProgressDto());
             }
             return listLPDto;
 

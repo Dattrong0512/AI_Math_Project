@@ -40,18 +40,21 @@ namespace AI_Math_Project.Controller
         ///   - **lessonOrder**: The order of the lesson in the study plan.
         ///   - **lessonName**: The name of the lesson.
         ///   - **lessonContent**: The content of the lesson.
+        ///  **Example Request:**
+        /// ```http
+        /// GET /api/lessionprogress/id/6
         /// </remarks>
+
+        /// ```
         /// <returns>Returns all information of the study program the user has registered for.</returns>
 
         [HttpGet("/id/{id:int}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessionProgressDto>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetLessionProgressById([FromRoute] int id)
         {
             return Ok(await _lessionProgress.GetAllInfLessionProgress(id));
         }
-
-
 
 
         /// <summary>
@@ -72,11 +75,14 @@ namespace AI_Math_Project.Controller
         ///   - **lessonOrder**: The order of the lesson in the study plan.
         ///   - **lessonName**: The name of the lesson.
         ///   - **lessonContent**: The content of the lesson.
+        ///   **Example Request:**
+        /// ```http
+        /// GET /api/lessionprogress/id/6/semester/1
         /// </remarks>
-        /// <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
 
+        /// <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         [HttpGet("/id/{id:int}/semester/{semester:int}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessionProgressDto>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetLessionProgressById([FromRoute] int id, [FromRoute] int semester)
         {

@@ -2,7 +2,7 @@
 
 namespace AI_Math_Project.DTO
 {
-    public class LessionDto
+    public class LessonDto
     {
         public short? LessonOrder { get; set; }
 

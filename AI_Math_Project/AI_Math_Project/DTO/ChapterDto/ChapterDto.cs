@@ -10,7 +10,7 @@ namespace AI_Math_Project.DTO
         public string ?ChapterName { get; set; }
 
         public short? Semester { get; set; }
-        public List<LessionDto>? Lessons { get; set; }
+        public List<LessonDto>? Lessons { get; set; }
         
     }
 }

@@ -17,7 +17,8 @@ public partial class Payment
     [StringLength(100)]
     public string PaymentName { get; set; } = null!;
 
-    [Column("description", TypeName = "text")]
+    [Column("description")]
+    [StringLength(255)]
     public string? Description { get; set; }
 
     [Column("status")]

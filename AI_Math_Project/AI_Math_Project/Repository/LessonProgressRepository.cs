@@ -15,17 +15,17 @@ using System.Linq;
 
 namespace AI_Math_Project.Repository
 {
-    public class LessionProgressRepository : ILessionProgressRepository
+    public class LessonProgressRepository : ILessionProgressRepository
     {
         private readonly ApplicationDBContext _context;
-        private readonly ILogger<LessionProgressRepository> _logger;
-        public LessionProgressRepository(ApplicationDBContext context, ILogger<LessionProgressRepository> logger)
+        private readonly ILogger<LessonProgressRepository> _logger;
+        public LessonProgressRepository(ApplicationDBContext context, ILogger<LessonProgressRepository> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public async Task<List<LessionProgressDto>> GetAllInfLessionProgress(int id)
+        public async Task<List<LessonProgressDto>> GetAllInfLessionProgress(int id)
         {
 
             var enrollmentId = _context.Enrollments
@@ -40,13 +40,13 @@ namespace AI_Math_Project.Repository
                 .ToList();
 
 
-            List<LessionProgressDto> listLPDto = new List<LessionProgressDto> { };
+            List<LessonProgressDto> listLPDto = new List<LessonProgressDto> { };
 
             foreach (var lp in listLP)
             {
                 var lessionDto = await _context.Lessons
                     .Where(l => l.LessonId == lp.LessonId)
-                    .Select(l => new LessionDto
+                    .Select(l => new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
@@ -54,7 +54,7 @@ namespace AI_Math_Project.Repository
                     }
                     ).FirstOrDefaultAsync();
 
-                listLPDto.Add(new LessionProgressDto {
+                listLPDto.Add(new LessonProgressDto {
 
                     LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
@@ -71,7 +71,7 @@ namespace AI_Math_Project.Repository
         }
 
 
-        public async Task<List<LessionProgressDto>> GetAllInfLessionProgressClassified(int id, int semester)
+        public async Task<List<LessonProgressDto>> GetAllInfLessionProgressClassified(int id, int semester)
         {
 
             var enrollmentId = _context.Enrollments
@@ -86,13 +86,13 @@ namespace AI_Math_Project.Repository
                 .ToList();
 
 
-            List<LessionProgressDto> listLPDto = new List<LessionProgressDto> { };
+            List<LessonProgressDto> listLPDto = new List<LessonProgressDto> { };
 
             foreach (var lp in listLP)
             {
                 var lessionDto = await _context.Lessons
                     .Where(l => l.LessonId == lp.LessonId)
-                    .Select(l => new LessionDto
+                    .Select(l => new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
@@ -100,7 +100,7 @@ namespace AI_Math_Project.Repository
                     }
                     ).FirstOrDefaultAsync();
 
-                listLPDto.Add(new LessionProgressDto
+                listLPDto.Add(new LessonProgressDto
                 {
 
                     LearningProgressId = lp.LearningProgressId,
@@ -118,7 +118,7 @@ namespace AI_Math_Project.Repository
         }
 
 
-        public async Task<LessionProgressDto?> UpdateLearningProgress(int idProgress, short learningProgress)
+        public async Task<LessonProgressDto?> UpdateLearningProgress(int idProgress, short learningProgress)
         {
 
             int record = await _context.LessonProgresses
@@ -136,7 +136,7 @@ namespace AI_Math_Project.Repository
                 return await GetInfoOneLessionProgress(idProgress);
 
         }
-        public async Task<LessionProgressDto?> GetInfoOneLessionProgress(int lpId)
+        public async Task<LessonProgressDto?> GetInfoOneLessionProgress(int lpId)
         {
             LessonProgress? lp = await _context.LessonProgresses
                 .Where(lp => lp.LearningProgressId == lpId)
@@ -148,7 +148,7 @@ namespace AI_Math_Project.Repository
                 return null; 
             }
 
-            return lp.ToLessionProgressDto(); // ✅ Trả về DTO
+            return lp.ToLessonProgressDto(); // ✅ Trả về DTO
         }
 
     }
