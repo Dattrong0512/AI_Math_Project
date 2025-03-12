@@ -15,7 +15,7 @@ namespace AI_Math_Project.Repository
             _context = context;
         }
 
-        public async Task<List<QuestionDto>> GetAllQuestionByLessionID(int grade, int lessionOrder)
+        public async Task<List<QuestionDto>> GetAllQuestionByLessonID(int grade, int lessionOrder)
         {
 
             var lessionId = from Chapter in _context.Chapters

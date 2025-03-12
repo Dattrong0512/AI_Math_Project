@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace AI_Math_Project.Repository
 {
-    public class LessonProgressRepository : ILessionProgressRepository
+    public class LessonProgressRepository : ILessonProgressRepository
     {
         private readonly ApplicationDBContext _context;
         private readonly ILogger<LessonProgressRepository> _logger;
@@ -25,7 +25,7 @@ namespace AI_Math_Project.Repository
             _logger = logger;
         }
 
-        public async Task<List<LessonProgressDto>> GetAllInfLessionProgress(int id)
+        public async Task<List<LessonProgressDto>> GetAllInfLessonProgress(int id)
         {
 
             var enrollmentId = _context.Enrollments
@@ -71,7 +71,7 @@ namespace AI_Math_Project.Repository
         }
 
 
-        public async Task<List<LessonProgressDto>> GetAllInfLessionProgressClassified(int id, int semester)
+        public async Task<List<LessonProgressDto>> GetAllInfLessonProgressClassified(int id, int semester)
         {
 
             var enrollmentId = _context.Enrollments
@@ -133,10 +133,10 @@ namespace AI_Math_Project.Repository
                 return null;
             }
             else
-                return await GetInfoOneLessionProgress(idProgress);
+                return await GetInfoOneLessonProgress(idProgress);
 
         }
-        public async Task<LessonProgressDto?> GetInfoOneLessionProgress(int lpId)
+        public async Task<LessonProgressDto?> GetInfoOneLessonProgress(int lpId)
         {
             LessonProgress? lp = await _context.LessonProgresses
                 .Where(lp => lp.LearningProgressId == lpId)

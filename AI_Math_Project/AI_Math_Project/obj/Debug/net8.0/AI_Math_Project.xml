@@ -74,7 +74,7 @@
              </remarks>
              <returns>Returns all enrollment records for the specified user.</returns>
         </member>
-        <member name="M:AI_Math_Project.Controller.LessionController.GetLessonByID(System.Int32,System.Int32,System.Int32)">
+        <member name="M:AI_Math_Project.Controller.LessonController.GetLessonByID(System.Int32,System.Int32,System.Int32)">
             <summary>
             Retrieves the details of a lesson associated with a specific grade, chapter, and lesson order.
             </summary>
@@ -99,7 +99,7 @@
             </remarks>
             <returns>Returns the lesson details matching the specified grade, chapter order, and lesson order.</returns>
         </member>
-        <member name="M:AI_Math_Project.Controller.LessionController.CreateLesson(System.Int32,System.Int32,AI_Math_Project.DTO.LessonDto)">
+        <member name="M:AI_Math_Project.Controller.LessonController.CreateLesson(System.Int32,System.Int32,AI_Math_Project.DTO.LessonDto)">
             <summary>
             Creates a new lesson associated with a specific grade and chapter order.
             </summary>
@@ -139,7 +139,7 @@
             </remarks>
             <returns>Returns a `LessonDto` object representing the created lesson, or a `BadRequest` with an error message if creation fails.</returns>
         </member>
-        <member name="M:AI_Math_Project.Controller.LessionProgressController.GetLessionProgressById(System.Int32)">
+        <member name="M:AI_Math_Project.Controller.LessonProgressController.GetLessonProgressById(System.Int32)">
             <summary>
             Returns all information of the study program the user has registered for.
             </summary>
@@ -165,7 +165,7 @@
             ```
             <returns>Returns all information of the study program the user has registered for.</returns>
         </member>
-        <member name="M:AI_Math_Project.Controller.LessionProgressController.GetLessionProgressById(System.Int32,System.Int32)">
+        <member name="M:AI_Math_Project.Controller.LessonProgressController.GetLessionProgressById(System.Int32,System.Int32)">
             <summary>
             Returns all information of the study program classified by the semester the user has registered for.
             </summary>
@@ -190,7 +190,7 @@
             </remarks>
             <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         </member>
-        <member name="M:AI_Math_Project.Controller.LessionProgressController.UpdateLearningProgress(System.Int32,System.Int16)">
+        <member name="M:AI_Math_Project.Controller.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int16)">
              <summary>
              Updates the learning progress of a specific lesson progress record.
              </summary>
@@ -215,7 +215,7 @@
             
              **Example Request:**
              ```http
-             PATCH /update/lessionprogressID/13/learningprogress/23
+             PATCH /update/lessonprogressID/13/learningprogress/23
              </remarks>
              <returns>Returns the updated learning progress information.</returns>
         </member>
@@ -228,7 +228,7 @@
             
              **Request Parameters:**
              - **grade** (int): The grade level of the study program.
-             - **lessionOrder** (int): The sequential order of the lesson.
+             - **lessonOrder** (int): The sequential order of the lesson.
             
              **Response Format:**
              The response will return a list of questions, each containing:
@@ -255,7 +255,7 @@
             
              **Example Request:**
              ```http
-             GET /api/question/grade/1/lessionorder/1
+             GET /api/question/grade/1/lessonorder/1
              ```
              </remarks>
              <returns>Returns a list of questions matching the specified grade and lesson order.</returns>

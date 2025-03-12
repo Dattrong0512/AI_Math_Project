@@ -26,7 +26,7 @@ namespace AI_Math_Project.Controller
         ///
         /// **Request Parameters:**
         /// - **grade** (int): The grade level of the study program.
-        /// - **lessionOrder** (int): The sequential order of the lesson.
+        /// - **lessonOrder** (int): The sequential order of the lesson.
         ///
         /// **Response Format:**
         /// The response will return a list of questions, each containing:
@@ -53,14 +53,14 @@ namespace AI_Math_Project.Controller
         ///
         /// **Example Request:**
         /// ```http
-        /// GET /api/question/grade/1/lessionorder/1
+        /// GET /api/question/grade/1/lessonorder/1
         /// ```
         /// </remarks>
         /// <returns>Returns a list of questions matching the specified grade and lesson order.</returns>
-        [HttpGet("/grade/{grade:int}/lessionorder/{lessionorder:int}")]
-        public async Task<IActionResult> GetQuestionByGrade([FromRoute] int grade, int lessionorder)
+        [HttpGet("grade/{grade:int}/lessonorder/{lessonorder:int}")]
+        public async Task<IActionResult> GetQuestionByGrade([FromRoute] int grade, int lessonorder)
         {
-            return Ok(await _repo.GetAllQuestionByLessionID(grade, lessionorder));
+            return Ok(await _repo.GetAllQuestionByLessonID(grade, lessonorder));
         }
 
     }

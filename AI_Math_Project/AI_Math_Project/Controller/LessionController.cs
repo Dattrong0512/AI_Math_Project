@@ -12,11 +12,11 @@ namespace AI_Math_Project.Controller
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
     [Consumes(MediaTypeNames.Application.Json)]
-    public class LessionController : ControllerBase
+    public class LessonController : ControllerBase
     {
         private readonly ILessonRepository _repo;
 
-        public LessionController(ILessonRepository repo)
+        public LessonController(ILessonRepository repo)
         {
             _repo = repo;
         }

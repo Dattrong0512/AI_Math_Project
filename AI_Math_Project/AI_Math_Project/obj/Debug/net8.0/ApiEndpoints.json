@@ -112,7 +112,7 @@
     ]
   },
   {
-    "ContainingType": "AI_Math_Project.Controller.LessionController",
+    "ContainingType": "AI_Math_Project.Controller.LessonController",
     "Method": "CreateLesson",
     "RelativePath": "api/lesson/grade/{grade}/chapter/{chapterorder}",
     "HttpMethod": "POST",
@@ -146,7 +146,7 @@
     ]
   },
   {
-    "ContainingType": "AI_Math_Project.Controller.LessionController",
+    "ContainingType": "AI_Math_Project.Controller.LessonController",
     "Method": "GetLessonByID",
     "RelativePath": "api/lesson/grade/{grade}/chapterorder/{chapterorder}/lessonorder/{lessonorder}",
     "HttpMethod": "GET",
@@ -182,7 +182,7 @@
   {
     "ContainingType": "AI_Math_Project.Controller.QuestionController",
     "Method": "GetQuestionByGrade",
-    "RelativePath": "grade/{grade}/lessionorder/{lessionorder}",
+    "RelativePath": "api/question/grade/{grade}/lessonorder/{lessonorder}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -193,7 +193,7 @@
         "IsRequired": true
       },
       {
-        "Name": "lessionorder",
+        "Name": "lessonorder",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -201,8 +201,8 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AI_Math_Project.Controller.LessionProgressController",
-    "Method": "GetLessionProgressById",
+    "ContainingType": "AI_Math_Project.Controller.LessonProgressController",
+    "Method": "GetLessonProgressById",
     "RelativePath": "id/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -232,7 +232,7 @@
     ]
   },
   {
-    "ContainingType": "AI_Math_Project.Controller.LessionProgressController",
+    "ContainingType": "AI_Math_Project.Controller.LessonProgressController",
     "Method": "GetLessionProgressById",
     "RelativePath": "id/{id}/semester/{semester}",
     "HttpMethod": "GET",
@@ -268,9 +268,9 @@
     ]
   },
   {
-    "ContainingType": "AI_Math_Project.Controller.LessionProgressController",
+    "ContainingType": "AI_Math_Project.Controller.LessonProgressController",
     "Method": "UpdateLearningProgress",
-    "RelativePath": "update/lessionprogressID/{idProgress}/learningprogress/{learningProgress}",
+    "RelativePath": "update/lessonprogressID/{idProgress}/learningprogress/{learningProgress}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,

@@ -4,6 +4,6 @@ namespace AI_Math_Project.Interfaces
 {
     public interface IQuestionRepository
     {
-        Task<List<QuestionDto>> GetAllQuestionByLessionID(int grade, int lessionOrder);
+        Task<List<QuestionDto>> GetAllQuestionByLessonID(int grade, int lessionOrder);
     }
 }

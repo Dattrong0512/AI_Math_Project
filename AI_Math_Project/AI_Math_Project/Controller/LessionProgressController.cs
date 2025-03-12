@@ -13,12 +13,12 @@ namespace AI_Math_Project.Controller
     [Consumes(MediaTypeNames.Application.Json)]
     [ApiController]
 
-    public class LessionProgressController : ControllerBase
+    public class LessonProgressController : ControllerBase
     {
-        public ILessionProgressRepository _lessionProgress;
-        public LessionProgressController(ILessionProgressRepository lessionProgress)
+        public ILessonProgressRepository _lessonProgress;
+        public LessonProgressController(ILessonProgressRepository lessonProgress)
         {
-            _lessionProgress = lessionProgress;
+            _lessonProgress = lessonProgress;
         }
 
 
@@ -51,9 +51,9 @@ namespace AI_Math_Project.Controller
         [HttpGet("/id/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetLessionProgressById([FromRoute] int id)
+        public async Task<IActionResult> GetLessonProgressById([FromRoute] int id)
         {
-            return Ok(await _lessionProgress.GetAllInfLessionProgress(id));
+            return Ok(await _lessonProgress.GetAllInfLessonProgress(id));
         }
 
 
@@ -86,7 +86,7 @@ namespace AI_Math_Project.Controller
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetLessionProgressById([FromRoute] int id, [FromRoute] int semester)
         {
-            return Ok(await _lessionProgress.GetAllInfLessionProgressClassified(id,semester));
+            return Ok(await _lessonProgress.GetAllInfLessonProgressClassified(id,semester));
         }
 
         /// <summary>
@@ -113,13 +113,13 @@ namespace AI_Math_Project.Controller
         ///
         /// **Example Request:**
         /// ```http
-        /// PATCH /update/lessionprogressID/13/learningprogress/23
+        /// PATCH /update/lessonprogressID/13/learningprogress/23
         /// </remarks>
         /// <returns>Returns the updated learning progress information.</returns>
-        [HttpPatch("/update/lessionprogressID/{idProgress:int}/learningprogress/{learningProgress}")]
+        [HttpPatch("/update/lessonprogressID/{idProgress:int}/learningprogress/{learningProgress}")]
         public async Task<IActionResult> UpdateLearningProgress([FromRoute] int idProgress, [FromRoute] short learningProgress)
         {
-            return Ok(await _lessionProgress.UpdateLearningProgress(idProgress, learningProgress));
+            return Ok(await _lessonProgress.UpdateLearningProgress(idProgress, learningProgress));
         }
 
 
