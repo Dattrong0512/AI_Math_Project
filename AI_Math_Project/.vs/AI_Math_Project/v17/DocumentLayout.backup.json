@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|j:\\study\\graduationproject\\api_backend\\ai_math_project\\ai_math_project\\ai_math_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|solutionrelative:ai_math_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|j:\\study\\graduationproject\\api_backend\\ai_math_project\\ai_math_project\\ai_math_project\\controller\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|solutionrelative:ai_math_project\\controller\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -61,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|j:\\study\\graduationproject\\api_backend\\ai_math_project\\ai_math_project\\ai_math_project\\ai_math_project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|solutionrelative:ai_math_project\\ai_math_project.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|j:\\study\\graduationproject\\api_backend\\ai_math_project\\ai_math_project\\ai_math_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|solutionrelative:ai_math_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A39263A0-AE5A-4252-A0B5-FDABE0E3D05B}|AI_Math_Project\\AI_Math_Project.csproj|j:\\study\\graduationproject\\api_backend\\ai_math_project\\ai_math_project\\ai_math_project\\ai_math_project.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
@@ -173,8 +173,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 285,
-          "SelectedChildIndex": 8,
+          "DockedWidth": 348,
+          "SelectedChildIndex": 30,
           "Children": [
             {
               "$type": "Bookmark",
@@ -198,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "AI_Math_Project.csproj",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project.csproj",
               "RelativeDocumentMoniker": "AI_Math_Project\\AI_Math_Project.csproj",
@@ -210,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "LessionProgressController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Controller\\LessionProgressController.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Controller\\LessionProgressController.cs",
@@ -218,12 +218,11 @@
               "RelativeToolTip": "AI_Math_Project\\Controller\\LessionProgressController.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAuwBIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T09:42:11.228Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T09:42:11.228Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "LessionController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Controller\\LessionController.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Controller\\LessionController.cs",
@@ -231,12 +230,11 @@
               "RelativeToolTip": "AI_Math_Project\\Controller\\LessionController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T11:05:18.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T11:05:18.245Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "EnrollmentController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Controller\\EnrollmentController.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Controller\\EnrollmentController.cs",
@@ -260,16 +258,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "QuestionController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Controller\\QuestionController.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Controller\\QuestionController.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Controller\\QuestionController.cs",
               "RelativeToolTip": "AI_Math_Project\\Controller\\QuestionController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T02:28:15.497Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T02:28:15.497Z"
             },
             {
               "$type": "Document",
@@ -285,7 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LessonRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Repository\\LessonRepository.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Repository\\LessonRepository.cs",
@@ -293,8 +290,7 @@
               "RelativeToolTip": "AI_Math_Project\\Repository\\LessonRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T11:25:20.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T11:25:20.123Z"
             },
             {
               "$type": "Document",
@@ -322,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ExerciseController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Controller\\ExerciseController.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Controller\\ExerciseController.cs",
@@ -334,7 +330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "IQuestionRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Interfaces\\IQuestionRepository.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Interfaces\\IQuestionRepository.cs",
@@ -342,12 +338,11 @@
               "RelativeToolTip": "AI_Math_Project\\Interfaces\\IQuestionRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T02:29:28.247Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T02:29:28.247Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ILessonRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Interfaces\\ILessonRepository.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Interfaces\\ILessonRepository.cs",
@@ -355,8 +350,7 @@
               "RelativeToolTip": "AI_Math_Project\\Interfaces\\ILessonRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T09:45:19.275Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T09:45:19.275Z"
             },
             {
               "$type": "Document",
@@ -372,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "ChapterController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Controller\\ChapterController.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Controller\\ChapterController.cs",
@@ -396,7 +390,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Program.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Program.cs",
@@ -404,8 +398,7 @@
               "RelativeToolTip": "AI_Math_Project\\Program.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAArwFEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T10:07:03.067Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T10:07:03.067Z"
             },
             {
               "$type": "Document",
@@ -445,7 +438,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "LessonProgressDto.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\DTO\\LessonProgressDto\\LessonProgressDto.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\DTO\\LessonProgressDto\\LessonProgressDto.cs",
@@ -453,12 +446,11 @@
               "RelativeToolTip": "AI_Math_Project\\DTO\\LessonProgressDto\\LessonProgressDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T02:31:49.073Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T02:31:49.073Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ILessionProgressRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Interfaces\\ILessionProgressRepository.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Interfaces\\ILessionProgressRepository.cs",
@@ -466,8 +458,7 @@
               "RelativeToolTip": "AI_Math_Project\\Interfaces\\ILessionProgressRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T09:45:19.718Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T09:45:19.718Z"
             },
             {
               "$type": "Document",
@@ -483,7 +474,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LessonProgressRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Repository\\LessonProgressRepository.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Repository\\LessonProgressRepository.cs",
@@ -491,8 +482,7 @@
               "RelativeToolTip": "AI_Math_Project\\Repository\\LessonProgressRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T09:45:02.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T09:45:02.49Z"
             },
             {
               "$type": "Document",
@@ -532,15 +522,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\appsettings.json",
               "RelativeDocumentMoniker": "AI_Math_Project\\appsettings.json",
               "ToolTip": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\appsettings.json",
               "RelativeToolTip": "AI_Math_Project\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-04T09:39:11.918Z"
+              "WhenOpened": "2025-03-04T09:39:11.918Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -604,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "QuestionRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\api_backend\\AI_Math_Project\\AI_Math_Project\\AI_Math_Project\\Repository\\QuestionRepository.cs",
               "RelativeDocumentMoniker": "AI_Math_Project\\Repository\\QuestionRepository.cs",
@@ -612,8 +603,7 @@
               "RelativeToolTip": "AI_Math_Project\\Repository\\QuestionRepository.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAAwCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T02:34:38.357Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-04T02:34:38.357Z"
             },
             {
               "$type": "Document",
@@ -689,7 +679,7 @@
           ]
         },
         {
-          "DockedWidth": 91,
+          "DockedWidth": 28,
           "SelectedChildIndex": -1,
           "Children": [
             {
