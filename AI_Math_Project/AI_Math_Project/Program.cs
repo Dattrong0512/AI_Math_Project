@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.ObjectPool;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -42,8 +43,37 @@ builder.Services.AddSwaggerGen(options =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     options.IncludeXmlComments(xmlPath);
 
+    var jwtScheme = new OpenApiSecurityScheme
+    {
+        Name = "JWT Authentication",
+        Description = "Enter your JWT token in this field",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    };
+
+    options.AddSecurityDefinition("Bearer", jwtScheme);
 
 
+    var securityRequirement = new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+              },
+            new string []{}
+
+
+        }
+
+    };
+    options.AddSecurityRequirement(securityRequirement);
 }).AddSwaggerGenNewtonsoftSupport();
 
 
@@ -77,6 +107,66 @@ builder.Services.AddScoped<ILessonProgressRepository, LessonProgressRepository>(
 builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<ILessonRepository, LessonRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+
+
+builder.Services
+    .AddAuthentication(x =>
+    {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(x =>
+    {
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidIssuer = builder.Configuration["JWT:Issue"],
+            ValidAudience = builder.Configuration["JWT:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+        };
+        x.Events = new JwtBearerEvents
+        {
+            OnChallenge = context =>
+            {
+                if (context.Response.StatusCode == 401)
+                {
+                    // Handle expired token error here
+                    context.Response.Headers["Access-Control-Allow-Origin"] = "*";
+                }
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    //options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Role", "0"));
+    //options.AddPolicy("StaffOnly", policy => policy.RequireClaim("Role", "1"));
+
+    options.AddPolicy(
+        "Admin",
+        policyBuilder => policyBuilder.RequireAssertion(
+            context => context.User.HasClaim(claim => claim.Type == "Role")
+            && context.User.FindFirst(claim => claim.Type == "Role").Value == "1"));
+
+    options.AddPolicy(
+        "User",
+               policyBuilder => policyBuilder.RequireAssertion(
+                              context => context.User.HasClaim(claim => claim.Type == "Role")
+                                         && context.User.FindFirst(claim => claim.Type == "Role").Value == "2"));
+
+});
+
+
+
+
+
+
+
 
 
 

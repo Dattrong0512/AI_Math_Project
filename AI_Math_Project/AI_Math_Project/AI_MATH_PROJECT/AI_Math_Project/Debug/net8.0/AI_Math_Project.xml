@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AI_Math_Project</name>
+    </assembly>
+    <members>
+        <member name="M:AI_Math_Project.Controller.ChapterController.GetAllChapter">
+            <summary>
+             Return all chapters of all class
+            </summary>
+            /// <remarks>
+            - **grade**: The grade level
+            - **chapterOrder**: The order of the chapter in the curriculum.
+            - **chapterName**: The name of the chapter.
+            - **lessons**: Null, because this api just return information about grade and chapters, not include lessions in chapter
+            </remarks>
+            <returns>return list of chapters of classes </returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.ChapterController.GetDetailChapters">
+            <summary>
+             Returns detailed information of each lesson in the chapters
+            </summary>
+            <remarks>
+            - **grade**: The grade level
+            - **chapterOrder**: The order of the chapter in the curriculum.
+            - **semester**: semester
+            - **chapterName**: The name of the chapter.
+            - **lessons**: A list of lessons within the chapter. Each lesson includes:
+              - **lessonOrder**: The order of the lesson within the chapter.
+              - **lessonName**: The name of the lesson.
+            </remarks>
+            <returns>return detail list of chapters of classes </returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.ChapterController.GetDetailChaptersClassifed(System.Int32)">
+            <summary>
+             Returns detailed information of each lesson in the chapters classified by class
+            </summary>
+            <remarks>
+            - **grade**: The grade level
+            - **chapterOrder**: The order of the chapter in the curriculum.
+            - **chapterName**: The name of the chapter.
+            - **semester**: semester 
+            - **lessons**: A list of lessons within the chapter. Each lesson includes:
+              - **lessonOrder**: The order of the lesson within the chapter.
+              - **lessonName**: The name of the lesson.
+            </remarks>
+            <returns>return detail list of chapters of classes classified by class</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.EnrollmentController.GetInfoEnrollmentById(System.Int32)">
+             <summary>
+             Retrieves all enrollment information for a specific user.
+             </summary>
+             <remarks>
+             This API retrieves enrollment records for a given user, including details such as grade, semester, and academic year.
+            
+             **Request:**
+             The request should include:
+             - **id** (int): The unique identifier of the user.
+            
+             **Response:**
+             The response will return a list of enrollment records, each containing:
+             - **enrollmentId**: The unique identifier of the enrollment.
+             - **userId**: The unique identifier of the user.
+             - **grade**: The grade level associated with the enrollment.
+             - **enrollmentDate**: The date when the user enrolled.
+             - **avgScore**: The average score of the user in this enrollment (nullable).
+             - **semester**: The semester in which the user is enrolled.
+             - **startYear**: The academic start year.
+             - **endYear**: The academic end year.
+            
+             **Example Request:**
+             ```http
+             GET /getinfo/id/10
+             </remarks>
+             <returns>Returns all enrollment records for the specified user.</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.LessonController.GetLessonByID(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Retrieves the details of a lesson associated with a specific grade, chapter, and lesson order.
+            </summary>
+            <remarks>
+            This API returns the details of a lesson, filtered by grade level, chapter order, and lesson order.
+            
+            **Request Parameters:**
+            - **grade** (int): The grade level of the study program.
+            - **chapterorder** (int): The sequential order of the chapter.
+            - **lessonorder** (int): The sequential order of the lesson within the chapter.
+            
+            **Response Format:**
+            The response will return the details of the lesson, including:
+            - **lessonOrder** (short?): The order of the lesson within the chapter. Nullable to allow for optional lesson orders.
+            - **lessonName** (string): The name of the lesson.
+            - **lessonContent** (string, nullable): The content of the lesson, if available. This can be null if no content is provided.
+            
+            **Example Request:**
+            ```http
+            GET /api/lesson/grade/1/chapterorder/1/lessonorder/1
+            ```
+            </remarks>
+            <returns>Returns the lesson details matching the specified grade, chapter order, and lesson order.</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.LessonController.CreateLesson(System.Int32,System.Int32,AI_Math_Project.DTO.LessonDto)">
+            <summary>
+            Creates a new lesson associated with a specific grade and chapter order.
+            </summary>
+            <remarks>
+            This API creates a new lesson and saves it in the system. The lesson is created with the provided grade level, chapter order, and lesson data.
+            
+            **Request Parameters:**
+            - **grade** (int): The grade level of the study program.
+            - **chapterorder** (int): The sequential order of the chapter in the study program.
+            - **lessonDto** (LessonDto): The details of the lesson to be created. This should include:
+              - **lessonOrder** (short?): The order of the lesson within the chapter.
+              - **lessonName** (string): The name of the lesson.
+              - **lessonContent** (string, nullable): The content of the lesson (optional).
+            
+            **Response Format:**
+            - **201 Created**: If the lesson is successfully created, the response will include the created `LessonDto` and the URL of the new lesson.
+            - **400 Bad Request**: If the lesson could not be created, the response will contain an error message with details on the failure.
+            
+            **Example Request:**
+            ```http
+            POST /api/lesson/grade/1/chapter/1
+            Content-Type: application/json
+            {
+              "lessonOrder": 2,
+              "lessonName": "Vị trí tiết 2",
+              "lessonContent": "linkyoutube"
+            }
+            **Example Response (Success):**
+            ```json
+            HTTP/1.1 201 Created
+            Location: /api/lesson/grade/1/chapter/1/lessonorder/2
+            {
+              "lessonOrder": 2,
+              "lessonName": "Vị trí tiết 2",
+              "lessonContent": "linkyoutube"
+            }
+            </remarks>
+            <returns>Returns a `LessonDto` object representing the created lesson, or a `BadRequest` with an error message if creation fails.</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.LessonProgressController.GetLessonProgressById(System.Int32)">
+            <summary>
+            Returns all information of the study program the user has registered for.
+            </summary>
+            <remarks>
+            This API retrieves the user's study program information, including lesson details and learning progress.
+            
+            **Request:**
+            The request should include userID.
+            
+            **Response:**
+            The response will return a list of lessons, each containing:
+            - **lessonId**: The unique identifier of the lesson.
+            - **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).
+            - **isCompleted**: A boolean indicating whether the lesson is completed.
+            - **lesson**: An object containing lesson details:
+              - **lessonOrder**: The order of the lesson in the study plan.
+              - **lessonName**: The name of the lesson.
+              - **lessonContent**: The content of the lesson.
+             **Example Request:**
+            ```http
+            GET /api/lessionprogress/id/6
+            </remarks>
+            ```
+            <returns>Returns all information of the study program the user has registered for.</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.LessonProgressController.GetLessionProgressById(System.Int32,System.Int32)">
+            <summary>
+            Returns all information of the study program classified by the semester the user has registered for.
+            </summary>
+            <remarks>
+            This API retrieves the user's study program information, including lesson details and learning progress.
+            
+            **Request:**
+            The request should include **userID** and **Semester**.
+            
+            **Response:**
+            The response will return a list of lessons, each containing:
+            - **lessonId**: The unique identifier of the lesson.
+            - **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).
+            - **isCompleted**: A boolean indicating whether the lesson is completed.
+            - **lesson**: An object containing lesson details:
+              - **lessonOrder**: The order of the lesson in the study plan.
+              - **lessonName**: The name of the lesson.
+              - **lessonContent**: The content of the lesson.
+              **Example Request:**
+            ```http
+            GET /api/lessionprogress/id/6/semester/1
+            </remarks>
+            <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int16)">
+             <summary>
+             Updates the learning progress of a specific lesson progress record.
+             </summary>
+             <remarks>
+             This API updates the user's learning progress for a specific lesson.
+             
+             **Request:**
+             The request should include:
+             - **idProgress** (int): The unique identifier of the lesson progress.
+             - **learningProgress** (short): The updated progress percentage of the lesson.
+            
+             **Response:**
+             If successful, the response will return the updated lesson progress information:
+             - **learningProgressId**: The unique identifier of the lesson progress.
+             - **lessonId**: The unique identifier of the lesson.
+             - **learningProgress**: The updated progress of the user in the lesson (e.g., percentage completed).
+             - **isCompleted**: A boolean indicating whether the lesson is completed.
+             - **lesson**: An object containing lesson details:
+               - **lessonOrder**: The order of the lesson in the study plan.
+               - **lessonName**: The name of the lesson.
+               - **lessonContent**: A link to the lesson content.
+            
+             **Example Request:**
+             ```http
+             PATCH /update/lessonprogressID/13/learningprogress/23
+             </remarks>
+             <returns>Returns the updated learning progress information.</returns>
+        </member>
+        <member name="M:AI_Math_Project.Controller.QuestionController.GetQuestionByGrade(System.Int32,System.Int32)">
+             <summary>
+             Retrieves all questions associated with a specific grade and lesson order.
+             </summary>
+             <remarks>
+             This API returns a list of questions for a given study program, filtered by grade level and lesson order.
+            
+             **Request Parameters:**
+             - **grade** (int): The grade level of the study program.
+             - **lessonOrder** (int): The sequential order of the lesson.
+            
+             **Response Format:**
+             The response will return a list of questions, each containing:
+             - **questionId** (int): The unique identifier of the question.
+             - **questionType** (string): The type of question (e.g., "multiple_choice", "fill_in_blank", "matching").
+             - **difficulty** (int): The difficulty level of the question.
+             - **lessonId** (int): The identifier of the associated lesson.
+             - **imgUrl** (string, nullable): The URL of an image related to the question.
+             - **questionContent** (string): The text content of the question.
+             - **pdfSolution** (string, nullable): A PDF solution reference, if available.
+             - **choiceAnswers** (array): List of multiple-choice answers (if applicable):
+               - **answerId** (int): The unique identifier of the answer choice.
+               - **content** (string, nullable): The text of the answer choice (if applicable).
+               - **isCorrect** (bool): Whether this choice is the correct answer.
+               - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+             - **fillAnswers** (array): List of correct answers for fill-in-the-blank questions (if applicable):
+               - **answerId** (int): The unique identifier of the correct answer.
+               - **correctAnswer** (string): The correct text answer that should be filled in.
+               - **position** (short): The position of the blank in the question (for multi-blank questions).
+             - **matchingAnswers** (array): List of matching question pairs (if applicable):
+               - **answerId** (int): The unique identifier of the matching answer.
+               - **correctAnswer** (string): The correct match for the question.
+               - **imgUrl** (string, nullable): An image URL representing the matching item.
+            
+             **Example Request:**
+             ```http
+             GET /api/question/grade/1/lessonorder/1
+             ```
+             </remarks>
+             <returns>Returns a list of questions matching the specified grade and lesson order.</returns>
+        </member>
+    </members>
+</doc>

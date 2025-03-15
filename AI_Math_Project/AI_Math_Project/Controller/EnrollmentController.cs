@@ -1,5 +1,6 @@
 ﻿using AI_Math_Project.DTO.EnrollmentDto;
 using AI_Math_Project.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
@@ -44,7 +45,7 @@ namespace AI_Math_Project.Controller
         /// GET /getinfo/id/10
         /// </remarks>
         /// <returns>Returns all enrollment records for the specified user.</returns>
-
+        [Authorize(Policy ="Admin")]
         [HttpGet("id/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EnrollmentDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

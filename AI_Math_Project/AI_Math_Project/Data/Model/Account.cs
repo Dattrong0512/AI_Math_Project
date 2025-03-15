@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace AI_Math_Project.Data.Model;
 
 [Table("Account")]
-[Index("Email", Name = "UQ__Account__AB6E6164DF179151", IsUnique = true)]
+[Index("Email", Name = "UQ__Account__AB6E61643D0F43A2", IsUnique = true)]
 public partial class Account
 {
     [Key]
@@ -34,6 +34,9 @@ public partial class Account
 
     [InverseProperty("Admin")]
     public virtual Administrator? Administrator { get; set; }
+
+    [InverseProperty("Account")]
+    public virtual RefreshToken? RefreshToken { get; set; }
 
     [InverseProperty("UserNavigation")]
     public virtual User? User { get; set; }
