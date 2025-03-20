@@ -1,6 +1,7 @@
 ﻿using AI_Math_Project.Data;
 using AI_Math_Project.Data.Model;
 using AI_Math_Project.DTO;
+using AI_Math_Project.Helpers;
 using AI_Math_Project.Interfaces;
 using AI_Math_Project.Mappers;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,28 @@ namespace AI_Math_Project.Repository
                 await _context.SaveChangesAsync();
                 return true;
             }
+        }
+
+        public async Task<List<LessonDto>> GetDetailLessonByName(int grade, string lesson_name)
+        {
+            var lesson = from Chapter in _context.Chapters
+                         join Lesson in _context.Lessons
+                         on Chapter.ChapterId equals Lesson.ChapterId
+                         where Chapter.Grade == grade
+                         select new LessonDto
+                         {
+                             LessonName = Lesson.LessonName,
+                             LessonOrder = Lesson.LessonOrder,
+                             LessonContent = Lesson.LessonContent
+                         };
+
+            var lessonList = await lesson.ToListAsync();
+
+            var filteredLessons = lessonList
+                .Where(l => RemoveDiacriticsUtils.RemoveDiacritics(l.LessonName.ToLower()).Contains(RemoveDiacriticsUtils.RemoveDiacritics(lesson_name.ToLower())))
+                .ToList();
+
+            return filteredLessons;
         }
     }
 }

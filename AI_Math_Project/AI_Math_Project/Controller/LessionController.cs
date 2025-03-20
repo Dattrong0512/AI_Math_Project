@@ -1,5 +1,6 @@
 ﻿using AI_Math_Project.DTO;
 using AI_Math_Project.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -103,7 +104,39 @@ namespace AI_Math_Project.Controller
                 // Trả về 400 Bad Request nếu không tạo được Lesson
                 return BadRequest("Unable to create lesson. Please check the provided data.");
             }
+        }
 
+        /// <summary>
+        /// Retrieves the list of lessons for a specific grade and lesson name.
+        /// </summary>
+        /// <remarks>
+        /// This API retrieves all lessons that match a specific grade level and lesson name.
+        /// The search is case-insensitive and ignores accents in the lesson name.
+        /// 
+        /// **Request Parameters:**
+        /// - **grade** (int): The grade level of the study program.
+        /// - **lessonname** (string): The name of the lesson to search for. The search will return lessons whose name contains the provided `lessonname`, regardless of case and accents.
+        /// 
+        /// **Response Format:**
+        /// The response will return a list of lessons that match the specified criteria, including:
+        /// - **lessonOrder** (short?): The order of the lesson within the chapter.
+        /// - **lessonName** (string): The name of the lesson.
+        /// - **lessonContent** (string, nullable): The content of the lesson, if available. This can be null if no content is provided.
+        /// 
+        /// **Example Request:**
+        /// ```http
+        /// GET /api/lesson/grade/1/lessonname/vi tri
+        /// ```
+        /// </remarks>
+        /// <returns>Returns a list of `LessonDto` objects representing the found lessons, or an empty list if no lessons are found.</returns>
+
+
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonDto>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("lesson/grade/{grade:int}/lessonname/{lessonname}")]
+        public async Task<IActionResult> GetLessonByName([FromRoute] int grade, [FromRoute] string lessonname)
+        {
+            return Ok(await _repo.GetDetailLessonByName(grade, lessonname));
         }
     }
 }
