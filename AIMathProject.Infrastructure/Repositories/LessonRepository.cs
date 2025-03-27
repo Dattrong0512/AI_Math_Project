@@ -45,22 +45,67 @@ namespace AIMathProject.Infrastructure.Repositories
             }
         }
 
-        public async Task<LessonDto> GetDetailLessonById(int grade, int chapter_order, int id)
+        public async Task<LessonDto> GetDetailLessonById(int grade, int lesson_order)
         {
-            var chapterID = await _context.Chapters.
-                 Where(ct => ct.Grade == grade && ct.ChapterOrder == chapter_order)
-                 .Select(ct => ct.ChapterId)
-                 .SingleOrDefaultAsync();
+            var lessonId = from Chapter in _context.Chapters
+                           join Lesson in _context.Lessons
+                           on Chapter.ChapterId equals Lesson.ChapterId
+                           where (Chapter.Grade == grade && Lesson.LessonOrder == lesson_order)
+                           select (Lesson.LessonId);
 
-            Lesson? lesson = await _context.Lessons.Where(ls => ls.LessonOrder == id && ls.ChapterId == chapterID).FirstOrDefaultAsync();
-            if (lesson == null)
+
+            var questionId = (from Excercise in _context.Exercises
+                              join ExcerciseDt in _context.ExerciseDetails
+                              on Excercise.ExerciseId equals ExcerciseDt.ExerciseId
+                              where Excercise.LessonId == lessonId.FirstOrDefault()
+                              select ExcerciseDt.QuestionId)
+                          .ToList();
+
+            var questionList = await _context.Questions
+                .Where(qs => questionId.Contains(qs.QuestionId))
+                .ToListAsync();
+
+            List<Question> questionListReturn = new List<Question>() { };
+            foreach (var question in questionList)
             {
-                throw new Exception("Not found");
+                if (question.QuestionType == "multiple_choice")
+                {
+                    var Answer = _context.ChoiceAnswers
+                        .Where(choice => choice.QuestionId == question.QuestionId)
+                        .ToList();
+                    question.ChoiceAnswers = Answer;
+
+                }
+                else if (question.QuestionType == "matching")
+                {
+                    var Answer = _context.MatchingAnswers
+                        .Where(match => match.QuestionId == question.QuestionId)
+                        .ToList();
+                    question.MatchingAnswers = Answer;
+
+                }
+                else if (question.QuestionType == "fill_in_blank")
+                {
+                    var Answer = _context.FillAnswers
+                        .Where(match => match.QuestionId == question.QuestionId)
+                        .ToList();
+                    question.FillAnswers = Answer;
+
+                }
+                questionListReturn.Add(question);
             }
-            else
-            {
-                return lesson.ToLessonDto();
-            }
+            var lesson = await _context.Lessons
+                   .Where(l => l.LessonId == lessonId.FirstOrDefault())
+                   .Select(l => new LessonDto
+                   {
+                       LessonOrder = l.LessonOrder,
+                       LessonName = l.LessonName,
+                       LessonContent = l.LessonContent,
+                       ChapterOrder = l.Chapter.ChapterOrder,
+                       Questions = questionListReturn.ToQuestionDtoList()
+                   })
+                   .FirstOrDefaultAsync();
+            return lesson ?? new LessonDto();
         }
 
         public async Task<ICollection<LessonDto>> GetDetailLessonByName(int grade, string lesson_name)
@@ -73,7 +118,8 @@ namespace AIMathProject.Infrastructure.Repositories
                          {
                              LessonName = Lesson.LessonName,
                              LessonOrder = Lesson.LessonOrder,
-                             LessonContent = Lesson.LessonContent
+                             LessonContent = Lesson.LessonContent,
+                             ChapterOrder = Chapter.ChapterOrder
                          };
 
             var lessonList = await lesson.ToListAsync();

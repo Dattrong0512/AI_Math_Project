@@ -78,7 +78,7 @@
              </remarks>
              <returns>Returns all enrollment records for the specified user.</returns>
         </member>
-        <member name="M:AIMathProject.API.Controllers.LessonController.GetLessonByID(System.Int32,System.Int32,System.Int32)">
+        <member name="M:AIMathProject.API.Controllers.LessonController.GetLessonByID(System.Int32,System.Int32)">
             <summary>
             Retrieves the details of a lesson associated with a specific grade, chapter, and lesson order.
             </summary>

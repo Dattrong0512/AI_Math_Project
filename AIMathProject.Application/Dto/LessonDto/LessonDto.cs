@@ -16,5 +16,9 @@ namespace AIMathProject.Application.Dto
 
         [StringLength(255)]
         public string? LessonContent { get; set; }
+
+        public short? ChapterOrder { get; set; }
+
+        public List<QuestionDto.QuestionDto>? Questions { get; set; } = new List<QuestionDto.QuestionDto>();
     }
 }

@@ -48,10 +48,10 @@ namespace AIMathProject.API.Controllers
         /// </remarks>
         /// <returns>Returns the lesson details matching the specified grade, chapter order, and lesson order.</returns>
         [Authorize]
-        [HttpGet("lesson/grade/{grade:int}/chapterorder/{chapterorder:int}/lessonorder/{lessonorder:int}")]
-        public async Task<ActionResult<LessonDto>> GetLessonByID([FromRoute] int grade, [FromRoute] int chapterorder, [FromRoute] int lessonorder)
+        [HttpGet("lesson/grade/{grade:int}/lessonorder/{lessonorder:int}")]
+        public async Task<ActionResult<LessonDto>> GetLessonByID([FromRoute] int grade, [FromRoute] int lessonorder)
         {
-            return Ok(await _mediator.Send(new GetDetailLessonByIdQuery(grade, chapterorder, lessonorder)));
+            return Ok(await _mediator.Send(new GetDetailLessonByIdQuery(grade, lessonorder)));
         }
 
 

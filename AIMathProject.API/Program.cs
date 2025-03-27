@@ -170,7 +170,7 @@ builder.Services.AddScoped<UserSeeder>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -178,7 +178,7 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseStaticFiles();
 app.UseCors(MyAllowSpecificOrigins);
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseMiddleware<RefreshTokenMiddleware>();
 app.UseExceptionHandler(_ => { });
 
@@ -188,7 +188,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
 //using (var scope = app.Services.CreateScope())
 //{
 //    var services = scope.ServiceProvider;
@@ -210,3 +209,6 @@ app.Run();
 //        Console.WriteLine($"Lỗi khi chạy seeding: {ex.Message}");
 //    }
 //}
+
+
+app.Run();

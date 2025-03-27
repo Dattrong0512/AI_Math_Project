@@ -11,17 +11,19 @@ namespace AIMathProject.Application.Mappers
     public static class LessionMapper
     {
 
-        public static LessonDto ToLessonDto(this Lesson lession)
+        public static LessonDto ToLessonDto(this Lesson lesson)
         {
-            LessonDto lessionDto = new LessonDto
+            LessonDto lessonDto = new LessonDto
             {
 
-                LessonOrder = lession.LessonOrder,
-                LessonName = lession.LessonName,
+                LessonOrder = lesson.LessonOrder,
+                LessonName = lesson.LessonName,
 
-                LessonContent = lession.LessonContent
+                LessonContent = lesson.LessonContent,
+                ChapterOrder = null,
+                Questions = null
             };
-            return lessionDto;
+            return lessonDto;
         }
         public static Lesson ToLessonFromLessonDto(this LessonDto lessonDto, int chapter_id)
         {
