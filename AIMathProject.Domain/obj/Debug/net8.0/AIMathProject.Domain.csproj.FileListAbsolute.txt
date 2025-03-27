@@ -1,0 +1,13 @@
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.deps.json
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.dll
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.pdb
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.csproj.AssemblyReference.cache
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.AssemblyInfoInputs.cache
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.AssemblyInfo.cs
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.sourcelink.json
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.dll
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\refint\AIMathProject.Domain.dll
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.pdb
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.Domain\obj\Debug\net8.0\ref\AIMathProject.Domain.dll

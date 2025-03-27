@@ -1,0 +1,38 @@
+﻿[
+  {
+    "UserName": "admin",
+    "Email": "admin@example.com",
+    "Gender": true,
+    "Dob": "1990-01-01",
+    "Avatar": "admin.jpg",
+    "Password": "Admin@123",
+    "Status": true
+  },
+  {
+    "UserName": "admin1",
+    "Email": "admin1@example.com",
+    "Gender": false,
+    "Dob": "1995-05-05",
+    "Avatar": "user1.jpg",
+    "Password": "User1@123",
+    "Status": true
+  },
+  {
+    "UserName": "admin2",
+    "Email": "john.doe@example.com",
+    "Gender": true,
+    "Dob": "1988-03-15",
+    "Avatar": "john_doe.jpg",
+    "Password": "JohnDoe@456",
+    "Status": true
+  },
+  {
+    "UserName": "admin3",
+    "Email": "jane.smith@example.com",
+    "Gender": false,
+    "Dob": "1992-07-22",
+    "Avatar": "jane_smith.jpg",
+    "Password": "JaneSmith@789",
+    "Status": true
+  }
+]

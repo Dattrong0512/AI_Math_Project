@@ -1,0 +1,226 @@
+﻿using AIMathProject.Application.Command.RefreshToken;
+using AIMathProject.Application.Command.Register;
+using AIMathProject.Application.Command.Login;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using AIMathProject.Domain.Requests;
+using AIMathProject.Infrastructure.Processors;
+
+namespace AIMathProject.API.Controllers
+{
+    [Route("")]
+    [ApiController]
+    public class LoginWithUSPW : ControllerBase
+    {
+        private readonly IMediator _mediator;
+        private readonly ILogger<LoginWithUSPW> _logger;
+        public LoginWithUSPW(IMediator mediator,  ILogger<LoginWithUSPW> logger)
+        {
+            _mediator = mediator;
+            _logger = logger;
+        }
+        /// <summary>
+        /// Registers a new user account.
+        /// </summary>
+        /// <remarks>
+        /// This API allows the creation of a new user account with the provided registration details.
+        ///
+        /// **Request:**
+        /// The request body must contain the user information:
+        /// - **UserName**: The username for the account.
+        /// - **Email**: The email address associated with the account.
+        /// - **Gender**: The gender of the user.
+        /// - **Dob**: The date of birth of the user.
+        /// - **Avatar**: The avatar image URL for the user.
+        /// - **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).
+        /// - **Status**: The status of the account (active/inactive).
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// POST /account/register/user
+        /// Content-Type: application/json
+        /// {
+        ///     "UserName": "john_doe",
+        ///     "Email": "john.doe@example.com",
+        ///     "Gender": true,
+        ///     "Dob": "1990-01-01T00:00:00",
+        ///     "Avatar": "http://example.com/avatar.jpg",
+        ///     "Password": "securepasswordAa",
+        ///     "Status": true
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="registerRequest">The registration details for the user.</param>
+        /// <returns>Returns a success response if the registration was successful.</returns>
+        [HttpPost("account/register/user")]
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterRequest registerRequest)
+        {
+            if (registerRequest == null)
+            {
+                return BadRequest("Register request cannot be null.");
+            }
+            await _mediator.Send(new RegisterCommand(registerRequest,"User"));
+
+            return Ok();
+        }
+        /// <summary>
+        /// Registers a new admin account.
+        /// </summary>
+        /// <remarks>
+        /// This API allows the creation of a new admin account with the provided registration details.
+        ///
+        /// **Request:**
+        /// The request body must contain the admin information:
+        /// - **UserName**: The username for the account.
+        /// - **Email**: The email address associated with the account.
+        /// - **Gender**: The gender of the admin.
+        /// - **Dob**: The date of birth of the admin.
+        /// - **Avatar**: The avatar image URL for the admin.
+        /// - **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).
+        /// - **Status**: The status of the account (active/inactive).
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// POST /account/register/admin
+        /// Content-Type: application/json
+        /// {
+        ///     "UserName": "admin_john",
+        ///     "Email": "admin.john@example.com",
+        ///     "Gender": true,
+        ///     "Dob": "1985-01-01T00:00:00",
+        ///     "Avatar": "http://example.com/admin_avatar.jpg",
+        ///     "Password": "adminpassword",
+        ///     "Status": true
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="registerRequest">The registration details for the admin.</param>
+        /// <returns>Returns a success response if the registration was successful.</returns>
+        [HttpPost("account/register/admin")]
+        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterRequest registerRequest)
+        {
+            if (registerRequest == null)
+            {
+                return BadRequest("Register request cannot be null.");
+            }
+            await _mediator.Send(new RegisterCommand(registerRequest,"Admin"));
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Logs in a user and returns JWT and refresh tokens.
+        /// </summary>
+        /// <remarks>
+        /// This API handles user login by verifying credentials and issuing tokens.
+        ///
+        /// **Request:**
+        /// The request body must contain the login information:
+        /// - **Email**: The user's email address.
+        /// - **Password**: The user's password.
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// POST /account/login
+        /// Content-Type: application/json
+        /// {
+        ///     "Email": "michael.brown@example.com",
+        ///     "Password": "Michael@101"
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="loginRequest">The login details for the user.</param>
+        /// <returns>Returns JWT and refresh tokens if the login is successful and it saved in cookies</returns>
+        [HttpPost("account/login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
+        {
+            _logger.LogInformation("Received login request for email: {Email}", loginRequest?.Email);
+
+            if (loginRequest == null)
+            {
+                _logger.LogWarning("Login request is null.");
+                return BadRequest("Login request cannot be null.");
+            }
+
+            try
+            {
+                var (jwtToken, refreshToken) = await _mediator.Send(new LoginCommand(loginRequest));
+                _logger.LogInformation("Login successful for email: {Email}. Returning tokens: JWT={JwtToken}, RefreshToken={RefreshToken}", loginRequest.Email, jwtToken, refreshToken);
+                return Ok(new { JwtToken = jwtToken, RefreshToken = refreshToken });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Login failed for email: {Email}. Error: {ErrorMessage}", loginRequest.Email, ex.Message);
+                throw; // Ném lại ngoại lệ để middleware xử lý (nếu cần)
+            }
+        }
+
+        /// <summary>
+        /// Refreshes a JWT token using a refresh token and returns a new JWT token and refresh token.
+        /// </summary>
+        /// <remarks>
+        /// This API allows a client to refresh an expired JWT token by providing a valid refresh token.
+        /// A new JWT token and a new refresh token will be issued if the provided refresh token is valid.
+        ///
+        /// **Request:**
+        /// The request body must contain the refresh token:
+        /// - **refreshTokenRequest**: The refresh token previously issued to the client.
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// POST /api/account/refresh-token
+        /// Content-Type: application/json
+        /// {
+        ///     "refreshTokenRequest": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        /// }
+        /// </remarks>
+        /// <param name="refreshTokenRequest">The refresh token provided by the client to obtain a new JWT token.</param>
+        /// <returns>
+        /// Returns a new JWT token and a new refresh token if the refresh token is valid.
+        /// Returns a 400 Bad Request if the refresh token is null or empty.
+        /// </returns>
+        [HttpPost("api/account/refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] string refreshTokenRequest)
+        {
+            if (refreshTokenRequest == null || string.IsNullOrEmpty(refreshTokenRequest))
+            {
+                return BadRequest("Refresh token cannot be null or empty.");
+            }
+
+            var (jwtToken, newRefreshToken) = await _mediator.Send(new RefreshTokenCommand(refreshTokenRequest));
+            return Ok(new { JwtToken = jwtToken, RefreshToken = newRefreshToken });
+        }
+        /// <summary>
+        /// Api test if user logged(Both admin and user)
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("api/account/test-authentication")]
+        public async Task<IActionResult> TestAuthentication()
+        {
+            return Ok("You are authenticated");
+        }
+
+        /// <summary>
+        /// This API is used to test users who have logged in and have the Role of Admin.
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Policy = "Admin")]
+        [HttpGet("api/account/test-authentication-admin")]
+        public async Task<IActionResult> TestAdminOnly()
+        {
+            return Ok("You are Admin");
+        }
+        /// <summary>
+        /// This API is used to test users who have logged in and have the Role of user.
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Policy = "User")]
+        [HttpGet("api/account/test-authentication-user")] // Đổi thành chữ thường
+        public async Task<IActionResult> TestUserRole()
+        {
+            return Ok("You are User");
+        }
+    }
+}

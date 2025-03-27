@@ -1,0 +1,938 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Math AI Api",
+    "description": "\r\n            Test Login Accounts:\r\n            To test the login functionality, you can use the following test accounts:\r\n\r\n            Admin Account:\r\n            - **Email**: admin@example.com\r\n            - **Password**: Admin@123\r\n\r\n            User Account:\r\n            - **Email**: michael.brown@example.com\r\n            - **Password**: Michael@101\r\n\r\n            Use these credentials to log in and explore the API endpoints.\r\n        ",
+    "termsOfService": "https://example.com/terms",
+    "contact": {
+      "name": "Email",
+      "email": "trongleviet05@gmail.com"
+    },
+    "license": {
+      "name": "License",
+      "url": "https://example.com/license"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/chapters": {
+      "get": {
+        "tags": [
+          "Chapter"
+        ],
+        "summary": "Return all chapters of all class",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\n- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: Null, because this api just return information about grade and chapters, not include lessions in chapter",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChapterDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chapters/details": {
+      "get": {
+        "tags": [
+          "Chapter"
+        ],
+        "summary": "Returns detailed information of each lesson in the chapters",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\n- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **semester**: semester\r\n- **chapterName**: The name of the chapter.\r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChapterDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chapters/grade/{grade}/details": {
+      "get": {
+        "tags": [
+          "Chapter"
+        ],
+        "summary": "Returns detailed information of each lesson in the chapters classified by class",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\n- **grade**: The grade level\r\n- **chapterOrder**: The order of the chapter in the curriculum.\r\n- **chapterName**: The name of the chapter.\r\n- **semester**: semester \r\n- **lessons**: A list of lessons within the chapter. Each lesson includes:\r\n  - **lessonOrder**: The order of the lesson within the chapter.\r\n  - **lessonName**: The name of the lesson.",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChapterDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enrollment/id/{id}": {
+      "get": {
+        "tags": [
+          "Enrollment"
+        ],
+        "summary": "Retrieves all enrollment information for a specific user.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves enrollment records for a given user, including details such as grade, semester, and academic year.\r\n            \r\n**Request:**\r\nThe request should include:\r\n- **id** (int): The unique identifier of the user.\r\n            \r\n**Response:**\r\nThe response will return a list of enrollment records, each containing:\r\n- **enrollmentId**: The unique identifier of the enrollment.\r\n- **userId**: The unique identifier of the user.\r\n- **grade**: The grade level associated with the enrollment.\r\n- **enrollmentDate**: The date when the user enrolled.\r\n- **avgScore**: The average score of the user in this enrollment (nullable).\r\n- **semester**: The semester in which the user is enrolled.\r\n- **startYear**: The academic start year.\r\n- **endYear**: The academic end year.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /getinfo/id/10",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EnrollmentDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lesson/grade/{grade}/chapterorder/{chapterorder}/lessonorder/{lessonorder}": {
+      "get": {
+        "tags": [
+          "Lesson"
+        ],
+        "summary": "Retrieves the details of a lesson associated with a specific grade, chapter, and lesson order.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API returns the details of a lesson, filtered by grade level, chapter order, and lesson order.\r\n\r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **chapterorder** (int): The sequential order of the chapter.\r\n- **lessonorder** (int): The sequential order of the lesson within the chapter.\r\n\r\n**Response Format:**\r\nThe response will return the details of the lesson, including:\r\n- **lessonOrder** (short?): The order of the lesson within the chapter. Nullable to allow for optional lesson orders.\r\n- **lessonName** (string): The name of the lesson.\r\n- **lessonContent** (string, nullable): The content of the lesson, if available. This can be null if no content is provided.\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/lesson/grade/1/chapterorder/1/lessonorder/1\r\n```",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "chapterorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lessonorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lesson/grade/{grade}/chapter/{chapterorder}": {
+      "post": {
+        "tags": [
+          "Lesson"
+        ],
+        "summary": "Creates a new lesson associated with a specific grade and chapter order.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates a new lesson and saves it in the system. The lesson is created with the provided grade level, chapter order, and lesson data.\r\n\r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **chapterorder** (int): The sequential order of the chapter in the study program.\r\n- **lessonDto** (LessonDto): The details of the lesson to be created. This should include:\r\n  - **lessonOrder** (short?): The order of the lesson within the chapter.\r\n  - **lessonName** (string): The name of the lesson.\r\n  - **lessonContent** (string, nullable): The content of the lesson (optional).\r\n\r\n**Response Format:**\r\n- **201 Created**: If the lesson is successfully created, the response will include the created `LessonDto` and the URL of the new lesson.\r\n- **400 Bad Request**: If the lesson could not be created, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/lesson/grade/1/chapter/1\r\nContent-Type: application/json\r\n{\r\n  \"lessonOrder\": 2,\r\n  \"lessonName\": \"Vị trí tiết 2\",\r\n  \"lessonContent\": \"linkyoutube\"\r\n}\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 201 Created\r\nLocation: /api/lesson/grade/1/chapter/1/lessonorder/2\r\n{\r\n  \"lessonOrder\": 2,\r\n  \"lessonName\": \"Vị trí tiết 2\",\r\n  \"lessonContent\": \"linkyoutube\"\r\n}",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "chapterorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LessonDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/lesson/grade/{grade}/lessonname/{lessonname}": {
+      "get": {
+        "tags": [
+          "Lesson"
+        ],
+        "summary": "Retrieves the list of lessons for a specific grade and lesson name.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves all lessons that match a specific grade level and lesson name.\r\nThe search is case-insensitive and ignores accents in the lesson name.\r\n\r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **lessonname** (string): The name of the lesson to search for. The search will return lessons whose name contains the provided `lessonname`, regardless of case and accents.\r\n\r\n**Response Format:**\r\nThe response will return a list of lessons that match the specified criteria, including:\r\n- **lessonOrder** (short?): The order of the lesson within the chapter.\r\n- **lessonName** (string): The name of the lesson.\r\n- **lessonContent** (string, nullable): The content of the lesson, if available. This can be null if no content is provided.\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/lesson/grade/1/lessonname/vi tri\r\n```",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lessonname",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LessonDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/id/{id}": {
+      "get": {
+        "tags": [
+          "LessonProgress"
+        ],
+        "summary": "Returns all information of the study program the user has registered for.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include userID.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.\r\n **Example Request:**\r\n```http\r\nGET /api/lessionprogress/id/6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LessonProgressDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/id/{id}/semester/{semester}": {
+      "get": {
+        "tags": [
+          "LessonProgress"
+        ],
+        "summary": "Returns all information of the study program classified by the semester the user has registered for.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include **userID** and **Semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.\r\n  **Example Request:**\r\n```http\r\nGET /api/lessionprogress/id/6/semester/1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "semester",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LessonProgressDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/lessonprogressID/{idProgress}/learningprogress/{learningProgress}": {
+      "patch": {
+        "tags": [
+          "LessonProgress"
+        ],
+        "summary": "Updates the learning progress of a specific lesson progress record.",
+        "description": "*Only logged in admin can use this api*\r\nThis API updates the user's learning progress for a specific lesson.\r\n\r\n**Request:**\r\nThe request should include:\r\n- **idProgress** (int): The unique identifier of the lesson progress.\r\n- **learningProgress** (short): The updated progress percentage of the lesson.\r\n            \r\n**Response:**\r\nIf successful, the response will return the updated lesson progress information:\r\n- **learningProgressId**: The unique identifier of the lesson progress.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The updated progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: A link to the lesson content.\r\n            \r\n**Example Request:**\r\n```http\r\nPATCH /update/lessonprogressID/13/learningprogress/23",
+        "parameters": [
+          {
+            "name": "idProgress",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "learningProgress",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/login/google": {
+      "get": {
+        "tags": [
+          "LoginWithGoogle"
+        ],
+        "summary": "Initiates the login process via Google.",
+        "description": "This endpoint starts the Google authentication process. It redirects to the Google login page.\r\nThe request should include the `returnUrl` query parameter that will be used after successful authentication.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /account/login/google?returnUrl=https://example.com/dashboard\r\n```",
+        "parameters": [
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "description": "The URL to redirect to after successful login.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/login/google/callback": {
+      "get": {
+        "tags": [
+          "LoginWithGoogle"
+        ],
+        "summary": "Handles the callback from Google after authentication, do not used by front-end",
+        "description": "This endpoint is triggered after the user has authenticated with Google.\r\nIf authentication is successful, the user's principal is passed to a command for login processing.\r\nIf authentication fails, the request is rejected.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /account/login/google/callback?returnUrl=https://example.com/dashboard\r\n```",
+        "operationId": "GoogleLoginCallback",
+        "parameters": [
+          {
+            "name": "returnUrl",
+            "in": "query",
+            "description": "The URL to redirect to after successful login.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/register/user": {
+      "post": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "Registers a new user account.",
+        "description": "This API allows the creation of a new user account with the provided registration details.\r\n            \r\n**Request:**\r\nThe request body must contain the user information:\r\n- **UserName**: The username for the account.\r\n- **Email**: The email address associated with the account.\r\n- **Gender**: The gender of the user.\r\n- **Dob**: The date of birth of the user.\r\n- **Avatar**: The avatar image URL for the user.\r\n- **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).\r\n- **Status**: The status of the account (active/inactive).\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/register/user\r\nContent-Type: application/json\r\n{\r\n    \"UserName\": \"john_doe\",\r\n    \"Email\": \"john.doe@example.com\",\r\n    \"Gender\": true,\r\n    \"Dob\": \"1990-01-01T00:00:00\",\r\n    \"Avatar\": \"http://example.com/avatar.jpg\",\r\n    \"Password\": \"securepasswordAa\",\r\n    \"Status\": true\r\n}\r\n```",
+        "requestBody": {
+          "description": "The registration details for the user.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/register/admin": {
+      "post": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "Registers a new admin account.",
+        "description": "This API allows the creation of a new admin account with the provided registration details.\r\n            \r\n**Request:**\r\nThe request body must contain the admin information:\r\n- **UserName**: The username for the account.\r\n- **Email**: The email address associated with the account.\r\n- **Gender**: The gender of the admin.\r\n- **Dob**: The date of birth of the admin.\r\n- **Avatar**: The avatar image URL for the admin.\r\n- **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).\r\n- **Status**: The status of the account (active/inactive).\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/register/admin\r\nContent-Type: application/json\r\n{\r\n    \"UserName\": \"admin_john\",\r\n    \"Email\": \"admin.john@example.com\",\r\n    \"Gender\": true,\r\n    \"Dob\": \"1985-01-01T00:00:00\",\r\n    \"Avatar\": \"http://example.com/admin_avatar.jpg\",\r\n    \"Password\": \"adminpassword\",\r\n    \"Status\": true\r\n}\r\n```",
+        "requestBody": {
+          "description": "The registration details for the admin.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/login": {
+      "post": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "Logs in a user and returns JWT and refresh tokens.",
+        "description": "This API handles user login by verifying credentials and issuing tokens.\r\n            \r\n**Request:**\r\nThe request body must contain the login information:\r\n- **Email**: The user's email address.\r\n- **Password**: The user's password.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/login\r\nContent-Type: application/json\r\n{\r\n    \"Email\": \"michael.brown@example.com\",\r\n    \"Password\": \"Michael@101\"\r\n}\r\n```",
+        "requestBody": {
+          "description": "The login details for the user.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/account/refresh-token": {
+      "post": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "Refreshes a JWT token using a refresh token and returns a new JWT token and refresh token.",
+        "description": "This API allows a client to refresh an expired JWT token by providing a valid refresh token.\r\nA new JWT token and a new refresh token will be issued if the provided refresh token is valid.\r\n            \r\n**Request:**\r\nThe request body must contain the refresh token:\r\n- **refreshTokenRequest**: The refresh token previously issued to the client.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /api/account/refresh-token\r\nContent-Type: application/json\r\n{\r\n    \"refreshTokenRequest\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\r\n}",
+        "requestBody": {
+          "description": "The refresh token provided by the client to obtain a new JWT token.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/account/test-authentication": {
+      "get": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "Api test if user logged(Both admin and user)",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/account/test-authentication-admin": {
+      "get": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "This API is used to test users who have logged in and have the Role of Admin.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/account/test-authentication-user": {
+      "get": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "This API is used to test users who have logged in and have the Role of user.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/question/grade/{grade}/lessonorder/{lessonorder}": {
+      "get": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "Retrieves all questions associated with a specific grade and lesson order.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API returns a list of questions for a given study program, filtered by grade level and lesson order.\r\n            \r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n- **lessonOrder** (int): The sequential order of the lesson.\r\n            \r\n**Response Format:**\r\nThe response will return a list of questions, each containing:\r\n- **questionId** (int): The unique identifier of the question.\r\n- **questionType** (string): The type of question (e.g., \"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n- **difficulty** (int): The difficulty level of the question.\r\n- **lessonId** (int): The identifier of the associated lesson.\r\n- **imgUrl** (string, nullable): The URL of an image related to the question.\r\n- **questionContent** (string): The text content of the question.\r\n- **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n- **choiceAnswers** (array): List of multiple-choice answers (if applicable):\r\n  - **answerId** (int): The unique identifier of the answer choice.\r\n  - **content** (string, nullable): The text of the answer choice (if applicable).\r\n  - **isCorrect** (bool): Whether this choice is the correct answer.\r\n  - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n- **fillAnswers** (array): List of correct answers for fill-in-the-blank questions (if applicable):\r\n  - **answerId** (int): The unique identifier of the correct answer.\r\n  - **correctAnswer** (string): The correct text answer that should be filled in.\r\n  - **position** (short): The position of the blank in the question (for multi-blank questions).\r\n- **matchingAnswers** (array): List of matching question pairs (if applicable):\r\n  - **answerId** (int): The unique identifier of the matching answer.\r\n  - **correctAnswer** (string): The correct match for the question.\r\n  - **imgUrl** (string, nullable): An image URL representing the matching item.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/question/grade/1/lessonorder/1\r\n```",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lessonorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChapterDto": {
+        "type": "object",
+        "properties": {
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chapterOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chapterName": {
+            "type": "string",
+            "nullable": true
+          },
+          "semester": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnrollmentDto": {
+        "type": "object",
+        "properties": {
+          "enrollmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "enrollmentDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "avgScore": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "semester": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "startYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "endYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LessonDto": {
+        "type": "object",
+        "properties": {
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "lessonContent": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LessonProgressDto": {
+        "type": "object",
+        "properties": {
+          "learningProgressId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "learningProgress": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isCompleted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/LessonDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "RegisterRequest": {
+        "required": [
+          "avatar",
+          "dob",
+          "email",
+          "gender",
+          "password",
+          "status",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "boolean"
+          },
+          "dob": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
