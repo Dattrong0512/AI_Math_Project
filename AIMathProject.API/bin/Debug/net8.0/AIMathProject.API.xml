@@ -310,8 +310,8 @@
                  "UserName": "john_doe",
                  "Email": "john.doe@example.com",
                  "Dob": "1990-01-01T00:00:00",
-                 "PhoneNumber: 0909909090"
-                 "Password": "securepasswordAa",
+                 "PhoneNumber": "0909909090",
+                 "Password": "securepasswordAa"
              }
              ```
              </remarks>
@@ -342,11 +342,9 @@
              {
                  "UserName": "admin_john",
                  "Email": "admin.john@example.com",
-                 "Gender": true,
                  "Dob": "1985-01-01T00:00:00",
-                 "Avatar": "http://example.com/admin_avatar.jpg",
-                 "Password": "adminpassword",
-                 "Status": true
+                 "PhoneNumber": "0909909090",
+                 "Password": "adminpassword"
              }
              ```
              </remarks>
