@@ -30,15 +30,13 @@ namespace AIMathProject.Domain.Entities
         public virtual ICollection<PlanTransaction> PlanTransactions { get; set; } = new List<PlanTransaction>();
 
         public virtual ICollection<TokenTransaction> TokenTransactions { get; set; } = new List<TokenTransaction>();
-        public static User Create(string username, string email, bool gender, DateTime dob, string avatar)
+        public static User Create(string username, string email, DateTime dob, string phonenumber)
         {
             return new User { 
                 UserName = username,
                 Email= email,
-                Gender = gender,
                 Dob=dob,
-                Avatar= avatar,
-                Status = true
+                PhoneNumber = phonenumber
             };
         }
         public override string ToString()

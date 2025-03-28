@@ -30,11 +30,9 @@ namespace AIMathProject.API.Controllers
         /// The request body must contain the user information:
         /// - **UserName**: The username for the account.
         /// - **Email**: The email address associated with the account.
-        /// - **Gender**: The gender of the user.
         /// - **Dob**: The date of birth of the user.
-        /// - **Avatar**: The avatar image URL for the user.
+        /// - **PhoneNumber**: The phone number of the user.
         /// - **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).
-        /// - **Status**: The status of the account (active/inactive).
         ///
         /// **Example Request:**
         /// ```http
@@ -43,11 +41,9 @@ namespace AIMathProject.API.Controllers
         /// {
         ///     "UserName": "john_doe",
         ///     "Email": "john.doe@example.com",
-        ///     "Gender": true,
         ///     "Dob": "1990-01-01T00:00:00",
-        ///     "Avatar": "http://example.com/avatar.jpg",
-        ///     "Password": "securepasswordAa",
-        ///     "Status": true
+        ///     "PhoneNumber": "0909909090",
+        ///     "Password": "securepasswordAa"
         /// }
         /// ```
         /// </remarks>
@@ -87,11 +83,9 @@ namespace AIMathProject.API.Controllers
         /// {
         ///     "UserName": "admin_john",
         ///     "Email": "admin.john@example.com",
-        ///     "Gender": true,
         ///     "Dob": "1985-01-01T00:00:00",
-        ///     "Avatar": "http://example.com/admin_avatar.jpg",
-        ///     "Password": "adminpassword",
-        ///     "Status": true
+        ///     "PhoneNumber": "0909909090",
+        ///     "Password": "adminpassword"
         /// }
         /// ```
         /// </remarks>

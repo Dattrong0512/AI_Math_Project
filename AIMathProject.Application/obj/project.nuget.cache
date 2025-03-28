@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wAiK/h6zBb4=",
+  "dgSpecHash": "TdL6YiwExT0=",
   "success": true,
-  "projectFilePath": "J:\\Study\\GraduationProject\\only4test\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj",
+  "projectFilePath": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bach Yen\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\Bach Yen\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

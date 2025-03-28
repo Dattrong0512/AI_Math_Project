@@ -44,8 +44,8 @@ namespace AIMathProject.Application.Command.Register
                 throw new UserAlreadyExistsException(email: request.RegisterRequest.Email);
             }
 
-            var user = User.Create(request.RegisterRequest.UserName, request.RegisterRequest.Email, request.RegisterRequest.Gender,
-                request.RegisterRequest.Dob, request.RegisterRequest.Avatar);
+            var user = User.Create(request.RegisterRequest.UserName, request.RegisterRequest.Email,
+                request.RegisterRequest.Dob, request.RegisterRequest.PhoneNumber);
             user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, request.RegisterRequest.Password);
 
             var result = await _userManager.CreateAsync(user);

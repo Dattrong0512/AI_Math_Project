@@ -40,6 +40,7 @@ namespace AIMathProject.Application.Seeding
                             Dob = userData.Dob,
                             Password = userData.Password,
                             Avatar = userData.Avatar,
+                            PhoneNumber = "0909090909",
                             Status = true
                         };
 

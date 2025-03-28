@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t9axQ7c6F54=",
+  "dgSpecHash": "DoQGg4wV+UA=",
   "success": true,
-  "projectFilePath": "J:\\Study\\GraduationProject\\only4test\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj",
+  "projectFilePath": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bach Yen\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Bach Yen\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
