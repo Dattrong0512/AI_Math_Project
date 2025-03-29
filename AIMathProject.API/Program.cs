@@ -76,9 +76,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.AllowAnyOrigin()
+                          policy.WithOrigins("http://localhost:5173")
                                 .AllowAnyHeader()
-                                .AllowAnyMethod();
+                                .AllowAnyMethod()
+                                .AllowCredentials();
                       });
 });
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -183,7 +184,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 app.UseRouting();
 app.UseStaticFiles();
 app.UseCors(MyAllowSpecificOrigins);
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseMiddleware<RefreshTokenMiddleware>();
 app.UseExceptionHandler(_ => { });
 
