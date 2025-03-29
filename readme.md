@@ -10,6 +10,7 @@ You can view the database diagrams here: [Diagram](https://drive.google.com/file
 ## Database Design Document(Vietnamese)
 You can see the database description documentation here: [Database decription documentation](https://docs.google.com/document/d/1EUYu1MsdauokZdI1mm8KIGOXaniLo3ib/edit)
 
+## Server deployed : [MathAI](https://mathai.id.vn/swagger/index.html)
 
 ## Note
 This project is in its early stages, and features will be completed soon.
