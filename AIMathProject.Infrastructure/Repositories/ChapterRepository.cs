@@ -2,6 +2,7 @@
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Interfaces;
 using AIMathProject.Infrastructure.Data;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,12 @@ namespace AIMathProject.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public ChapterRepository(ApplicationDbContext _dBContext)
+        private readonly IMapper _mapper;
+
+        public ChapterRepository(ApplicationDbContext _dBContext, IMapper mapper)
         {
             _context = _dBContext;
+            _mapper = mapper;
         }
 
 
@@ -25,7 +29,6 @@ namespace AIMathProject.Infrastructure.Repositories
         {
 
             var listChapter = await _context.Chapters.ToListAsync();
-
             var listChapterDto = ChapterMappers.ToChapterDtoList(listChapter);
             return listChapterDto;
         }

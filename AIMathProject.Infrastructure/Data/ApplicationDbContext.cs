@@ -11,7 +11,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    DbSet<User> Users { get; set; }
+    public virtual DbSet<User> Users { get; set; }
 
 
     public virtual DbSet<Chapter> Chapters { get; set; }

@@ -6,6 +6,7 @@ using AIMathProject.Application.Dto;
 using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Dto.LessonProgressDto;
 using AIMathProject.Application.Dto.QuestionDto;
+using AIMathProject.Application.Mappers;
 using AIMathProject.Application.Seeding;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
@@ -26,6 +27,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterCommand).Assembly));
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
+
 
 // Add services to the container.
 builder.Services.AddControllers();

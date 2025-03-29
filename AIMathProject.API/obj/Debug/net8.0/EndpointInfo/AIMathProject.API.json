@@ -173,7 +173,7 @@
         }
       }
     },
-    "/api/lesson/grade/{grade}/chapterorder/{chapterorder}/lessonorder/{lessonorder}": {
+    "/api/lesson/grade/{grade}/lessonorder/{lessonorder}": {
       "get": {
         "tags": [
           "Lesson"
@@ -183,15 +183,6 @@
         "parameters": [
           {
             "name": "grade",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "chapterorder",
             "in": "path",
             "required": true,
             "schema": {
@@ -514,7 +505,7 @@
           "LoginWithUSPW"
         ],
         "summary": "Registers a new user account.",
-        "description": "This API allows the creation of a new user account with the provided registration details.\r\n            \r\n**Request:**\r\nThe request body must contain the user information:\r\n- **UserName**: The username for the account.\r\n- **Email**: The email address associated with the account.\r\n- **Gender**: The gender of the user.\r\n- **Dob**: The date of birth of the user.\r\n- **Avatar**: The avatar image URL for the user.\r\n- **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).\r\n- **Status**: The status of the account (active/inactive).\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/register/user\r\nContent-Type: application/json\r\n{\r\n    \"UserName\": \"john_doe\",\r\n    \"Email\": \"john.doe@example.com\",\r\n    \"Gender\": true,\r\n    \"Dob\": \"1990-01-01T00:00:00\",\r\n    \"Avatar\": \"http://example.com/avatar.jpg\",\r\n    \"Password\": \"securepasswordAa\",\r\n    \"Status\": true\r\n}\r\n```",
+        "description": "This API allows the creation of a new user account with the provided registration details.\r\n            \r\n**Request:**\r\nThe request body must contain the user information:\r\n- **UserName**: The username for the account.\r\n- **Email**: The email address associated with the account.\r\n- **Dob**: The date of birth of the user.\r\n- **PhoneNumber**: The phone number of the user.\r\n- **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/register/user\r\nContent-Type: application/json\r\n{\r\n    \"UserName\": \"john_doe\",\r\n    \"Email\": \"john.doe@example.com\",\r\n    \"Dob\": \"1990-01-01T00:00:00\",\r\n    \"PhoneNumber\": \"0909909090\",\r\n    \"Password\": \"securepasswordAa\"\r\n}\r\n```",
         "requestBody": {
           "description": "The registration details for the user.",
           "content": {
@@ -548,7 +539,7 @@
           "LoginWithUSPW"
         ],
         "summary": "Registers a new admin account.",
-        "description": "This API allows the creation of a new admin account with the provided registration details.\r\n            \r\n**Request:**\r\nThe request body must contain the admin information:\r\n- **UserName**: The username for the account.\r\n- **Email**: The email address associated with the account.\r\n- **Gender**: The gender of the admin.\r\n- **Dob**: The date of birth of the admin.\r\n- **Avatar**: The avatar image URL for the admin.\r\n- **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).\r\n- **Status**: The status of the account (active/inactive).\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/register/admin\r\nContent-Type: application/json\r\n{\r\n    \"UserName\": \"admin_john\",\r\n    \"Email\": \"admin.john@example.com\",\r\n    \"Gender\": true,\r\n    \"Dob\": \"1985-01-01T00:00:00\",\r\n    \"Avatar\": \"http://example.com/admin_avatar.jpg\",\r\n    \"Password\": \"adminpassword\",\r\n    \"Status\": true\r\n}\r\n```",
+        "description": "This API allows the creation of a new admin account with the provided registration details.\r\n            \r\n**Request:**\r\nThe request body must contain the admin information:\r\n- **UserName**: The username for the account.\r\n- **Email**: The email address associated with the account.\r\n- **Gender**: The gender of the admin.\r\n- **Dob**: The date of birth of the admin.\r\n- **Avatar**: The avatar image URL for the admin.\r\n- **Password**: The password for the account(Consists of at least 8 characters, with uppercase and lowercase letters).\r\n- **Status**: The status of the account (active/inactive).\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/register/admin\r\nContent-Type: application/json\r\n{\r\n    \"UserName\": \"admin_john\",\r\n    \"Email\": \"admin.john@example.com\",\r\n    \"Dob\": \"1985-01-01T00:00:00\",\r\n    \"PhoneNumber\": \"0909909090\",\r\n    \"Password\": \"adminpassword\"\r\n}\r\n```",
         "requestBody": {
           "description": "The registration details for the admin.",
           "content": {
@@ -716,6 +707,105 @@
           }
         }
       }
+    },
+    "/api/user/pageindex/{pageindex}/pagesize/{pagesize}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves a paginated list of user information, accessible only to users with Admin privileges.",
+        "description": "- This endpoint requires the caller to be authenticated and have the \"Admin\" role.",
+        "parameters": [
+          {
+            "name": "pageindex",
+            "in": "path",
+            "description": "The index of the page to retrieve (starting from 0).",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "path",
+            "description": "The number of users to include per page.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -747,6 +837,28 @@
             "items": {
               "$ref": "#/components/schemas/LessonDto"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChoiceAnswerDto": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "imgUrl": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -797,6 +909,24 @@
         },
         "additionalProperties": false
       },
+      "FillAnswerDto": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "correctAnswer": {
+            "type": "string",
+            "nullable": true
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "LessonDto": {
         "type": "object",
         "properties": {
@@ -815,6 +945,18 @@
             "maxLength": 255,
             "minLength": 0,
             "type": "string",
+            "nullable": true
+          },
+          "chapterOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionDto"
+            },
             "nullable": true
           }
         },
@@ -865,6 +1007,24 @@
         },
         "additionalProperties": false
       },
+      "MatchingAnswerDto": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "correctAnswer": {
+            "type": "string",
+            "nullable": true
+          },
+          "imgUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ProblemDetails": {
         "type": "object",
         "properties": {
@@ -892,14 +1052,69 @@
         },
         "additionalProperties": { }
       },
+      "QuestionDto": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "questionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "difficulty": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "imgUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "questionContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "pdfSolution": {
+            "type": "string",
+            "nullable": true
+          },
+          "choiceAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChoiceAnswerDto"
+            },
+            "nullable": true
+          },
+          "fillAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FillAnswerDto"
+            },
+            "nullable": true
+          },
+          "matchingAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MatchingAnswerDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RegisterRequest": {
         "required": [
-          "avatar",
           "dob",
           "email",
-          "gender",
           "password",
-          "status",
+          "phoneNumber",
           "userName"
         ],
         "type": "object",
@@ -913,7 +1128,8 @@
             "nullable": true
           },
           "gender": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "dob": {
             "type": "string",
@@ -927,8 +1143,13 @@
             "type": "string",
             "nullable": true
           },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
           "status": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           }
         },
         "additionalProperties": false

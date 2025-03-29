@@ -462,5 +462,18 @@
              </remarks>
              <returns>Returns a list of questions matching the specified grade and lesson order.</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.UserController.GetInfoUser(System.Int32,System.Int32)">
+            <summary>
+            Retrieves a paginated list of user information, accessible only to users with Admin privileges.
+            </summary>
+            <param name="pageindex">The index of the page to retrieve (starting from 0).</param>
+            <param name="pagesize">The number of users to include per page.</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> containing a <see cref="T:AIMathProject.Application.Dto.Pagination.Pagination`1"/> object with the paginated list of users.
+            </returns>
+            <remarks>
+            - This endpoint requires the caller to be authenticated and have the "Admin" role.
+            </remarks>
+        </member>
     </members>
 </doc>
