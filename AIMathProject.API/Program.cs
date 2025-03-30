@@ -77,11 +77,14 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.AllowAnyOrigin()
+                          policy.WithOrigins("http://localhost:5173")
                                 .AllowAnyHeader()
-                                .AllowAnyMethod();
+                                .AllowAnyMethod()
+                                .AllowCredentials();
                       });
 });
+
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -205,6 +208,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
+app.Run();
+
+
+
+
 //using (var scope = app.Services.CreateScope())
 //{
 //    var services = scope.ServiceProvider;
@@ -226,6 +234,3 @@ app.MapControllers();
 //        Console.WriteLine($"Lỗi khi chạy seeding: {ex.Message}");
 //    }
 //}
-
-
-app.Run();

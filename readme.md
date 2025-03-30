@@ -1,4 +1,4 @@
-# AI MATH Project API
+#AI MATH Project API
 
 ## Description
 This is a web server project that serves a Web API is built in clean architecture. and other methods to provide for the AI MATH application.
