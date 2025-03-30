@@ -14,6 +14,7 @@ using AIMathProject.Infrastructure.Data;
 using AIMathProject.Infrastructure.Options;
 using AIMathProject.Infrastructure.Processors;
 using AIMathProject.Infrastructure.Repositories;
+using AIMathProject.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -166,12 +167,23 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(opt =>
     opt.Password.RequireUppercase = true;
     opt.Password.RequiredLength = 8;
     opt.User.RequireUniqueEmail = true;
-    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ áàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđ";
+    opt.Password.RequireNonAlphanumeric = false; // Yêu cầu ít nhất 1 ký tự đặc biệt
+    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ " + // Ký tự Latin và một số ký tự đặc biệt
+        "áàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđ" + // Ký tự tiếng Việt
+        "ÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴĐ"; // Chữ cái in hoa tiếng Việt
 }).AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>(); // Đăng ký GlobalExceptionHandler
-builder.Services.AddScoped<UserSeeder>();
+//builder.Services.AddScoped<UserSeeder>();
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(ops => ops.TokenLifespan=TimeSpan.FromHours(10));
+
+var emailConfig = builder.Configuration
+    .GetSection("EmailConfiguration")
+    .Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
+builder.Services.AddScoped<IEmailHelper, EmailSender>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

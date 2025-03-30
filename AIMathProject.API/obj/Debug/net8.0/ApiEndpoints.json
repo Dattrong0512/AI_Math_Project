@@ -1,6 +1,27 @@
 [
   {
     "ContainingType": "AIMathProject.API.Controllers.LoginWithUSPW",
+    "Method": "ForgotPassword",
+    "RelativePath": "account/forgot-password",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "host",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.LoginWithUSPW",
     "Method": "Login",
     "RelativePath": "account/login",
     "HttpMethod": "POST",
@@ -75,6 +96,22 @@
       {
         "Name": "registerRequest",
         "Type": "AIMathProject.Domain.Requests.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.LoginWithUSPW",
+    "Method": "ResetPassword",
+    "RelativePath": "account/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPassword",
+        "Type": "AIMathProject.Application.Dto.ResetPasswordModel",
         "IsRequired": true
       }
     ],

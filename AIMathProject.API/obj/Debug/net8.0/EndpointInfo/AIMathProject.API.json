@@ -635,6 +635,71 @@
         }
       }
     },
+    "/account/forgot-password": {
+      "get": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "Initiates the forgot password process by sending a reset password link to the user's email.",
+        "description": "- This endpoint does not require authentication.\r\n- The host parameter should be the base URL of the frontend application\r\n  where the user will be redirected to reset their password.\r\n- If the email is not found or an error occurs, a bad request response is returned with an error message.",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "The email address of the user requesting a password reset.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "host",
+            "in": "query",
+            "description": "The host URL used to construct the password reset link (e.g., \"http://localhost:5173/forgot-password\").",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/reset-password": {
+      "post": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "summary": "Initiates the forgot password process by sending a reset password link to the user's email.",
+        "description": "- This endpoint does not require authentication.\r\n- The host parameter should be the base URL of the frontend application\r\n  where the user will be redirected to reset their password.\r\n- If the email is not found or an error occurs, a bad request response is returned with an error message.\r\n- Frontend code reference: https://drive.google.com/drive/folders/18M__nFfmDoVOyqHElTmNdyTL7PiEfbXX?usp=sharing",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/account/test-authentication": {
       "get": {
         "tags": [
@@ -1149,6 +1214,24 @@
           },
           "status": {
             "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResetPasswordModel": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
             "nullable": true
           }
         },

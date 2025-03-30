@@ -1,11 +1,18 @@
-﻿using AIMathProject.Application.Command.RefreshToken;
+﻿using AIMathProject.Application.Command.Login;
+using AIMathProject.Application.Command.RefreshToken;
 using AIMathProject.Application.Command.Register;
-using AIMathProject.Application.Command.Login;
+using AIMathProject.Application.Command.ResetPassword;
+using AIMathProject.Application.Dto;
+using AIMathProject.Application.Queries.ResetPassword;
+using AIMathProject.Domain.Requests;
+using AIMathProject.Infrastructure.Options;
+using AIMathProject.Infrastructure.Processors;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using AIMathProject.Domain.Requests;
-using AIMathProject.Infrastructure.Processors;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
 
 namespace AIMathProject.API.Controllers
 {
@@ -185,6 +192,75 @@ namespace AIMathProject.API.Controllers
             var (jwtToken, newRefreshToken) = await _mediator.Send(new RefreshTokenCommand(refreshTokenRequest));
             return Ok(new { JwtToken = jwtToken, RefreshToken = newRefreshToken });
         }
+
+        /// <summary>
+        /// Initiates the forgot password process by sending a reset password link to the user's email.
+        /// </summary>
+        /// <param name="email">The email address of the user requesting a password reset.</param>
+        /// <param name="host">The host URL used to construct the password reset link (e.g., "http://localhost:5173/forgot-password").</param>
+        /// <returns>
+        /// Returns an <see cref="OkObjectResult"/> if the reset password request is successfully initiated,
+        /// or a <see cref="BadRequestObjectResult"/> if an error occurs during the process.
+        /// </returns>
+        /// <remarks>
+        /// - This endpoint does not require authentication.
+        /// - The <paramref name="host"/> parameter should be the base URL of the frontend application
+        ///   where the user will be redirected to reset their password.
+        /// - If the email is not found or an error occurs, a bad request response is returned with an error message.
+        /// </remarks>
+        [HttpGet("account/forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromQuery] string email,
+           string host)
+        {
+
+            try
+            {
+                return Ok(await _mediator.Send(new ResetPasswordQuery(email, host)));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Initiates the forgot password process by sending a reset password link to the user's email.
+        /// </summary>
+        /// <param name="email">The email address of the user requesting a password reset.</param>
+        /// <param name="host">The host URL used to construct the password reset link (e.g., "http://localhost:5173/forgot-password").</param>
+        /// <returns>
+        /// Returns an <see cref="OkObjectResult"/> if the reset password request is successfully initiated,
+        /// or a <see cref="BadRequestObjectResult"/> if an error occurs during the process.
+        /// </returns>
+        /// <remarks>
+        /// - This endpoint does not require authentication.
+        /// - The <paramref name="host"/> parameter should be the base URL of the frontend application
+        ///   where the user will be redirected to reset their password.
+        /// - If the email is not found or an error occurs, a bad request response is returned with an error message.
+        /// - Frontend code reference: https://drive.google.com/drive/folders/18M__nFfmDoVOyqHElTmNdyTL7PiEfbXX?usp=sharing
+        /// </remarks>
+        [HttpPost("account/reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel resetPassword)
+        {
+            try
+            {
+                return Ok(await _mediator.Send(new ResetPasswordCommand(resetPassword)));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// Api test if user logged(Both admin and user)
         /// </summary>

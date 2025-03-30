@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("AIMathProject.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7df4ce563d3e9f7af8474d9be3c078d1064d1cb6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+529896c44f751bd924c4ac10a01660a03af004ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("AIMathProject.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AIMathProject.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

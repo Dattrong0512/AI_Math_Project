@@ -402,6 +402,41 @@
              Returns a 400 Bad Request if the refresh token is null or empty.
              </returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.LoginWithUSPW.ForgotPassword(System.String,System.String)">
+            <summary>
+            Initiates the forgot password process by sending a reset password link to the user's email.
+            </summary>
+            <param name="email">The email address of the user requesting a password reset.</param>
+            <param name="host">The host URL used to construct the password reset link (e.g., "http://localhost:5173/forgot-password").</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> if the reset password request is successfully initiated,
+            or a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if an error occurs during the process.
+            </returns>
+            <remarks>
+            - This endpoint does not require authentication.
+            - The <paramref name="host"/> parameter should be the base URL of the frontend application
+              where the user will be redirected to reset their password.
+            - If the email is not found or an error occurs, a bad request response is returned with an error message.
+            </remarks>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.LoginWithUSPW.ResetPassword(AIMathProject.Application.Dto.ResetPasswordModel)">
+            <summary>
+            Initiates the forgot password process by sending a reset password link to the user's email.
+            </summary>
+            <param name="email">The email address of the user requesting a password reset.</param>
+            <param name="host">The host URL used to construct the password reset link (e.g., "http://localhost:5173/forgot-password").</param>
+            <returns>
+            Returns an <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> if the reset password request is successfully initiated,
+            or a <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> if an error occurs during the process.
+            </returns>
+            <remarks>
+            - This endpoint does not require authentication.
+            - The <paramref name="host"/> parameter should be the base URL of the frontend application
+              where the user will be redirected to reset their password.
+            - If the email is not found or an error occurs, a bad request response is returned with an error message.
+            - Frontend code reference: https://drive.google.com/drive/folders/18M__nFfmDoVOyqHElTmNdyTL7PiEfbXX?usp=sharing
+            </remarks>
+        </member>
         <member name="M:AIMathProject.API.Controllers.LoginWithUSPW.TestAuthentication">
             <summary>
             Api test if user logged(Both admin and user)

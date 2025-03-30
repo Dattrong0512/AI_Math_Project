@@ -1,9 +1,16 @@
-﻿using AIMathProject.Application.Dto.Pagination;
+﻿using AIMathProject.Application.Dto.LoginDto;
+using AIMathProject.Application.Dto.Pagination;
 using AIMathProject.Application.Queries.Users;
+using AIMathProject.Domain.Entities;
+using AIMathProject.Infrastructure.Options;
+using AIMathProject.Infrastructure.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
 
 namespace AIMathProject.API.Controllers
 {
@@ -13,7 +20,7 @@ namespace AIMathProject.API.Controllers
     {
         private readonly IMediator _mediator;
 
-        
+
         public UserController(IMediator mediator)
         {
             _mediator = mediator;
@@ -42,5 +49,8 @@ namespace AIMathProject.API.Controllers
         {
             return Ok(await _mediator.Send(new GetInfoUserQuery(pageindex, pagesize)));
         }
+
+
+       
     }
 }
