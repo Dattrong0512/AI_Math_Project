@@ -50,7 +50,15 @@ namespace AIMathProject.API.Controllers
             return Ok(await _mediator.Send(new GetInfoUserQuery(pageindex, pagesize)));
         }
 
-
-       
+        /// <summary>
+        /// This api used to get information of currently logged in user
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("info")]
+        public async Task<IActionResult> GetInfoUserLogin()
+        {
+            return Ok(await _mediator.Send(new GetInfoUserLoginQuery()));
+        }
     }
 }

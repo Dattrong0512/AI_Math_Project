@@ -510,5 +510,11 @@
             - This endpoint requires the caller to be authenticated and have the "Admin" role.
             </remarks>
         </member>
+        <member name="M:AIMathProject.API.Controllers.UserController.GetInfoUserLogin">
+            <summary>
+            This api used to get information of currently logged in user
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

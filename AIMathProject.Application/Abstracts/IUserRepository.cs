@@ -13,5 +13,7 @@ namespace AIMathProject.Application.Abstracts
     {
         Task<User?> GetUserByRefreshTokenAsync(string refreshToken);
         Task<Pagination<UserDto>> GetInfoUser(int pageIndex, int pageSize);
+
+        Task<UserDto> GetInfoUserLogin();
     }
 }

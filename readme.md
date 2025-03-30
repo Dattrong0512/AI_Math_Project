@@ -12,5 +12,19 @@ You can see the database description documentation here: [Database decription do
 
 ## Server deployed : [MathAI](https://mathai.id.vn/swagger/index.html)
 
+# List of completed features
+
+### Login and Register
+#### Login
++ Login with Email and password.
++ Login with Google using OAuth 2.0.
+#### Register User
++ Register new account user.
++ Register new account admin.
+### Authentication and authorization with Identity .NET Core
+
+- Perform authentication and authorization with user types such as user and admin based on system login information.
+
 ## Note
 This project is in its early stages, and features will be completed soon.
+

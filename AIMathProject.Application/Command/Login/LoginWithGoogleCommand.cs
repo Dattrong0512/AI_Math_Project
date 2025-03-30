@@ -55,6 +55,7 @@ namespace AIMathProject.Application.Command.Login
             {
                 gender = true;
             }
+            var userName = request.claimsPrincipal.FindFirstValue(ClaimTypes.Name);
             var user = await _userManager.FindByEmailAsync(email);
             DateTime parsedDate;
             if (string.IsNullOrEmpty(request.claimsPrincipal.FindFirstValue(ClaimTypes.DateOfBirth)))
@@ -70,7 +71,7 @@ namespace AIMathProject.Application.Command.Login
                 // Tạo người dùng mới nếu chưa tồn tại
                 var newUser = new User
                 {
-                    UserName = email,
+                    UserName = userName,
                     Email = email,
                     Gender = gender,
                     Dob = parsedDate,

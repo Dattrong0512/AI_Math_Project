@@ -27,13 +27,27 @@ using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterCommand).Assembly));
-builder.Services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
 
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterCommand).Assembly));
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:5173")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowCredentials();
+                      });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -72,18 +86,6 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(xmlPath);
 }).AddSwaggerGenNewtonsoftSupport();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://localhost:5173")
-                                .AllowAnyHeader()
-                                .AllowAnyMethod()
-                                .AllowCredentials();
-                      });
-});
-
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -96,6 +98,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.Configure<JwtOptions>(
     builder.Configuration.GetSection(JwtOptions.JwtOptionKey));
 
@@ -106,6 +109,7 @@ builder.Services.AddScoped<IEnrollmentRepository<EnrollmentDto>, EnrollmentRepos
 builder.Services.AddScoped<ILessonRepository<LessonDto>, LessonRepository>();
 builder.Services.AddScoped<ILessonProgressRepository<LessonProgressDto>, LessonProgressRepository>();
 builder.Services.AddScoped<IQuestionRepository<QuestionDto>, QuestionRepository>();
+
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();
@@ -189,7 +193,7 @@ builder.Services.AddSingleton(emailConfig);
 builder.Services.AddScoped<IEmailHelper, EmailSender>();
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
@@ -198,10 +202,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 app.UseRouting();
 app.UseStaticFiles();
 app.UseCors(MyAllowSpecificOrigins);
-//app.UseHttpsRedirection();
 app.UseMiddleware<RefreshTokenMiddleware>();
 app.UseExceptionHandler(_ => { });
-
 
 
 app.UseAuthentication();

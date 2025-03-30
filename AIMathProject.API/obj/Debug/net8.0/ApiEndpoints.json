@@ -397,6 +397,16 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.UserController",
+    "Method": "GetInfoUserLogin",
+    "RelativePath": "api/user/info",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.UserController",
     "Method": "GetInfoUser",
     "RelativePath": "api/user/pageindex/{pageindex}/pagesize/{pagesize}",
     "HttpMethod": "GET",

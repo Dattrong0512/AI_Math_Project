@@ -871,6 +871,19 @@
           }
         }
       }
+    },
+    "/api/user/info": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "This api used to get information of currently logged in user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
