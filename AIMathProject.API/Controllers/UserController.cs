@@ -1,8 +1,9 @@
-﻿using AIMathProject.Application.Command.DeleteUser;
+﻿using AIMathProject.Application.Command.Users;
 using AIMathProject.Application.Dto.LoginDto;
 using AIMathProject.Application.Dto.Pagination;
 using AIMathProject.Application.Queries.Users;
 using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Requests;
 using AIMathProject.Infrastructure.Options;
 using AIMathProject.Infrastructure.Services;
 using MediatR;
@@ -76,6 +77,31 @@ namespace AIMathProject.API.Controllers
             {
                 await _mediator.Send(new DeleteUserCommand(id));
                 return Ok("User deleted successfully");
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
+        /// <summary>
+        /// Updates a user by their ID, accessible only to users with Admin privileges.
+        /// </summary>
+        /// <param name="request">The update request containing the fields to update.</param>
+        /// <returns>
+        /// Returns a <see cref="NoContentResult"/> if the user was successfully updated, or a <see cref="NotFoundResult"/> if the user was not found.
+        /// </returns>
+        /// <remarks>
+        /// - This endpoint requires the caller to be authenticated and have the  role.
+        /// </remarks>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpPut("account/update/")]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateRequest request)
+        {
+            try
+            {
+                await _mediator.Send(new UpdateUserCommand(request));
+                return Ok("account updated successfully");
             }
             catch (Exception)
             {

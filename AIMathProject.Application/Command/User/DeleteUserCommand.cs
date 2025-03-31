@@ -5,7 +5,7 @@ using AIMathProject.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace AIMathProject.Application.Command.DeleteUser
+namespace AIMathProject.Application.Command.Users
 {
     public class DeleteUserCommand : IRequest<Unit>
     {

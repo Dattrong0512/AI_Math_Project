@@ -397,6 +397,22 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/user/account/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "AIMathProject.Domain.Requests.UpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.UserController",
     "Method": "DeleteUser",
     "RelativePath": "api/user/delete/{id}",
     "HttpMethod": "DELETE",
