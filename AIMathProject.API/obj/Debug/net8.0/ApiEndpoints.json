@@ -398,7 +398,7 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.UserController",
     "Method": "DeleteUser",
-    "RelativePath": "api/user/{id}",
+    "RelativePath": "api/user/delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

@@ -69,7 +69,7 @@ namespace AIMathProject.API.Controllers
         /// - This endpoint requires the caller to be authenticated and have the "Admin" role.
         /// </remarks>
         [Authorize(Policy = "Admin")]
-        [HttpDelete("{id:int}")]
+        [HttpDelete("delete/{id:int}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             try
