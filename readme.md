@@ -16,7 +16,7 @@ You can see the database description documentation here: [Database decription do
 
 ### Login and Register
 #### Login
-+ Login with Email and password.
++ Login with email and password, including confirmation and password reset functionality.
 + Login with Google using OAuth 2.0.
 #### Register User
 + Register new account user.
