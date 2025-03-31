@@ -34,13 +34,30 @@ namespace AIMathProject.Infrastructure.Processors
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Secret));
             var creadentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 
-            bool checkRoleAdmin = await _userManager.IsInRoleAsync(user, "Admin");
-
-            var claims = new List<Claim>
+            ICollection<string> checkRole = await _userManager.GetRolesAsync(user);
+            if(checkRole.Count()==0)
+            {
+                return (null, DateTime.Now);
+            }
+            string role;
+            if(checkRole.Contains("Admin"))
+            {
+                role = "Admin";
+            }
+            else if(checkRole.Contains("User"))
+            {
+                role = "User";
+            }
+            else
+            {
+                role = "";
+            }
+                
+                var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("Role", checkRoleAdmin == true ? "Admin" : "User"),
+                new Claim("Role", role),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email)
             };
             var expires = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationTimeInMinutes);

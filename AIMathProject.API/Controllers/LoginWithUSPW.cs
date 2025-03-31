@@ -1,10 +1,13 @@
-﻿using AIMathProject.Application.Command.Login;
+﻿using AIMathProject.Application.Abstracts;
+using AIMathProject.Application.Command.Login;
 using AIMathProject.Application.Command.RefreshToken;
 using AIMathProject.Application.Command.Register;
 using AIMathProject.Application.Command.ResetPassword;
 using AIMathProject.Application.Dto;
 using AIMathProject.Application.Queries.ResetPassword;
+using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Requests;
+using AIMathProject.Infrastructure.CommonServices;
 using AIMathProject.Infrastructure.Options;
 using AIMathProject.Infrastructure.Processors;
 using MediatR;
@@ -12,7 +15,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using System;
+using System.Security.Policy;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AIMathProject.API.Controllers
 {
@@ -64,8 +71,9 @@ namespace AIMathProject.API.Controllers
                 return BadRequest("Register request cannot be null.");
             }
             await _mediator.Send(new RegisterCommand(registerRequest,"User"));
+       
 
-            return Ok();
+            return Ok("Vui lòng xác thực email");
         }
         /// <summary>
         /// Registers a new admin account.
@@ -253,11 +261,18 @@ namespace AIMathProject.API.Controllers
         }
 
 
+        /// <summary>
+        /// This API uses a callback when the user clicks on the email confirmation link. This API is not used by the front-end.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpGet("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
 
-
-
-
-
+            return Ok(await _mediator.Send(new ConfirmEmailCommand(userId, token)));
+        }
 
 
 
@@ -265,7 +280,7 @@ namespace AIMathProject.API.Controllers
         /// Api test if user logged(Both admin and user)
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("api/account/test-authentication")]
         public async Task<IActionResult> TestAuthentication()
         {

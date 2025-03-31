@@ -42,6 +42,10 @@ namespace AIMathProject.Application.Command.Login
             }
 
             var (jwtToken, expirationDateInUtc) = await _authTokenProcessor.GenerateJwtToken(user);
+            if(jwtToken == null)
+            {
+                return ("Vui lòng xác thực email trước khi đăng nhập", null);
+            }
             var refreshToken = _authTokenProcessor.GenerateRefreshToken();
             var refreshTokenExpirationDateInUtc = DateTime.UtcNow.AddDays(90);
 

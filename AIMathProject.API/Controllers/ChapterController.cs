@@ -31,7 +31,7 @@ namespace AIMathProject.API.Controllers
         /// - **lessons**: Null, because this api just return information about grade and chapters, not include lessions in chapter
         /// </remarks>
         /// <returns>return list of chapters of classes </returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("chapters")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ChapterDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -53,7 +53,7 @@ namespace AIMathProject.API.Controllers
         ///   - **lessonName**: The name of the lesson.
         /// </remarks>
         /// <returns>return detail list of chapters of classes </returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("chapters/details")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ChapterDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -75,7 +75,7 @@ namespace AIMathProject.API.Controllers
         ///   - **lessonName**: The name of the lesson.
         /// </remarks>
         /// <returns>return detail list of chapters of classes classified by class</returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("chapters/grade/{grade:int}/details/")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ChapterDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

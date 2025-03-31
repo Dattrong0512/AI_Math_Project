@@ -37,7 +37,6 @@ namespace AIMathProject.API.Controllers
         /// <remarks>
         /// - This endpoint requires the caller to be authenticated and have the "Admin" role.
         /// </remarks>
-        [Authorize(Policy = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -54,7 +53,7 @@ namespace AIMathProject.API.Controllers
         /// This api used to get information of currently logged in user
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("info")]
         public async Task<IActionResult> GetInfoUserLogin()
         {

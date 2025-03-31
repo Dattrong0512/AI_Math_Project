@@ -51,7 +51,7 @@ namespace AIMathProject.API.Controllers
 
         /// ```
         /// <returns>Returns all information of the study program the user has registered for.</returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("/id/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -86,7 +86,7 @@ namespace AIMathProject.API.Controllers
         /// </remarks>
 
         /// <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("/id/{id:int}/semester/{semester:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

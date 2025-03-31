@@ -10,6 +10,7 @@ namespace AIMathProject.Infrastructure.Services
     {
         private readonly EmailConfiguration _emailConfig;
 
+
         public EmailSender(EmailConfiguration emailConfig)
         {
             _emailConfig = emailConfig;
@@ -30,7 +31,7 @@ namespace AIMathProject.Infrastructure.Services
                     From = new MailAddress(_emailConfig.DefaultSender),
                     Subject = emailRequest.Subject,
                     Body = emailRequest.Content,
-                    IsBodyHtml = true // Để hiển thị HTML trong email
+                    IsBodyHtml = true 
                 };
                 mailMessage.To.Add(emailRequest.To);
 

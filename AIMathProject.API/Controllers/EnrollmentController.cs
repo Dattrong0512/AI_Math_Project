@@ -49,7 +49,7 @@ namespace AIMathProject.API.Controllers
         /// GET /getinfo/id/10
         /// </remarks>
         /// <returns>Returns all enrollment records for the specified user.</returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("id/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<EnrollmentDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

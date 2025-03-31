@@ -465,6 +465,27 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.LoginWithUSPW",
+    "Method": "ConfirmEmail",
+    "RelativePath": "confirm-email",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.LessonProgressController",
     "Method": "GetLessonProgressById",
     "RelativePath": "id/{id}",

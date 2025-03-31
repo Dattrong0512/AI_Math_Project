@@ -37,7 +37,7 @@ namespace AIMathProject.API.Middleware
 
             _logger.LogInformation($"Information request: {context.Request.Path}");
             var path = context.Request.Path.Value; // Lấy đường dẫn dưới dạng chuỗi
-            if (context.Request.Path.StartsWithSegments(_loginAccount, StringComparison.OrdinalIgnoreCase) &&
+            if (context.Request.Path.StartsWithSegments(_loginAccount, StringComparison.OrdinalIgnoreCase) ||
                 !path.Contains("api", StringComparison.OrdinalIgnoreCase))
             {
                 _logger.LogInformation("Skipping RefreshTokenMiddleware for account path without 'api'.");

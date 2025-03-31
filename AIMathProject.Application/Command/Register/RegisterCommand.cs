@@ -1,15 +1,15 @@
 ﻿using AIMathProject.Application.Abstracts;
-using AIMathProject.Domain.Exceptions;
 using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Exceptions;
 using AIMathProject.Domain.Requests;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+using System.Security.Policy;
+
 
 namespace AIMathProject.Application.Command.Register
 {
@@ -17,6 +17,8 @@ namespace AIMathProject.Application.Command.Register
     {
         public RegisterRequest RegisterRequest { get; set; }
         public string Role;
+
+        
         public RegisterCommand(RegisterRequest registerRequest,string role)
         {
             RegisterRequest = registerRequest;
@@ -30,10 +32,12 @@ namespace AIMathProject.Application.Command.Register
 
         private readonly RoleManager<IdentityRole<int>> _roleManager;
 
-        public RegisterCommandHandler(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager)
+        private readonly IUserRepository _userRepository;
+        public RegisterCommandHandler(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager, IEmailHelper emailHelper, IEmailTemplateReader emailTemplateReader, IUserRepository userRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _userRepository = userRepository;
         }
 
         public async Task<Unit> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -50,20 +54,25 @@ namespace AIMathProject.Application.Command.Register
 
             var result = await _userManager.CreateAsync(user);
 
-            if (!await _roleManager.RoleExistsAsync(request.Role))
+            await _userRepository.SendEmailConfirm(user, cancellationToken);
+
+            if (request.Role == "Admin")
             {
-                var roleResult = await _roleManager.CreateAsync(new IdentityRole<int>(request.Role));
-                if (!roleResult.Succeeded)
+                if (!await _roleManager.RoleExistsAsync(request.Role))
                 {
-                    throw new Exception("Can't create User Role");
+                    var roleResult = await _roleManager.CreateAsync(new IdentityRole<int>(request.Role));
+                    if (!roleResult.Succeeded)
+                    {
+                        throw new Exception("Can't create User Role");
+                    }
+                }
+                var addToRoleResult = await _userManager.AddToRoleAsync(user, request.Role);
+                if (!addToRoleResult.Succeeded)
+                {
+                    throw new Exception("Can't assign User Role to user: " + string.Join(", ", addToRoleResult.Errors.Select(e => e.Description)));
                 }
             }
-                var addToRoleResult = await _userManager.AddToRoleAsync(user, request.Role);
-            if (!addToRoleResult.Succeeded)
-            {
-                throw new Exception("Can't assign User Role to user: " + string.Join(", ", addToRoleResult.Errors.Select(e => e.Description)));
-            }
-
+          
             return Unit.Value;
         }
     }

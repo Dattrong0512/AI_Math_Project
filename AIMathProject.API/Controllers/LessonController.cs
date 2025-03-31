@@ -47,7 +47,7 @@ namespace AIMathProject.API.Controllers
         /// ```
         /// </remarks>
         /// <returns>Returns the lesson details matching the specified grade, chapter order, and lesson order.</returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("lesson/grade/{grade:int}/lessonorder/{lessonorder:int}")]
         public async Task<ActionResult<LessonDto>> GetLessonByID([FromRoute] int grade, [FromRoute] int lessonorder)
         {
@@ -94,7 +94,7 @@ namespace AIMathProject.API.Controllers
         /// }
         /// </remarks>
         /// <returns>Returns a `LessonDto` object representing the created lesson, or a `BadRequest` with an error message if creation fails.</returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpPost("lesson/grade/{grade:int}/chapter/{chapterorder:int}")]
         public async Task<ActionResult<LessonDto>> CreateLesson([FromRoute] int grade, [FromRoute] int chapterorder, [FromBody] LessonDto lessonDto)
         {
@@ -135,7 +135,7 @@ namespace AIMathProject.API.Controllers
         /// </remarks>
         /// <returns>Returns a list of `LessonDto` objects representing the found lessons, or an empty list if no lessons are found.</returns>
 
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("lesson/grade/{grade:int}/lessonname/{lessonname}")]

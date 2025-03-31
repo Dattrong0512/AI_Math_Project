@@ -7,9 +7,9 @@ using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Dto.LessonProgressDto;
 using AIMathProject.Application.Dto.QuestionDto;
 using AIMathProject.Application.Mappers;
-using AIMathProject.Application.Seeding;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
+using AIMathProject.Infrastructure.CommonServices;
 using AIMathProject.Infrastructure.Data;
 using AIMathProject.Infrastructure.Options;
 using AIMathProject.Infrastructure.Processors;
@@ -19,8 +19,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -99,6 +99,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddHttpContextAccessor();
 
+
 builder.Services.Configure<JwtOptions>(
     builder.Configuration.GetSection(JwtOptions.JwtOptionKey));
 
@@ -166,6 +167,8 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("User", policy => policy.RequireClaim("Role", "User"));
     options.AddPolicy("Admin", policy => policy.RequireClaim("Role", "Admin"));
+    options.AddPolicy("UserOrAdmin", policy => policy.RequireAssertion(context =>
+        context.User.HasClaim(c => c.Type == "Role" && (c.Value == "User" || c.Value == "Admin"))));
 });
 builder.Services.AddIdentity<User, IdentityRole<int>>(opt =>
 {
@@ -191,6 +194,7 @@ var emailConfig = builder.Configuration
     .Get<EmailConfiguration>();
 builder.Services.AddSingleton(emailConfig);
 builder.Services.AddScoped<IEmailHelper, EmailSender>();
+builder.Services.AddScoped<IEmailTemplateReader, EmailTemplateReader>();
 
 var app = builder.Build();
 

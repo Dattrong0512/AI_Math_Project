@@ -61,7 +61,7 @@ namespace AIMathProject.API.Controllers
         /// ```
         /// </remarks>
         /// <returns>Returns a list of questions matching the specified grade and lesson order.</returns>
-        [Authorize]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("grade/{grade:int}/lessonorder/{lessonorder:int}")]
         public async Task<IActionResult> GetQuestionByGrade([FromRoute] int grade, int lessonorder)
         {

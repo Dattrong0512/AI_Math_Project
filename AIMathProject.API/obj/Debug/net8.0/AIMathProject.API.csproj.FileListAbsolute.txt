@@ -348,6 +348,13 @@ J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\obj\Debug\net8.0
 J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\obj\Debug\net8.0\AIMathPr.04E0E19D.Up2Date
 J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.genruntimeconfig.cache
 J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\obj\Debug\net8.0\ref\AIMathProject.API.dll
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.csproj.AssemblyReference.cache
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.AssemblyInfoInputs.cache
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.AssemblyInfo.cs
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.csproj.CoreCompileInputs.cache
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.sourcelink.json
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\appsettings.json
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\AIMathProject.API.staticwebassets.endpoints.json
@@ -369,6 +376,7 @@ C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Mic
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -388,6 +396,7 @@ C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Mic
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
@@ -502,14 +511,6 @@ C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\AIM
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\AIMathProject.Application.pdb
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\AIMathProject.Infrastructure.pdb
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\AIMathProject.Domain.pdb
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.csproj.AssemblyReference.cache
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.AssemblyInfoInputs.cache
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.AssemblyInfo.cs
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.csproj.CoreCompileInputs.cache
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.sourcelink.json
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\scopedcss\bundle\AIMathProject.API.styles.css
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\staticwebassets.development.json
@@ -528,5 +529,3 @@ C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIM
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.pdb
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.genruntimeconfig.cache
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\ref\AIMathProject.API.dll
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
-C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll

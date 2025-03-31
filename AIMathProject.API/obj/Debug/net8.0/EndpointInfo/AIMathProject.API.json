@@ -700,6 +700,34 @@
         }
       }
     },
+    "/confirm-email": {
+      "get": {
+        "tags": [
+          "LoginWithUSPW"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/account/test-authentication": {
       "get": {
         "tags": [
