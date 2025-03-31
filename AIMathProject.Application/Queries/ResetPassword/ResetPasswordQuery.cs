@@ -25,6 +25,12 @@ namespace AIMathProject.Application.Queries.ResetPassword
                 throw new Exception($"Email {request.email} not exists");
             }
 
+            var check = await _userManager.FindByLoginAsync("Google", request.email);
+            if(check != null)
+            {
+                return "Người dùng đăng nhập bằng phương thức Google không thể sử dụng tính năng này";
+            }
+
             var tokenConfirm = await _userManager.GeneratePasswordResetTokenAsync(user);
             string encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(tokenConfirm));
             string resetPasswordUrl = $"{request.host}/reset-password?email={request.email}&token={encodedToken}";

@@ -437,6 +437,14 @@
             - Frontend code reference: https://drive.google.com/drive/folders/18M__nFfmDoVOyqHElTmNdyTL7PiEfbXX?usp=sharing
             </remarks>
         </member>
+        <member name="M:AIMathProject.API.Controllers.LoginWithUSPW.ConfirmEmail(System.String,System.String)">
+            <summary>
+            This API uses a callback when the user clicks on the email confirmation link. This API is not used by the front-end.
+            </summary>
+            <param name="userId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.LoginWithUSPW.TestAuthentication">
             <summary>
             Api test if user logged(Both admin and user)

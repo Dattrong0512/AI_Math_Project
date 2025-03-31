@@ -705,10 +705,12 @@
         "tags": [
           "LoginWithUSPW"
         ],
+        "summary": "This API uses a callback when the user clicks on the email confirmation link. This API is not used by the front-end.",
         "parameters": [
           {
             "name": "userId",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "string"
             }
@@ -716,6 +718,7 @@
           {
             "name": "token",
             "in": "query",
+            "description": "",
             "schema": {
               "type": "string"
             }
