@@ -529,3 +529,7 @@ C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIM
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.pdb
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\AIMathProject.API.genruntimeconfig.cache
 C:\Users\Hi\Desktop\AI_MATH\AIMathProject\AIMathProject.API\obj\Debug\net8.0\ref\AIMathProject.API.dll
+J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\bin\Debug\net8.0\AutoMapper.dll
+J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+J:\Study\GraduationProject\be\AI_Math_Project\AIMathProject.API\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll

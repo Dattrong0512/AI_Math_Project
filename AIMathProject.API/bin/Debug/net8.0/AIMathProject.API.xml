@@ -524,5 +524,14 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.UserController.DeleteUser(System.Int32)">
+            <summary>
+            Deletes a user by their ID, accessible only to users with Admin privileges.
+            </summary>
+            <param name="id">The ID of the user to delete.</param>
+            <remarks>
+            - This endpoint requires the caller to be authenticated and have the "Admin" role.
+            </remarks>
+        </member>
     </members>
 </doc>

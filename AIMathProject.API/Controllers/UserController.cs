@@ -1,4 +1,5 @@
-﻿using AIMathProject.Application.Dto.LoginDto;
+﻿using AIMathProject.Application.Command.DeleteUser;
+using AIMathProject.Application.Dto.LoginDto;
 using AIMathProject.Application.Dto.Pagination;
 using AIMathProject.Application.Queries.Users;
 using AIMathProject.Domain.Entities;
@@ -58,6 +59,28 @@ namespace AIMathProject.API.Controllers
         public async Task<IActionResult> GetInfoUserLogin()
         {
             return Ok(await _mediator.Send(new GetInfoUserLoginQuery()));
+        }
+
+        /// <summary>
+        /// Deletes a user by their ID, accessible only to users with Admin privileges.
+        /// </summary>
+        /// <param name="id">The ID of the user to delete.</param>
+        /// <remarks>
+        /// - This endpoint requires the caller to be authenticated and have the "Admin" role.
+        /// </remarks>
+        [Authorize(Policy = "Admin")]
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            try
+            {
+                await _mediator.Send(new DeleteUserCommand(id));
+                return Ok("User deleted successfully");
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
         }
     }
 }
