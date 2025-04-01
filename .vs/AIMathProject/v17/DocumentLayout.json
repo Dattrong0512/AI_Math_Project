@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.application\\command\\resetpassword\\resetpasswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\resetpassword\\resetpasswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.api\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.application\\command\\resetpassword\\resetpasswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\resetpassword\\resetpasswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.application\\command\\user\\updateusercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|j:\\study\\graduationproject\\be\\ai_math_project\\aimathproject.domain\\interfaces\\ilessonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\ilessonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -84,47 +84,8 @@
         },
         {
           "DockedWidth": 28,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 15,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RegisterRequest.cs",
-              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\RegisterRequest.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Requests\\RegisterRequest.cs",
-              "ToolTip": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\RegisterRequest.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Requests\\RegisterRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T13:44:42.812Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UpdateRequest.cs",
-              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\UpdateRequest.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Requests\\UpdateRequest.cs",
-              "ToolTip": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\UpdateRequest.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Requests\\UpdateRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T13:44:40.459Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UpdateUserCommand.cs",
-              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "ToolTip": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAswDAAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T13:35:29.812Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -140,6 +101,42 @@
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "RegisterRequest.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\RegisterRequest.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Requests\\RegisterRequest.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\RegisterRequest.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Requests\\RegisterRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T13:44:42.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UpdateRequest.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\UpdateRequest.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Requests\\UpdateRequest.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\Requests\\UpdateRequest.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Requests\\UpdateRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T13:44:40.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UpdateUserCommand.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAswDAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T13:35:29.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "SeedAdminFromJson.json",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Domain\\DataSeeding\\SeedAdminFromJson.json",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\DataSeeding\\SeedAdminFromJson.json",
@@ -147,12 +144,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\DataSeeding\\SeedAdminFromJson.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-31T12:27:02.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:27:02.156Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UserSeeder.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Application\\Seeding\\UserSeeder.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Seeding\\UserSeeder.cs",
@@ -160,8 +156,7 @@
               "RelativeToolTip": "AIMathProject.Application\\Seeding\\UserSeeder.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:26:44.963Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:26:44.963Z"
             },
             {
               "$type": "Document",
@@ -177,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "LessonController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.API\\Controllers\\LessonController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LessonController.cs",
@@ -185,12 +180,11 @@
               "RelativeToolTip": "AIMathProject.API\\Controllers\\LessonController.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAYwGQAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:14:29.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:14:29.021Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "QuestionController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.API\\Controllers\\QuestionController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\QuestionController.cs",
@@ -198,12 +192,11 @@
               "RelativeToolTip": "AIMathProject.API\\Controllers\\QuestionController.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:14:23.802Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:14:23.802Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LoginWithUSPW.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.API\\Controllers\\LoginWithUSPW.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LoginWithUSPW.cs",
@@ -211,12 +204,11 @@
               "RelativeToolTip": "AIMathProject.API\\Controllers\\LoginWithUSPW.cs",
               "ViewState": "AgIAAH4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:14:01.368Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:14:01.368Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "LoginWithGoogleController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.API\\Controllers\\LoginWithGoogleController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LoginWithGoogleController.cs",
@@ -224,12 +216,11 @@
               "RelativeToolTip": "AIMathProject.API\\Controllers\\LoginWithGoogleController.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:13:59.503Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:13:59.503Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.API\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\UserController.cs",
@@ -237,12 +228,11 @@
               "RelativeToolTip": "AIMathProject.API\\Controllers\\UserController.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAAGEAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:13:41.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:13:41.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ResetPasswordCommand.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Application\\Command\\ResetPassword\\ResetPasswordCommand.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\ResetPassword\\ResetPasswordCommand.cs",
@@ -255,15 +245,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.API\\Program.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Program.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.API\\Program.cs",
               "RelativeToolTip": "AIMathProject.API\\Program.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAACYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:12:20.798Z"
+              "WhenOpened": "2025-03-31T12:12:20.798Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -279,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\UserRepository.cs",
@@ -287,8 +278,7 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\UserRepository.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:10:28.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:10:28.677Z"
             }
           ]
         }
