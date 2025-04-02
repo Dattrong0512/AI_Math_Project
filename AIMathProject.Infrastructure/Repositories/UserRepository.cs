@@ -113,7 +113,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     scheme: _httpContextAccessor.HttpContext.Request.Scheme
                 );
 
-            string body = await _emailTemplate.GetTemplate("Template\\ConfirmEmail.html");
+            string body = await _emailTemplate.GetTemplate("Template/ConfirmEmail.html");
 
             body = string.Format(body, user.UserName, url);
             await _emailHelper.SendEmailAsync(new EmailRequest

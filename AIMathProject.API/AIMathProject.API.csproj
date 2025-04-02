@@ -31,5 +31,5 @@
     <ProjectReference Include="..\AIMathProject.Application\AIMathProject.Application.csproj" />
     <ProjectReference Include="..\AIMathProject.Infrastructure\AIMathProject.Infrastructure.csproj" />
   </ItemGroup>
-
+  
 </Project>

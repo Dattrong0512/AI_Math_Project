@@ -63,19 +63,19 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Deletes a user by their ID, accessible only to users with Admin privileges.
+        /// Deletes a user by their email, accessible only to users with Admin privileges.
         /// </summary>
-        /// <param name="id">The ID of the user to delete.</param>
+        /// <param name="email">The email of the user to delete.</param>
         /// <remarks>
         /// - This endpoint requires the caller to be authenticated and have the "Admin" role.
         /// </remarks>
         [Authorize(Policy = "Admin")]
-        [HttpDelete("delete/{id:int}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        [HttpDelete("delete/{email}")]
+        public async Task<IActionResult> DeleteUser(string email)
         {
             try
             {
-                await _mediator.Send(new DeleteUserCommand(id));
+                await _mediator.Send(new DeleteUserCommand(email));
                 return Ok("User deleted successfully");
             }
             catch (Exception)

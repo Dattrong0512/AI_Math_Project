@@ -20,7 +20,9 @@ COPY AIMathProject.Infrastructure/. ./AIMathProject.Infrastructure/
 
 # Build và publish dự án API
 WORKDIR /source/AIMathProject.API
-RUN dotnet publish -c Release -o /app --no-restore
+RUN mkdir -p /app/Template && \
+    cp Template/ConfirmEmail.html /app/Template/ConfirmEmail.html && \
+    dotnet publish -c Release -o /app --no-restore
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0

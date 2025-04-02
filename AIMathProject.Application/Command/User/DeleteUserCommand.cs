@@ -9,11 +9,11 @@ namespace AIMathProject.Application.Command.Users
 {
     public class DeleteUserCommand : IRequest<Unit>
     {
-        public int UserId { get; set; }
+        public string UserEmail { get; set; }
 
-        public DeleteUserCommand(int userId)
+        public DeleteUserCommand(string userEmail)
         {
-            UserId = userId;
+            UserEmail = userEmail;
         }
     }
 
@@ -28,7 +28,7 @@ namespace AIMathProject.Application.Command.Users
 
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByIdAsync(request.UserId.ToString());
+            var user = await _userManager.FindByEmailAsync(request.UserEmail);
             if (user == null)
             {
                 throw new Exception("User doesn't exist");
