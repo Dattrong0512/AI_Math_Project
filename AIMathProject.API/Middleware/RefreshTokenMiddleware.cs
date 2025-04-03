@@ -57,7 +57,7 @@ namespace AIMathProject.API.Middleware
                         // Cập nhật cookie với token mới
                         context.Response.Cookies.Append("ACCESS_TOKEN", newTokens.Token, new CookieOptions
                         {
-                            HttpOnly = true,
+                            HttpOnly = false,
                             Expires = DateTime.UtcNow.AddMinutes(60),
                             IsEssential = true,
                             Secure = true,
@@ -65,7 +65,7 @@ namespace AIMathProject.API.Middleware
                         });
                         context.Response.Cookies.Append("REFRESH_TOKEN", newTokens.RefreshToken, new CookieOptions
                         {
-                            HttpOnly = true,
+                            HttpOnly = false,
                             Expires = DateTime.UtcNow.AddDays(90),
                             IsEssential = true,
                             Secure = true,

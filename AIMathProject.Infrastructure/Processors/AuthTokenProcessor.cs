@@ -81,7 +81,7 @@ namespace AIMathProject.Infrastructure.Processors
         public void WriteAuthTokenAsHttpOnlyCookie(string cookieName, string token, DateTime expiration)
         {
             _contextAccessor.HttpContext.Response.Cookies.Append(cookieName, token, new CookieOptions { 
-                HttpOnly = true,
+                HttpOnly = false,
                 Expires = expiration,
                 IsEssential = true,
                 Secure = true,
