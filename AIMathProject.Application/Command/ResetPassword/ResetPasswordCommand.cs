@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Dto;
 using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
@@ -22,6 +23,11 @@ namespace AIMathProject.Application.Command.ResetPassword
             if (user == null)
             {
                 throw new Exception($"Email {request.resetPassword.Email} not exists");
+            }
+            var checkEnable = await _userManager.IsEmailConfirmedAsync(user);
+            if (checkEnable == false)
+            {
+                throw new EmailNotConfirmException(user.Email);
             }
             if (string.IsNullOrEmpty(request.resetPassword.Token))
             {

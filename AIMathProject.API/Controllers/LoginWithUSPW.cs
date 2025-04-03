@@ -6,6 +6,7 @@ using AIMathProject.Application.Command.ResetPassword;
 using AIMathProject.Application.Dto;
 using AIMathProject.Application.Queries.ResetPassword;
 using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Exceptions;
 using AIMathProject.Domain.Requests;
 using AIMathProject.Infrastructure.CommonServices;
 using AIMathProject.Infrastructure.Options;
@@ -155,17 +156,19 @@ namespace AIMathProject.API.Controllers
             try
             {
                 var (jwtToken, refreshToken) = await _mediator.Send(new LoginCommand(loginRequest));
-                if(refreshToken == null)
-                {
-                    return BadRequest("Vui lòng xác thực email trước khi đăng nhập");
-                }
                 _logger.LogInformation("Login successful for email: {Email}. Returning tokens: JWT={JwtToken}, RefreshToken={RefreshToken}", loginRequest.Email, jwtToken, refreshToken);
                 return Ok(new { JwtToken = jwtToken, RefreshToken = refreshToken });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Login failed for email: {Email}. Error: {ErrorMessage}", loginRequest.Email, ex.Message);
-                throw; // Ném lại ngoại lệ để middleware xử lý (nếu cần)
+                if (ex is EmailNotConfirmException)  // Use 'is' to check exception type
+                {
+                    return BadRequest(ex.Message);
+                }
+                else
+                {
+                    return StatusCode(500, ex.Message);
+                }
             }
         }
 
@@ -227,11 +230,19 @@ namespace AIMathProject.API.Controllers
 
             try
             {
-                return Ok(await _mediator.Send(new ResetPasswordQuery(email, host)));
+                var result = await _mediator.Send(new ResetPasswordQuery(email, host));
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                if (ex is EmailNotConfirmException)  // Use 'is' to check exception type
+                {
+                    return BadRequest(ex.Message);
+                }
+                else
+                {
+                    return StatusCode(500, ex.Message);
+                }
             }
         }
 
@@ -256,11 +267,19 @@ namespace AIMathProject.API.Controllers
         {
             try
             {
-                return Ok(await _mediator.Send(new ResetPasswordCommand(resetPassword)));
+                var result = await _mediator.Send(new ResetPasswordCommand(resetPassword));
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                if (ex is EmailNotConfirmException)  // Use 'is' to check exception type
+                {
+                    return BadRequest(ex.Message);
+                }
+                else
+                {
+                    return StatusCode(500, ex.Message);
+                }
             }
         }
 

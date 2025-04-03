@@ -1,14 +1,15 @@
 ﻿using AIMathProject.Application.Abstracts;
 using AIMathProject.Application.Dto;
 using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace AIMathProject.Application.Queries.ResetPassword
 {
@@ -23,6 +24,12 @@ namespace AIMathProject.Application.Queries.ResetPassword
             if (user == null)
             {
                 throw new Exception($"Email {request.email} not exists");
+            }
+
+            var checkEnable = await _userManager.IsEmailConfirmedAsync(user);
+            if (checkEnable == false)
+            {
+                throw new EmailNotConfirmException(user.Email);
             }
 
             var check = await _userManager.FindByLoginAsync("Google", request.email);

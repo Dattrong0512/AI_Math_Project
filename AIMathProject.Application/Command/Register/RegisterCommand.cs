@@ -43,6 +43,7 @@ namespace AIMathProject.Application.Command.Register
         public async Task<Unit> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
             var userExists = await _userManager.FindByEmailAsync(request.RegisterRequest.Email) != null;
+
             if (userExists)
             {
                 throw new UserAlreadyExistsException(email: request.RegisterRequest.Email);
