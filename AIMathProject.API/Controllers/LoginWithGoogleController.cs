@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Command.Login;
 using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -73,8 +74,26 @@ namespace AIMathProject.API.Controllers
             {
                 return Results.Unauthorized();
             }
-            await _mediator.Send(new LoginWithGoogleCommand(result.Principal));
-            return Results.Redirect(returnUrl);
+            try
+            {
+                await _mediator.Send(new LoginWithGoogleCommand(result.Principal));
+                return Results.Redirect(returnUrl);
+            }
+            catch (Exception ex)
+            {
+                if(ex is ExternalLoginProviderException)
+                {
+                    return Results.Conflict(new
+                    {
+                        Message = ex.Message,
+                        Provider = "Google"
+                    });
+                }
+                else
+                {
+                    return Results.StatusCode(500);
+                }
+            }
         }
     }
 }
