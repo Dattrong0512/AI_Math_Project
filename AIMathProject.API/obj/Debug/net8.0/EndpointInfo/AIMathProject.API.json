@@ -915,6 +915,65 @@
           }
         }
       }
+    },
+    "/api/user/delete/{email}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Deletes a user by their email, accessible only to users with Admin privileges.",
+        "description": "- This endpoint requires the caller to be authenticated and have the \"Admin\" role.",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "The email of the user to delete.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/user/account/update": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Updates a user by their ID, accessible only to users with Admin privileges.",
+        "description": "- This endpoint requires the caller to be authenticated and have the  role.",
+        "requestBody": {
+          "description": "The update request containing the fields to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1275,6 +1334,32 @@
             "nullable": true
           },
           "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateRequest": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
             "type": "string",
             "nullable": true
           }

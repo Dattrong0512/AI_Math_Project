@@ -155,6 +155,10 @@ namespace AIMathProject.API.Controllers
             try
             {
                 var (jwtToken, refreshToken) = await _mediator.Send(new LoginCommand(loginRequest));
+                if(refreshToken == null)
+                {
+                    return BadRequest("Vui lòng xác thực email trước khi đăng nhập");
+                }
                 _logger.LogInformation("Login successful for email: {Email}. Returning tokens: JWT={JwtToken}, RefreshToken={RefreshToken}", loginRequest.Email, jwtToken, refreshToken);
                 return Ok(new { JwtToken = jwtToken, RefreshToken = refreshToken });
             }
