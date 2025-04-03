@@ -11,7 +11,12 @@ You can view the database diagrams here: [Diagram](https://drive.google.com/file
 You can see the database description documentation here: [Database decription documentation](https://docs.google.com/document/d/1EUYu1MsdauokZdI1mm8KIGOXaniLo3ib/edit)
 
 ## Server deployed : [MathAI](https://mathai.id.vn/swagger/index.html)
-
+Instruction for Docker:
+#### Build Image: 
++ *docker build -t \<image-name\> .*
+#### Run Container: 
++ *docker run -d -p 0.0.0.0:8080:8080 \<image-name\>*
+  
 # List of completed features
 
 ### Login and Register
