@@ -6,6 +6,8 @@ using AIMathProject.Application.Dto;
 using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Dto.LessonProgressDto;
 using AIMathProject.Application.Dto.QuestionDto;
+using AIMathProject.Application.Dto.ExerciseDetailResultDto;
+using AIMathProject.Application.Dto.ExerciseResultDto;
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
@@ -110,7 +112,8 @@ builder.Services.AddScoped<IEnrollmentRepository<EnrollmentDto>, EnrollmentRepos
 builder.Services.AddScoped<ILessonRepository<LessonDto>, LessonRepository>();
 builder.Services.AddScoped<ILessonProgressRepository<LessonProgressDto>, LessonProgressRepository>();
 builder.Services.AddScoped<IQuestionRepository<QuestionDto>, QuestionRepository>();
-
+builder.Services.AddScoped<IExerciseDetailResultRepository<ExerciseDetailResultDto>, ExerciseDetailResultRepository>();
+builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, ExerciseResultRepository>();
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();

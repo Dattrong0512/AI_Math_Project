@@ -40,8 +40,6 @@ namespace AIMathProject.Infrastructure.Repositories
             var result = new List<ChapterDto>();
 
 
-
-
             foreach (var chapter in chapters)
             {
 

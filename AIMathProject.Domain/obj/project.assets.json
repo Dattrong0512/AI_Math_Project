@@ -817,23 +817,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Bach Yen\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hi\\Desktop\\AI_MATH\\AIMathProject\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
+      "projectUniqueName": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
       "projectName": "AIMathProject.Domain",
-      "projectPath": "C:\\Users\\Hi\\Desktop\\AI_MATH\\AIMathProject\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
-      "packagesPath": "C:\\Users\\Hi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hi\\Desktop\\AI_MATH\\AIMathProject\\AIMathProject.Domain\\obj\\",
+      "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
+      "packagesPath": "C:\\Users\\Bach Yen\\.nuget\\packages\\",
+      "outputPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bach Yen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -842,6 +844,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -859,8 +862,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.200"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -895,7 +897,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

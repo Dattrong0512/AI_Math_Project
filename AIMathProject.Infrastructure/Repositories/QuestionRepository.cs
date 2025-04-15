@@ -22,15 +22,13 @@ namespace AIMathProject.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<ICollection<QuestionDto>> GetAllQuestionByLessonID(int grade, int lessionOrder)
+        public async Task<ICollection<QuestionDto>> GetAllQuestionByLessonID(int grade, int lessonOrder)
         {
             var lessionId = from Chapter in _context.Chapters
                             join Lession in _context.Lessons
                             on Chapter.ChapterId equals Lession.ChapterId
-                            where (Chapter.Grade == grade && Lession.LessonOrder == lessionOrder)
+                            where (Chapter.Grade == grade && Lession.LessonOrder == lessonOrder)
                             select (Lession.LessonId);
-
-
 
             var questionId = (from Excercise in _context.Exercises
                               join ExcerciseDt in _context.ExerciseDetails
