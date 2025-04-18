@@ -49,7 +49,8 @@ namespace AIMathProject.Infrastructure.Repositories
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
-                        LessonContent = l.LessonContent
+                        LessonVideoUrl = l.LessonVideoUrl,
+                        LessonPdfUrl = l.LessonPdfUrl
                     })
                     .ToListAsync();
 
@@ -84,7 +85,8 @@ namespace AIMathProject.Infrastructure.Repositories
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
-                        LessonContent = l.LessonContent
+                        LessonVideoUrl = l.LessonVideoUrl,
+                        LessonPdfUrl= l.LessonPdfUrl
                     })
                     .ToListAsync();
 

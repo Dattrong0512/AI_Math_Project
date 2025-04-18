@@ -15,7 +15,10 @@ namespace AIMathProject.Application.Dto
         public string LessonName { get; set; } = null!;
 
         [StringLength(255)]
-        public string? LessonContent { get; set; }
+        public string? LessonVideoUrl { get; set; }
+
+        [StringLength(255)]
+        public string? LessonPdfUrl { get; set; }
 
         public short? ChapterOrder { get; set; }
 

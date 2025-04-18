@@ -325,7 +325,7 @@
             </remarks>
             <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         </member>
-        <member name="M:AIMathProject.API.Controllers.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int16)">
+        <member name="M:AIMathProject.API.Controllers.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int32)">
              <summary>
              Updates the learning progress of a specific lesson progress record.
              </summary>

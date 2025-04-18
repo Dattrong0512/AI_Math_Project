@@ -10,16 +10,14 @@ namespace AIMathProject.Application.Mappers
 {
     public static class LessonProgressMapper
     {
-        public static LessonProgressDto ToLessonProgressDto(this LessonProgress lession)
+        public static LessonProgressDto ToLessonProgressDto(this LessonProgress lesson)
         {
             LessonProgressDto lessionDto = new LessonProgressDto
             {
-                LearningProgressId = lession.LearningProgressId,
-                LessonId = lession.LessonId,
-                LearningProgress = lession.LearningProgress,
-                IsCompleted = lession.IsCompleted,
-
-                Lesson = lession.Lesson != null ? lession.Lesson.ToLessonDto() : null
+                LearningProgressId = lesson.LearningProgressId,
+                LessonId = lesson.LessonId,
+                Status = lesson.Status,
+                Lesson = lesson.Lesson != null ? lesson.Lesson.ToLessonDto() : null
             };
 
             return lessionDto;

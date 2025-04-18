@@ -335,7 +335,8 @@ namespace AIMathProject.Infrastructure.Migrations
                     lesson_order = table.Column<short>(type: "smallint", nullable: true),
                     lesson_name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     chapter_id = table.Column<int>(type: "int", nullable: true),
-                    lesson_content = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true)
+                    lesson_video_url = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    lesson_pdf_url = table.Column<string>(type: "nvarchar(255)", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -347,6 +348,7 @@ namespace AIMathProject.Infrastructure.Migrations
                         principalColumn: "chapter_id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
 
             migrationBuilder.CreateTable(
                 name: "Test",
@@ -522,8 +524,7 @@ namespace AIMathProject.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     lesson_id = table.Column<int>(type: "int", nullable: true),
                     enrollment_id = table.Column<int>(type: "int", nullable: true),
-                    learning_progress = table.Column<short>(type: "smallint", nullable: true),
-                    is_completed = table.Column<bool>(type: "bit", nullable: true, defaultValue: false)
+                    status = table.Column<string>(type: "nvarchar(15)", nullable: true)
                 },
                 constraints: table =>
                 {

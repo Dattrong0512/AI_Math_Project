@@ -50,7 +50,8 @@ namespace AIMathProject.Infrastructure.Repositories
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
-                        LessonContent = l.LessonContent
+                        LessonVideoUrl = l.LessonVideoUrl,
+                        LessonPdfUrl = l.LessonPdfUrl
                     }
                     ).FirstOrDefaultAsync();
 
@@ -60,9 +61,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
 
-                    LearningProgress = lp.LearningProgress,
-
-                    IsCompleted = lp.IsCompleted,
+                    Status = lp.Status,
 
                     Lesson = lessionDto
                 });
@@ -90,13 +89,14 @@ namespace AIMathProject.Infrastructure.Repositories
 
             foreach (var lp in listLP)
             {
-                var lessionDto = await _context.Lessons
+                var lessonDto = await _context.Lessons
                     .Where(l => l.LessonId == lp.LessonId)
                     .Select(l => new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
-                        LessonContent = l.LessonContent
+                        LessonPdfUrl = l.LessonPdfUrl,
+                        LessonVideoUrl = l.LessonVideoUrl
                     }
                     ).FirstOrDefaultAsync();
 
@@ -105,12 +105,8 @@ namespace AIMathProject.Infrastructure.Repositories
 
                     LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
-
-                    LearningProgress = lp.LearningProgress,
-
-                    IsCompleted = lp.IsCompleted,
-
-                    Lesson = lessionDto
+                    Status = lp.Status,
+                    Lesson = lessonDto
                 });
 
             }
@@ -132,12 +128,12 @@ namespace AIMathProject.Infrastructure.Repositories
             return lp.ToLessonProgressDto(); 
         }
 
-        public async Task<LessonProgressDto> UpdateLearningProgress(int idProgress, short learningProgress)
+        public async Task<LessonProgressDto> UpdateLearningProgress(int idProgress, string status)
         {
             int record = await _context.LessonProgresses
             .Where(lp => lp.LearningProgressId == idProgress)
             .ExecuteUpdateAsync(setter => setter
-                .SetProperty(lp => lp.LearningProgress, learningProgress)
+                .SetProperty(lp => lp.Status, status)
              );
 
 

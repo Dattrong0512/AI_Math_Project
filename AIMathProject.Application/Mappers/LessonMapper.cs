@@ -15,11 +15,10 @@ namespace AIMathProject.Application.Mappers
         {
             LessonDto lessonDto = new LessonDto
             {
-
                 LessonOrder = lesson.LessonOrder,
                 LessonName = lesson.LessonName,
-
-                LessonContent = lesson.LessonContent,
+                LessonPdfUrl = lesson.LessonPdfUrl,
+                LessonVideoUrl = lesson.LessonVideoUrl,
                 ChapterOrder = null,
                 Questions = null
             };
@@ -31,15 +30,10 @@ namespace AIMathProject.Application.Mappers
             {
 
                 LessonOrder = lessonDto.LessonOrder,
-
-
                 LessonName = lessonDto.LessonName,
-
-
                 ChapterId = chapter_id,
-
-
-                LessonContent = lessonDto.LessonContent
+                LessonPdfUrl = lessonDto.LessonPdfUrl,
+                LessonVideoUrl = lessonDto.LessonVideoUrl
 
             };
             return lesson;

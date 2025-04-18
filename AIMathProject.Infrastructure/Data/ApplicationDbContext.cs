@@ -362,9 +362,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
             entity.Property(e => e.LessonId).HasColumnName("lesson_id");
             entity.Property(e => e.ChapterId).HasColumnName("chapter_id");
-            entity.Property(e => e.LessonContent)
+            entity.Property(e => e.LessonVideoUrl)
                 .HasMaxLength(255)
-                .HasColumnName("lesson_content");
+                .HasColumnName("lesson_video_url");
+            entity.Property(e => e.LessonPdfUrl)
+                .HasMaxLength(255)
+                .HasColumnName("lesson_pdf_url");
             entity.Property(e => e.LessonName)
                 .HasMaxLength(100)
                 .HasColumnName("lesson_name");
@@ -384,10 +387,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
             entity.Property(e => e.LearningProgressId).HasColumnName("learning_progress_id");
             entity.Property(e => e.EnrollmentId).HasColumnName("enrollment_id");
-            entity.Property(e => e.IsCompleted)
-                .HasDefaultValue(false)
-                .HasColumnName("is_completed");
-            entity.Property(e => e.LearningProgress).HasColumnName("learning_progress");
+            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.LessonId).HasColumnName("lesson_id");
 
             entity.HasOne(d => d.Enrollment).WithMany(p => p.LessonProgresses)

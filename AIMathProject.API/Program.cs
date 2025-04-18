@@ -27,6 +27,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using AIMathProject.Application.Seeding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -213,15 +214,6 @@ app.UseMiddleware<RefreshTokenMiddleware>();
 app.UseExceptionHandler(_ => { });
 
 
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-
-app.Run();
-
-
-
-
 //using (var scope = app.Services.CreateScope())
 //{
 //    var services = scope.ServiceProvider;
@@ -243,3 +235,15 @@ app.Run();
 //        Console.WriteLine($"Lỗi khi chạy seeding: {ex.Message}");
 //    }
 //}
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+
+
+
+
+
+app.Run();
+
+

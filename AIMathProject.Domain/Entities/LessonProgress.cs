@@ -11,9 +11,7 @@ public partial class LessonProgress
 
     public int? EnrollmentId { get; set; }
 
-    public short? LearningProgress { get; set; }
-
-    public bool? IsCompleted { get; set; }
+    public string? Status  { get; set; }
 
     public virtual Enrollment? Enrollment { get; set; }
 

@@ -100,7 +100,8 @@ namespace AIMathProject.Infrastructure.Repositories
                    {
                        LessonOrder = l.LessonOrder,
                        LessonName = l.LessonName,
-                       LessonContent = l.LessonContent,
+                       LessonVideoUrl = l.LessonVideoUrl,
+                       LessonPdfUrl = l.LessonPdfUrl,
                        ChapterOrder = l.Chapter.ChapterOrder,
                        Questions = questionListReturn.ToQuestionDtoList()
                    })
@@ -118,7 +119,8 @@ namespace AIMathProject.Infrastructure.Repositories
                          {
                              LessonName = Lesson.LessonName,
                              LessonOrder = Lesson.LessonOrder,
-                             LessonContent = Lesson.LessonContent,
+                             LessonPdfUrl = Lesson.LessonPdfUrl,
+                             LessonVideoUrl = Lesson.LessonVideoUrl,
                              ChapterOrder = Chapter.ChapterOrder
                          };
 

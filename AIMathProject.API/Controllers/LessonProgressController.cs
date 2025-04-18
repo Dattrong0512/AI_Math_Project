@@ -52,7 +52,7 @@ namespace AIMathProject.API.Controllers
         /// ```
         /// <returns>Returns all information of the study program the user has registered for.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("/id/{id:int}")]
+        [HttpGet("id/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetLessonProgressById([FromRoute] int id)
@@ -87,7 +87,7 @@ namespace AIMathProject.API.Controllers
 
         /// <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("/id/{id:int}/semester/{semester:int}")]
+        [HttpGet("id/{id:int}/semester/{semester:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetLessionProgressById([FromRoute] int id, [FromRoute] int semester)
@@ -99,20 +99,19 @@ namespace AIMathProject.API.Controllers
         /// Updates the learning progress of a specific lesson progress record.
         /// </summary>
         /// <remarks>
-        /// *Only logged in admin can use this api*
+        /// *User and admin can use this api*
         /// This API updates the user's learning progress for a specific lesson.
         /// 
         /// **Request:**
         /// The request should include:
         /// - **idProgress** (int): The unique identifier of the lesson progress.
-        /// - **learningProgress** (short): The updated progress percentage of the lesson.
+        /// - **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).
         ///
         /// **Response:**
         /// If successful, the response will return the updated lesson progress information:
         /// - **learningProgressId**: The unique identifier of the lesson progress.
         /// - **lessonId**: The unique identifier of the lesson.
-        /// - **learningProgress**: The updated progress of the user in the lesson (e.g., percentage completed).
-        /// - **isCompleted**: A boolean indicating whether the lesson is completed.
+        /// - **status**: The updated progress of the user in the lesson (e.g., completed).
         /// - **lesson**: An object containing lesson details:
         ///   - **lessonOrder**: The order of the lesson in the study plan.
         ///   - **lessonName**: The name of the lesson.
@@ -120,14 +119,22 @@ namespace AIMathProject.API.Controllers
         ///
         /// **Example Request:**
         /// ```http
-        /// PATCH /update/lessonprogressID/13/learningprogress/23
+        /// PATCH /update/lessonprogressID/2/status/1
         /// </remarks>
         /// <returns>Returns the updated learning progress information.</returns>
-        [Authorize(Policy = "Admin")]
-        [HttpPatch("/update/lessonprogressID/{idProgress:int}/learningprogress/{learningProgress}")]
-        public async Task<IActionResult> UpdateLearningProgress([FromRoute] int idProgress, [FromRoute] short learningProgress)
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpPatch("update/lessonprogressID/{idProgress:int}/status/{status:int}")]
+        public async Task<IActionResult> UpdateLearningProgress([FromRoute] int idProgress, [FromRoute] int status)
         {
-            return Ok(await _mediator.Send(new UpdateLearningProgressCommand(idProgress, learningProgress)));
+            string str_status = "";
+            if(status == 0){
+                str_status = "not_started";
+            } else if (status == 1) {
+                str_status = "completed";
+            } else if (status == 2){
+                str_status = "in_progress";
+            } else { return BadRequest("Failed to update lesson progress, please input a valid status."); }
+            return Ok(await _mediator.Send(new UpdateLearningProgressCommand(idProgress, str_status)));
         }
     }
 }

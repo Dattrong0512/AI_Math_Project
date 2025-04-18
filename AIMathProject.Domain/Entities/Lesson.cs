@@ -13,7 +13,8 @@ public partial class Lesson
 
     public int? ChapterId { get; set; }
 
-    public string? LessonContent { get; set; }
+    public string? LessonVideoUrl { get; set; }
+    public string? LessonPdfUrl {get; set; }
 
     public virtual Chapter? Chapter { get; set; }
 

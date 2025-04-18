@@ -476,10 +476,15 @@ namespace AIMathProject.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("chapter_id");
 
-                    b.Property<string>("LessonContent")
+                    b.Property<string>("LessonVideoUrl")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
-                        .HasColumnName("lesson_content");
+                        .HasColumnName("lesson_video_url");
+
+                    b.Property<string>("LessonPdfUrl")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("lesson_pdf_url");
 
                     b.Property<string>("LessonName")
                         .IsRequired()
