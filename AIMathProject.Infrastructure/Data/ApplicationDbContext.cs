@@ -218,6 +218,11 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Enrollmen__user___6FE99F9F");
+
+            entity.ToTable(tb =>
+            {
+                tb.HasTrigger("trg_create_lesson_progress");
+            });
         });
 
         modelBuilder.Entity<ErrorReport>(entity =>
@@ -306,6 +311,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.ExerciseResult).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseResultId)
                 .HasConstraintName("FK__Exercise___exerc__245D67DE");
+
+            entity.ToTable(tb =>
+            {
+                tb.HasTrigger("trg_update_score_after_insert");
+                tb.HasTrigger("trg_update_score_after_update");
+            });
         });
 
         modelBuilder.Entity<ExerciseResult>(entity =>
@@ -377,6 +388,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasForeignKey(d => d.ChapterId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Lesson__chapter___787EE5A0");
+
+            entity.ToTable(tb =>
+            {
+                tb.HasTrigger("trg_after_insert_lesson");
+                tb.HasTrigger("trg_after_delete_lesson");
+            });
         });
 
         modelBuilder.Entity<LessonProgress>(entity =>
@@ -697,7 +714,8 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasConstraintName("FK__Token_Tra__user___619B8048");
         });
 
-        base.OnModelCreating(modelBuilder); //
+        base.OnModelCreating(modelBuilder);
+        
     }
 
    

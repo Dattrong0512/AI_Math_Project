@@ -330,20 +330,19 @@
              Updates the learning progress of a specific lesson progress record.
              </summary>
              <remarks>
-             *Only logged in admin can use this api*
+             *User and admin can use this api*
              This API updates the user's learning progress for a specific lesson.
              
              **Request:**
              The request should include:
              - **idProgress** (int): The unique identifier of the lesson progress.
-             - **learningProgress** (short): The updated progress percentage of the lesson.
+             - **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).
             
              **Response:**
              If successful, the response will return the updated lesson progress information:
              - **learningProgressId**: The unique identifier of the lesson progress.
              - **lessonId**: The unique identifier of the lesson.
-             - **learningProgress**: The updated progress of the user in the lesson (e.g., percentage completed).
-             - **isCompleted**: A boolean indicating whether the lesson is completed.
+             - **status**: The updated progress of the user in the lesson (e.g., completed).
              - **lesson**: An object containing lesson details:
                - **lessonOrder**: The order of the lesson in the study plan.
                - **lessonName**: The name of the lesson.
@@ -351,7 +350,7 @@
             
              **Example Request:**
              ```http
-             PATCH /update/lessonprogressID/13/learningprogress/23
+             PATCH /update/lessonprogressID/2/status/1
              </remarks>
              <returns>Returns the updated learning progress information.</returns>
         </member>
