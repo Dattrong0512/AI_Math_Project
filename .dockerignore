@@ -1,3 +1,4 @@
 # Bỏ qua thư mục bin và obj ở tất cả các layer (dự án)
 **/bin/
 **/obj/
+AIMathProject.Test

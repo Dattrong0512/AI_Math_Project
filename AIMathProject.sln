@@ -2,13 +2,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.35806.103
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIMathProject.API", "AIMathProject.API\AIMathProject.API.csproj", "{2E354946-D61A-4051-98AC-160576E62C31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIMathProject.API", "AIMathProject.API\AIMathProject.API.csproj", "{2E354946-D61A-4051-98AC-160576E62C31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIMathProject.Domain", "AIMathProject.Domain\AIMathProject.Domain.csproj", "{E8F8C7FA-A141-4012-8740-4C7919914F23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIMathProject.Domain", "AIMathProject.Domain\AIMathProject.Domain.csproj", "{E8F8C7FA-A141-4012-8740-4C7919914F23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIMathProject.Application", "AIMathProject.Application\AIMathProject.Application.csproj", "{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIMathProject.Application", "AIMathProject.Application\AIMathProject.Application.csproj", "{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIMathProject.Infrastructure", "AIMathProject.Infrastructure\AIMathProject.Infrastructure.csproj", "{8CBC1796-BFA5-4FE9-A882-733E083BF042}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIMathProject.Infrastructure", "AIMathProject.Infrastructure\AIMathProject.Infrastructure.csproj", "{8CBC1796-BFA5-4FE9-A882-733E083BF042}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{55113ED6-F463-4AE6-A7E9-6973D7F666E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIMathProject.Test", "AIMathProject.Test\AIMathProject.Test.csproj", "{15464656-E594-4DE8-8552-EB614E50F1B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +36,16 @@ Global
 		{8CBC1796-BFA5-4FE9-A882-733E083BF042}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CBC1796-BFA5-4FE9-A882-733E083BF042}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CBC1796-BFA5-4FE9-A882-733E083BF042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15464656-E594-4DE8-8552-EB614E50F1B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15464656-E594-4DE8-8552-EB614E50F1B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15464656-E594-4DE8-8552-EB614E50F1B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15464656-E594-4DE8-8552-EB614E50F1B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{15464656-E594-4DE8-8552-EB614E50F1B3} = {55113ED6-F463-4AE6-A7E9-6973D7F666E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA454555-CEFD-4ED0-93B2-AE6C7C8139B5}

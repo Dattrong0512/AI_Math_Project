@@ -3,14 +3,16 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
 
 # Sao chép file .sln và tất cả các file .csproj để tận dụng layer caching
-COPY *.sln .
 COPY AIMathProject.API/*.csproj ./AIMathProject.API/
 COPY AIMathProject.Application/*.csproj ./AIMathProject.Application/
 COPY AIMathProject.Domain/*.csproj ./AIMathProject.Domain/
 COPY AIMathProject.Infrastructure/*.csproj ./AIMathProject.Infrastructure/
 
 # Phục hồi các gói NuGet
-RUN dotnet restore
+RUN dotnet restore AIMathProject.API/AIMathProject.API.csproj && \
+    dotnet restore AIMathProject.Application/AIMathProject.Application.csproj && \
+    dotnet restore AIMathProject.Domain/AIMathProject.Domain.csproj && \
+    dotnet restore AIMathProject.Infrastructure/AIMathProject.Infrastructure.csproj
 
 # Sao chép toàn bộ mã nguồn (đã bỏ qua bin và obj thông qua .dockerignore)
 COPY AIMathProject.API/. ./AIMathProject.API/
