@@ -25,5 +25,30 @@ namespace AIMathProject.Infrastructure.Repositories
             var ListER = await _context.Enrollments.Where(er => er.UserId == id).ToListAsync();
             return ListER.ToListEnrollmentDtoMapper();
         }
+        public async Task<EnrollmentDto> UpdateEnrollmentGrade(int enrollmentId, short? newGrade)
+        {
+            var enrollment = await _context.Enrollments.FirstOrDefaultAsync(e => e.EnrollmentId == enrollmentId);
+            if (enrollment == null)
+            {
+                return null;
+            }
+            enrollment.Grade = newGrade;
+            await _context.SaveChangesAsync();
+            return await GetEnrollmentById(enrollment.EnrollmentId);
+        }
+
+        public async Task<EnrollmentDto> GetEnrollmentById(int enrollmentId)
+        {
+            var enrollment = await _context.Enrollments
+                .FirstOrDefaultAsync(e => e.EnrollmentId == enrollmentId);
+
+            if (enrollment == null)
+            {
+                return null;
+            }
+
+            return enrollment.ToEnrollmentDtoMapper();
+        }
     }
+
 }

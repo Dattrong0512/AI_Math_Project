@@ -12,7 +12,6 @@ namespace AIMathProject.Application.Dto.EnrollmentDto
 
         public int? UserId { get; set; }
 
-
         public short? Grade { get; set; }
 
         public DateOnly? EnrollmentDate { get; set; }

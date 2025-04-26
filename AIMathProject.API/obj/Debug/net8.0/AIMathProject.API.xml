@@ -78,6 +78,92 @@
              </remarks>
              <returns>Returns all enrollment records for the specified user.</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.EnrollmentController.UpdateEnrollmentGrade(System.Int32,System.Int16)">
+             <summary>
+             Updates the grade of a specific enrollment.
+             </summary>
+             <remarks>
+             *Only logged in users can use this API (including user and admin)*
+             This API updates the grade for a specific enrollment record.
+            
+             **Request:**
+             The request should include:
+             - **enrollmentId** (int): The unique identifier of the enrollment.
+             - **newGrade** (short?): The new grade to be updated.
+            
+             **Response:**
+             The response will return the updated enrollment record as an `EnrollmentDto`.
+            
+             **Example Request:**
+             PUT /api/enrollment/update/grade
+             Content-Type: application/json
+             [
+               {
+                 "enrollmentId": 10,
+                 "newGrade": 4
+               }
+             ]
+             /// </remarks>
+             <param name="enrollmentId">The ID of the enrollment to update.</param>
+             <param name="newGrade">The new grade value.</param>
+             <returns>Returns the updated enrollment record.</returns>
+             
+        </member>
+        <member name="M:AIMathProject.API.Controllers.ExerciseController.UpsertExerciseDetailResult(System.Int32)">
+             <summary>
+             Retrieves all exercise results associated with a specific enrollment ID.
+             </summary>
+             <remarks>
+             *Only logged-in users (including user and admin) can access this API.*  
+             This API returns a list of exercise results for a given enrollment ID, including details about each exercise result.
+            
+             **Request Parameters:**  
+             - **id** (int): The enrollment ID of the user.
+            
+             **Response Format:**  
+             The response will return a list of exercise results, where each result includes:
+             - **exerciseId** (int): The unique identifier of the exercise.
+             - **enrollmentId** (int): The ID of the enrollment.
+             - **score** (decimal, nullable): The score achieved for this exercise.
+             - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
+             - **lesson** (object, nullable): Information about the associated lesson:
+               - **lessonOrder** (short, nullable): The order of the lesson.
+               - **lessonName** (string): The name of the lesson.
+               - **lessonVideoUrl** (string, nullable): The URL of the lesson video.
+               - **lessonPdfUrl** (string, nullable): The URL of the lesson PDF.
+               - **chapterOrder** (short, nullable): The order of the chapter.
+               - **questions** (array, nullable): List of questions associated with the lesson.
+             - **exerciseDetailResults** (array): List of exercise detail results, each containing:
+               - **exerciseDetailId** (int): The ID of the exercise detail.
+               - **exerciseResultId** (int): The ID of the exercise result.
+               - **exerciseDetail** (object): Details about the exercise, including:
+                 - **exerciseId** (int): The ID of the exercise.
+                 - **questionId** (int): The ID of the question.
+                 - **question** (object): The complete question information, including:
+                   - **questionId** (int): The unique identifier of the question.
+                   - **questionType** (string): The type of question (e.g., "multiple_choice").
+                   - **difficulty** (int): The difficulty level of the question.
+                   - **lessonId** (int): The ID of the associated lesson.
+                   - **imgUrl** (string): The URL of an image related to the question.
+                   - **questionContent** (string): The text content of the question.
+                   - **pdfSolution** (string, nullable): A PDF solution reference, if available.
+                   - **choiceAnswers** (array): List of multiple-choice answers:
+                     - **answerId** (int): The unique identifier of the answer choice.
+                     - **content** (string): The text of the answer choice.
+                     - **isCorrect** (bool): Whether this choice is the correct answer.
+                     - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+            
+             **Example Request:**  
+             
+             GET /api/exerciseresults/enrollment/id/8
+            
+             **Response Codes:**  
+             - **200 OK**: Successfully retrieved the exercise results.  
+             - **404 Not Found**: No exercise results found for the given enrollment ID.
+             </remarks>
+             <param name="id">The enrollment ID of the user.</param>
+             <returns>Returns a list of exercise results for the specified enrollment ID.</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.ExerciseDetailResultController.UpsertExerciseDetailResult(System.Int32,System.Int32,System.Collections.Generic.List{AIMathProject.Application.Dto.ExerciseDetailResultDto.ExerciseDetailResultDto})">
             <summary>
             Creates or updates exercise detail results for a user's enrollment in a specific lesson.
@@ -178,6 +264,54 @@
             ```
             </remarks>
             <returns>Returns the exercise result details for the specified enrollment ID and lesson order.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.ExerciseResultController.GetExerciseResultById(System.Int32)">
+             <summary>
+             Retrieves all exercise results associated with a specific enrollment ID.
+             </summary>
+             <remarks>
+             *Only logged in users can use this API (including user and admin)*
+             This API returns a list of exercise results for a given enrollment ID, including details about each exercise result.
+            
+             **Request Parameters:**
+             - **id** (int): The enrollment ID of the user.
+            
+             **Response Format:**
+             The response will return a list of exercise results, where each result includes:
+             - **exerciseId** (int): The unique identifier of the exercise.
+             - **enrollmentId** (int): The ID of the enrollment.
+             - **score** (decimal, nullable): The score achieved for this exercise.
+             - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
+             - **lesson** (object, nullable): Information about the associated lesson.
+             - **exerciseDetailResults** (array): List of exercise detail results, each containing:
+               - **questionId** (int, nullable): The ID of the question.
+               - **isCorrect** (bool): Whether the answer is correct or not.
+               - **exerciseDetailId** (int): The ID of the exercise detail.
+               - **exerciseResultId** (int): The ID of the exercise result.
+               - **exerciseDetail** (object): Details about the exercise, including:
+                 - **exerciseId** (int): The ID of the exercise.
+                 - **questionId** (int): The ID of the question.
+                 - **question** (object): The complete question information, including:
+                   - **questionId** (int): The unique identifier of the question.
+                   - **questionType** (string): The type of question (e.g., "multiple_choice").
+                   - **difficulty** (int): The difficulty level of the question.
+                   - **lessonId** (int): The ID of the associated lesson.
+                   - **imgUrl** (string): The URL of an image related to the question.
+                   - **questionContent** (string): The text content of the question.
+                   - **pdfSolution** (string, nullable): A PDF solution reference, if available.
+                   - **choiceAnswers** (array): List of multiple-choice answers:
+                     - **answerId** (int): The unique identifier of the answer choice.
+                     - **content** (string): The text of the answer choice.
+                     - **isCorrect** (bool): Whether this choice is the correct answer.
+                     - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+                   - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).
+                   - **matchingAnswers** (array): List of matching question pairs (if applicable).
+            
+             **Example Request:**
+             GET /api/exerciseresults/enrollment/id/11 
+             </remarks>
+             <param name="id">The enrollment ID of the user.</param>
+             <returns>Returns a list of exercise results for the specified enrollment ID.</returns>
         </member>
         <member name="M:AIMathProject.API.Controllers.LessonController.GetLessonByID(System.Int32,System.Int32)">
             <summary>

@@ -142,5 +142,107 @@ namespace AIMathProject.Infrastructure.Repositories
 
             return er ?? new ExerciseResultDto();
         }
+
+        public async Task<List<ExerciseResultDto>> GetAllExerciseResultsByEnrollmentId(int enrollmentId)
+        {
+            var exerciseResultIds = await _context.ExerciseResults
+                .Where(er => er.EnrollmentId == enrollmentId)
+                .Select(er => er.ExerciseResultId)
+                .ToListAsync();
+
+            if (!exerciseResultIds.Any())
+            {
+                throw new Exception("No ExerciseResults found for the given EnrollmentId.");
+            }
+
+            var questionIds = await (from er in _context.ExerciseResults
+                                     join edr in _context.ExerciseDetailResults on er.ExerciseResultId equals edr.ExerciseResultId
+                                     join ed in _context.ExerciseDetails on edr.ExerciseDetailId equals ed.ExerciseDetailId
+                                     where exerciseResultIds.Contains(er.ExerciseResultId)
+                                     select ed.QuestionId)
+                                     .ToListAsync();
+
+            var questionList = await _context.Questions
+                .Where(q => questionIds.Contains(q.QuestionId))
+                .ToListAsync();
+
+            // Lấy danh sách ExerciseDetailResultId
+            var edrIds = await (from er in _context.ExerciseResults
+                                join edr in _context.ExerciseDetailResults on er.ExerciseResultId equals edr.ExerciseResultId
+                                where exerciseResultIds.Contains(er.ExerciseResultId)
+                                select edr.ExerciseDetailResultId)
+                                .ToListAsync();
+
+            var edrList = await _context.ExerciseDetailResults
+                .Where(edr => edrIds.Contains(edr.ExerciseDetailResultId))
+                .ToListAsync();
+
+            var exerciseDetailIds = await (from er in _context.ExerciseResults
+                                           join edr in _context.ExerciseDetailResults on er.ExerciseResultId equals edr.ExerciseResultId
+                                           join ed in _context.ExerciseDetails on edr.ExerciseDetailId equals ed.ExerciseDetailId
+                                           where exerciseResultIds.Contains(er.ExerciseResultId)
+                                           select ed.ExerciseDetailId)
+                                            .ToListAsync();
+
+            var exerciseDetailList = await _context.ExerciseDetails
+                .Where(ed => exerciseDetailIds.Contains(ed.ExerciseDetailId))
+                .ToListAsync();
+
+            var exerciseDetailDictionary = exerciseDetailList.ToDictionary(ed => ed.ExerciseDetailId);
+            var questionDictionary = questionList.ToDictionary(q => q.QuestionId);
+
+            foreach (var edr in edrList)
+            {
+                if (edr.ExerciseDetailId.HasValue && exerciseDetailDictionary.TryGetValue(edr.ExerciseDetailId.Value, out var exerciseDetail))
+                {
+                    edr.ExerciseDetail = exerciseDetail;
+                }
+
+                if (edr.ExerciseDetail?.QuestionId.HasValue == true && questionDictionary.TryGetValue(edr.ExerciseDetail.QuestionId.Value, out var question))
+                {
+                    edr.ExerciseDetail.Question = question;
+                }
+            }
+
+            foreach (var edr in edrList)
+            {
+                if (edr.ExerciseDetail?.Question?.QuestionType == "multiple_choice")
+                {
+                    var answers = _context.ChoiceAnswers
+                        .Where(ca => ca.QuestionId == edr.ExerciseDetail.Question.QuestionId)
+                        .ToList();
+                    edr.ExerciseDetail.Question.ChoiceAnswers = answers;
+                }
+                else if (edr.ExerciseDetail?.Question?.QuestionType == "matching")
+                {
+                    var answers = _context.MatchingAnswers
+                        .Where(ma => ma.QuestionId == edr.ExerciseDetail.Question.QuestionId)
+                        .ToList();
+                    edr.ExerciseDetail.Question.MatchingAnswers = answers;
+                }
+                else if (edr.ExerciseDetail?.Question?.QuestionType == "fill_in_blank")
+                {
+                    var answers = _context.FillAnswers
+                        .Where(fa => fa.QuestionId == edr.ExerciseDetail.Question.QuestionId)
+                        .ToList();
+                    edr.ExerciseDetail.Question.FillAnswers = answers;
+                }
+            }
+
+            // Tạo danh sách ExerciseResultDto
+            var exerciseResults = await _context.ExerciseResults
+                .Where(er => exerciseResultIds.Contains(er.ExerciseResultId))
+                .Select(er => new ExerciseResultDto
+                {
+                    ExerciseId = er.ExerciseId,
+                    EnrollmentId = er.EnrollmentId,
+                    Score = er.Score,
+                    DoneAt = er.DoneAt,
+                    ExerciseDetailResults = edrList.ToExerciseDetailResultDtoList()
+                })
+                .ToListAsync();
+
+            return exerciseResults;
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace AIMathProject.Domain.Interfaces
     public interface IEnrollmentRepository<T> where T : class
     {
         Task<ICollection<T>> GetAllEnrollmentByID(int id);
-
+        Task<T> UpdateEnrollmentGrade(int enrollmentId, short? newGrade);
+        Task<T> GetEnrollmentById(int enrollmentId);
     }
 }

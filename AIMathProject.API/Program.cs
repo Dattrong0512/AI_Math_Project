@@ -3,6 +3,7 @@ using AIMathProject.API.Middleware;
 using AIMathProject.Application.Abstracts;
 using AIMathProject.Application.Command.Register;
 using AIMathProject.Application.Dto;
+using AIMathProject.Application.Dto.ExerciseDto;
 using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Dto.LessonProgressDto;
 using AIMathProject.Application.Dto.QuestionDto;
@@ -116,6 +117,7 @@ builder.Services.AddScoped<IQuestionRepository<QuestionDto>, QuestionRepository>
 builder.Services.AddScoped<IExerciseDetailResultRepository<ExerciseDetailResultDto>, ExerciseDetailResultRepository>();
 builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, ExerciseResultRepository>();
 builder.Services.AddScoped<IUserStatisticsRepository, UserStatisticsRepository>();
+builder.Services.AddScoped<IExerciseRepository<ExerciseDto>, ExerciseRepository>();
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();

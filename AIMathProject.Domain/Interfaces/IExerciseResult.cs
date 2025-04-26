@@ -9,5 +9,6 @@ namespace AIMathProject.Domain.Interfaces
     public interface IExerciseResultRepository<T> where T : class
     {
         Task<T> GetDetailExerciseResultById(int enrollment_id, int lesson_order);
+        Task<List<T>> GetAllExerciseResultsByEnrollmentId(int enrollment_id);
     }
 }

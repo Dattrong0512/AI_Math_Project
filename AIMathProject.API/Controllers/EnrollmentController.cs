@@ -1,4 +1,5 @@
-﻿using AIMathProject.Application.Dto.EnrollmentDto;
+﻿using AIMathProject.Application.Command.LessonProgress;
+using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Queries.Enrollment;
 using AIMathProject.Domain.Interfaces;
 using MediatR;
@@ -57,6 +58,52 @@ namespace AIMathProject.API.Controllers
         {
             return Ok(await _mediator.Send(new GetEnrollmentByIdQuery(id)));
 
+        }
+
+        /// <summary>
+        /// Updates the grade of a specific enrollment.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this API (including user and admin)*
+        /// This API updates the grade for a specific enrollment record.
+        ///
+        /// **Request:**
+        /// The request should include:
+        /// - **enrollmentId** (int): The unique identifier of the enrollment.
+        /// - **newGrade** (short?): The new grade to be updated.
+        ///
+        /// **Response:**
+        /// The response will return the updated enrollment record as an `EnrollmentDto`.
+        ///
+        /// **Example Request:**
+        /// PUT /api/enrollment/update/grade
+        /// Content-Type: application/json
+        /// [
+        ///   {
+        ///     "enrollmentId": 10,
+        ///     "newGrade": 4
+        ///   }
+        /// ]
+        /// /// </remarks>
+        /// <param name="enrollmentId">The ID of the enrollment to update.</param>
+        /// <param name="newGrade">The new grade value.</param>
+        /// <returns>Returns the updated enrollment record.</returns>
+        /// 
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpPut("update/grade")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EnrollmentDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateEnrollmentGrade([FromQuery] int enrollmentId, [FromQuery] short newGrade)
+        {
+            var updatedEnrollment = await _mediator.Send(new UpdateEnrollmentGradeCommand(enrollmentId, newGrade));
+
+            if (updatedEnrollment == null)
+            {
+                return NotFound("Enrollment not found.");
+            }
+
+            return Ok(updatedEnrollment);
         }
     }
 }
