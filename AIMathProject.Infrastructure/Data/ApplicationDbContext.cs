@@ -13,6 +13,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<UserSession> UserSessions { get; set; }
 
     public virtual DbSet<Chapter> Chapters { get; set; }
 
@@ -87,6 +88,30 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasColumnName("description");
             entity.Property(e => e.Grade).HasColumnName("grade");
             entity.Property(e => e.Semester).HasColumnName("semester");
+        });
+
+        modelBuilder.Entity<UserSession>(entity =>
+        {
+            entity.HasKey(e => e.UserSessionId).HasName("PK__User_Ses__45F365D3CCCA9618");
+
+            entity.ToTable("User_Session");
+
+            entity.Property(e => e.UserSessionId).HasColumnName("user_session_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.LoginTime)
+                .HasColumnType("datetime2")
+                .HasColumnName("login_time");
+            entity.Property(e => e.LogoutTime)
+                .HasColumnType("datetime2")
+                .HasColumnName("logout_time");
+            entity.Property(e => e.Duration)
+                .HasColumnType("time")
+                .HasColumnName("duration");
+
+            entity.HasOne(d => d.User).WithMany(u => u.UserSessions)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__User_Session__user_id__4F7CD00D");
         });
 
         modelBuilder.Entity<Chat>(entity =>

@@ -115,6 +115,7 @@ builder.Services.AddScoped<ILessonProgressRepository<LessonProgressDto>, LessonP
 builder.Services.AddScoped<IQuestionRepository<QuestionDto>, QuestionRepository>();
 builder.Services.AddScoped<IExerciseDetailResultRepository<ExerciseDetailResultDto>, ExerciseDetailResultRepository>();
 builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, ExerciseResultRepository>();
+builder.Services.AddScoped<IUserStatisticsRepository, UserStatisticsRepository>();
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();

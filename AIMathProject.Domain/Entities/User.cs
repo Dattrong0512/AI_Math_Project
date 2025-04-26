@@ -29,6 +29,8 @@ namespace AIMathProject.Domain.Entities
 
         public virtual ICollection<PlanTransaction> PlanTransactions { get; set; } = new List<PlanTransaction>();
 
+        public virtual ICollection<UserSession> UserSessions { get; set; } = new List<UserSession>();
+
         public virtual ICollection<TokenTransaction> TokenTransactions { get; set; } = new List<TokenTransaction>();
         public static User Create(string username, string email, DateTime dob, string phonenumber)
         {

@@ -118,6 +118,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.LogoutController",
+    "Method": "Logout",
+    "RelativePath": "api/account/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.LoginWithUSPW",
     "Method": "RefreshToken",
     "RelativePath": "api/account/refresh-token",
@@ -651,6 +661,30 @@
         "Type": "System.Void",
         "MediaTypes": [],
         "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.UserStatisticsController",
+    "Method": "GetUserStatistics",
+    "RelativePath": "api/users/statistics/{periodType}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "periodType",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.UserStatisticsDto.UserStatisticsSummaryDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
       }
     ]
   },

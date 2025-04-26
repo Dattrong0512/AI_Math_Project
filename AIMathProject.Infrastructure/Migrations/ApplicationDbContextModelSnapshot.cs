@@ -218,6 +218,39 @@ namespace AIMathProject.Infrastructure.Migrations
                     b.ToTable("Comment", (string)null);
                 });
 
+            modelBuilder.Entity("AIMathProject.Domain.Entities.UserSession", b =>
+            {
+                b.Property<int>("UserSessionId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasColumnName("user_session_id");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserSessionId"));
+
+                b.Property<int>("UserId")
+                    .HasColumnType("int")
+                    .HasColumnName("user_id");
+
+                b.Property<DateTime>("LoginTime")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("login_time");
+
+                b.Property<DateTime?>("LogoutTime")
+                    .HasColumnType("datetime2")
+                    .HasColumnName("logout_time");
+
+                b.Property<TimeSpan?>("Duration")
+                    .HasColumnType("time")
+                    .HasColumnName("duration");
+
+                b.HasKey("UserSessionId")
+                    .HasName("PK__User_Session__45F365D3");
+
+                b.HasIndex("UserId");
+
+                b.ToTable("User_Session", (string)null);
+            });
+
             modelBuilder.Entity("AIMathProject.Domain.Entities.Enrollment", b =>
                 {
                     b.Property<int>("EnrollmentId")
@@ -1482,6 +1515,17 @@ namespace AIMathProject.Infrastructure.Migrations
 
                     b.Navigation("Test");
                 });
+
+            modelBuilder.Entity("AIMathProject.Domain.Entities.UserSession", b =>
+            {
+                b.HasOne("AIMathProject.Domain.Entities.User", "User")
+                    .WithMany()
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("User");
+            });
 
             modelBuilder.Entity("AIMathProject.Domain.Entities.TestDetailResult", b =>
                 {

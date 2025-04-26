@@ -209,6 +209,28 @@ namespace AIMathProject.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "User_Session",
+                columns: table => new
+                {
+                    user_session_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    user_id = table.Column<int>(type: "int", nullable: false),
+                    login_time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    logout_time = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    duration = table.Column<TimeSpan>(type: "time", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK__User_Session__45F365D3", x => x.user_session_id);
+                    table.ForeignKey(
+                        name: "FK_User_Session_AspNetUsers_user_id",
+                        column: x => x.user_id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+            
+            migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
@@ -838,6 +860,11 @@ namespace AIMathProject.Infrastructure.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_User_Session_user_id",
+                table: "User_Session",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Chat_Message_chat_id",
                 table: "Chat_Message",
                 column: "chat_id");
@@ -1103,6 +1130,9 @@ namespace AIMathProject.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Lesson");
+
+            migrationBuilder.DropTable(
+                name: "User_Session");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
