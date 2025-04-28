@@ -287,21 +287,16 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.EnrollmentController",
-    "Method": "UpdateEnrollmentGrade",
-    "RelativePath": "api/enrollment/update/grade",
+    "Method": "UpdateEnrollment",
+    "RelativePath": "api/enrollment/update",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "enrollmentId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "newGrade",
-        "Type": "System.Int16",
-        "IsRequired": false
+        "Name": "enrollmentDto",
+        "Type": "AIMathProject.Application.Dto.EnrollmentDto.EnrollmentDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

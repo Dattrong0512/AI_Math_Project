@@ -61,42 +61,51 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Updates the grade of a specific enrollment.
+        /// Updates an entire enrollment record.
         /// </summary>
         /// <remarks>
         /// *Only logged in users can use this API (including user and admin)*
-        /// This API updates the grade for a specific enrollment record.
-        ///
-        /// **Request:**
-        /// The request should include:
-        /// - **enrollmentId** (int): The unique identifier of the enrollment.
-        /// - **newGrade** (short?): The new grade to be updated.
-        ///
-        /// **Response:**
-        /// The response will return the updated enrollment record as an `EnrollmentDto`.
-        ///
-        /// **Example Request:**
-        /// PUT /api/enrollment/update/grade
-        /// Content-Type: application/json
-        /// [
-        ///   {
-        ///     "enrollmentId": 10,
-        ///     "newGrade": 4
-        ///   }
-        /// ]
-        /// /// </remarks>
-        /// <param name="enrollmentId">The ID of the enrollment to update.</param>
-        /// <param name="newGrade">The new grade value.</param>
-        /// <returns>Returns the updated enrollment record.</returns>
+        /// This API updates all fields of a specific enrollment record.
         /// 
+        /// **Request:**
+        /// The request should include the full `EnrollmentDto` object.
+        /// 
+        /// **Response:**
+        /// The response will return a list of enrollment records, each containing:
+        /// - **enrollmentId**: The unique identifier of the enrollment.
+        /// - **userId**: The unique identifier of the user.
+        /// - **grade**: The grade level associated with the enrollment.
+        /// - **enrollmentDate**: The date when the user enrolled.
+        /// - **avgScore**: The average score of the user in this enrollment (nullable).
+        /// - **semester**: The semester in which the user is enrolled.
+        /// - **startYear**: The academic start year.
+        /// - **endYear**: The academic end year.
+        /// 
+        /// **Example Request:**
+        /// ```http
+        /// PUT /api/enrollment/update
+        /// Content-Type: application/json
+        /// {
+        ///   "enrollmentId": 12,
+        ///   "userId": 10,
+        ///   "grade": 2,
+        ///   "enrollmentDate": "2024-08-22",
+        ///   "avgScore": 8.5,
+        ///   "semester": 2,
+        ///   "startYear": 2024,
+        ///   "endYear": 2025
+        /// }
+        /// </remarks>
+        /// <param name="enrollmentDto">The updated enrollment object.</param>
+        /// <returns>Returns the updated enrollment record.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpPut("update/grade")]
+        [HttpPut("update")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EnrollmentDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateEnrollmentGrade([FromQuery] int enrollmentId, [FromQuery] short newGrade)
+        public async Task<IActionResult> UpdateEnrollment([FromBody] EnrollmentDto enrollmentDto)
         {
-            var updatedEnrollment = await _mediator.Send(new UpdateEnrollmentGradeCommand(enrollmentId, newGrade));
+            var updatedEnrollment = await _mediator.Send(new UpdateEnrollmentCommand(enrollmentDto));
 
             if (updatedEnrollment == null)
             {
