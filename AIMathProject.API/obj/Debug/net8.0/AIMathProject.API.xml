@@ -118,6 +118,43 @@
             <param name="enrollmentDto">The updated enrollment object.</param>
             <returns>Returns the updated enrollment record.</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.EnrollmentController.CreateEnrollment(AIMathProject.Application.Dto.EnrollmentDto.EnrollmentDto)">
+            <summary>
+            Creates a new enrollment record.
+            </summary>
+            <remarks>
+            *Only logged in administrators can use this API*
+            This API creates a new enrollment record for a user. If avgScore is not provided, it will default to 0.
+            
+            **Request:**
+            The request should include the `EnrollmentDto` object with required fields.
+            
+            **Response:**
+            The response will return the newly created enrollment record containing:
+            - **enrollmentId**: The unique identifier of the new enrollment.
+            - **userId**: The unique identifier of the user.
+            - **grade**: The grade level associated with the enrollment.
+            - **enrollmentDate**: The date when the user enrolled.
+            - **avgScore**: The average score of the user in this enrollment (defaults to 0 if not provided).
+            - **semester**: The semester in which the user is enrolled.
+            - **startYear**: The academic start year.
+            - **endYear**: The academic end year.
+            
+            **Example Request:**
+            ```http
+            POST /api/enrollment/create
+            Content-Type: application/json
+            {
+              "userId": 10,
+              "semester": 2,
+              "startYear": 2024,
+              "endYear": 2025
+            }
+            ```
+            </remarks>
+            <param name="enrollmentDto">The enrollment object to create.</param>
+            <returns>Returns the newly created enrollment record.</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.ExerciseController.UpsertExerciseDetailResult(System.Int32)">
              <summary>
              Retrieves all exercise results associated with a specific enrollment ID.

@@ -256,6 +256,37 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.EnrollmentController",
+    "Method": "CreateEnrollment",
+    "RelativePath": "api/enrollment/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enrollmentDto",
+        "Type": "AIMathProject.Application.Dto.EnrollmentDto.EnrollmentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.EnrollmentDto.EnrollmentDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.EnrollmentController",
     "Method": "GetInfoEnrollmentById",
     "RelativePath": "api/enrollment/id/{id}",
     "HttpMethod": "GET",

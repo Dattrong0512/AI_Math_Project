@@ -1,4 +1,5 @@
-﻿using AIMathProject.Application.Command.LessonProgress;
+﻿using AIMathProject.Application.Command.Enrollment;
+using AIMathProject.Application.Command.LessonProgress;
 using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Queries.Enrollment;
 using AIMathProject.Domain.Interfaces;
@@ -113,6 +114,65 @@ namespace AIMathProject.API.Controllers
             }
 
             return Ok(updatedEnrollment);
+        }
+
+        /// <summary>
+        /// Creates a new enrollment record.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in administrators can use this API*
+        /// This API creates a new enrollment record for a user. If avgScore is not provided, it will default to 0.
+        /// 
+        /// **Request:**
+        /// The request should include the `EnrollmentDto` object with required fields.
+        /// 
+        /// **Response:**
+        /// The response will return the newly created enrollment record containing:
+        /// - **enrollmentId**: The unique identifier of the new enrollment.
+        /// - **userId**: The unique identifier of the user.
+        /// - **grade**: The grade level associated with the enrollment.
+        /// - **enrollmentDate**: The date when the user enrolled.
+        /// - **avgScore**: The average score of the user in this enrollment (defaults to 0 if not provided).
+        /// - **semester**: The semester in which the user is enrolled.
+        /// - **startYear**: The academic start year.
+        /// - **endYear**: The academic end year.
+        /// 
+        /// **Example Request:**
+        /// ```http
+        /// POST /api/enrollment/create
+        /// Content-Type: application/json
+        /// {
+        ///   "userId": 10,
+        ///   "semester": 2,
+        ///   "startYear": 2024,
+        ///   "endYear": 2025
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="enrollmentDto">The enrollment object to create.</param>
+        /// <returns>Returns the newly created enrollment record.</returns>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpPost("create")]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(EnrollmentDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateEnrollment([FromBody] EnrollmentDto enrollmentDto)
+        {
+            if (enrollmentDto == null || !enrollmentDto.UserId.HasValue)
+            {
+                return BadRequest("Invalid enrollment data. User ID is required.");
+            }
+            if (!enrollmentDto.AvgScore.HasValue)
+            {
+                enrollmentDto.AvgScore = 0;
+            }
+            var createdEnrollment = await _mediator.Send(new CreateEnrollmentCommand(enrollmentDto));
+
+            if (createdEnrollment == null)
+            {
+                return BadRequest("Failed to create enrollment.");
+            }
+
+            return CreatedAtAction(nameof(GetInfoEnrollmentById), new { id = createdEnrollment.UserId }, createdEnrollment);
         }
     }
 }

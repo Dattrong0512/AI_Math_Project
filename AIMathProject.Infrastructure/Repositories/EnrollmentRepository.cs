@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Mappers;
+using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
 using AIMathProject.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -80,6 +81,25 @@ namespace AIMathProject.Infrastructure.Repositories
             {
                 return null;
             }
+
+            return enrollment.ToEnrollmentDtoMapper();
+        }
+
+        public async Task<EnrollmentDto> CreateEnrollment(EnrollmentDto enrollmentDto)
+        {
+            var enrollment = new Enrollment
+            {
+                UserId = enrollmentDto.UserId,
+                Grade = enrollmentDto.Grade,
+                EnrollmentDate = enrollmentDto.EnrollmentDate ?? DateOnly.FromDateTime(DateTime.Now),
+                AvgScore = enrollmentDto.AvgScore ?? 0,
+                Semester = enrollmentDto.Semester,
+                StartYear = enrollmentDto.StartYear,
+                EndYear = enrollmentDto.EndYear
+            };
+
+            _context.Enrollments.Add(enrollment);
+            await _context.SaveChangesAsync();
 
             return enrollment.ToEnrollmentDtoMapper();
         }

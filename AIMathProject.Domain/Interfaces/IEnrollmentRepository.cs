@@ -11,5 +11,7 @@ namespace AIMathProject.Domain.Interfaces
         Task<ICollection<T>> GetAllEnrollmentByID(int id);
         Task<T> UpdateEnrollment(T updatedEnrollmentDto);
         Task<T> GetEnrollmentById(int enrollmentId);
+
+        Task<T> CreateEnrollment(T enrollmentDto);
     }
 }

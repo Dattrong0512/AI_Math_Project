@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Application\\AIMathProject.Application.csproj": {}
+    "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj": {}
   },
   "projects": {
-    "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Application\\AIMathProject.Application.csproj": {
+    "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Application\\AIMathProject.Application.csproj",
+        "projectUniqueName": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj",
         "projectName": "AIMathProject.Application",
-        "projectPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Application\\AIMathProject.Application.csproj",
+        "projectPath": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj",
         "packagesPath": "C:\\Users\\Bach Yen\\.nuget\\packages\\",
-        "outputPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Application\\obj\\",
+        "outputPath": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -34,8 +34,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Domain\\AIMathProject.Domain.csproj": {
-                "projectPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Domain\\AIMathProject.Domain.csproj"
+              "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj": {
+                "projectPath": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj"
               }
             }
           }
@@ -112,14 +112,14 @@
         }
       }
     },
-    "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Domain\\AIMathProject.Domain.csproj": {
+    "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
+        "projectUniqueName": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
         "projectName": "AIMathProject.Domain",
-        "projectPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
+        "projectPath": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
         "packagesPath": "C:\\Users\\Bach Yen\\.nuget\\packages\\",
-        "outputPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Domain\\obj\\",
+        "outputPath": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
