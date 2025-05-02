@@ -611,14 +611,19 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.LessonProgressController",
-    "Method": "GetLessionProgressById",
-    "RelativePath": "api/LessonProgress/id/{id}/semester/{semester}",
+    "Method": "GetLessonProgressByIdClassified",
+    "RelativePath": "api/LessonProgress/id/{id}/grade/{grade}/semester/{semester}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "grade",
         "Type": "System.Int32",
         "IsRequired": true
       },

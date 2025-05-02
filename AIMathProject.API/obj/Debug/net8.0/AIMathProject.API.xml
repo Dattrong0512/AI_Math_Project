@@ -474,12 +474,12 @@
               - **lessonContent**: The content of the lesson.
              **Example Request:**
             ```http
-            GET /api/lessionprogress/id/6
+            GET /api/lessonprogress/id/6
             </remarks>
             ```
             <returns>Returns all information of the study program the user has registered for.</returns>
         </member>
-        <member name="M:AIMathProject.API.Controllers.LessonProgressController.GetLessionProgressById(System.Int32,System.Int32)">
+        <member name="M:AIMathProject.API.Controllers.LessonProgressController.GetLessonProgressByIdClassified(System.Int32,System.Int32,System.Int32)">
             <summary>
             Returns all information of the study program classified by the semester the user has registered for.
             </summary>
@@ -488,7 +488,7 @@
             This API retrieves the user's study program information, including lesson details and learning progress.
             
             **Request:**
-            The request should include **userID** and **Semester**.
+            The request should include **userID** and **Semester** and **Grade**
             
             **Response:**
             The response will return a list of lessons, each containing:
@@ -501,7 +501,7 @@
               - **lessonContent**: The content of the lesson.
               **Example Request:**
             ```http
-            GET /api/lessionprogress/id/6/semester/1
+            GET /api/lessonprogress/id/6/grade/3/semester/1
             </remarks>
             <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         </member>

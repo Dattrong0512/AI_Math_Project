@@ -46,7 +46,7 @@ namespace AIMathProject.API.Controllers
         ///   - **lessonContent**: The content of the lesson.
         ///  **Example Request:**
         /// ```http
-        /// GET /api/lessionprogress/id/6
+        /// GET /api/lessonprogress/id/10
         /// </remarks>
 
         /// ```
@@ -69,7 +69,7 @@ namespace AIMathProject.API.Controllers
         /// This API retrieves the user's study program information, including lesson details and learning progress.
         /// 
         /// **Request:**
-        /// The request should include **userID** and **Semester**.
+        /// The request should include **userID** and **Semester** and **Grade**
         /// 
         /// **Response:**
         /// The response will return a list of lessons, each containing:
@@ -82,17 +82,17 @@ namespace AIMathProject.API.Controllers
         ///   - **lessonContent**: The content of the lesson.
         ///   **Example Request:**
         /// ```http
-        /// GET /api/lessionprogress/id/6/semester/1
+        /// GET /api/lessonprogress/id/10/grade/3/semester/1
         /// </remarks>
 
         /// <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("id/{id:int}/semester/{semester:int}")]
+        [HttpGet("id/{id:int}/grade/{grade:int}/semester/{semester:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetLessionProgressById([FromRoute] int id, [FromRoute] int semester)
+        public async Task<IActionResult> GetLessonProgressByIdClassified([FromRoute] int id,[FromRoute] int grade, [FromRoute] int semester)
         {
-            return Ok(await _mediator.Send(new GetAllInfLessonProgressClassifiedQuery(id, semester)));
+            return Ok(await _mediator.Send(new GetAllInfLessonProgressClassifiedQuery(id,grade, semester)));
         }
 
         /// <summary>

@@ -70,11 +70,13 @@ namespace AIMathProject.Infrastructure.Repositories
             return listLPDto;
         }
 
-        public async Task<ICollection<LessonProgressDto>> GetAllInfLessonProgressClassified(int id, int semester)
+    
+
+        public async Task<ICollection<LessonProgressDto>> GetAllInfLessonProgressClassified(int id, int grade, int semester)
         {
 
             var enrollmentId = _context.Enrollments
-                .Where(en => en.UserId == id && en.Semester == semester)
+                .Where(en => en.UserId == id && en.Semester == semester && en.Grade == grade)
                 .Select(en => en.EnrollmentId)
                 .ToList()
                 ;
