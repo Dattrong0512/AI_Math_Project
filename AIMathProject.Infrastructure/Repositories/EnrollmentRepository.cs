@@ -103,6 +103,23 @@ namespace AIMathProject.Infrastructure.Repositories
 
             return enrollment.ToEnrollmentDtoMapper();
         }
+
+        public async Task<EnrollmentDto> GetCurrentEnrollmentByUserId(int userId)
+        {
+            var currentEnrollment = await _context.Enrollments
+                .Where(e => e.UserId == userId)
+                .OrderByDescending(e => e.EnrollmentDate)
+                .ThenByDescending(e => e.Grade)
+                .ThenByDescending(e => e.Semester)
+                .FirstOrDefaultAsync();
+
+            if (currentEnrollment == null)
+            {
+                return null;
+            }
+
+            return currentEnrollment.ToEnrollmentDtoMapper();
+        }
     }
 
 }

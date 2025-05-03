@@ -78,6 +78,37 @@
              </remarks>
              <returns>Returns all enrollment records for the specified user.</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.EnrollmentController.GetCurrentEnrollmentByUserId(System.Int32)">
+             <summary>
+             Retrieves the current (most recent) enrollment for a specific user.
+             </summary>
+             <remarks>
+             *Only logged in users can use this api (including user and admin)*
+             This API retrieves the most recent enrollment record for a given user based on enrollment date.
+            
+             **Request:**
+             The request should include:
+             - **userId** (int): The unique identifier of the user.
+            
+             **Response:**
+             The response will return the most recent enrollment record containing:
+             - **enrollmentId**: The unique identifier of the enrollment.
+             - **userId**: The unique identifier of the user.
+             - **grade**: The grade level associated with the enrollment.
+             - **enrollmentDate**: The date when the user enrolled.
+             - **avgScore**: The average score of the user in this enrollment (nullable).
+             - **semester**: The semester in which the user is enrolled.
+             - **startYear**: The academic start year.
+             - **endYear**: The academic end year.
+            
+             **Example Request:**
+             ```http
+             GET /api/enrollment/current/10
+             ```
+             </remarks>
+             <param name="userId">The ID of the user</param>
+             <returns>Returns the most recent enrollment record for the specified user.</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.EnrollmentController.UpdateEnrollment(AIMathProject.Application.Dto.EnrollmentDto.EnrollmentDto)">
             <summary>
             Updates an entire enrollment record.
@@ -123,7 +154,7 @@
             Creates a new enrollment record.
             </summary>
             <remarks>
-            *Only logged in administrators can use this API*
+            *Only logged in users can use this API (including user and admin)*
             This API creates a new enrollment record for a user. If avgScore is not provided, it will default to 0.
             
             **Request:**
@@ -147,6 +178,7 @@
             {
               "userId": 10,
               "semester": 2,
+              "grade": 3,
               "startYear": 2024,
               "endYear": 2025
             }
@@ -474,7 +506,7 @@
               - **lessonContent**: The content of the lesson.
              **Example Request:**
             ```http
-            GET /api/lessonprogress/id/6
+            GET /api/lessonprogress/id/10
             </remarks>
             ```
             <returns>Returns all information of the study program the user has registered for.</returns>
@@ -501,7 +533,7 @@
               - **lessonContent**: The content of the lesson.
               **Example Request:**
             ```http
-            GET /api/lessonprogress/id/6/grade/3/semester/1
+            GET /api/lessonprogress/id/10/grade/3/semester/1
             </remarks>
             <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         </member>

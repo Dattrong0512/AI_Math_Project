@@ -13,5 +13,6 @@ namespace AIMathProject.Domain.Interfaces
         Task<T> GetEnrollmentById(int enrollmentId);
 
         Task<T> CreateEnrollment(T enrollmentDto);
+        Task<T> GetCurrentEnrollmentByUserId(int userId);
     }
 }
