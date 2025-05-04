@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 using AIMathProject.Application.Dto;
 using Azure.Core;
+using AIMathProject.Application.Dto.ExerciseDto;
 
 namespace AIMathProject.API.Controllers
 {
@@ -90,6 +91,96 @@ namespace AIMathProject.API.Controllers
                 return Ok(result);
             }
             return BadRequest("There's no exercises !!!!.");
+        }
+
+        /// <summary>
+        /// Retrieves all exercises with chapter information associated with a specific enrollment ID.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged-in users (including user and admin) can access this API, and this API is for AI support to suggest exercises user needs to improve*  
+        /// This API returns a list of exercises with chapter information for a given enrollment ID.
+        ///
+        /// **Request Parameters:**  
+        /// - **id** (int): The enrollment ID of the user.
+        ///
+        /// **Response Format:**  
+        /// The response will return an array of exercises with the following structure:
+        /// - **exerciseId** (int): The unique identifier of the exercise.
+        /// - **exerciseName** (string): The name of the exercise.
+        /// - **lesson** (object): Information about the lesson:
+        ///   - **lessonName** (string): The name of the lesson.
+        ///   - **chapter** (object): Information about the chapter:
+        ///     - **chapterId** (int): The unique identifier of the chapter.
+        ///     - **grade** (short): The grade level.
+        ///     - **chapterOrder** (short): The order of the chapter.
+        ///     - **chapterName** (string): The name of the chapter.
+        ///     - **semester** (short): The semester number.
+        /// - **exerciseResults** (array): List of exercise results:
+        ///   - **score** (decimal): The score achieved for this exercise.
+        ///   - **exerciseDetailResults** (array): List of detail results, each containing:
+        ///     - **isCorrect** (boolean): Whether the answer was correct.
+        ///     - **question** (object): Information about the question:
+        ///       - **difficulty** (short): The difficulty level of the question.
+        ///       - **imgUrl** (string, nullable): The URL of an image related to the question.
+        ///       - **questionContent** (string): The text content of the question.
+        ///
+        /// **Example Response:**  
+        /// ```json
+        /// [
+        ///   {
+        ///     "exerciseId": 1,
+        ///     "exerciseName": "Bài tập Vị trí",
+        ///     "lesson": {
+        ///       "lessonName": "Vị trí",
+        ///       "chapter": {
+        ///         "chapterId": 1,
+        ///         "grade": 1,
+        ///         "chapterOrder": 1,
+        ///         "chapterName": "Làm quen với một số hình",
+        ///         "semester": 1
+        ///       }
+        ///     },
+        ///     "exerciseResults": [
+        ///       {
+        ///         "score": 7.5,
+        ///         "exerciseDetailResults": [
+        ///           {
+        ///             "isCorrect": true,
+        ///             "question": {
+        ///               "difficulty": 1,
+        ///               "imgUrl": "https://example.com/image.png",
+        ///               "questionContent": "Đây là biển báo cấm rẽ bên nào"
+        ///             }
+        ///           }
+        ///         ]
+        ///       }
+        ///     ]
+        ///   }
+        /// ]
+        /// ```
+        ///
+        /// **Example Request:**  
+        /// 
+        /// GET /api/exercise/with-chapter/enrollment/id/8
+        ///
+        /// **Response Codes:**  
+        /// - **200 OK**: Successfully retrieved the exercises with chapter information.  
+        /// - **400 Bad Request**: No exercises found.
+        /// </remarks>
+        /// <param name="id">The enrollment ID of the user.</param>
+        /// <returns>Returns a list of exercises with chapter information for the specified enrollment ID.</returns>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("exercise/with-chapter/enrollment/id/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ExerciseDto>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetExercisesWithChapterInfo([FromRoute] int id)
+        {
+            var result = await _mediator.Send(new GetExercisesWithChapterInfoByEnrollmentIdQuery(id));
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest("There are no exercises available.");
         }
     }
 }

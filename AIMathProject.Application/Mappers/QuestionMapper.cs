@@ -36,5 +36,16 @@ namespace AIMathProject.Application.Mappers
             }
             return listLPDto;
         }
+
+        public static QuestionDto ToQuestionSummaryDto(this Question question)
+        {
+            QuestionDto dto = new QuestionDto
+            {
+                Difficulty = question.Difficulty,
+                ImgUrl = question.ImgUrl,
+                QuestionContent = question.QuestionContent,
+            };
+            return dto;
+        }
     }
 }

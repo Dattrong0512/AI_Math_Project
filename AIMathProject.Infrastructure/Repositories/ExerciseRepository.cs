@@ -11,10 +11,12 @@ using AIMathProject.Infrastructure.Data;
 using AIMathProject.Application.Dto.ExerciseDetailResultDto;
 using Microsoft.EntityFrameworkCore;
 using AIMathProject.Application.Dto.ExerciseDetailDto;
+using AIMathProject.Application.Dto.ExerciseWithChapterDto;
+using AIMathProject.Application.Dto.QuestionDto;
 
 namespace AIMathProject.Infrastructure.Repositories
 {
-    public class ExerciseRepository : IExerciseRepository<ExerciseDto>
+    public class ExerciseRepository : IExerciseRepository<ExerciseDto>, IExerciseSummaryRepository<ExerciseWithChapterDto>
     {
         private readonly ApplicationDbContext _context;
 
@@ -96,5 +98,56 @@ namespace AIMathProject.Infrastructure.Repositories
             return exerciseDtos;
         }
 
+
+        public async Task<List<ExerciseWithChapterDto>> GetExercisesWithChapterInfoByEnrollmentId(int enrollmentId)
+        {
+            var exercises = await _context.Exercises
+                .Where(e => e.ExerciseResults.Any(er => er.EnrollmentId == enrollmentId))
+                .Include(e => e.Lesson)
+                    .ThenInclude(l => l.Chapter)
+                .Include(e => e.ExerciseResults.Where(er => er.EnrollmentId == enrollmentId))
+                    .ThenInclude(er => er.ExerciseDetailResults)
+                        .ThenInclude(edr => edr.ExerciseDetail)
+                            .ThenInclude(ed => ed.Question)
+                .ToListAsync();
+
+            var exerciseDtos = exercises.Select(e => new ExerciseWithChapterDto
+            {
+                ExerciseId = e.ExerciseId,
+                ExerciseName = e.ExerciseName,
+                // Thêm thông tin về Lesson và Chapter
+                Lesson = e.Lesson != null ? new LessonWithChapterDto
+                {
+                    LessonName = e.Lesson.LessonName,
+                    Chapter = e.Lesson.Chapter != null ? new ChapterSummaryDto
+                    {
+                        ChapterId = e.Lesson.Chapter.ChapterId,
+                        ChapterName = e.Lesson.Chapter.ChapterName,
+                        ChapterOrder = e.Lesson.Chapter.ChapterOrder,
+                        Grade = e.Lesson.Chapter.Grade,
+                        Semester = e.Lesson.Chapter.Semester
+                    } : null
+                } : null,
+                ExerciseResults = e.ExerciseResults
+                    .Where(er => er.EnrollmentId == enrollmentId)
+                    .Select(er => new ExerciseResultSummaryDto
+                    {
+                        Score = er.Score,
+                        ExerciseDetailResults = er.ExerciseDetailResults != null ?
+                            er.ExerciseDetailResults.Select(edr => new ExerciseDetailResultSummaryDto
+                            {
+                                IsCorrect = edr.IsCorrect,
+                                Question = edr.ExerciseDetail?.Question != null ? new QuestionSummaryDto
+                                {
+                                    Difficulty = edr.ExerciseDetail.Question.Difficulty,
+                                    ImgUrl = edr.ExerciseDetail.Question.ImgUrl,
+                                    QuestionContent = edr.ExerciseDetail.Question.QuestionContent
+                                } : null
+                            }).ToList() : new List<ExerciseDetailResultSummaryDto>()
+                    }).ToList()
+            }).ToList();
+
+            return exerciseDtos;
+        }
     }
 }

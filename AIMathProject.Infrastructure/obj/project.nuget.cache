@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eAmcavCSnr8=",
+  "dgSpecHash": "JnxFXIwLxRk=",
   "success": true,
-  "projectFilePath": "J:\\Study\\GraduationProject\\be\\current2\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj",
+  "projectFilePath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bach Yen\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Bach Yen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

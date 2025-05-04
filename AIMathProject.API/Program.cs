@@ -9,6 +9,7 @@ using AIMathProject.Application.Dto.LessonProgressDto;
 using AIMathProject.Application.Dto.QuestionDto;
 using AIMathProject.Application.Dto.ExerciseDetailResultDto;
 using AIMathProject.Application.Dto.ExerciseResultDto;
+using AIMathProject.Application.Dto.ExerciseWithChapterDto;
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
@@ -118,6 +119,7 @@ builder.Services.AddScoped<IExerciseDetailResultRepository<ExerciseDetailResultD
 builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, ExerciseResultRepository>();
 builder.Services.AddScoped<IUserStatisticsRepository, UserStatisticsRepository>();
 builder.Services.AddScoped<IExerciseRepository<ExerciseDto>, ExerciseRepository>();
+builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();
