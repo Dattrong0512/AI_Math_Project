@@ -1,4 +1,4 @@
-﻿using AIMathProject.Application.Dto;
+﻿using AIMathProject.Application.Dto.LessonDto;
 using AIMathProject.Domain.Entities;
 using System;
 using System.Collections.Generic;

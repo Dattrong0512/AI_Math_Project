@@ -20,7 +20,7 @@ namespace AIMathProject.Application.Dto.LessonProgressDto
 
         public bool? IsCompleted { get; set; }
 
-        public LessonDto? Lesson { get; set; }
+        public LessonDto.LessonDto? Lesson { get; set; }
 
 
     }

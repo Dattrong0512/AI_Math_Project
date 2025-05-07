@@ -1,4 +1,4 @@
-﻿using AIMathProject.Application.Dto;
+﻿using AIMathProject.Application.Dto.LessonDto;
 using AIMathProject.Application.Dto.ExerciseResultDto;
 using AIMathProject.Application.Queries.ExerciseResult;
 using AIMathProject.Domain.Interfaces;

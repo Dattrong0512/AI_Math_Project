@@ -516,7 +516,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "AIMathProject.Application.Dto.LessonDto",
+        "Type": "AIMathProject.Application.Dto.LessonDto.LessonDto",
         "MediaTypes": [
           "application/json"
         ],
@@ -568,13 +568,13 @@
       },
       {
         "Name": "lessonDto",
-        "Type": "AIMathProject.Application.Dto.LessonDto",
+        "Type": "AIMathProject.Application.Dto.LessonDto.LessonDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "AIMathProject.Application.Dto.LessonDto",
+        "Type": "AIMathProject.Application.Dto.LessonDto.LessonDto",
         "MediaTypes": [
           "application/json"
         ],
@@ -603,7 +603,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.LessonDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.LessonDto.LessonDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -639,7 +639,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "AIMathProject.Application.Dto.LessonDto",
+        "Type": "AIMathProject.Application.Dto.LessonDto.LessonDto",
         "MediaTypes": [
           "application/json"
         ],
@@ -739,6 +739,37 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.LessonController",
+    "Method": "GetLessonsWithExercises",
+    "RelativePath": "api/lessons/grade/{grade}/withexercises",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grade",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.LessonDto.LessonWithChapterAndExerciseDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.QuestionController",

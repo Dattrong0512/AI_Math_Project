@@ -247,7 +247,7 @@
              Retrieves all exercises with chapter information associated with a specific enrollment ID.
              </summary>
              <remarks>
-             *Only logged-in users (including user and admin) can access this API.*  
+             *Only logged-in users (including user and admin) can access this API, and this API is for AI support to suggest exercises user needs to improve*  
              This API returns a list of exercises with chapter information for a given enrollment ID.
             
              **Request Parameters:**  
@@ -495,7 +495,7 @@
             </remarks>
             <returns>Returns the lesson details matching the specified grade, chapter order, and lesson order.</returns>
         </member>
-        <member name="M:AIMathProject.API.Controllers.LessonController.CreateLesson(System.Int32,System.Int32,AIMathProject.Application.Dto.LessonDto)">
+        <member name="M:AIMathProject.API.Controllers.LessonController.CreateLesson(System.Int32,System.Int32,AIMathProject.Application.Dto.LessonDto.LessonDto)">
             <summary>
             Creates a new lesson associated with a specific grade and chapter order.
             </summary>
@@ -561,6 +561,34 @@
             ```
             </remarks>
             <returns>Returns a list of `LessonDto` objects representing the found lessons, or an empty list if no lessons are found.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.LessonController.GetLessonsWithExercises(System.Int32)">
+            <summary>
+            Retrieves all lessons with their chapters and exercises for a specific grade.
+            </summary>
+            <remarks>
+            *Only logged in users can use this API (including user and admin)*
+            This API returns lessons that have exercises associated with them, filtered by grade level.
+            Each lesson includes its chapter information and a list of exercises.
+            
+            **Request Parameters:**
+            - **grade** (int): The grade level of the study program.
+            
+            **Response Format:**
+            The response will return a list of lessons with their associated chapters and exercises:
+            - **lessonOrder** (short?): The order of the lesson within the chapter.
+            - **lessonName** (string): The name of the lesson.
+            - **lessonVideoUrl** (string, nullable): The URL to the lesson video, if available.
+            - **lessonPdfUrl** (string, nullable): The URL to the lesson PDF, if available.
+            - **chapter**: The chapter that contains this lesson.
+            - **exercises**: The list of exercises associated with this lesson.
+            
+            **Example Request:**
+            ```http
+            GET /api/lessons/grade/1/withexercises
+            ```
+            </remarks>
+            <returns>Returns a list of lessons with their chapters and exercises.</returns>
         </member>
         <member name="M:AIMathProject.API.Controllers.LessonProgressController.GetLessonProgressById(System.Int32)">
             <summary>

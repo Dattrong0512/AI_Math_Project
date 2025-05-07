@@ -1,4 +1,4 @@
-﻿using AIMathProject.Application.Dto;
+﻿using AIMathProject.Application.Dto.LessonDto;
 using AIMathProject.Application.Dto.LessonProgressDto;
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Entities;

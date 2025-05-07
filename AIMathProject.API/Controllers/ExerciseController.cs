@@ -170,7 +170,7 @@ namespace AIMathProject.API.Controllers
         /// <param name="id">The enrollment ID of the user.</param>
         /// <returns>Returns a list of exercises with chapter information for the specified enrollment ID.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("exercise/with-chapter/enrollment/id/{id:int}")]
+        [HttpGet("exercise/enrollment/id/{id:int}/chapter")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ExerciseDto>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetExercisesWithChapterInfo([FromRoute] int id)

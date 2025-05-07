@@ -1,4 +1,5 @@
-﻿using AIMathProject.Application.Dto;
+﻿using AIMathProject.Application.Dto.ExerciseWithChapterDto;
+using AIMathProject.Application.Dto.LessonDto;
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Infrastructure.Repositories
 {
-    public class LessonRepository : ILessonRepository<LessonDto>
+    public class LessonRepository : ILessonRepository<LessonDto>, ILessonWithExerciseRepository<LessonWithChapterAndExerciseDto>
     {
         private readonly ApplicationDbContext _context;
 
@@ -131,6 +132,38 @@ namespace AIMathProject.Infrastructure.Repositories
                 .ToList();
 
             return filteredLessons;
+        }
+
+        public async Task<List<LessonWithChapterAndExerciseDto>> GetLessonsWithExercises(int grade)
+        {
+            var lessonsWithExercises = await _context.Lessons
+                .Include(l => l.Chapter)
+                .Include(l => l.Exercises)
+                .Where(l => l.Chapter.Grade == grade && l.Exercises.Any())
+                .Select(l => new LessonWithChapterAndExerciseDto
+                {
+                    LessonOrder = l.LessonOrder,
+                    LessonName = l.LessonName,
+                    LessonVideoUrl = l.LessonVideoUrl,
+                    LessonPdfUrl = l.LessonPdfUrl,
+                    Chapter = new ChapterSummaryDto
+                    {
+                        ChapterId = (int)l.ChapterId,
+                        Grade = l.Chapter.Grade,
+                        ChapterOrder = l.Chapter.ChapterOrder,
+                        ChapterName = l.Chapter.ChapterName,
+                        Semester = l.Chapter.Semester
+                    },
+                    Exercises = l.Exercises.Select(e => new Application.Dto.ExerciseDto.ExerciseDto
+                    {
+                        ExerciseName = e.ExerciseName,
+                        LessonId = e.LessonId,
+                        ExerciseResults = new List<Application.Dto.ExerciseResultDto.ExerciseResultDto>()
+                    }).ToList()
+                })
+                .ToListAsync();
+
+            return lessonsWithExercises;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Command.Lesson;
 using AIMathProject.Application.Dto;
+using AIMathProject.Application.Dto.LessonDto;
 using AIMathProject.Application.Queries.Lesson;
 using AIMathProject.Domain.Interfaces;
 using MediatR;
@@ -142,6 +143,48 @@ namespace AIMathProject.API.Controllers
         public async Task<IActionResult> GetLessonByName([FromRoute] int grade, [FromRoute] string lessonname)
         {
             return Ok(await _mediator.Send(new GetDetailLessonByNameQuery(grade, lessonname)));
+        }
+
+        // Add this method to the existing LessonController class
+
+        /// <summary>
+        /// Retrieves all lessons with their chapters and exercises for a specific grade.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this API (including user and admin)*
+        /// This API returns lessons that have exercises associated with them, filtered by grade level.
+        /// Each lesson includes its chapter information and a list of exercises.
+        /// 
+        /// **Request Parameters:**
+        /// - **grade** (int): The grade level of the study program.
+        /// 
+        /// **Response Format:**
+        /// The response will return a list of lessons with their associated chapters and exercises:
+        /// - **lessonOrder** (short?): The order of the lesson within the chapter.
+        /// - **lessonName** (string): The name of the lesson.
+        /// - **lessonVideoUrl** (string, nullable): The URL to the lesson video, if available.
+        /// - **lessonPdfUrl** (string, nullable): The URL to the lesson PDF, if available.
+        /// - **chapter**: The chapter that contains this lesson.
+        /// - **exercises**: The list of exercises associated with this lesson.
+        /// 
+        /// **Example Request:**
+        /// ```http
+        /// GET /api/lessons/grade/1/withexercises
+        /// ```
+        /// </remarks>
+        /// <returns>Returns a list of lessons with their chapters and exercises.</returns>
+        [Authorize(Policy = "UserOrAdmin")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonWithChapterAndExerciseDto>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("lessons/grade/{grade:int}/exercises")]
+        public async Task<ActionResult<List<LessonWithChapterAndExerciseDto>>> GetLessonsWithExercises([FromRoute] int grade)
+        {
+            var lessons = await _mediator.Send(new GetLessonsWithExercisesQuery(grade));
+            if (lessons == null || !lessons.Any())
+            {
+                return NotFound("No lessons with exercises found for the specified grade.");
+            }
+            return Ok(lessons);
         }
     }
 }

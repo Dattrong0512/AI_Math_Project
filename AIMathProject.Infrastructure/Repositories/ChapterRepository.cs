@@ -1,4 +1,5 @@
 ﻿using AIMathProject.Application.Dto;
+using AIMathProject.Application.Dto.LessonDto;
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Interfaces;
 using AIMathProject.Infrastructure.Data;

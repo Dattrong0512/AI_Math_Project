@@ -15,7 +15,7 @@ namespace AIMathProject.Application.Dto
         public string? ChapterName { get; set; }
 
         public short? Semester { get; set; }
-        public List<LessonDto>? Lessons { get; set; }
+        public List<LessonDto.LessonDto>? Lessons { get; set; }
 
     }
 }

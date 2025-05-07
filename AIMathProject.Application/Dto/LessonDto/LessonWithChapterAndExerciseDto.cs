@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AIMathProject.Application.Dto.ExerciseWithChapterDto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Application.Dto.LessonDto
 {
-    public class LessonDto
+    public class LessonWithChapterAndExerciseDto
     {
         public short? LessonOrder { get; set; }
 
@@ -20,8 +21,8 @@ namespace AIMathProject.Application.Dto.LessonDto
         [StringLength(255)]
         public string? LessonPdfUrl { get; set; }
 
-        public short? ChapterOrder { get; set; }
+        public ChapterSummaryDto? Chapter { get; set; }
 
-        public List<QuestionDto.QuestionDto>? Questions { get; set; } = new List<QuestionDto.QuestionDto>();
+        public List<ExerciseDto.ExerciseDto> Exercises { get; set; } = new List<ExerciseDto.ExerciseDto>();
     }
 }
