@@ -426,7 +426,7 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.ExerciseController",
     "Method": "GetExercisesWithChapterInfo",
-    "RelativePath": "api/exercise/with-chapter/enrollment/id/{id}",
+    "RelativePath": "api/exercise/enrollment/id/{id}/chapter",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -743,7 +743,7 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.LessonController",
     "Method": "GetLessonsWithExercises",
-    "RelativePath": "api/lessons/grade/{grade}/withexercises",
+    "RelativePath": "api/lessons/grade/{grade}/exercises",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

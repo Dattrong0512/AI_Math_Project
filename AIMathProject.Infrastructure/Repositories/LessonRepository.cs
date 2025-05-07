@@ -136,17 +136,19 @@ namespace AIMathProject.Infrastructure.Repositories
 
         public async Task<List<LessonWithChapterAndExerciseDto>> GetLessonsWithExercises(int grade)
         {
-            var lessonsWithExercises = await _context.Lessons
+            var lessonsWithExerciseDetails = await _context.Lessons
                 .Include(l => l.Chapter)
                 .Include(l => l.Exercises)
-                .Where(l => l.Chapter.Grade == grade && l.Exercises.Any())
+                    .ThenInclude(e => e.ExerciseDetails)
+                .Where(l => l.Chapter.Grade == grade &&
+                            l.Exercises.Any(e => e.ExerciseDetails.Any()))
                 .Select(l => new LessonWithChapterAndExerciseDto
                 {
                     LessonOrder = l.LessonOrder,
                     LessonName = l.LessonName,
                     LessonVideoUrl = l.LessonVideoUrl,
                     LessonPdfUrl = l.LessonPdfUrl,
-                    Chapter = new ChapterSummaryDto
+                    Chapter = new Application.Dto.ExerciseWithChapterDto.ChapterSummaryDto
                     {
                         ChapterId = (int)l.ChapterId,
                         Grade = l.Chapter.Grade,
@@ -154,16 +156,18 @@ namespace AIMathProject.Infrastructure.Repositories
                         ChapterName = l.Chapter.ChapterName,
                         Semester = l.Chapter.Semester
                     },
-                    Exercises = l.Exercises.Select(e => new Application.Dto.ExerciseDto.ExerciseDto
-                    {
-                        ExerciseName = e.ExerciseName,
-                        LessonId = e.LessonId,
-                        ExerciseResults = new List<Application.Dto.ExerciseResultDto.ExerciseResultDto>()
-                    }).ToList()
+                    Exercises = l.Exercises
+                        .Where(e => e.ExerciseDetails.Any())
+                        .Select(e => new Application.Dto.ExerciseDto.ExerciseDto
+                        {
+                            ExerciseName = e.ExerciseName,
+                            LessonId = e.LessonId,
+                            ExerciseResults = new List<Application.Dto.ExerciseResultDto.ExerciseResultDto>() // Empty as requested
+                        })
+                        .ToList()
                 })
                 .ToListAsync();
-
-            return lessonsWithExercises;
+            return lessonsWithExerciseDetails;
         }
     }
 }
