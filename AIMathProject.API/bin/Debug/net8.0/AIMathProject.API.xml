@@ -585,7 +585,7 @@
             
             **Example Request:**
             ```http
-            GET /api/lessons/grade/1/withexercises
+            GET /api/lessons/grade/1/exercises
             ```
             </remarks>
             <returns>Returns a list of lessons with their chapters and exercises.</returns>

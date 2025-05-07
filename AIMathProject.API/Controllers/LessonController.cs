@@ -169,7 +169,7 @@ namespace AIMathProject.API.Controllers
         /// 
         /// **Example Request:**
         /// ```http
-        /// GET /api/lessons/grade/1/withexercises
+        /// GET /api/lessons/grade/1/exercises
         /// ```
         /// </remarks>
         /// <returns>Returns a list of lessons with their chapters and exercises.</returns>
@@ -180,10 +180,6 @@ namespace AIMathProject.API.Controllers
         public async Task<ActionResult<List<LessonWithChapterAndExerciseDto>>> GetLessonsWithExercises([FromRoute] int grade)
         {
             var lessons = await _mediator.Send(new GetLessonsWithExercisesQuery(grade));
-            if (lessons == null || !lessons.Any())
-            {
-                return NotFound("No lessons with exercises found for the specified grade.");
-            }
             return Ok(lessons);
         }
     }
