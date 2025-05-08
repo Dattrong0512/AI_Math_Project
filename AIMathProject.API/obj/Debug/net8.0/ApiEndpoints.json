@@ -722,13 +722,18 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.LessonProgressController",
     "Method": "UpdateLearningProgress",
-    "RelativePath": "api/LessonProgress/update/lessonprogressID/{idProgress}/status/{status}",
+    "RelativePath": "api/LessonProgress/update/lesson/{lessonId}/enrollment/{enrollmentId}/status/{status}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "idProgress",
+        "Name": "lessonId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "enrollmentId",
         "Type": "System.Int32",
         "IsRequired": true
       },

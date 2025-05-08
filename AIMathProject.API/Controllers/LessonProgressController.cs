@@ -104,7 +104,8 @@ namespace AIMathProject.API.Controllers
         /// 
         /// **Request:**
         /// The request should include:
-        /// - **idProgress** (int): The unique identifier of the lesson progress.
+        /// - **lessonID** (int): The unique identifier of the lesson .
+        /// - **enrollmentID** (int): The unique identifier of the enrollment.
         /// - **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).
         ///
         /// **Response:**
@@ -119,12 +120,12 @@ namespace AIMathProject.API.Controllers
         ///
         /// **Example Request:**
         /// ```http
-        /// PATCH /update/lessonprogressID/2/status/1
+        /// PATCH /update/lesson/25/enrollment/2/status/1
         /// </remarks>
         /// <returns>Returns the updated learning progress information.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpPatch("update/lessonprogressID/{idProgress:int}/status/{status:int}")]
-        public async Task<IActionResult> UpdateLearningProgress([FromRoute] int idProgress, [FromRoute] int status)
+        [HttpPatch("update/lesson/{lessonId:int}/enrollment/{enrollmentId:int}/status/{status:int}")]
+        public async Task<IActionResult> UpdateLearningProgress([FromRoute] int lessonId, [FromRoute] int enrollmentId, [FromRoute] int status)
         {
             string str_status = "";
             if(status == 0){
@@ -134,7 +135,7 @@ namespace AIMathProject.API.Controllers
             } else if (status == 2){
                 str_status = "in_progress";
             } else { return BadRequest("Failed to update lesson progress, please input a valid status."); }
-            return Ok(await _mediator.Send(new UpdateLearningProgressCommand(idProgress, str_status)));
+            return Ok(await _mediator.Send(new UpdateLearningProgressCommand(lessonId, enrollmentId, str_status)));
         }
     }
 }

@@ -130,22 +130,17 @@ namespace AIMathProject.Infrastructure.Repositories
             return lp.ToLessonProgressDto(); 
         }
 
-        public async Task<LessonProgressDto> UpdateLearningProgress(int idProgress, string status)
+        public async Task<LessonProgressDto> UpdateLearningProgress(int lessonId,int enrollmentId, string status)
         {
             var progress = await _context.LessonProgresses
-        .FirstOrDefaultAsync(lp => lp.LearningProgressId == idProgress);
-
-            // Nếu không tìm thấy, trả về null
+            .FirstOrDefaultAsync(lp => lp.LessonId == lessonId && lp.EnrollmentId == enrollmentId);
             if (progress == null)
             {
                 return null;
             }
-            // Cập nhật trạng thái
             progress.Status = status;
-
-            // Lưu thay đổi vào cơ sở dữ liệu
             await _context.SaveChangesAsync();
-            return await GetInfoOneLessonProgress(idProgress);
+            return await GetInfoOneLessonProgress(progress.LearningProgressId);
         }
     }
 }

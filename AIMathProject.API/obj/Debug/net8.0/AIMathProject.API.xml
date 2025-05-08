@@ -643,7 +643,7 @@
             </remarks>
             <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
         </member>
-        <member name="M:AIMathProject.API.Controllers.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int32)">
+        <member name="M:AIMathProject.API.Controllers.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int32,System.Int32)">
              <summary>
              Updates the learning progress of a specific lesson progress record.
              </summary>
@@ -653,7 +653,8 @@
              
              **Request:**
              The request should include:
-             - **idProgress** (int): The unique identifier of the lesson progress.
+             - **lessonID** (int): The unique identifier of the lesson .
+             - **enrollmentID** (int): The unique identifier of the enrollment.
              - **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).
             
              **Response:**
@@ -668,7 +669,7 @@
             
              **Example Request:**
              ```http
-             PATCH /update/lessonprogressID/2/status/1
+             PATCH /update/lesson/25/enrollment/2/status/1
              </remarks>
              <returns>Returns the updated learning progress information.</returns>
         </member>

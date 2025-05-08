@@ -10,7 +10,7 @@ namespace AIMathProject.Domain.Interfaces
     {
         Task<ICollection<T>> GetAllInfLessonProgress(int id);
         Task<ICollection<T>> GetAllInfLessonProgressClassified(int id, int semester, int grade);
-        Task<T> UpdateLearningProgress(int idProgress, string status);
+        Task<T> UpdateLearningProgress(int lessonId, int enrollmentId, string status);
         Task<T> GetInfoOneLessonProgress(int lpId);
     }
 }
