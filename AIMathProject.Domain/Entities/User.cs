@@ -15,6 +15,8 @@ namespace AIMathProject.Domain.Entities
         public bool? Status { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiredAtUtc { get; set; }
+        public int TokenRemains { get; set; }
+        public int CoinRemains { get; set; }
         public virtual ICollection<Chat> ChatSupportAgents { get; set; } = new List<Chat>();
 
         public virtual ICollection<Chat> ChatUsers { get; set; } = new List<Chat>();
@@ -38,7 +40,9 @@ namespace AIMathProject.Domain.Entities
                 UserName = username,
                 Email= email,
                 Dob=dob,
-                PhoneNumber = phonenumber
+                PhoneNumber = phonenumber,
+                CoinRemains = 0,
+                TokenRemains = 8000,
             };
         }
         public override string ToString()

@@ -70,8 +70,16 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().ToTable("AspNetUsers");       
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("AspNetUsers");
 
+            entity.Property(e => e.TokenRemains)
+                .HasColumnName("token_remains");
+
+            entity.Property(e => e.CoinRemains)
+                .HasColumnName("coin_remains");
+        });
         modelBuilder.Entity<Chapter>(entity =>
         {
             entity.HasKey(e => e.ChapterId).HasName("PK__Chapter__745EFE872B223990");
@@ -523,7 +531,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .HasColumnName("description");
-            entity.Property(e => e.DurationDays).HasColumnName("duration_days");
+            entity.Property(e => e.Coins).HasColumnName("coins");
             entity.Property(e => e.PlanName)
                 .HasMaxLength(100)
                 .HasColumnName("plan_name");
@@ -543,9 +551,6 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
-            entity.Property(e => e.ExpiresAt)
-                .HasColumnType("datetime")
-                .HasColumnName("expires_at");
             entity.Property(e => e.PaymentId).HasColumnName("payment_id");
             entity.Property(e => e.PlanId).HasColumnName("plan_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");

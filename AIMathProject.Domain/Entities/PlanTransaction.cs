@@ -15,8 +15,6 @@ public partial class PlanTransaction
 
     public DateTime? CreatedAt { get; set; }
 
-    public DateTime? ExpiresAt { get; set; }
-
     public virtual Payment? Payment { get; set; }
 
     public virtual Plan? Plan { get; set; }
