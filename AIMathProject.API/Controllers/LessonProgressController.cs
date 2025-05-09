@@ -44,12 +44,11 @@ namespace AIMathProject.API.Controllers
         ///   - **lessonOrder**: The order of the lesson in the study plan.
         ///   - **lessonName**: The name of the lesson.
         ///   - **lessonContent**: The content of the lesson.
+        ///   
         ///  **Example Request:**
         /// ```http
-        /// GET /api/lessonprogress/id/10
+        /// GET /api/lessonprogress/id/14
         /// </remarks>
-
-        /// ```
         /// <returns>Returns all information of the study program the user has registered for.</returns>
         [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("id/{id:int}")]
@@ -62,30 +61,31 @@ namespace AIMathProject.API.Controllers
 
 
         /// <summary>
-        /// Returns all information of the study program classified by the semester the user has registered for.
+        /// Returns lesson progress information filtered by chapter's grade and semester.
         /// </summary>
         /// <remarks>
-        /// *Only logged in users can use this api (including user and admin)*
-        /// This API retrieves the user's study program information, including lesson details and learning progress.
+        /// *Only logged in users can use this API (including user and admin)*
+        /// This API retrieves lesson progress information for a specific enrollment, filtered by the chapter's grade and semester.
         /// 
         /// **Request:**
-        /// The request should include **userID** and **Semester** and **Grade**
+        /// The request should include the **enrollment ID**, **grade**, and **semester**.
         /// 
         /// **Response:**
-        /// The response will return a list of lessons, each containing:
+        /// The response will return a list of lesson progress records matching the specified grade and semester, each containing:
+        /// - **learningProgressId**: The unique identifier of the progress record.
         /// - **lessonId**: The unique identifier of the lesson.
-        /// - **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).
-        /// - **isCompleted**: A boolean indicating whether the lesson is completed.
+        /// - **status**: The current status of the lesson (not_started, in_progress, completed).
         /// - **lesson**: An object containing lesson details:
         ///   - **lessonOrder**: The order of the lesson in the study plan.
         ///   - **lessonName**: The name of the lesson.
-        ///   - **lessonContent**: The content of the lesson.
-        ///   **Example Request:**
+        ///   - **lessonVideoUrl**: URL to the lesson's video content.
+        ///   - **lessonPdfUrl**: URL to the lesson's PDF content.
+        ///
+        /// **Example Request:**
         /// ```http
-        /// GET /api/lessonprogress/id/10/grade/3/semester/1
+        /// GET /api/lessonprogress/id/14/grade/3/semester/1
         /// </remarks>
-
-        /// <returns>Returns all information of the study program classified by the semester the user has registered for.</returns>
+        /// <returns>Returns filtered lesson progress information based on chapter's grade and semester.</returns> 
         [Authorize(Policy = "UserOrAdmin")]
         [HttpGet("id/{id:int}/grade/{grade:int}/semester/{semester:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<LessonProgressDto>))]

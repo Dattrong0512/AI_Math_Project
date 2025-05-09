@@ -12,7 +12,7 @@ namespace AIMathProject.Application.Mappers
     {
         public static LessonProgressDto ToLessonProgressDto(this LessonProgress lesson)
         {
-            LessonProgressDto lessionDto = new LessonProgressDto
+            LessonProgressDto lessonDto = new LessonProgressDto
             {
                 LearningProgressId = lesson.LearningProgressId,
                 LessonId = lesson.LessonId,
@@ -20,7 +20,7 @@ namespace AIMathProject.Application.Mappers
                 Lesson = lesson.Lesson != null ? lesson.Lesson.ToLessonDto() : null
             };
 
-            return lessionDto;
+            return lessonDto;
         }
         public static List<LessonProgressDto> ToLessonProgressDtoList(this List<LessonProgress> listLP)
         {
@@ -31,9 +31,6 @@ namespace AIMathProject.Application.Mappers
             }
             return listLPDto;
 
-
         }
-
-
     }
 }

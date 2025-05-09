@@ -28,91 +28,55 @@ namespace AIMathProject.Infrastructure.Repositories
 
         public async Task<ICollection<LessonProgressDto>> GetAllInfLessonProgress(int id)
         {
-            var enrollmentId = _context.Enrollments
-                .Where(en => en.UserId == id)
-                .Select(en => en.EnrollmentId)
-                .ToList()
-                ;
-            _logger.LogInformation($"Enrollment id is: {string.Join(", ", enrollmentId)}");
+            _logger.LogInformation($"Fetching all lesson progress for enrollment ID: {id}");
 
-            var listLP = _context.LessonProgresses
-                .Where(lp => lp.EnrollmentId.HasValue && enrollmentId.Contains(lp.EnrollmentId.Value))
-                .ToList();
-
-
-            List<LessonProgressDto> listLPDto = new List<LessonProgressDto> { };
-
-            foreach (var lp in listLP)
-            {
-                var lessionDto = await _context.Lessons
-                    .Where(l => l.LessonId == lp.LessonId)
-                    .Select(l => new LessonDto
+            var lessonProgressDtos = await (
+                from lp in _context.LessonProgresses
+                join l in _context.Lessons on lp.LessonId equals l.LessonId
+                join c in _context.Chapters on l.ChapterId equals c.ChapterId
+                where lp.EnrollmentId == id
+                select new LessonProgressDto
+                {
+                    LearningProgressId = lp.LearningProgressId,
+                    LessonId = lp.LessonId,
+                    Status = lp.Status,
+                    Lesson = new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
                         LessonName = l.LessonName,
                         LessonVideoUrl = l.LessonVideoUrl,
                         LessonPdfUrl = l.LessonPdfUrl
                     }
-                    ).FirstOrDefaultAsync();
-
-                listLPDto.Add(new LessonProgressDto
-                {
-
-                    LearningProgressId = lp.LearningProgressId,
-                    LessonId = lp.LessonId,
-
-                    Status = lp.Status,
-
-                    Lesson = lessionDto
-                });
-
-            }
-            return listLPDto;
+                }).ToListAsync();
+            return lessonProgressDtos;
         }
 
     
 
         public async Task<ICollection<LessonProgressDto>> GetAllInfLessonProgressClassified(int id, int grade, int semester)
         {
+            _logger.LogInformation($"Fetching lesson progress for enrollment ID: {id} filtered by grade: {grade} and semester: {semester}");
 
-            var enrollmentId = _context.Enrollments
-                .Where(en => en.UserId == id && en.Semester == semester && en.Grade == grade)
-                .Select(en => en.EnrollmentId)
-                .ToList()
-                ;
-            _logger.LogInformation($"Enrollment id is: {string.Join(", ", enrollmentId)}");
-
-            var listLP = _context.LessonProgresses
-                .Where(lp => lp.EnrollmentId.HasValue && enrollmentId.Contains(lp.EnrollmentId.Value))
-                .ToList();
-
-
-            List<LessonProgressDto> listLPDto = new List<LessonProgressDto> { };
-
-            foreach (var lp in listLP)
-            {
-                var lessonDto = await _context.Lessons
-                    .Where(l => l.LessonId == lp.LessonId)
-                    .Select(l => new LessonDto
-                    {
-                        LessonOrder = l.LessonOrder,
-                        LessonName = l.LessonName,
-                        LessonPdfUrl = l.LessonPdfUrl,
-                        LessonVideoUrl = l.LessonVideoUrl
-                    }
-                    ).FirstOrDefaultAsync();
-
-                listLPDto.Add(new LessonProgressDto
+            var lessonProgressDtos = await (
+                from lp in _context.LessonProgresses
+                join l in _context.Lessons on lp.LessonId equals l.LessonId
+                join c in _context.Chapters on l.ChapterId equals c.ChapterId
+                where lp.EnrollmentId == id && c.Grade == grade && c.Semester == semester
+                select new LessonProgressDto
                 {
-
                     LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
                     Status = lp.Status,
-                    Lesson = lessonDto
-                });
+                    Lesson = new LessonDto
+                    {
+                        LessonOrder = l.LessonOrder,
+                        LessonName = l.LessonName,
+                        LessonVideoUrl = l.LessonVideoUrl,
+                        LessonPdfUrl = l.LessonPdfUrl
+                    }
+                }).ToListAsync();
 
-            }
-            return listLPDto;
+            return lessonProgressDtos;
         }
 
         public async Task<LessonProgressDto> GetInfoOneLessonProgress(int lpId)

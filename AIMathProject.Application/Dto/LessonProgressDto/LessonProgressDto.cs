@@ -18,8 +18,6 @@ namespace AIMathProject.Application.Dto.LessonProgressDto
 
         public short? LearningProgress { get; set; }
 
-        public bool? IsCompleted { get; set; }
-
         public LessonDto.LessonDto? Lesson { get; set; }
 
 
