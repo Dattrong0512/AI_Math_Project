@@ -15,5 +15,5 @@ public partial class TokenPackage
 
     public string? Description { get; set; }
 
-    public virtual ICollection<TokenTransaction> TokenTransactions { get; set; } = new List<TokenTransaction>();
+    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 }

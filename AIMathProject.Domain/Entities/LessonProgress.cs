@@ -11,7 +11,7 @@ public partial class LessonProgress
 
     public int? EnrollmentId { get; set; }
 
-    public string? Status  { get; set; }
+    public string? Status { get; set; }
 
     public virtual Enrollment? Enrollment { get; set; }
 

@@ -7,21 +7,11 @@ public partial class TokenTransaction
 {
     public int TokenTransactionId { get; set; }
 
-    public int? UserId { get; set; }
+    public int? TokenUserId { get; set; }
 
-    public int? TokenPackageId { get; set; }
+    public int? Amount { get; set; }
 
-    public int? PaymentId { get; set; }
+    public DateTime? Date { get; set; }
 
-    public int? Change { get; set; }
-
-    public string? TransactionType { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
-
-    public virtual Payment? Payment { get; set; }
-
-    public virtual TokenPackage? TokenPackage { get; set; }
-
-    public virtual User? User { get; set; }
+    public virtual TokenUser? TokenUser { get; set; }
 }

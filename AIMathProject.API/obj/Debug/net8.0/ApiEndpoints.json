@@ -899,30 +899,6 @@
     ]
   },
   {
-    "ContainingType": "AIMathProject.API.Controllers.UserStatisticsController",
-    "Method": "GetUserStatistics",
-    "RelativePath": "api/users/statistics/{periodType}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "periodType",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "AIMathProject.Application.Dto.UserStatisticsDto.UserStatisticsSummaryDto",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "AIMathProject.API.Controllers.LoginWithUSPW",
     "Method": "ConfirmEmail",
     "RelativePath": "confirm-email",

@@ -26,17 +26,16 @@ namespace AIMathProject.Application.Command.Login
         private readonly UserManager<User> _userManager;
         private readonly IAuthTokenProcessor _authTokenProcessor;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IUserStatisticsRepository _userStatisticsRepository;
+        //private readonly IUserStatisticsRepository _userStatisticsRepository;
         public LogoutCommandHandler(
             UserManager<User> userManager,
             IAuthTokenProcessor authTokenProcessor,
-            IHttpContextAccessor httpContextAccessor,
-            IUserStatisticsRepository userStatisticsRepository)
+            IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _authTokenProcessor = authTokenProcessor;
             _httpContextAccessor = httpContextAccessor;
-            _userStatisticsRepository = userStatisticsRepository;
+            //_userStatisticsRepository = userStatisticsRepository;
         }
         public async Task<Unit> Handle(LogoutCommand request, CancellationToken cancellationToken)
         {
@@ -53,10 +52,10 @@ namespace AIMathProject.Application.Command.Login
                 _httpContextAccessor.HttpContext.Response.Cookies.Delete("ACCESS_TOKEN");
 
                 var roles = await _userManager.GetRolesAsync(user);
-                if (!roles.Contains("Admin"))
-                {
-                    await _userStatisticsRepository.EndUserSession(user.Id);
-                }
+                //if (!roles.Contains("Admin"))
+                //{
+                //    await _userStatisticsRepository.EndUserSession(user.Id);
+                //}
                 // await _httpContextAccessor.HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
             }
 

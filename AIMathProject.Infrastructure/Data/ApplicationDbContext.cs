@@ -1,4 +1,5 @@
 ﻿using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,13 +8,11 @@ using System.Collections.Generic;
 
 namespace AIMathProject.Infrastructure.Data;
 
-public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserSession> UserSessions { get; set; }
 
     public virtual DbSet<Chapter> Chapters { get; set; }
 
@@ -49,9 +48,13 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
     public virtual DbSet<Payment> Payments { get; set; }
 
+    public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
+
     public virtual DbSet<Plan> Plans { get; set; }
 
     public virtual DbSet<PlanTransaction> PlanTransactions { get; set; }
+
+    public virtual DbSet<PlanUser> PlanUsers { get; set; }
 
     public virtual DbSet<Question> Questions { get; set; }
 
@@ -67,22 +70,19 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
     public virtual DbSet<TokenTransaction> TokenTransactions { get; set; }
 
+    public virtual DbSet<TokenUser> TokenUsers { get; set; }
 
+    public virtual DbSet<UserSession> UserSessions { get; set; }
+
+   
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.ToTable("AspNetUsers");
+        modelBuilder.Entity<User>().ToTable("AspNetUsers");
+      
 
-            entity.Property(e => e.TokenRemains)
-                .HasColumnName("token_remains");
-
-            entity.Property(e => e.CoinRemains)
-                .HasColumnName("coin_remains");
-        });
         modelBuilder.Entity<Chapter>(entity =>
         {
-            entity.HasKey(e => e.ChapterId).HasName("PK__Chapter__745EFE872B223990");
+            entity.HasKey(e => e.ChapterId).HasName("PK__Chapter__745EFE87A842A01F");
 
             entity.ToTable("Chapter");
 
@@ -98,33 +98,9 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.Property(e => e.Semester).HasColumnName("semester");
         });
 
-        modelBuilder.Entity<UserSession>(entity =>
-        {
-            entity.HasKey(e => e.UserSessionId).HasName("PK__User_Ses__45F365D3CCCA9618");
-
-            entity.ToTable("User_Session");
-
-            entity.Property(e => e.UserSessionId).HasColumnName("user_session_id");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-            entity.Property(e => e.LoginTime)
-                .HasColumnType("datetime2")
-                .HasColumnName("login_time");
-            entity.Property(e => e.LogoutTime)
-                .HasColumnType("datetime2")
-                .HasColumnName("logout_time");
-            entity.Property(e => e.Duration)
-                .HasColumnType("time")
-                .HasColumnName("duration");
-
-            entity.HasOne(d => d.User).WithMany(u => u.UserSessions)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__User_Session__user_id__4F7CD00D");
-        });
-
         modelBuilder.Entity<Chat>(entity =>
         {
-            entity.HasKey(e => e.ChatId).HasName("PK__Chat__FD040B17113CE11E");
+            entity.HasKey(e => e.ChatId).HasName("PK__Chat__FD040B17FD92E0DE");
 
             entity.ToTable("Chat");
 
@@ -138,17 +114,17 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
             entity.HasOne(d => d.SupportAgent).WithMany(p => p.ChatSupportAgents)
                 .HasForeignKey(d => d.SupportAgentId)
-                .HasConstraintName("FK__Chat__support_ag__32AB8735");
+                .HasConstraintName("FK__Chat__support_ag__08B54D69");
 
             entity.HasOne(d => d.User).WithMany(p => p.ChatUsers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Chat__user_id__31B762FC");
+                .HasConstraintName("FK__Chat__user_id__09A971A2");
         });
 
         modelBuilder.Entity<ChatMessage>(entity =>
         {
-            entity.HasKey(e => e.MessageId).HasName("PK__Chat_Mes__0BBF6EE6ED8C769F");
+            entity.HasKey(e => e.MessageId).HasName("PK__Chat_Mes__0BBF6EE6D7DE0D58");
 
             entity.ToTable("Chat_Message");
 
@@ -169,12 +145,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Chat).WithMany(p => p.ChatMessages)
                 .HasForeignKey(d => d.ChatId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Chat_Mess__chat___367C1819");
+                .HasConstraintName("FK__Chat_Mess__chat___0A9D95DB");
         });
 
         modelBuilder.Entity<ChoiceAnswer>(entity =>
         {
-            entity.HasKey(e => e.AnswerId).HasName("PK__Choice_A__337243182E7DD80B");
+            entity.HasKey(e => e.AnswerId).HasName("PK__Choice_A__337243186EF893D4");
 
             entity.ToTable("Choice_Answer");
 
@@ -193,12 +169,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Question).WithMany(p => p.ChoiceAnswers)
                 .HasForeignKey(d => d.QuestionId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Choice_An__quest__03F0984C");
+                .HasConstraintName("FK__Choice_An__quest__0B91BA14");
         });
 
         modelBuilder.Entity<Comment>(entity =>
         {
-            entity.HasKey(e => e.CommentId).HasName("PK__Comment__E79576871A9F4F74");
+            entity.HasKey(e => e.CommentId).HasName("PK__Comment__E7957687FD12D4BC");
 
             entity.ToTable("Comment");
 
@@ -219,22 +195,28 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
             entity.HasOne(d => d.Lesson).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.LessonId)
-                .HasConstraintName("FK__Comment__lesson___2DE6D218");
+                .HasConstraintName("FK__Comment__lesson___0C85DE4D");
 
             entity.HasOne(d => d.ParentComment).WithMany(p => p.InverseParentComment)
                 .HasForeignKey(d => d.ParentCommentId)
-                .HasConstraintName("FK__Comment__parent___2BFE89A6");
+                .HasConstraintName("FK__Comment__parent___0D7A0286");
 
             entity.HasOne(d => d.User).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Comment__user_id__2CF2ADDF");
+                .HasConstraintName("FK__Comment__user_id__0E6E26BF");
         });
 
         modelBuilder.Entity<Enrollment>(entity =>
         {
-            entity.HasKey(e => e.EnrollmentId).HasName("PK__Enrollme__6D24AA7A57661DB0");
+            entity.HasKey(e => e.EnrollmentId).HasName("PK__Enrollme__6D24AA7A7906B3D7");
 
-            entity.ToTable("Enrollment");
+            entity.ToTable("Enrollment", tb =>
+                {
+                    tb.HasTrigger("trg_create_lesson_progress");
+                    tb.HasTrigger("trg_update_grade_lesson_progress");
+                });
+
+            entity.HasIndex(e => new { e.UserId, e.Grade, e.Semester }, "UK_Enrollment_UserId_Grade_Semester").IsUnique();
 
             entity.Property(e => e.EnrollmentId).HasColumnName("enrollment_id");
             entity.Property(e => e.AvgScore)
@@ -250,17 +232,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.User).WithMany(p => p.Enrollments)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Enrollmen__user___6FE99F9F");
-
-            entity.ToTable(tb =>
-            {
-                tb.HasTrigger("trg_create_lesson_progress");
-            });
+                .HasConstraintName("FK__Enrollmen__user___0F624AF8");
         });
 
         modelBuilder.Entity<ErrorReport>(entity =>
         {
-            entity.HasKey(e => e.ErrorId).HasName("PK__Error_Re__DA71E16CBE836E35");
+            entity.HasKey(e => e.ErrorId).HasName("PK__Error_Re__DA71E16CE3A540E3");
 
             entity.ToTable("Error_Report");
 
@@ -285,12 +262,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.User).WithMany(p => p.ErrorReports)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Error_Rep__user___41EDCAC5");
+                .HasConstraintName("FK__Error_Rep__user___10566F31");
         });
 
         modelBuilder.Entity<Exercise>(entity =>
         {
-            entity.HasKey(e => e.ExerciseId).HasName("PK__Exercise__C121418E1118BA51");
+            entity.HasKey(e => e.ExerciseId).HasName("PK__Exercise__C121418EC9CD6A75");
 
             entity.ToTable("Exercise");
 
@@ -308,7 +285,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
         modelBuilder.Entity<ExerciseDetail>(entity =>
         {
-            entity.HasKey(e => e.ExerciseDetailId).HasName("PK__Exercise__CF31D69C1DFCFEF2");
+            entity.HasKey(e => e.ExerciseDetailId).HasName("PK__Exercise__CF31D69C76390A53");
 
             entity.ToTable("Exercise_Detail");
 
@@ -318,19 +295,23 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
             entity.HasOne(d => d.Exercise).WithMany(p => p.ExerciseDetails)
                 .HasForeignKey(d => d.ExerciseId)
-                .HasConstraintName("FK__Exercise___exerc__14270015");
+                .HasConstraintName("FK__Exercise___exerc__123EB7A3");
 
             entity.HasOne(d => d.Question).WithMany(p => p.ExerciseDetails)
                 .HasForeignKey(d => d.QuestionId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Exercise___quest__151B244E");
+                .HasConstraintName("FK__Exercise___quest__1332DBDC");
         });
 
         modelBuilder.Entity<ExerciseDetailResult>(entity =>
         {
-            entity.HasKey(e => e.ExerciseDetailResultId).HasName("PK__Exercise__B2FE72291D9EB615");
+            entity.HasKey(e => e.ExerciseDetailResultId).HasName("PK__Exercise__B2FE7229E398B6F6");
 
-            entity.ToTable("Exercise_Detail_Result");
+            entity.ToTable("Exercise_Detail_Result", tb =>
+                {
+                    tb.HasTrigger("trg_update_score_after_insert");
+                    tb.HasTrigger("trg_update_score_after_update");
+                });
 
             entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
             entity.Property(e => e.ExerciseDetailId).HasColumnName("exercise_detail_id");
@@ -339,22 +320,16 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
             entity.HasOne(d => d.ExerciseDetail).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseDetailId)
-                .HasConstraintName("FK__Exercise___exerc__236943A5");
+                .HasConstraintName("FK__Exercise___exerc__14270015");
 
             entity.HasOne(d => d.ExerciseResult).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseResultId)
-                .HasConstraintName("FK__Exercise___exerc__245D67DE");
-
-            entity.ToTable(tb =>
-            {
-                tb.HasTrigger("trg_update_score_after_insert");
-                tb.HasTrigger("trg_update_score_after_update");
-            });
+                .HasConstraintName("FK__Exercise___exerc__151B244E");
         });
 
         modelBuilder.Entity<ExerciseResult>(entity =>
         {
-            entity.HasKey(e => e.ExerciseResultId).HasName("PK__Exercise__AD9A3B0A3C6A7837");
+            entity.HasKey(e => e.ExerciseResultId).HasName("PK__Exercise__AD9A3B0A326BA36C");
 
             entity.ToTable("Exercise_Result");
 
@@ -371,17 +346,17 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Enrollment).WithMany(p => p.ExerciseResults)
                 .HasForeignKey(d => d.EnrollmentId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Exercise___enrol__208CD6FA");
+                .HasConstraintName("FK__Exercise___enrol__160F4887");
 
             entity.HasOne(d => d.Exercise).WithMany(p => p.ExerciseResults)
                 .HasForeignKey(d => d.ExerciseId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Exercise___exerc__1F98B2C1");
+                .HasConstraintName("FK__Exercise___exerc__17036CC0");
         });
 
         modelBuilder.Entity<FillAnswer>(entity =>
         {
-            entity.HasKey(e => e.AnswerId).HasName("PK__Fill_Ans__3372431814241484");
+            entity.HasKey(e => e.AnswerId).HasName("PK__Fill_Ans__337243188733B59B");
 
             entity.ToTable("Fill_Answer");
 
@@ -395,65 +370,66 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Question).WithMany(p => p.FillAnswers)
                 .HasForeignKey(d => d.QuestionId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Fill_Answ__quest__0A9D95DB");
+                .HasConstraintName("FK__Fill_Answ__quest__17F790F9");
         });
 
         modelBuilder.Entity<Lesson>(entity =>
         {
-            entity.HasKey(e => e.LessonId).HasName("PK__Lesson__6421F7BE8F73636D");
+            entity.HasKey(e => e.LessonId).HasName("PK__Lesson__6421F7BE42752177");
 
-            entity.ToTable("Lesson");
+            entity.ToTable("Lesson", tb =>
+                {
+                    tb.HasTrigger("trg_after_delete_lesson");
+                    tb.HasTrigger("trg_after_insert_lesson");
+                });
 
             entity.Property(e => e.LessonId).HasColumnName("lesson_id");
             entity.Property(e => e.ChapterId).HasColumnName("chapter_id");
-            entity.Property(e => e.LessonVideoUrl)
-                .HasMaxLength(255)
-                .HasColumnName("lesson_video_url");
-            entity.Property(e => e.LessonPdfUrl)
-                .HasMaxLength(255)
-                .HasColumnName("lesson_pdf_url");
             entity.Property(e => e.LessonName)
                 .HasMaxLength(100)
                 .HasColumnName("lesson_name");
             entity.Property(e => e.LessonOrder).HasColumnName("lesson_order");
+            entity.Property(e => e.LessonPdfUrl)
+                .HasMaxLength(255)
+                .HasColumnName("lesson_pdf_url");
+            entity.Property(e => e.LessonVideoUrl)
+                .HasMaxLength(255)
+                .HasColumnName("lesson_video_url");
 
             entity.HasOne(d => d.Chapter).WithMany(p => p.Lessons)
                 .HasForeignKey(d => d.ChapterId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Lesson__chapter___787EE5A0");
-
-            entity.ToTable(tb =>
-            {
-                tb.HasTrigger("trg_after_insert_lesson");
-                tb.HasTrigger("trg_after_delete_lesson");
-            });
+                .HasConstraintName("FK__Lesson__chapter___18EBB532");
         });
 
         modelBuilder.Entity<LessonProgress>(entity =>
         {
-            entity.HasKey(e => e.LearningProgressId).HasName("PK__Lesson_P__5BA9A40D0C38A3C3");
+            entity.HasKey(e => e.LearningProgressId).HasName("PK__Lesson_P__5BA9A40D6C7E8015");
 
             entity.ToTable("Lesson_Progress");
 
             entity.Property(e => e.LearningProgressId).HasColumnName("learning_progress_id");
             entity.Property(e => e.EnrollmentId).HasColumnName("enrollment_id");
-            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.LessonId).HasColumnName("lesson_id");
+            entity.Property(e => e.Status)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("status");
 
             entity.HasOne(d => d.Enrollment).WithMany(p => p.LessonProgresses)
                 .HasForeignKey(d => d.EnrollmentId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Lesson_Pr__enrol__282DF8C2");
+                .HasConstraintName("FK__Lesson_Pr__enrol__19DFD96B");
 
             entity.HasOne(d => d.Lesson).WithMany(p => p.LessonProgresses)
                 .HasForeignKey(d => d.LessonId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Lesson_Pr__lesso__2739D489");
+                .HasConstraintName("FK__Lesson_Pr__lesso__1AD3FDA4");
         });
 
         modelBuilder.Entity<MatchingAnswer>(entity =>
         {
-            entity.HasKey(e => e.AnswerId).HasName("PK__Matching__337243182B53B279");
+            entity.HasKey(e => e.AnswerId).HasName("PK__Matching__33724318358EB00B");
 
             entity.ToTable("Matching_Answer");
 
@@ -470,12 +446,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Question).WithMany(p => p.MatchingAnswers)
                 .HasForeignKey(d => d.QuestionId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Matching___quest__07C12930");
+                .HasConstraintName("FK__Matching___quest__1BC821DD");
         });
 
         modelBuilder.Entity<Notification>(entity =>
         {
-            entity.HasKey(e => e.NotificationId).HasName("PK__Notifica__E059842FBF0CEF9F");
+            entity.HasKey(e => e.NotificationId).HasName("PK__Notifica__E059842FBE2E9743");
 
             entity.Property(e => e.NotificationId).HasColumnName("notification_id");
             entity.Property(e => e.NotificationMessage)
@@ -502,36 +478,71 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.User).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Notificat__user___3B40CD36");
+                .HasConstraintName("FK__Notificat__user___1CBC4616");
         });
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA63D5053C");
+            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA12E2F2AB");
 
             entity.ToTable("Payment");
 
             entity.Property(e => e.PaymentId).HasColumnName("payment_id");
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime")
+                .HasColumnName("date");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .HasColumnName("description");
-            entity.Property(e => e.PaymentName)
-                .HasMaxLength(100)
-                .HasColumnName("payment_name");
-            entity.Property(e => e.Status)
-                .HasDefaultValue(true)
-                .HasColumnName("status");
+            entity.Property(e => e.MethodId).HasColumnName("method_id");
+            entity.Property(e => e.PlanId).HasColumnName("plan_id");
+            entity.Property(e => e.Price)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("price");
+            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.TokenPackageId).HasColumnName("token_package_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.Method).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.MethodId)
+                .HasConstraintName("FK__Payment__method___72910220");
+
+            entity.HasOne(d => d.Plan).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.PlanId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Payment__plan_id__6FB49575");
+
+            entity.HasOne(d => d.TokenPackage).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.TokenPackageId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Payment__token_p__6EC0713C");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__Payment__user_id__73852659");
+        });
+
+        modelBuilder.Entity<PaymentMethod>(entity =>
+        {
+            entity.HasKey(e => e.MethodId).HasName("PK__PaymentM__747727B69984D971");
+
+            entity.ToTable("PaymentMethod");
+
+            entity.Property(e => e.MethodId).HasColumnName("method_id");
+            entity.Property(e => e.MethodName)
+                .HasMaxLength(255)
+                .HasColumnName("method_name");
         });
 
         modelBuilder.Entity<Plan>(entity =>
         {
-            entity.HasKey(e => e.PlanId).HasName("PK__Plans__BE9F8F1D256113F1");
+            entity.HasKey(e => e.PlanId).HasName("PK__Plans__BE9F8F1DED1A80F2");
 
             entity.Property(e => e.PlanId).HasColumnName("plan_id");
+            entity.Property(e => e.Coins).HasColumnName("coins");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .HasColumnName("description");
-            entity.Property(e => e.Coins).HasColumnName("coins");
             entity.Property(e => e.PlanName)
                 .HasMaxLength(100)
                 .HasColumnName("plan_name");
@@ -542,38 +553,43 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
         modelBuilder.Entity<PlanTransaction>(entity =>
         {
-            entity.HasKey(e => e.PlanTransactionId).HasName("PK__Plan_Tra__6A8B2E59818D54EC");
+            entity.HasKey(e => e.PlanTransactionId).HasName("PK__Plan_Tra__6A8B2E593D030A85");
 
             entity.ToTable("Plan_Transaction");
 
             entity.Property(e => e.PlanTransactionId).HasColumnName("plan_transaction_id");
-            entity.Property(e => e.CreatedAt)
+            entity.Property(e => e.Amount).HasColumnName("amount");
+            entity.Property(e => e.Date)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.PaymentId).HasColumnName("payment_id");
-            entity.Property(e => e.PlanId).HasColumnName("plan_id");
+                .HasColumnName("date");
+            entity.Property(e => e.PlanUserId).HasColumnName("plan_user_id");
+
+            entity.HasOne(d => d.PlanUser).WithMany(p => p.PlanTransactions)
+                .HasForeignKey(d => d.PlanUserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Plan_Tran__plan___70A8B9AE");
+        });
+
+        modelBuilder.Entity<PlanUser>(entity =>
+        {
+            entity.HasKey(e => e.PlanUserId).HasName("PK__Plan_Use__C1E9976C08AA3B99");
+
+            entity.ToTable("Plan_User");
+
+            entity.Property(e => e.PlanUserId).HasColumnName("plan_user_id");
+            entity.Property(e => e.Coins).HasColumnName("coins");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
-            entity.HasOne(d => d.Payment).WithMany(p => p.PlanTransactions)
-                .HasForeignKey(d => d.PaymentId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Plan_Tran__payme__6C190EBB");
-
-            entity.HasOne(d => d.Plan).WithMany(p => p.PlanTransactions)
-                .HasForeignKey(d => d.PlanId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Plan_Tran__plan___6B24EA82");
-
-            entity.HasOne(d => d.User).WithMany(p => p.PlanTransactions)
+            entity.HasOne(d => d.User).WithMany(p => p.PlanUsers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Plan_Tran__user___6A30C649");
+                .HasConstraintName("FK__Plan_User__user___719CDDE7");
         });
 
         modelBuilder.Entity<Question>(entity =>
         {
-            entity.HasKey(e => e.QuestionId).HasName("PK__Question__2EC21549ED70DA03");
+            entity.HasKey(e => e.QuestionId).HasName("PK__Question__2EC215491BC1368A");
 
             entity.ToTable("Question");
 
@@ -600,12 +616,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Lesson).WithMany(p => p.Questions)
                 .HasForeignKey(d => d.LessonId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Question__lesson__00200768");
+                .HasConstraintName("FK__Question__lesson__208CD6FA");
         });
 
         modelBuilder.Entity<Test>(entity =>
         {
-            entity.HasKey(e => e.TestId).HasName("PK__Test__F3FF1C02CBA0D51C");
+            entity.HasKey(e => e.TestId).HasName("PK__Test__F3FF1C02013B358C");
 
             entity.ToTable("Test");
 
@@ -618,12 +634,12 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Chapter).WithMany(p => p.Tests)
                 .HasForeignKey(d => d.ChapterId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Test__chapter_id__7B5B524B");
+                .HasConstraintName("FK__Test__chapter_id__2180FB33");
         });
 
         modelBuilder.Entity<TestDetail>(entity =>
         {
-            entity.HasKey(e => e.TestDetailId).HasName("PK__Test_Det__B8D23258609AEC20");
+            entity.HasKey(e => e.TestDetailId).HasName("PK__Test_Det__B8D232588CD064D0");
 
             entity.ToTable("Test_Detail");
 
@@ -634,16 +650,16 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Question).WithMany(p => p.TestDetails)
                 .HasForeignKey(d => d.QuestionId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Test_Deta__quest__0E6E26BF");
+                .HasConstraintName("FK__Test_Deta__quest__22751F6C");
 
             entity.HasOne(d => d.Test).WithMany(p => p.TestDetails)
                 .HasForeignKey(d => d.TestId)
-                .HasConstraintName("FK__Test_Deta__test___0D7A0286");
+                .HasConstraintName("FK__Test_Deta__test___236943A5");
         });
 
         modelBuilder.Entity<TestDetailResult>(entity =>
         {
-            entity.HasKey(e => e.TestDetailResultId).HasName("PK__Test_Det__37921712DC895AE5");
+            entity.HasKey(e => e.TestDetailResultId).HasName("PK__Test_Det__37921712DB4A9DEE");
 
             entity.ToTable("Test_Detail_Result");
 
@@ -654,16 +670,16 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
             entity.HasOne(d => d.TestDetail).WithMany(p => p.TestDetailResults)
                 .HasForeignKey(d => d.TestDetailId)
-                .HasConstraintName("FK__Test_Deta__test___1BC821DD");
+                .HasConstraintName("FK__Test_Deta__test___245D67DE");
 
             entity.HasOne(d => d.TestResult).WithMany(p => p.TestDetailResults)
                 .HasForeignKey(d => d.TestResultId)
-                .HasConstraintName("FK__Test_Deta__test___1CBC4616");
+                .HasConstraintName("FK__Test_Deta__test___25518C17");
         });
 
         modelBuilder.Entity<TestResult>(entity =>
         {
-            entity.HasKey(e => e.TestResultId).HasName("PK__Test_Res__152BCEDA77BF0C91");
+            entity.HasKey(e => e.TestResultId).HasName("PK__Test_Res__152BCEDA630B7218");
 
             entity.ToTable("Test_Result");
 
@@ -681,17 +697,17 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.Enrollment).WithMany(p => p.TestResults)
                 .HasForeignKey(d => d.EnrollmentId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Test_Resu__enrol__18EBB532");
+                .HasConstraintName("FK__Test_Resu__enrol__2645B050");
 
             entity.HasOne(d => d.Test).WithMany(p => p.TestResults)
                 .HasForeignKey(d => d.TestId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Test_Resu__test___17F790F9");
+                .HasConstraintName("FK__Test_Resu__test___2739D489");
         });
 
         modelBuilder.Entity<TokenPackage>(entity =>
         {
-            entity.HasKey(e => e.TokenPackageId).HasName("PK__Token_Pa__F49422B17643D6F4");
+            entity.HasKey(e => e.TokenPackageId).HasName("PK__Token_Pa__F49422B1ED52AC91");
 
             entity.ToTable("Token_Package");
 
@@ -710,43 +726,61 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
         modelBuilder.Entity<TokenTransaction>(entity =>
         {
-            entity.HasKey(e => e.TokenTransactionId).HasName("PK__Token_Tr__A3DC9D59D2E60AED");
+            entity.HasKey(e => e.TokenTransactionId).HasName("PK__Token_Tr__A3DC9D593522B99C");
 
             entity.ToTable("Token_Transaction");
 
             entity.Property(e => e.TokenTransactionId).HasColumnName("token_transaction_id");
-            entity.Property(e => e.Change).HasColumnName("change");
-            entity.Property(e => e.CreatedAt)
+            entity.Property(e => e.Amount).HasColumnName("amount");
+            entity.Property(e => e.Date)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
-                .HasColumnName("created_at");
-            entity.Property(e => e.PaymentId).HasColumnName("payment_id");
-            entity.Property(e => e.TokenPackageId).HasColumnName("token_package_id");
-            entity.Property(e => e.TransactionType)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("transaction_type");
+                .HasColumnName("date");
+            entity.Property(e => e.TokenUserId).HasColumnName("token_user_id");
+
+            entity.HasOne(d => d.TokenUser).WithMany(p => p.TokenTransactions)
+                .HasForeignKey(d => d.TokenUserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Token_Tra__token__74794A92");
+        });
+
+        modelBuilder.Entity<TokenUser>(entity =>
+        {
+            entity.HasKey(e => e.TokenUserId).HasName("PK__Token_Us__7FCD61738F4E786D");
+
+            entity.ToTable("Token_User");
+
+            entity.Property(e => e.TokenUserId).HasColumnName("token_user_id");
+            entity.Property(e => e.Tokens).HasColumnName("tokens");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
-            entity.HasOne(d => d.Payment).WithMany(p => p.TokenTransactions)
-                .HasForeignKey(d => d.PaymentId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Token_Tra__payme__6383C8BA");
-
-            entity.HasOne(d => d.TokenPackage).WithMany(p => p.TokenTransactions)
-                .HasForeignKey(d => d.TokenPackageId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Token_Tra__token__628FA481");
-
-            entity.HasOne(d => d.User).WithMany(p => p.TokenTransactions)
+            entity.HasOne(d => d.User).WithMany(p => p.TokenUsers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Token_Tra__user___619B8048");
+                .HasConstraintName("FK__Token_Use__user___756D6ECB");
+        });
+
+        modelBuilder.Entity<UserSession>(entity =>
+        {
+            entity.HasKey(e => e.UserSessionId).HasName("PK__User_Ses__DE7C9ED61087F440");
+
+            entity.ToTable("User_Session");
+
+            entity.Property(e => e.UserSessionId).HasColumnName("user_session_id");
+            entity.Property(e => e.Duration).HasColumnName("duration");
+            entity.Property(e => e.LoginTime)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnName("login_time");
+            entity.Property(e => e.LogoutTime).HasColumnName("logout_time");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserSessions)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__User_Session__user_id__4F7CD00D");
         });
 
         base.OnModelCreating(modelBuilder);
-        
     }
 
-   
+
 }

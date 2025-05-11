@@ -984,31 +984,5 @@
             - This endpoint requires the caller to be authenticated and have the  role.
             </remarks>
         </member>
-        <member name="M:AIMathProject.API.Controllers.UserStatisticsController.GetUserStatistics(System.String)">
-            <summary>
-            Get user statistics for a specific time period
-            </summary>
-            <remarks>
-            This API retrieves comprehensive user statistics based on the specified time period.
-            
-            **Period Types:**
-            - **day**: Statistics for the current day compared to the previous day
-            - **week**: Statistics for the current week compared to the previous week
-            - **month**: Statistics for the current month compared to the previous month
-            - **year**: Statistics for the current year compared to the previous year
-            
-            **Response includes:**
-            - User count statistics (current period, previous period, growth rate)
-            - User engagement metrics (average usage time in minutes, change rate)
-            - Daily breakdown of user activity
-            
-            **Example Request:**
-            ```http
-            GET /api/users/statistics/week
-            ```
-            </remarks>
-            <param name="periodType">The time period type ('day', 'week', 'month', or 'year')</param>
-            <returns>Returns detailed user statistics for the specified period</returns>
-        </member>
     </members>
 </doc>

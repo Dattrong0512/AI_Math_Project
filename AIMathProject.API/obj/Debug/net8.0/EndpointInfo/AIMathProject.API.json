@@ -173,6 +173,375 @@
         }
       }
     },
+    "/api/enrollment/current/{userId}": {
+      "get": {
+        "tags": [
+          "Enrollment"
+        ],
+        "summary": "Retrieves the current (most recent) enrollment for a specific user.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves the most recent enrollment record for a given user based on enrollment date.\r\n            \r\n**Request:**\r\nThe request should include:\r\n- **userId** (int): The unique identifier of the user.\r\n            \r\n**Response:**\r\nThe response will return the most recent enrollment record containing:\r\n- **enrollmentId**: The unique identifier of the enrollment.\r\n- **userId**: The unique identifier of the user.\r\n- **grade**: The grade level associated with the enrollment.\r\n- **enrollmentDate**: The date when the user enrolled.\r\n- **avgScore**: The average score of the user in this enrollment (nullable).\r\n- **semester**: The semester in which the user is enrolled.\r\n- **startYear**: The academic start year.\r\n- **endYear**: The academic end year.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/enrollment/current/10\r\n```",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrollmentDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enrollment/update": {
+      "put": {
+        "tags": [
+          "Enrollment"
+        ],
+        "summary": "Updates an entire enrollment record.",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API updates all fields of a specific enrollment record.\r\n\r\n**Request:**\r\nThe request should include the full `EnrollmentDto` object.\r\n\r\n**Response:**\r\nThe response will return a list of enrollment records, each containing:\r\n- **enrollmentId**: The unique identifier of the enrollment.\r\n- **userId**: The unique identifier of the user.\r\n- **grade**: The grade level associated with the enrollment.\r\n- **enrollmentDate**: The date when the user enrolled.\r\n- **avgScore**: The average score of the user in this enrollment (nullable).\r\n- **semester**: The semester in which the user is enrolled.\r\n- **startYear**: The academic start year.\r\n- **endYear**: The academic end year.\r\n\r\n**Example Request:**\r\n```http\r\nPUT /api/enrollment/update\r\nContent-Type: application/json\r\n{\r\n  \"enrollmentId\": 12,\r\n  \"userId\": 10,\r\n  \"grade\": 2,\r\n  \"enrollmentDate\": \"2024-08-22\",\r\n  \"avgScore\": 8.5,\r\n  \"semester\": 2,\r\n  \"startYear\": 2024,\r\n  \"endYear\": 2025\r\n}",
+        "requestBody": {
+          "description": "The updated enrollment object.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrollmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/enrollment/create": {
+      "post": {
+        "tags": [
+          "Enrollment"
+        ],
+        "summary": "Creates a new enrollment record.",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API creates a new enrollment record for a user. If avgScore is not provided, it will default to 0.\r\n\r\n**Request:**\r\nThe request should include the `EnrollmentDto` object with required fields.\r\n\r\n**Response:**\r\nThe response will return the newly created enrollment record containing:\r\n- **enrollmentId**: The unique identifier of the new enrollment.\r\n- **userId**: The unique identifier of the user.\r\n- **grade**: The grade level associated with the enrollment.\r\n- **enrollmentDate**: The date when the user enrolled.\r\n- **avgScore**: The average score of the user in this enrollment (defaults to 0 if not provided).\r\n- **semester**: The semester in which the user is enrolled.\r\n- **startYear**: The academic start year.\r\n- **endYear**: The academic end year.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/enrollment/create\r\nContent-Type: application/json\r\n{\r\n  \"userId\": 10,\r\n  \"semester\": 2,\r\n  \"grade\": 3,\r\n  \"startYear\": 2024,\r\n  \"endYear\": 2025\r\n}\r\n```",
+        "requestBody": {
+          "description": "The enrollment object to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrollmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exercise/detail/enrollment/id/{id}": {
+      "get": {
+        "tags": [
+          "Exercise"
+        ],
+        "summary": "Retrieves all exercise results associated with a specific enrollment ID.",
+        "description": "*Only logged-in users (including user and admin) can access this API.*  \r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**  \r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**  \r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **lesson** (object, nullable): Information about the associated lesson:\r\n  - **lessonOrder** (short, nullable): The order of the lesson.\r\n  - **lessonName** (string): The name of the lesson.\r\n  - **lessonVideoUrl** (string, nullable): The URL of the lesson video.\r\n  - **lessonPdfUrl** (string, nullable): The URL of the lesson PDF.\r\n  - **chapterOrder** (short, nullable): The order of the chapter.\r\n  - **questions** (array, nullable): List of questions associated with the lesson.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **exerciseDetailId** (int): The ID of the exercise detail.\r\n  - **exerciseResultId** (int): The ID of the exercise result.\r\n  - **exerciseDetail** (object): Details about the exercise, including:\r\n    - **exerciseId** (int): The ID of the exercise.\r\n    - **questionId** (int): The ID of the question.\r\n    - **question** (object): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers:\r\n        - **answerId** (int): The unique identifier of the answer choice.\r\n        - **content** (string): The text of the answer choice.\r\n        - **isCorrect** (bool): Whether this choice is the correct answer.\r\n        - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n            \r\n**Example Request:**  \r\n\r\nGET /api/exerciseresults/enrollment/id/8\r\n            \r\n**Response Codes:**  \r\n- **200 OK**: Successfully retrieved the exercise results.  \r\n- **404 Not Found**: No exercise results found for the given enrollment ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The enrollment ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exercise/enrollment/id/{id}/chapter": {
+      "get": {
+        "tags": [
+          "Exercise"
+        ],
+        "summary": "Retrieves all exercises with chapter information associated with a specific enrollment ID.",
+        "description": "*Only logged-in users (including user and admin) can access this API, and this API is for AI support to suggest exercises user needs to improve*  \r\nThis API returns a list of exercises with chapter information for a given enrollment ID.\r\n            \r\n**Request Parameters:**  \r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**  \r\nThe response will return an array of exercises with the following structure:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **exerciseName** (string): The name of the exercise.\r\n- **lesson** (object): Information about the lesson:\r\n  - **lessonName** (string): The name of the lesson.\r\n  - **chapter** (object): Information about the chapter:\r\n    - **chapterId** (int): The unique identifier of the chapter.\r\n    - **grade** (short): The grade level.\r\n    - **chapterOrder** (short): The order of the chapter.\r\n    - **chapterName** (string): The name of the chapter.\r\n    - **semester** (short): The semester number.\r\n- **exerciseResults** (array): List of exercise results:\r\n  - **score** (decimal): The score achieved for this exercise.\r\n  - **exerciseDetailResults** (array): List of detail results, each containing:\r\n    - **isCorrect** (boolean): Whether the answer was correct.\r\n    - **question** (object): Information about the question:\r\n      - **difficulty** (short): The difficulty level of the question.\r\n      - **imgUrl** (string, nullable): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n            \r\n**Example Response:**  \r\n```json\r\n[\r\n  {\r\n    \"exerciseId\": 1,\r\n    \"exerciseName\": \"Bài tập Vị trí\",\r\n    \"lesson\": {\r\n      \"lessonName\": \"Vị trí\",\r\n      \"chapter\": {\r\n        \"chapterId\": 1,\r\n        \"grade\": 1,\r\n        \"chapterOrder\": 1,\r\n        \"chapterName\": \"Làm quen với một số hình\",\r\n        \"semester\": 1\r\n      }\r\n    },\r\n    \"exerciseResults\": [\r\n      {\r\n        \"score\": 7.5,\r\n        \"exerciseDetailResults\": [\r\n          {\r\n            \"isCorrect\": true,\r\n            \"question\": {\r\n              \"difficulty\": 1,\r\n              \"imgUrl\": \"https://example.com/image.png\",\r\n              \"questionContent\": \"Đây là biển báo cấm rẽ bên nào\"\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n]\r\n```\r\n            \r\n**Example Request:**  \r\n\r\nGET /api/exercise/with-chapter/enrollment/id/8\r\n            \r\n**Response Codes:**  \r\n- **200 OK**: Successfully retrieved the exercises with chapter information.  \r\n- **400 Bad Request**: No exercises found.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The enrollment ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExerciseDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exerciseresult/enrollment/id/{id}/lessonorder/{lessonorder}": {
+      "post": {
+        "tags": [
+          "ExerciseDetailResult"
+        ],
+        "summary": "Creates or updates exercise detail results for a user's enrollment in a specific lesson.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates or updates the exercise detail results based on the user's answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **lessonorder** (int): The sequential order of the lesson.\r\n- **edrDtoList** (List<ExerciseDetailResultDto>): List of exercise detail results. Each item should include:\r\n  - **questionId** (int): The unique identifier of the question being answered.\r\n  - **isCorrect** (bool): Whether the user's answer is correct or not.\r\n\r\n**Response Format:**\r\n- **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.\r\n- **400 Bad Request**: If the operation fails, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/exerciseresult/enrollment/id/11/lessonorder/1\r\nContent-Type: application/json\r\n[\r\n  {\r\n    \"questionId\": 1,\r\n    \"isCorrect\": true\r\n  },\r\n  {\r\n    \"questionId\": 2,\r\n    \"isCorrect\": false\r\n  },\r\n  {\r\n    \"questionId\": 3,\r\n    \"isCorrect\": true\r\n  },\r\n  {\r\n    \"questionId\": 4,\r\n    \"isCorrect\": true\r\n  }\r\n]\r\n```\r\n\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 200 OK\r\ntrue\r\n```",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lessonorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ExerciseDetailResultDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "ExerciseResult"
+        ],
+        "summary": "Retrieves the exercise result details associated with a specific enrollment ID and lesson order.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API returns the detailed information about an exercise result, including the questions and answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **lessonorder** (int): The sequential order of the lesson.\r\n\r\n**Response Format:**\r\nThe response will return the exercise result details, including:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **lesson** (object, nullable): Information about the associated lesson.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **questionId** (int, nullable): The ID of the question.\r\n  - **isCorrect** (bool): Whether the answer is correct or not.\r\n  - **exerciseDetailId** (int): The ID of the exercise detail.\r\n  - **exerciseResultId** (int): The ID of the exercise result.\r\n  - **exerciseDetail** (object): Details about the exercise, including:\r\n    - **exerciseId** (int): The ID of the exercise.\r\n    - **questionId** (int): The ID of the question.\r\n    - **question** (object): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers:\r\n        - **answerId** (int): The unique identifier of the answer choice.\r\n        - **content** (string): The text of the answer choice.\r\n        - **isCorrect** (bool): Whether this choice is the correct answer.\r\n        - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresult/enrollment/id/11/lessonorder/1\r\n```",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lessonorder",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exerciseresults/enrollment/id/{id}": {
+      "get": {
+        "tags": [
+          "ExerciseResult"
+        ],
+        "summary": "Retrieves all exercise results associated with a specific enrollment ID.",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**\r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **lesson** (object, nullable): Information about the associated lesson.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **questionId** (int, nullable): The ID of the question.\r\n  - **isCorrect** (bool): Whether the answer is correct or not.\r\n  - **exerciseDetailId** (int): The ID of the exercise detail.\r\n  - **exerciseResultId** (int): The ID of the exercise result.\r\n  - **exerciseDetail** (object): Details about the exercise, including:\r\n    - **exerciseId** (int): The ID of the exercise.\r\n    - **questionId** (int): The ID of the question.\r\n    - **question** (object): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers:\r\n        - **answerId** (int): The unique identifier of the answer choice.\r\n        - **content** (string): The text of the answer choice.\r\n        - **isCorrect** (bool): Whether this choice is the correct answer.\r\n        - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n            \r\n**Example Request:**\r\nGET /api/exerciseresults/enrollment/id/11",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The enrollment ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExerciseResultDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/lesson/grade/{grade}/lessonorder/{lessonorder}": {
       "get": {
         "tags": [
@@ -317,13 +686,58 @@
         }
       }
     },
-    "/id/{id}": {
+    "/api/lessons/grade/{grade}/exercises": {
+      "get": {
+        "tags": [
+          "Lesson"
+        ],
+        "summary": "Retrieves all lessons with their chapters and exercises for a specific grade.",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns lessons that have exercises associated with them, filtered by grade level.\r\nEach lesson includes its chapter information and a list of exercises.\r\n\r\n**Request Parameters:**\r\n- **grade** (int): The grade level of the study program.\r\n\r\n**Response Format:**\r\nThe response will return a list of lessons with their associated chapters and exercises:\r\n- **lessonOrder** (short?): The order of the lesson within the chapter.\r\n- **lessonName** (string): The name of the lesson.\r\n- **lessonVideoUrl** (string, nullable): The URL to the lesson video, if available.\r\n- **lessonPdfUrl** (string, nullable): The URL to the lesson PDF, if available.\r\n- **chapter**: The chapter that contains this lesson.\r\n- **exercises**: The list of exercises associated with this lesson.\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/lessons/grade/1/exercises\r\n```",
+        "parameters": [
+          {
+            "name": "grade",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LessonWithChapterAndExerciseDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LessonProgress/id/{id}": {
       "get": {
         "tags": [
           "LessonProgress"
         ],
         "summary": "Returns all information of the study program the user has registered for.",
-        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include userID.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.\r\n **Example Request:**\r\n```http\r\nGET /api/lessionprogress/id/6",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include userID.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.\r\n  \r\n **Example Request:**\r\n```http\r\nGET /api/lessonprogress/id/14",
         "parameters": [
           {
             "name": "id",
@@ -362,16 +776,25 @@
         }
       }
     },
-    "/id/{id}/semester/{semester}": {
+    "/api/LessonProgress/id/{id}/grade/{grade}/semester/{semester}": {
       "get": {
         "tags": [
           "LessonProgress"
         ],
-        "summary": "Returns all information of the study program classified by the semester the user has registered for.",
-        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API retrieves the user's study program information, including lesson details and learning progress.\r\n\r\n**Request:**\r\nThe request should include **userID** and **Semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lessons, each containing:\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: The content of the lesson.\r\n  **Example Request:**\r\n```http\r\nGET /api/lessionprogress/id/6/semester/1",
+        "summary": "Returns lesson progress information filtered by chapter's grade and semester.",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API retrieves lesson progress information for a specific enrollment, filtered by the chapter's grade and semester.\r\n\r\n**Request:**\r\nThe request should include the **enrollment ID**, **grade**, and **semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lesson progress records matching the specified grade and semester, each containing:\r\n- **learningProgressId**: The unique identifier of the progress record.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **status**: The current status of the lesson (not_started, in_progress, completed).\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonVideoUrl**: URL to the lesson's video content.\r\n  - **lessonPdfUrl**: URL to the lesson's PDF content.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/lessonprogress/id/14/grade/3/semester/1",
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "grade",
             "in": "path",
             "required": true,
             "schema": {
@@ -416,16 +839,16 @@
         }
       }
     },
-    "/update/lessonprogressID/{idProgress}/learningprogress/{learningProgress}": {
+    "/api/LessonProgress/update/lesson/{lessonId}/enrollment/{enrollmentId}/status/{status}": {
       "patch": {
         "tags": [
           "LessonProgress"
         ],
         "summary": "Updates the learning progress of a specific lesson progress record.",
-        "description": "*Only logged in admin can use this api*\r\nThis API updates the user's learning progress for a specific lesson.\r\n\r\n**Request:**\r\nThe request should include:\r\n- **idProgress** (int): The unique identifier of the lesson progress.\r\n- **learningProgress** (short): The updated progress percentage of the lesson.\r\n            \r\n**Response:**\r\nIf successful, the response will return the updated lesson progress information:\r\n- **learningProgressId**: The unique identifier of the lesson progress.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **learningProgress**: The updated progress of the user in the lesson (e.g., percentage completed).\r\n- **isCompleted**: A boolean indicating whether the lesson is completed.\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: A link to the lesson content.\r\n            \r\n**Example Request:**\r\n```http\r\nPATCH /update/lessonprogressID/13/learningprogress/23",
+        "description": "*User and admin can use this api*\r\nThis API updates the user's learning progress for a specific lesson.\r\n\r\n**Request:**\r\nThe request should include:\r\n- **lessonID** (int): The unique identifier of the lesson .\r\n- **enrollmentID** (int): The unique identifier of the enrollment.\r\n- **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).\r\n            \r\n**Response:**\r\nIf successful, the response will return the updated lesson progress information:\r\n- **learningProgressId**: The unique identifier of the lesson progress.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **status**: The updated progress of the user in the lesson (e.g., completed).\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: A link to the lesson content.\r\n            \r\n**Example Request:**\r\n```http\r\nPATCH /update/lesson/25/enrollment/2/status/1",
         "parameters": [
           {
-            "name": "idProgress",
+            "name": "lessonId",
             "in": "path",
             "required": true,
             "schema": {
@@ -434,7 +857,16 @@
             }
           },
           {
-            "name": "learningProgress",
+            "name": "enrollmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
             "in": "path",
             "required": true,
             "schema": {
@@ -770,6 +1202,20 @@
         }
       }
     },
+    "/api/account/logout": {
+      "post": {
+        "tags": [
+          "Logout"
+        ],
+        "summary": "Logs out the current user by invalidating tokens and ending the session.",
+        "description": "This API handles user logout by:\r\n- Invalidating refresh tokens\r\n- Clearing authentication cookies\r\n- Recording session end time for analytics\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /account/logout\r\nAuthorization: Bearer {your-jwt-token}\r\n```",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/question/grade/{grade}/lessonorder/{lessonorder}": {
       "get": {
         "tags": [
@@ -978,6 +1424,53 @@
   },
   "components": {
     "schemas": {
+      "Chapter": {
+        "type": "object",
+        "properties": {
+          "chapterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chapterOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chapterName": {
+            "type": "string",
+            "nullable": true
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "semester": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Lesson"
+            },
+            "nullable": true
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Test"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ChapterDto": {
         "type": "object",
         "properties": {
@@ -1010,6 +1503,134 @@
         },
         "additionalProperties": false
       },
+      "ChapterSummaryDto": {
+        "type": "object",
+        "properties": {
+          "chapterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chapterOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "chapterName": {
+            "type": "string",
+            "nullable": true
+          },
+          "semester": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Chat": {
+        "type": "object",
+        "properties": {
+          "chatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "supportAgentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "chatMessages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            },
+            "nullable": true
+          },
+          "supportAgent": {
+            "$ref": "#/components/schemas/User"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChatMessage": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chatId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "messageDirection": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "chat": {
+            "$ref": "#/components/schemas/Chat"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChoiceAnswer": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "imgUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          }
+        },
+        "additionalProperties": false
+      },
       "ChoiceAnswerDto": {
         "type": "object",
         "properties": {
@@ -1028,6 +1649,129 @@
           "imgUrl": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "commentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parentCommentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "commentContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "inverseParentComment": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            },
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          },
+          "parentComment": {
+            "$ref": "#/components/schemas/Comment"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Enrollment": {
+        "type": "object",
+        "properties": {
+          "enrollmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "enrollmentDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "avgScore": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "semester": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "startYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "endYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "exerciseResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseResult"
+            },
+            "nullable": true
+          },
+          "lessonProgresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonProgress"
+            },
+            "nullable": true
+          },
+          "testResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestResult"
+            },
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
           }
         },
         "additionalProperties": false
@@ -1077,6 +1821,314 @@
         },
         "additionalProperties": false
       },
+      "ErrorReport": {
+        "type": "object",
+        "properties": {
+          "errorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resolved": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Exercise": {
+        "type": "object",
+        "properties": {
+          "exerciseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exerciseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "exerciseDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseDetail"
+            },
+            "nullable": true
+          },
+          "exerciseResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseResult"
+            },
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseDetail": {
+        "type": "object",
+        "properties": {
+          "exerciseDetailId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exerciseId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "exercise": {
+            "$ref": "#/components/schemas/Exercise"
+          },
+          "exerciseDetailResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseDetailResult"
+            },
+            "nullable": true
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseDetailDto": {
+        "type": "object",
+        "properties": {
+          "exerciseId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "question": {
+            "$ref": "#/components/schemas/QuestionDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseDetailResult": {
+        "type": "object",
+        "properties": {
+          "exerciseDetailResultId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exerciseDetailId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "exerciseResultId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "exerciseDetail": {
+            "$ref": "#/components/schemas/ExerciseDetail"
+          },
+          "exerciseResult": {
+            "$ref": "#/components/schemas/ExerciseResult"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseDetailResultDto": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "exerciseDetailId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "exerciseResultId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "exerciseDetail": {
+            "$ref": "#/components/schemas/ExerciseDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseDto": {
+        "type": "object",
+        "properties": {
+          "exerciseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "exerciseResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseResultDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseResult": {
+        "type": "object",
+        "properties": {
+          "exerciseResultId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exerciseId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "doneAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "enrollment": {
+            "$ref": "#/components/schemas/Enrollment"
+          },
+          "exercise": {
+            "$ref": "#/components/schemas/Exercise"
+          },
+          "exerciseDetailResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseDetailResult"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseResultDto": {
+        "type": "object",
+        "properties": {
+          "exerciseId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "doneAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          },
+          "exerciseDetailResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseDetailResultDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FillAnswer": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "correctAnswer": {
+            "type": "string",
+            "nullable": true
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          }
+        },
+        "additionalProperties": false
+      },
       "FillAnswerDto": {
         "type": "object",
         "properties": {
@@ -1095,6 +2147,69 @@
         },
         "additionalProperties": false
       },
+      "Lesson": {
+        "type": "object",
+        "properties": {
+          "lessonId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonName": {
+            "type": "string",
+            "nullable": true
+          },
+          "chapterId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonVideoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessonPdfUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "chapter": {
+            "$ref": "#/components/schemas/Chapter"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            },
+            "nullable": true
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Exercise"
+            },
+            "nullable": true
+          },
+          "lessonProgresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LessonProgress"
+            },
+            "nullable": true
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Question"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LessonDto": {
         "type": "object",
         "properties": {
@@ -1109,7 +2224,13 @@
             "type": "string",
             "nullable": true
           },
-          "lessonContent": {
+          "lessonVideoUrl": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "lessonPdfUrl": {
             "maxLength": 255,
             "minLength": 0,
             "type": "string",
@@ -1130,6 +2251,36 @@
         },
         "additionalProperties": false
       },
+      "LessonProgress": {
+        "type": "object",
+        "properties": {
+          "learningProgressId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "enrollment": {
+            "$ref": "#/components/schemas/Enrollment"
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          }
+        },
+        "additionalProperties": false
+      },
       "LessonProgressDto": {
         "type": "object",
         "properties": {
@@ -1142,17 +2293,58 @@
             "format": "int32",
             "nullable": true
           },
+          "status": {
+            "maxLength": 15,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
           "learningProgress": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "isCompleted": {
-            "type": "boolean",
-            "nullable": true
-          },
           "lesson": {
             "$ref": "#/components/schemas/LessonDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LessonWithChapterAndExerciseDto": {
+        "type": "object",
+        "properties": {
+          "lessonOrder": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "lessonVideoUrl": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "lessonPdfUrl": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "chapter": {
+            "$ref": "#/components/schemas/ChapterSummaryDto"
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1175,6 +2367,32 @@
         },
         "additionalProperties": false
       },
+      "MatchingAnswer": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "correctAnswer": {
+            "type": "string",
+            "nullable": true
+          },
+          "imgUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          }
+        },
+        "additionalProperties": false
+      },
       "MatchingAnswerDto": {
         "type": "object",
         "properties": {
@@ -1189,6 +2407,217 @@
           "imgUrl": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "notificationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "notificationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "notificationTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "notificationMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "paymentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "methodId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tokenPackageId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "planId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "method": {
+            "$ref": "#/components/schemas/PaymentMethod"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "tokenPackage": {
+            "$ref": "#/components/schemas/TokenPackage"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentMethod": {
+        "type": "object",
+        "properties": {
+          "methodId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "methodName": {
+            "type": "string",
+            "nullable": true
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Plan": {
+        "type": "object",
+        "properties": {
+          "planId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "planName": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "coins": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlanTransaction": {
+        "type": "object",
+        "properties": {
+          "planTransactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "planUserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "planUser": {
+            "$ref": "#/components/schemas/PlanUser"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlanUser": {
+        "type": "object",
+        "properties": {
+          "planUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "coins": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "planTransactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlanTransaction"
+            },
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
           }
         },
         "additionalProperties": false
@@ -1219,6 +2648,80 @@
           }
         },
         "additionalProperties": { }
+      },
+      "Question": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "questionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "difficulty": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "imgUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "questionContent": {
+            "type": "string",
+            "nullable": true
+          },
+          "pdfSolution": {
+            "type": "string",
+            "nullable": true
+          },
+          "choiceAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChoiceAnswer"
+            },
+            "nullable": true
+          },
+          "exerciseDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseDetail"
+            },
+            "nullable": true
+          },
+          "fillAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FillAnswer"
+            },
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Lesson"
+          },
+          "matchingAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MatchingAnswer"
+            },
+            "nullable": true
+          },
+          "testDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestDetail"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "QuestionDto": {
         "type": "object",
@@ -1340,6 +2843,246 @@
         },
         "additionalProperties": false
       },
+      "Test": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chapterId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "testName": {
+            "type": "string",
+            "nullable": true
+          },
+          "chapter": {
+            "$ref": "#/components/schemas/Chapter"
+          },
+          "testDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestDetail"
+            },
+            "nullable": true
+          },
+          "testResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestResult"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestDetail": {
+        "type": "object",
+        "properties": {
+          "testDetailId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "testId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          },
+          "test": {
+            "$ref": "#/components/schemas/Test"
+          },
+          "testDetailResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestDetailResult"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestDetailResult": {
+        "type": "object",
+        "properties": {
+          "testDetailResultId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "testDetailId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "testResultId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "testDetail": {
+            "$ref": "#/components/schemas/TestDetail"
+          },
+          "testResult": {
+            "$ref": "#/components/schemas/TestResult"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestResult": {
+        "type": "object",
+        "properties": {
+          "testResultId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "testId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "enrollmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "completionTime": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "doneAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "enrollment": {
+            "$ref": "#/components/schemas/Enrollment"
+          },
+          "test": {
+            "$ref": "#/components/schemas/Test"
+          },
+          "testDetailResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestDetailResult"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenPackage": {
+        "type": "object",
+        "properties": {
+          "tokenPackageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "packageName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokens": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenTransaction": {
+        "type": "object",
+        "properties": {
+          "tokenTransactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tokenUserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tokenUser": {
+            "$ref": "#/components/schemas/TokenUser"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenUser": {
+        "type": "object",
+        "properties": {
+          "tokenUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "tokens": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "tokenTransactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenTransaction"
+            },
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateRequest": {
         "type": "object",
         "properties": {
@@ -1362,6 +3105,196 @@
           "phoneNumber": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "gender": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshTokenExpiredAtUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "chatSupportAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chat"
+            },
+            "nullable": true
+          },
+          "chatUsers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chat"
+            },
+            "nullable": true
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            },
+            "nullable": true
+          },
+          "enrollments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Enrollment"
+            },
+            "nullable": true
+          },
+          "errorReports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorReport"
+            },
+            "nullable": true
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "nullable": true
+          },
+          "planUsers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlanUser"
+            },
+            "nullable": true
+          },
+          "tokenUsers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenUser"
+            },
+            "nullable": true
+          },
+          "userSessions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSession"
+            },
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserSession": {
+        "type": "object",
+        "properties": {
+          "userSessionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "loginTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "logoutTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "duration": {
+            "type": "string",
+            "format": "time",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
           }
         },
         "additionalProperties": false
