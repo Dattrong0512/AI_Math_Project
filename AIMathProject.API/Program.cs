@@ -31,6 +31,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using AIMathProject.Application.Seeding;
+using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -122,6 +123,8 @@ builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, Exercis
 //builder.Services.AddScoped<IUserStatisticsRepository, UserStatisticsRepository>();
 builder.Services.AddScoped<IExerciseRepository<ExerciseDto>, ExerciseRepository>();
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
+builder.Services.AddScoped<IVnPayService, VnPayService>();
+
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();

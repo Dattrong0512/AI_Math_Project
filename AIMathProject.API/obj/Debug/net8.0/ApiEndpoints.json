@@ -918,5 +918,31 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "CreatePaymentUrlVnPay",
+    "RelativePath": "payment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "AIMathProject.Infrastructure.PaymentServices.VnPay.Model.PaymentInfomationModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "PaymentCallBackVnPay",
+    "RelativePath": "payment/vnpay/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]
