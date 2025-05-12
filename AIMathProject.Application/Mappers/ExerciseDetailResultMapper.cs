@@ -21,12 +21,10 @@ namespace AIMathProject.Application.Mappers
             };
         }
 
-        public static ExerciseDetailResultDto ToExerciseDetailResultDtoForGet(this ExerciseDetailResult entity)
+        public static ExerciseDetailResultForGetDto ToExerciseDetailResultDtoForGet(this ExerciseDetailResult entity)
         {
-            return new ExerciseDetailResultDto
+            return new ExerciseDetailResultForGetDto
             {
-                ExerciseDetailId = entity.ExerciseDetailId,
-                ExerciseResultId = entity.ExerciseResultId,
                 IsCorrect = entity.IsCorrect,
                 ExerciseDetail = entity.ExerciseDetail?.ToExerciseDetailDto()
             };
@@ -42,9 +40,9 @@ namespace AIMathProject.Application.Mappers
             };
         }
 
-        public static List<ExerciseDetailResultDto> ToExerciseDetailResultDtoList(this List<ExerciseDetailResult> Listedr)
+        public static List<ExerciseDetailResultForGetDto> ToExerciseDetailResultDtoList(this List<ExerciseDetailResult> Listedr)
         {
-            List<ExerciseDetailResultDto> listLPDto = new List<ExerciseDetailResultDto> { };
+            List<ExerciseDetailResultForGetDto> listLPDto = new List<ExerciseDetailResultForGetDto> { };
             foreach (var qs in Listedr)
             {
                 listLPDto.Add(qs.ToExerciseDetailResultDtoForGet());

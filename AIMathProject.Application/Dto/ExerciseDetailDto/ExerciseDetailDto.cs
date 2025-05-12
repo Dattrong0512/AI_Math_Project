@@ -9,10 +9,6 @@ namespace AIMathProject.Application.Dto.ExerciseDetailDto
 {
     public class ExerciseDetailDto
     {
-        public int? ExerciseId { get; set; }
-
-        public int? QuestionId { get; set; }
-
         public QuestionDto.QuestionDto? Question { get; set; }
     }
 }

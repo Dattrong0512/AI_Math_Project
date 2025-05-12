@@ -35,7 +35,6 @@ namespace AIMathProject.Infrastructure.Repositories
                             .ThenInclude(ed => ed.Question)
                 .ToListAsync();
 
-            // Load câu trả lời cho từng câu hỏi (nếu có)
             foreach (var exercise in exercises)
             {
                 foreach (var exerciseResult in exercise.ExerciseResults.Where(er => er.EnrollmentId == enrollmentId))
@@ -80,15 +79,11 @@ namespace AIMathProject.Infrastructure.Repositories
                         EnrollmentId = er.EnrollmentId,
                         Score = er.Score,
                         DoneAt = er.DoneAt,
-                        ExerciseDetailResults = er.ExerciseDetailResults.Select(edr => new ExerciseDetailResultDto
+                        ExerciseDetailResults = er.ExerciseDetailResults.Select(edr => new ExerciseDetailResultForGetDto
                         {
-                            ExerciseDetailId = edr.ExerciseDetailId,
-                            ExerciseResultId = edr.ExerciseResultId,
                             IsCorrect = edr.IsCorrect,
                             ExerciseDetail = edr.ExerciseDetail != null ? new ExerciseDetailDto
                             {
-                                ExerciseId = edr.ExerciseDetail.ExerciseId,
-                                QuestionId = edr.ExerciseDetail.QuestionId,
                                 Question = edr.ExerciseDetail.Question?.ToQuestionDto()
                             } : null
                         }).ToList()
