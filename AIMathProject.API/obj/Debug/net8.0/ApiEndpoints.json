@@ -922,14 +922,19 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.PaymentController",
     "Method": "CreatePaymentUrlVnPay",
-    "RelativePath": "payment",
+    "RelativePath": "payment/plan/{idPlan}/user/{idUser}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "AIMathProject.Infrastructure.PaymentServices.VnPay.Model.PaymentInfomationModel",
+        "Name": "idPlan",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

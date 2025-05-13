@@ -10,7 +10,7 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
 {
     public interface IVnPayService
     {
-        string CreatePaymentUrl(PaymentInfomationModel model, HttpContext context);
+        Task<string> CreatePaymentPlansUrl(int idPlan, int IdUser, HttpContext context);
         PaymentResponseModel PaymentExecute(IQueryCollection collections);
 
     }

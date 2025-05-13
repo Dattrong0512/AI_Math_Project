@@ -1,4 +1,7 @@
-﻿using AIMathProject.Application.Queries.Payment;
+﻿using AIMathProject.Application.Dto.Payment.PaymentDto;
+using AIMathProject.Application.Dto.Payment.PlanDto;
+using AIMathProject.Application.Queries.Payment;
+using AIMathProject.Application.Queries.Plans;
 using AIMathProject.Infrastructure.Libraries;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
 using MediatR;
@@ -16,14 +19,26 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
         private readonly IConfiguration _config;
         private readonly IMediator _mediator;
 
+
         public VnPayService(IConfiguration config, IMediator mediator)
         {
             _config = config;
             _mediator = mediator;
         }
 
-        public string CreatePaymentUrl(PaymentInfomationModel model, HttpContext context)
+        public async Task<string> CreatePaymentPlansUrl(int idPlan, int idUser, HttpContext context)
         {
+            // Lấy ngày, giờ, phút hiện tại (UTC hoặc local, tùy yêu cầu)
+            string datePart = DateTime.UtcNow.ToString("ddHHmm"); // Ví dụ: 131753 (13/05/2025 17:53)
+
+            // Định dạng idUser thành 4 chữ số
+            string idUserPart = idUser.ToString("D4"); // Ví dụ: 3456
+
+            // Ghép: ddHHmm + idUser = 6 + 4 = 10 chữ số
+            string orderIdString = $"{datePart}{idUserPart}"; // Ví dụ: 1317533456
+
+            PlansDto dto = await _mediator.Send(new GetInfoPlansQuery(idPlan));
+
             var vnpay = new VnPayLibrary();
             var vnp_TxnRef = DateTimeOffset.Now.ToUnixTimeSeconds().ToString(); // Sử dụng timestamp giống PHP
             var startTime = DateTime.Now;
@@ -33,7 +48,7 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
             vnpay.AddRequestData("vnp_Command", _config["VnPay:Command"]);
             vnpay.AddRequestData("vnp_TmnCode", _config["VnPay:TmnCode"]); // Đảm bảo khớp với PHP
 
-            vnpay.AddRequestData("vnp_Amount", (model.Amount * 100).ToString());
+            vnpay.AddRequestData("vnp_Amount", ((double)dto.Price * 100).ToString());
             vnpay.AddRequestData("vnp_CreateDate", startTime.ToString("yyyyMMddHHmmss"));
             vnpay.AddRequestData("vnp_CurrCode", _config["VnPay:CurrCode"]);
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));

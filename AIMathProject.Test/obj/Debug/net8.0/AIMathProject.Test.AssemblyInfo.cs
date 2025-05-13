@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AIMathProject.Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b35c3363586601c73521fa802c5ed9bbba9503d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+503a4e8d0c2fa900f9a5dc462417ea8f0ab02ac1")]
 [assembly: System.Reflection.AssemblyProductAttribute("AIMathProject.Test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AIMathProject.Test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

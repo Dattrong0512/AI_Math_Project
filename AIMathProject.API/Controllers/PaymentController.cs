@@ -22,10 +22,10 @@ namespace AIMathProject.API.Controllers
             _templateReader = templateReader;
         }
 
-        [HttpPost]
-        public IActionResult CreatePaymentUrlVnPay([FromBody] PaymentInfomationModel model)
+        [HttpPost("plan/{idPlan:int}/user/{idUser:int}")]
+        public async Task<IActionResult> CreatePaymentUrlVnPay([FromRoute] int idPlan, [FromRoute] int idUser)
         {
-            string url =  _vnPay.CreatePaymentUrl(model, HttpContext);
+            string url =  await _vnPay.CreatePaymentPlansUrl(idPlan, idUser, HttpContext);
             _logger.LogInformation(url);
             return Ok(new { paymentUrl = url });
         }

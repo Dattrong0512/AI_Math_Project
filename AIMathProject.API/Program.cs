@@ -33,6 +33,7 @@ using System.Text;
 using AIMathProject.Application.Seeding;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
+using AIMathProject.Application.Dto.Payment.PlanDto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -126,8 +127,8 @@ builder.Services.AddScoped<IExerciseRepository<ExerciseDto>, ExerciseRepository>
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
 builder.Services.AddScoped<IPaymentRepository<PaymentDto>, PaymentRepository>();
-
-
+builder.Services.AddScoped<IPlanRepository<PlansDto>, PlanRepository>();
+        
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();
 builder.Services.AddAuthentication(opt =>

@@ -24,10 +24,6 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Model
         {
             get; set;
         }
-        public string PaymentId
-        {
-            get; set;
-        }
         public string TransactionId
         {
             get; set;

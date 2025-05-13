@@ -22,4 +22,8 @@
     <ProjectReference Include="..\AIMathProject.Domain\AIMathProject.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Command\Payment\" />
+  </ItemGroup>
+
 </Project>
