@@ -62,7 +62,6 @@ namespace AIMathProject.Application.Mappers.PaymentServices
                 Price = dto.Price,
                 OrderID = dto.OrderID,
                 TransactionID = dto.TransactionID,
-
                 Method = dto.Method,
 
                 Plan = null,

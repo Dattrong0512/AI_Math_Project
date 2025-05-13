@@ -11,7 +11,7 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
     public interface IVnPayService
     {
         Task<string> CreatePaymentPlansUrl(int idPlan, int IdUser, HttpContext context);
-        PaymentResponseModel PaymentExecute(IQueryCollection collections);
+        Task<PaymentResponseModel> PaymentExecute(IQueryCollection collections);
 
     }
 }

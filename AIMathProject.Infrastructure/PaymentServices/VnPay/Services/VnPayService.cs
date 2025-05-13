@@ -1,7 +1,9 @@
-﻿using AIMathProject.Application.Dto.Payment.PaymentDto;
+﻿using AIMathProject.Application.Command.Payment;
+using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
 using AIMathProject.Application.Queries.Payment;
 using AIMathProject.Application.Queries.Plans;
+using AIMathProject.Domain.Entities;
 using AIMathProject.Infrastructure.Libraries;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
 using MediatR;
@@ -28,14 +30,6 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
 
         public async Task<string> CreatePaymentPlansUrl(int idPlan, int idUser, HttpContext context)
         {
-            // Lấy ngày, giờ, phút hiện tại (UTC hoặc local, tùy yêu cầu)
-            string datePart = DateTime.UtcNow.ToString("ddHHmm"); // Ví dụ: 131753 (13/05/2025 17:53)
-
-            // Định dạng idUser thành 4 chữ số
-            string idUserPart = idUser.ToString("D4"); // Ví dụ: 3456
-
-            // Ghép: ddHHmm + idUser = 6 + 4 = 10 chữ số
-            string orderIdString = $"{datePart}{idUserPart}"; // Ví dụ: 1317533456
 
             PlansDto dto = await _mediator.Send(new GetInfoPlansQuery(idPlan));
 
@@ -43,6 +37,9 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
             var vnp_TxnRef = DateTimeOffset.Now.ToUnixTimeSeconds().ToString(); // Sử dụng timestamp giống PHP
             var startTime = DateTime.Now;
             var expireTime = startTime.AddMinutes(15); // Hết hạn sau 15 phút
+
+
+            string orderInfo = $"Thanh toán gói {dto.PlanName} cho người dùng {idUser}";
 
             vnpay.AddRequestData("vnp_Version", _config["VnPay:Version"]);
             vnpay.AddRequestData("vnp_Command", _config["VnPay:Command"]);
@@ -53,7 +50,7 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
             vnpay.AddRequestData("vnp_CurrCode", _config["VnPay:CurrCode"]);
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));
             vnpay.AddRequestData("vnp_Locale", _config["VnPay:Locale"]);
-            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toán đơn hàng đặt tại web"); 
+            vnpay.AddRequestData("vnp_OrderInfo", orderInfo); 
             vnpay.AddRequestData("vnp_OrderType", "billpayment"); 
             vnpay.AddRequestData("vnp_ReturnUrl", _config["VnPay:PaymentBackReturnUrl"]);
             vnpay.AddRequestData("vnp_TxnRef", vnp_TxnRef);
@@ -64,7 +61,7 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
             return paymentUrl;
         }
 
-        public PaymentResponseModel PaymentExecute(IQueryCollection collections)
+        public async Task<PaymentResponseModel> PaymentExecute(IQueryCollection collections)
         {
             var vnpay = new VnPayLibrary();
             foreach (var (key, value) in collections)
@@ -76,25 +73,79 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
             }
 
             var vnp_TxnRef = vnpay.GetResponseData("vnp_TxnRef");
-            var vnp_OrderId = long.Parse(vnp_TxnRef); // Sử dụng trực tiếp vnp_TxnRef
-            var vnp_TransactionID = Convert.ToInt64(vnpay.GetResponseData("vnp_TransactionNo"));
+            var vnp_OrderId = vnp_TxnRef; // Sử dụng trực tiếp vnp_TxnRef
+            var vnp_TransactionID = vnpay.GetResponseData("vnp_TransactionNo");
             var vnp_SecureHash = collections.FirstOrDefault(p => p.Key == "vnp_SecureHash").Value;
             var vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
             var vnp_OrderInfo = vnpay.GetResponseData("vnp_OrderInfo");
+            var vnp_Amount = vnpay.GetResponseData("vnp_Amount");
+            // Phân tích vnp_OrderInfo để lấy PlanName và idUser
+            int userId = 0;
+            string planName = string.Empty;
+            if (!string.IsNullOrEmpty(vnp_OrderInfo))
+            {
+                try
+                {
+                    // vnp_OrderInfo có dạng: "Thanh toán gói {dto.PlanName} cho người dùng {idUser}"
+                    var parts = vnp_OrderInfo.Split(' ');
+                    if (parts.Length >= 5)
+                    {
+                        // Lấy idUser từ phần tử cuối
+                        int.TryParse(parts[parts.Length - 1], out userId);
+                        // Lấy PlanName từ sau "gói" đến trước "cho người dùng"
+                        planName = string.Join(" ", parts.Skip(2).Take(parts.Length - 4));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error parsing vnp_OrderInfo: {ex.Message}");
+                }
+            }
+            int planId = 0;
+            if (planName == "Gói 1 đề")
+            {
+                planId = 1;
+            }
+            else if (planName == "Gói 5 đề")
+            {
+                planId = 2;
+            }
+            else
+            {
+                planId = 3;
+            }
 
-            var checkSignature = vnpay.ValidateSignature(vnp_SecureHash, _config["VnPay:HashSecret"]);
+                var checkSignature = vnpay.ValidateSignature(vnp_SecureHash, _config["VnPay:HashSecret"]);
             if (!checkSignature)
             {
                 return new PaymentResponseModel { Success = false };
             }
 
+
+            DateTime vietNamTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"));
+            PaymentDto paymentDto = new PaymentDto
+            {
+                MethodId = 1,
+                UserId = userId,
+                TokenPackageId = null,
+                PlanId = planId,
+                Date = vietNamTime,
+                Description = vnp_OrderInfo,
+                Status = "Success",
+                Price = decimal.Parse(vnp_Amount),
+                OrderID = vnp_OrderId,
+                TransactionID = vnp_TransactionID
+            };
+
+            bool paymentStatus = await _mediator.Send(new AddPaymentPlanCommand(paymentDto));
+
             return new PaymentResponseModel
             {
-                Success = true,
+                Success = paymentStatus,
                 PaymentMethod = "VnPay",
                 OrderDescription = vnp_OrderInfo,
-                OrderId = vnp_OrderId.ToString(),
-                TransactionId = vnp_TransactionID.ToString(),
+                OrderId = vnp_OrderId,
+                TransactionId = vnp_TransactionID,
                 Token = vnp_SecureHash,
                 VnPayResponseCode = vnp_ResponseCode
             };

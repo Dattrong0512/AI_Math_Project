@@ -33,7 +33,7 @@ namespace AIMathProject.API.Controllers
         [HttpGet("vnpay/callback")]
         public async Task<IActionResult> PaymentCallBackVnPay()
         {
-            var response = _vnPay.PaymentExecute(Request.Query);
+            var response = await _vnPay.PaymentExecute(Request.Query);
 
             // Ghi log kết quả
             if (response.Success)

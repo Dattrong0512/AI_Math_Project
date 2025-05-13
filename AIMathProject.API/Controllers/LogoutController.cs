@@ -1,27 +1,8 @@
-﻿using AIMathProject.Application.Abstracts;
-using AIMathProject.Application.Command.Login;
-using AIMathProject.Application.Command.RefreshToken;
-using AIMathProject.Application.Command.Register;
-using AIMathProject.Application.Command.ResetPassword;
-using AIMathProject.Application.Dto;
-using AIMathProject.Application.Queries.ResetPassword;
-using AIMathProject.Domain.Entities;
-using AIMathProject.Domain.Exceptions;
-using AIMathProject.Domain.Requests;
-using AIMathProject.Infrastructure.CommonServices;
-using AIMathProject.Infrastructure.Options;
-using AIMathProject.Infrastructure.Processors;
+﻿using AIMathProject.Application.Command.Login;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
-using System;
 using System.Security.Claims;
-using System.Security.Policy;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace AIMathProject.API.Controllers
 {

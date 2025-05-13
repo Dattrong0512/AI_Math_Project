@@ -12,7 +12,7 @@ namespace AIMathProject.Application.Dto.Payment.PaymentDto
 {
     public class PaymentDto
     {
-            public int PaymentId { get; set; }
+            public int? PaymentId { get; set; }
 
             public int MethodId { get; set; }
 
@@ -26,7 +26,7 @@ namespace AIMathProject.Application.Dto.Payment.PaymentDto
 
             public string? Description { get; set; }
 
-            public bool? Status { get; set; }
+            public string? Status { get; set; }
 
             public decimal? Price { get; set; }
 

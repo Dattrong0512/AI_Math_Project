@@ -2529,7 +2529,7 @@
             "nullable": true
           },
           "status": {
-            "type": "boolean",
+            "type": "string",
             "nullable": true
           },
           "price": {

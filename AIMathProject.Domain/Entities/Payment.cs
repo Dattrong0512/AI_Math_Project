@@ -19,7 +19,7 @@ public partial class Payment
 
     public string? Description { get; set; }
 
-    public bool? Status { get; set; }
+    public string? Status { get; set; }
 
     public decimal? Price { get; set; }
     public string ? OrderID { get; set; }
