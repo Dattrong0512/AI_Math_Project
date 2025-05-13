@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AIMathProject.Application.Dto.Payment.TokenPackageDto
+{
+    public class TokenPackageDto
+    {
+        public int TokenPackageId { get; set; }
+
+        public string PackageName { get; set; } = null!;
+
+        public int? Tokens { get; set; }
+
+        public decimal? Price { get; set; }
+
+        public string? Description { get; set; }
+
+    }
+}

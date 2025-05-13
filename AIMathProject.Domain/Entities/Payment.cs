@@ -22,6 +22,8 @@ public partial class Payment
     public bool? Status { get; set; }
 
     public decimal? Price { get; set; }
+    public string ? OrderID { get; set; }
+    public string ? TransactionID { get; set; }
 
     public virtual PaymentMethod Method { get; set; } = null!;
 

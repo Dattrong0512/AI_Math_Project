@@ -1,7 +1,7 @@
 ﻿
 namespace AIMathProject.Application.Abstracts
 {
-    public interface IEmailTemplateReader
+    public interface ITemplateReader
     {
         Task<string> GetTemplate(string templateName);
     }

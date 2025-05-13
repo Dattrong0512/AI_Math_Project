@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Hosting;
 namespace AIMathProject.Infrastructure.CommonServices
 {
 
-    public class EmailTemplateReader : IEmailTemplateReader
+    public class TemplateReader : ITemplateReader
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public EmailTemplateReader(IWebHostEnvironment webHostEnvironment)
+        public TemplateReader(IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
         }

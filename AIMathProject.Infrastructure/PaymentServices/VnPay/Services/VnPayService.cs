@@ -1,20 +1,25 @@
-﻿using AIMathProject.Infrastructure.Libraries;
+﻿using AIMathProject.Application.Queries.Payment;
+using AIMathProject.Infrastructure.Libraries;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
 {
     public class VnPayService : IVnPayService
     {
         private readonly IConfiguration _config;
+        private readonly IMediator _mediator;
 
-        public VnPayService(IConfiguration config)
+        public VnPayService(IConfiguration config, IMediator mediator)
         {
             _config = config;
+            _mediator = mediator;
         }
 
         public string CreatePaymentUrl(PaymentInfomationModel model, HttpContext context)
@@ -27,17 +32,17 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
             vnpay.AddRequestData("vnp_Version", _config["VnPay:Version"]);
             vnpay.AddRequestData("vnp_Command", _config["VnPay:Command"]);
             vnpay.AddRequestData("vnp_TmnCode", _config["VnPay:TmnCode"]); // Đảm bảo khớp với PHP
+
             vnpay.AddRequestData("vnp_Amount", (model.Amount * 100).ToString());
             vnpay.AddRequestData("vnp_CreateDate", startTime.ToString("yyyyMMddHHmmss"));
             vnpay.AddRequestData("vnp_CurrCode", _config["VnPay:CurrCode"]);
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));
             vnpay.AddRequestData("vnp_Locale", _config["VnPay:Locale"]);
-            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toán đơn hàng đặt tại web"); // Khớp với PHP
-            vnpay.AddRequestData("vnp_OrderType", "billpayment"); // Khớp với PHP
-            vnpay.AddRequestData("vnp_ReturnUrl", _config["VnPay:PaymentBackReturnUrl"]); // Khớp với PHP
+            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toán đơn hàng đặt tại web"); 
+            vnpay.AddRequestData("vnp_OrderType", "billpayment"); 
+            vnpay.AddRequestData("vnp_ReturnUrl", _config["VnPay:PaymentBackReturnUrl"]);
             vnpay.AddRequestData("vnp_TxnRef", vnp_TxnRef);
-            vnpay.AddRequestData("vnp_ExpireDate", expireTime.ToString("yyyyMMddHHmmss")); // Thêm như PHP
-            vnpay.AddRequestData("vnp_BankCode", "NCB"); // Thêm như PHP
+            vnpay.AddRequestData("vnp_ExpireDate", expireTime.ToString("yyyyMMddHHmmss")); 
 
             var paymentUrl = vnpay.CreateRequestUrl(_config["VnPay:BaseUrl"], _config["VnPay:HashSecret"]);
             Debug.WriteLine("Payment URL: " + paymentUrl);
@@ -79,5 +84,7 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
                 VnPayResponseCode = vnp_ResponseCode
             };
         }
+
+
     }
 }

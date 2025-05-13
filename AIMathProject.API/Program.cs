@@ -32,6 +32,7 @@ using System.Reflection;
 using System.Text;
 using AIMathProject.Application.Seeding;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
+using AIMathProject.Application.Dto.Payment.PaymentDto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -124,6 +125,7 @@ builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, Exercis
 builder.Services.AddScoped<IExerciseRepository<ExerciseDto>, ExerciseRepository>();
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
+builder.Services.AddScoped<IPaymentRepository<PaymentDto>, PaymentRepository>();
 
 
 // Đăng ký CustomAuthenticationSchemeProvider
@@ -208,7 +210,7 @@ var emailConfig = builder.Configuration
     .Get<EmailConfiguration>();
 builder.Services.AddSingleton(emailConfig);
 builder.Services.AddScoped<IEmailHelper, EmailSender>();
-builder.Services.AddScoped<IEmailTemplateReader, EmailTemplateReader>();
+builder.Services.AddScoped<ITemplateReader, TemplateReader>();
 
 var app = builder.Build();
 

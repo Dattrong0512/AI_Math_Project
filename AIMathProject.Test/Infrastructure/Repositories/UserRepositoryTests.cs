@@ -27,7 +27,7 @@ namespace AIMathProject.Tests.Infrastructure.Repositories
             out Mock<IHttpContextAccessor> mockHttpContextAccessor,
             out Mock<LinkGenerator> mockLinkGenerator,
             out Mock<UserManager<User>> mockUserManager,
-            out Mock<IEmailTemplateReader> mockEmailTemplateReader,
+            out Mock<ITemplateReader> mockEmailTemplateReader,
             out Mock<IEmailHelper> mockEmailHelper)
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
@@ -49,7 +49,7 @@ namespace AIMathProject.Tests.Infrastructure.Repositories
                 Mock.Of<IServiceProvider>(),
                 Mock.Of<ILogger<UserManager<User>>>()
             );
-            mockEmailTemplateReader = new Mock<IEmailTemplateReader>();
+            mockEmailTemplateReader = new Mock<ITemplateReader>();
             mockEmailHelper = new Mock<IEmailHelper>();
 
             return new UserRepository(

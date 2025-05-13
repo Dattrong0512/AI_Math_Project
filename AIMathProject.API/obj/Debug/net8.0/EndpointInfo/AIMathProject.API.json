@@ -2536,6 +2536,14 @@
             "format": "double",
             "nullable": true
           },
+          "orderID": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionID": {
+            "type": "string",
+            "nullable": true
+          },
           "method": {
             "$ref": "#/components/schemas/PaymentMethod"
           },

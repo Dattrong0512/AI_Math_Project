@@ -33,7 +33,7 @@ namespace AIMathProject.Application.Command.Register
         private readonly RoleManager<IdentityRole<int>> _roleManager;
 
         private readonly IUserRepository _userRepository;
-        public RegisterCommandHandler(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager, IEmailHelper emailHelper, IEmailTemplateReader emailTemplateReader, IUserRepository userRepository)
+        public RegisterCommandHandler(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager, IEmailHelper emailHelper, ITemplateReader emailTemplateReader, IUserRepository userRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;

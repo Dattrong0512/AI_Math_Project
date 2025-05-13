@@ -40,10 +40,10 @@ namespace AIMathProject.Infrastructure.Repositories
 
         private readonly UserManager<User> _userManager;
 
-        private readonly IEmailTemplateReader _emailTemplate;
+        private readonly ITemplateReader _emailTemplate;
 
         private readonly IEmailHelper _emailHelper;
-        public UserRepository(ApplicationDbContext applicationDbContext, IMapper mapper, IHttpContextAccessor httpContextAccessor, LinkGenerator linkGenerator, UserManager<User> userManager, IEmailTemplateReader emailTemplate, IEmailHelper emailHelper)
+        public UserRepository(ApplicationDbContext applicationDbContext, IMapper mapper, IHttpContextAccessor httpContextAccessor, LinkGenerator linkGenerator, UserManager<User> userManager, ITemplateReader emailTemplate, IEmailHelper emailHelper)
         {
             _context = applicationDbContext;
             _mapper = mapper;
