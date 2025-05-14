@@ -2509,6 +2509,14 @@
             "type": "integer",
             "format": "int32"
           },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "nullable": true
+          },
           "tokenPackageId": {
             "type": "integer",
             "format": "int32",
@@ -2535,14 +2543,6 @@
           "price": {
             "type": "number",
             "format": "double",
-            "nullable": true
-          },
-          "orderID": {
-            "type": "string",
-            "nullable": true
-          },
-          "transactionID": {
-            "type": "string",
             "nullable": true
           },
           "method": {

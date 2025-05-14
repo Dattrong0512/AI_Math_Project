@@ -36,6 +36,10 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Model
         {
             get; set;
         }
-
+        public string ErrorMessage
+        {
+            get;set;
+        }
+     
     }
 }

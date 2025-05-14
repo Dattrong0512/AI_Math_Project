@@ -1,4 +1,5 @@
 ﻿using AIMathProject.Domain.Entities;
+using AIMathProject.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +8,10 @@ using System.Collections.Generic;
 
 namespace AIMathProject.Infrastructure.Data;
 
-public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -73,11 +75,10 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
 
     public virtual DbSet<UserSession> UserSessions { get; set; }
 
-   
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().ToTable("AspNetUsers");
-      
+        modelBuilder.Entity<User>().ToTable("Users");
 
         modelBuilder.Entity<Chapter>(entity =>
         {
@@ -482,7 +483,7 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA12E2F2AB");
+            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA9A4D8340");
 
             entity.ToTable("Payment");
 
@@ -494,36 +495,46 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
                 .HasMaxLength(255)
                 .HasColumnName("description");
             entity.Property(e => e.MethodId).HasColumnName("method_id");
+            entity.Property(e => e.OrderId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("OrderID");
             entity.Property(e => e.PlanId).HasColumnName("plan_id");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
-            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.Status)
+                .HasMaxLength(30)
+                .HasColumnName("status");
             entity.Property(e => e.TokenPackageId).HasColumnName("token_package_id");
+            entity.Property(e => e.TransactionId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("TransactionID");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
             entity.HasOne(d => d.Method).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.MethodId)
-                .HasConstraintName("FK__Payment__method___72910220");
+                .HasConstraintName("FK__Payment__method___0E391C95");
 
             entity.HasOne(d => d.Plan).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.PlanId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Payment__plan_id__6FB49575");
+                .HasConstraintName("FK__Payment__plan_id__10216507");
 
             entity.HasOne(d => d.TokenPackage).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.TokenPackageId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Payment__token_p__6EC0713C");
+                .HasConstraintName("FK__Payment__token_p__0F2D40CE");
 
             entity.HasOne(d => d.User).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Payment__user_id__73852659");
+                .HasConstraintName("FK__Payment__user_id__11158940");
         });
 
         modelBuilder.Entity<PaymentMethod>(entity =>
         {
-            entity.HasKey(e => e.MethodId).HasName("PK__PaymentM__747727B69984D971");
+            entity.HasKey(e => e.MethodId).HasName("PK__PaymentM__747727B670B92BAF");
 
             entity.ToTable("PaymentMethod");
 
@@ -552,7 +563,7 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
 
         modelBuilder.Entity<PlanTransaction>(entity =>
         {
-            entity.HasKey(e => e.PlanTransactionId).HasName("PK__Plan_Tra__6A8B2E593D030A85");
+            entity.HasKey(e => e.PlanTransactionId).HasName("PK__Plan_Tra__6A8B2E597B60B984");
 
             entity.ToTable("Plan_Transaction");
 
@@ -567,12 +578,12 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
             entity.HasOne(d => d.PlanUser).WithMany(p => p.PlanTransactions)
                 .HasForeignKey(d => d.PlanUserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Plan_Tran__plan___70A8B9AE");
+                .HasConstraintName("FK__Plan_Tran__plan___02C769E9");
         });
 
         modelBuilder.Entity<PlanUser>(entity =>
         {
-            entity.HasKey(e => e.PlanUserId).HasName("PK__Plan_Use__C1E9976C08AA3B99");
+            entity.HasKey(e => e.PlanUserId).HasName("PK__Plan_Use__C1E9976CD2F8B327");
 
             entity.ToTable("Plan_User");
 
@@ -583,7 +594,7 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
             entity.HasOne(d => d.User).WithMany(p => p.PlanUsers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Plan_User__user___719CDDE7");
+                .HasConstraintName("FK__Plan_User__user___03BB8E22");
         });
 
         modelBuilder.Entity<Question>(entity =>
@@ -725,7 +736,7 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
 
         modelBuilder.Entity<TokenTransaction>(entity =>
         {
-            entity.HasKey(e => e.TokenTransactionId).HasName("PK__Token_Tr__A3DC9D593522B99C");
+            entity.HasKey(e => e.TokenTransactionId).HasName("PK__Token_Tr__A3DC9D592A0E48DC");
 
             entity.ToTable("Token_Transaction");
 
@@ -740,12 +751,12 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
             entity.HasOne(d => d.TokenUser).WithMany(p => p.TokenTransactions)
                 .HasForeignKey(d => d.TokenUserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Token_Tra__token__74794A92");
+                .HasConstraintName("FK__Token_Tra__token__0880433F");
         });
 
         modelBuilder.Entity<TokenUser>(entity =>
         {
-            entity.HasKey(e => e.TokenUserId).HasName("PK__Token_Us__7FCD61738F4E786D");
+            entity.HasKey(e => e.TokenUserId).HasName("PK__Token_Us__7FCD61737CFC9431");
 
             entity.ToTable("Token_User");
 
@@ -756,7 +767,7 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
             entity.HasOne(d => d.User).WithMany(p => p.TokenUsers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Token_Use__user___756D6ECB");
+                .HasConstraintName("FK__Token_Use__user___09746778");
         });
 
         modelBuilder.Entity<UserSession>(entity =>
@@ -780,6 +791,5 @@ public  class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, 
 
         base.OnModelCreating(modelBuilder);
     }
-
 
 }

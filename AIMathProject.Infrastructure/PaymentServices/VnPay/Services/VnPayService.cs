@@ -1,18 +1,18 @@
 ﻿using AIMathProject.Application.Command.Payment;
+using AIMathProject.Application.Command.PlansUser;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
-using AIMathProject.Application.Queries.Payment;
+using AIMathProject.Application.Dto.Payment.TokenPackageDto;
 using AIMathProject.Application.Queries.Plans;
+using AIMathProject.Application.Queries.TokenPackage;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Infrastructure.Libraries;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using System;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
 {
@@ -20,32 +20,44 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
     {
         private readonly IConfiguration _config;
         private readonly IMediator _mediator;
+        private readonly ILogger<VnPayService> _logger;
 
-
-        public VnPayService(IConfiguration config, IMediator mediator)
+        public VnPayService(IConfiguration config, IMediator mediator, ILogger<VnPayService> logger)
         {
             _config = config;
             _mediator = mediator;
+            _logger = logger;
         }
 
-        public async Task<string> CreatePaymentPlansUrl(int idPlan, int idUser, HttpContext context)
+        public async Task<string> CreatePayment(bool isPlan, int id, int idUser, HttpContext context)
         {
 
-            PlansDto dto = await _mediator.Send(new GetInfoPlansQuery(idPlan));
-
+            string orderInfo = "";
+            double price = 0;
+            if (isPlan)
+            {
+                PlansDto dto = await _mediator.Send(new GetInfoPlansQuery(id));
+                orderInfo = $"Thanh toán {dto.PlanName} cho người dùng {idUser} ";
+                price = (double)dto.Price * 100;
+            }
+            else
+            {
+                TokenPackageDto dto = await _mediator.Send(new GetInfoTokenPackageByIdQuery(id));
+                orderInfo = $"Thanh toán {dto.PackageName} cho người dùng {idUser} ";
+                price = (double)dto.Price * 100;
+            }
+            
             var vnpay = new VnPayLibrary();
             var vnp_TxnRef = DateTimeOffset.Now.ToUnixTimeSeconds().ToString(); // Sử dụng timestamp giống PHP
             var startTime = DateTime.Now;
             var expireTime = startTime.AddMinutes(15); // Hết hạn sau 15 phút
 
 
-            string orderInfo = $"Thanh toán gói {dto.PlanName} cho người dùng {idUser}";
-
             vnpay.AddRequestData("vnp_Version", _config["VnPay:Version"]);
             vnpay.AddRequestData("vnp_Command", _config["VnPay:Command"]);
             vnpay.AddRequestData("vnp_TmnCode", _config["VnPay:TmnCode"]); // Đảm bảo khớp với PHP
 
-            vnpay.AddRequestData("vnp_Amount", ((double)dto.Price * 100).ToString());
+            vnpay.AddRequestData("vnp_Amount", price.ToString());
             vnpay.AddRequestData("vnp_CreateDate", startTime.ToString("yyyyMMddHHmmss"));
             vnpay.AddRequestData("vnp_CurrCode", _config["VnPay:CurrCode"]);
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));
@@ -79,66 +91,137 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
             var vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
             var vnp_OrderInfo = vnpay.GetResponseData("vnp_OrderInfo");
             var vnp_Amount = vnpay.GetResponseData("vnp_Amount");
+
+            string errorMessage = string.Empty;
+            bool isSuccess = false;
+            string status = "Failed";
+
+            switch (vnp_ResponseCode)
+            {
+                case "00":
+                    isSuccess = true;
+                    status = "Success";
+                    break;
+                case "07":
+                    errorMessage = "Trừ tiền thành công nhưng giao dịch bị nghi ngờ (liên quan tới lừa đảo, giao dịch bất thường).";
+                    break;
+                case "09":
+                    errorMessage = "Thẻ/Tài khoản chưa đăng ký dịch vụ Internet Banking.";
+                    break;
+                case "10":
+                    errorMessage = "Xác thực thông tin thẻ/tài khoản không đúng quá 3 lần.";
+                    break;
+                case "11":
+                    errorMessage = "Đã hết hạn chờ thanh toán. Vui lòng thực hiện lại giao dịch.";
+                    break;
+                case "12":
+                    errorMessage = "Thẻ/Tài khoản bị khóa.";
+                    break;
+                case "13":
+                    errorMessage = "Nhập sai mật khẩu xác thực giao dịch (OTP). Vui lòng thực hiện lại.";
+                    break;
+                case "24":
+                    errorMessage = "Khách hàng hủy giao dịch.";
+                    break;
+                case "51":
+                    errorMessage = "Tài khoản không đủ số dư để thực hiện giao dịch.";
+                    break;
+                case "65":
+                    errorMessage = "Tài khoản đã vượt quá hạn mức giao dịch trong ngày.";
+                    break;
+                case "75":
+                    errorMessage = "Ngân hàng thanh toán đang bảo trì.";
+                    break;
+                case "79":
+                    errorMessage = "Nhập sai mật khẩu thanh toán quá số lần quy định. Vui lòng thực hiện lại.";
+                    break;
+                default:
+                    errorMessage = "Lỗi không xác định. Vui lòng liên hệ hỗ trợ.";
+                    break;
+            }
             // Phân tích vnp_OrderInfo để lấy PlanName và idUser
             int userId = 0;
-            string planName = string.Empty;
+            string planOrPackage = string.Empty;
+ 
             if (!string.IsNullOrEmpty(vnp_OrderInfo))
             {
                 try
                 {
                     // vnp_OrderInfo có dạng: "Thanh toán gói {dto.PlanName} cho người dùng {idUser}"
-                    var parts = vnp_OrderInfo.Split(' ');
-                    if (parts.Length >= 5)
-                    {
-                        // Lấy idUser từ phần tử cuối
-                        int.TryParse(parts[parts.Length - 1], out userId);
-                        // Lấy PlanName từ sau "gói" đến trước "cho người dùng"
-                        planName = string.Join(" ", parts.Skip(2).Take(parts.Length - 4));
-                    }
+                    var parts = vnp_OrderInfo.Split(new[] { "Thanh toán ", " cho người dùng " }, StringSplitOptions.RemoveEmptyEntries);
+                    planOrPackage = parts[0];
+                    // Lấy idUser từ phần tử cuối
+                    int.TryParse(parts[1], out userId);
+                    
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Error parsing vnp_OrderInfo: {ex.Message}");
                 }
             }
-            int planId = 0;
-            if (planName == "Gói 1 đề")
-            {
-                planId = 1;
-            }
-            else if (planName == "Gói 5 đề")
-            {
-                planId = 2;
-            }
-            else
-            {
-                planId = 3;
-            }
 
-                var checkSignature = vnpay.ValidateSignature(vnp_SecureHash, _config["VnPay:HashSecret"]);
+            bool isPlan = false;
+            int planId = 0;
+            int packageId = 0;
+             planId = planOrPackage switch
+            {
+                "Gói 1 đề" => 1,
+                "Gói 5 đề" => 2,
+                "Gói 10 đề" => 3,
+                _ => 0
+            };
+          
+            packageId = planOrPackage switch
+            {
+                "Gói Normal" => 1,
+                "Gói Vip" => 2,
+                "Gói SVip" => 3,
+                _ => 0
+            };
+            isPlan = planId > 0 ? true : false;
+
+            var checkSignature = vnpay.ValidateSignature(vnp_SecureHash, _config["VnPay:HashSecret"]);
             if (!checkSignature)
             {
                 return new PaymentResponseModel { Success = false };
             }
 
+            bool paymentStatus = false;
+            bool planUser = false;
+            bool packageUser = false;
 
-            DateTime vietNamTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"));
-            PaymentDto paymentDto = new PaymentDto
+            if (isSuccess)
             {
-                MethodId = 1,
-                UserId = userId,
-                TokenPackageId = null,
-                PlanId = planId,
-                Date = vietNamTime,
-                Description = vnp_OrderInfo,
-                Status = "Success",
-                Price = decimal.Parse(vnp_Amount),
-                OrderID = vnp_OrderId,
-                TransactionID = vnp_TransactionID
-            };
+                DateTime vietNamTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"));
+                PaymentDto paymentDto = new PaymentDto
+                {
+                    MethodId = 1,
+                    UserId = userId,
+                    TokenPackageId = packageId > 0 ? packageId : null,
+                    PlanId = planId > 0 ? planId : null,
+                    Date = vietNamTime,
+                    Description = vnp_OrderInfo,
+                    Status = status,
+                    Price = decimal.Parse(vnp_Amount) / 100,
+                    OrderID = vnp_OrderId,
+                    TransactionID = vnp_TransactionID
+                };
 
-            bool paymentStatus = await _mediator.Send(new AddPaymentPlanCommand(paymentDto));
+                paymentStatus = await _mediator.Send(new AddPaymentPlanCommand(paymentDto));
+                if (isPlan)
+                {
+                    PlanUser plUser = new PlanUser
+                    {
 
+                        UserId = userId,
+
+                        Coins = planId == 1 ? 1 : planId == 2 ? 5 : 10
+                    };
+                    planUser = await _mediator.Send(new AddPlanUserCommand(plUser));
+                }
+
+            }
+            _logger.LogInformation(vnp_ResponseCode);
             return new PaymentResponseModel
             {
                 Success = paymentStatus,
@@ -147,8 +230,10 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
                 OrderId = vnp_OrderId,
                 TransactionId = vnp_TransactionID,
                 Token = vnp_SecureHash,
-                VnPayResponseCode = vnp_ResponseCode
+                VnPayResponseCode = vnp_ResponseCode,
+                ErrorMessage = errorMessage
             };
+            
         }
 
 

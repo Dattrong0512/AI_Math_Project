@@ -15,9 +15,9 @@ public class User : IdentityUser<int>
 
     public bool? Status { get; set; }
     public string? RefreshToken { get; set; }
+
     public DateTime? RefreshTokenExpiredAtUtc { get; set; }
 
-  
 
     public virtual ICollection<Chat> ChatSupportAgents { get; set; } = new List<Chat>();
 
@@ -38,7 +38,6 @@ public class User : IdentityUser<int>
     public virtual ICollection<TokenUser> TokenUsers { get; set; } = new List<TokenUser>();
 
     public virtual ICollection<UserSession> UserSessions { get; set; } = new List<UserSession>();
-
     public static User Create(string username, string email, DateTime dob, string phonenumber)
     {
         return new User

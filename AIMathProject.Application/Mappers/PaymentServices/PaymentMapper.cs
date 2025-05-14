@@ -29,8 +29,8 @@ namespace AIMathProject.Application.Mappers.PaymentServices
                 Status = payment.Status,
 
                 Price = payment.Price,
-                OrderID = payment.OrderID,
-                TransactionID = payment.TransactionID,
+                OrderID = payment.OrderId,
+                TransactionID = payment.TransactionId,
 
                 Method = payment.Method,
 
@@ -60,8 +60,8 @@ namespace AIMathProject.Application.Mappers.PaymentServices
                 Status = dto.Status,
 
                 Price = dto.Price,
-                OrderID = dto.OrderID,
-                TransactionID = dto.TransactionID,
+                OrderId = dto.OrderID,
+                TransactionId = dto.TransactionID,
                 Method = dto.Method,
 
                 Plan = null,

@@ -11,6 +11,10 @@ public partial class Payment
 
     public int UserId { get; set; }
 
+    public string? OrderId { get; set; }
+
+    public string? TransactionId { get; set; }
+
     public int? TokenPackageId { get; set; }
 
     public int? PlanId { get; set; }
@@ -22,8 +26,6 @@ public partial class Payment
     public string? Status { get; set; }
 
     public decimal? Price { get; set; }
-    public string ? OrderID { get; set; }
-    public string ? TransactionID { get; set; }
 
     public virtual PaymentMethod Method { get; set; } = null!;
 

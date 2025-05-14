@@ -3,12 +3,7 @@ using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Exceptions;
 using AIMathProject.Domain.Requests;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
-using System.Security.Policy;
 
 
 namespace AIMathProject.Application.Command.Register
