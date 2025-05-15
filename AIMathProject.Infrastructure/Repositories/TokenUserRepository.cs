@@ -9,29 +9,28 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Infrastructure.Repositories
 {
-    public class PlanUserRepository : IPlanUserRepository<PlanUser>
+    public class TokenUserRepository : ITokenUserRepository<TokenUser>
     {
         private readonly ApplicationDbContext _context;
 
-        public PlanUserRepository(ApplicationDbContext context)
+        public TokenUserRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<bool> AddPlanUser(PlanUser user)
+        public async Task<bool> AddTokenUser(TokenUser tokenUs)
         {
-            await _context.AddAsync(user);
+            await _context.TokenUsers.AddAsync(tokenUs);
             int row = await _context.SaveChangesAsync();
-            if (row > 0)
+            if(row>0)
             {
-                // Thêm bản ghi vào Plan_Transaction
-                var transaction = new PlanTransaction
+                TokenTransaction TkTransaction = new TokenTransaction
                 {
-                    PlanUserId = user.PlanUserId,
-                    Amount = user.Coins,
+                    TokenUserId = tokenUs.UserId,
+                    Amount = tokenUs.Tokens,
                     Date = DateTime.Now
                 };
-                await _context.PlanTransactions.AddAsync(transaction);
+                await _context.TokenTransactions.AddAsync(TkTransaction);
                 await _context.SaveChangesAsync();
                 return true;
             }

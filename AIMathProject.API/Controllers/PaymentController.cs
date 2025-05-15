@@ -1,13 +1,13 @@
 ﻿using AIMathProject.Application.Abstracts;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
 
 namespace AIMathProject.API.Controllers
 {
-    [Route("payment")]
     [ApiController]
     public class PaymentController : ControllerBase
     {
@@ -22,15 +22,83 @@ namespace AIMathProject.API.Controllers
             _templateReader = templateReader;
         }
 
-        [HttpPost("plan/{idPlan:int}/user/{idUser:int}")]
-        public async Task<IActionResult> CreatePaymentUrlVnPay([FromRoute] int idPlan, [FromRoute] int idUser)
+        /// <summary>
+        /// Generates a VnPay payment URL for purchasing a study plan.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this api*
+        /// This API creates a VnPay payment URL for a specific study plan purchase by a user.
+        ///
+        /// **Request:**
+        /// Send a request with the following route parameters:
+        /// - **idPlan**: The ID of the study plan to be purchased.
+        /// - **idUser**: The ID of the user making the payment.
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// POST /payment/plan/5/user/123
+        /// ```
+        ///
+        /// **Response:**
+        /// ```json
+        /// {
+        ///     "paymentUrl": "https://sandbox.vnpayment.vn/payment/link-to-pay"
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="idPlan">The ID of the study plan.</param>
+        /// <param name="idUser">The ID of the user making the payment.</param>
+        /// <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
+        [Authorize(Policy = "User")]
+        [HttpPost("api/payment/plan/{idPlan:int}/user/{idUser:int}")]
+        public async Task<IActionResult> CreatePaymentPlansUrlVnPay([FromRoute] int idPlan, [FromRoute] int idUser)
         {
             string url =  await _vnPay.CreatePayment(true, idPlan, idUser, HttpContext);
             _logger.LogInformation(url);
             return Ok(new { paymentUrl = url });
         }
 
-        [HttpGet("vnpay/callback")]
+        /// <summary>
+        /// Generates a VnPay payment URL for purchasing token packages.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this api*
+        /// This API creates a VnPay payment URL for a specific token package purchase by a user.
+        ///
+        /// **Request:**
+        /// Send a request with the following route parameters:
+        /// - **idToken**: The ID of the token package to be purchased.
+        /// - **idUser**: The ID of the user making the payment.
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// POST /payment/token/10/user/456
+        /// ```
+        ///
+        /// **Response:**
+        /// ```json
+        /// {
+        ///     "paymentUrl": "https://sandbox.vnpayment.vn/payment/link-to-pay"
+        /// }
+        /// ```
+        /// </remarks>
+        /// <param name="idToken">The ID of the token package.</param>
+        /// <param name="idUser">The ID of the user making the payment.</param>
+        /// <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
+        [Authorize(Policy = "User")]
+        [HttpPost("api/payment/token/{idToken:int}/user/{idUser:int}")]
+        public async Task<IActionResult> CreatePaymentTokenUrlVnPay([FromRoute] int idToken, [FromRoute] int idUser)
+        {
+            string url = await _vnPay.CreatePayment(false, idToken, idUser, HttpContext);
+            _logger.LogInformation(url);
+            return Ok(new { paymentUrl = url });
+        }
+
+        /// <summary>
+        /// Handles the VnPay payment callback and displays the payment result.
+        /// Used only by back-end, front-end doesn't care     
+        /// </summary>
+        [HttpGet("payment/vnpay/callback")]
         public async Task<IActionResult> PaymentCallBackVnPay()
         {
             var response = await _vnPay.PaymentExecute(Request.Query);

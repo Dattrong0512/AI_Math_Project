@@ -902,6 +902,63 @@
              </remarks>
              <returns>Returns a success message upon successful logout</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.CreatePaymentPlansUrlVnPay(System.Int32,System.Int32)">
+             <summary>
+             Generates a VnPay payment URL for purchasing a study plan.
+             </summary>
+             <remarks>
+             This API creates a VnPay payment URL for a specific study plan purchase by a user.
+            
+             **Request:**
+             Send a request with the following route parameters:
+             - **idPlan**: The ID of the study plan to be purchased.
+             - **idUser**: The ID of the user making the payment.
+            
+             **Example Request:**
+             ```http
+             POST /payment/plan/5/user/123
+             ```
+            
+             **Response:**
+             ```json
+             {
+                 "paymentUrl": "https://sandbox.vnpayment.vn/payment/link-to-pay"
+             }
+             ```
+             </remarks>
+             <param name="idPlan">The ID of the study plan.</param>
+             <param name="idUser">The ID of the user making the payment.</param>
+             <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.CreatePaymentTokenUrlVnPay(System.Int32,System.Int32)">
+             <summary>
+             Generates a VnPay payment URL for purchasing token packages.
+             </summary>
+             <remarks>
+             This API creates a VnPay payment URL for a specific token package purchase by a user.
+            
+             **Request:**
+             Send a request with the following route parameters:
+             - **idToken**: The ID of the token package to be purchased.
+             - **idUser**: The ID of the user making the payment.
+            
+             **Example Request:**
+             ```http
+             POST /payment/token/10/user/456
+             ```
+            
+             **Response:**
+             ```json
+             {
+                 "paymentUrl": "https://sandbox.vnpayment.vn/payment/link-to-pay"
+             }
+             ```
+             </remarks>
+             <param name="idToken">The ID of the token package.</param>
+             <param name="idUser">The ID of the user making the payment.</param>
+             <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:AIMathProject.API.Controllers.PaymentController.PaymentCallBackVnPay" -->
         <member name="M:AIMathProject.API.Controllers.QuestionController.GetQuestionByGrade(System.Int32,System.Int32)">
              <summary>
              Retrieves all questions associated with a specific grade and lesson order.

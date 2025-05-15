@@ -1216,15 +1216,18 @@
         }
       }
     },
-    "/payment/plan/{idPlan}/user/{idUser}": {
+    "/api/payment/plan/{idPlan}/user/{idUser}": {
       "post": {
         "tags": [
           "Payment"
         ],
+        "summary": "Generates a VnPay payment URL for purchasing a study plan.",
+        "description": "This API creates a VnPay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/plan/5/user/123\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
         "parameters": [
           {
             "name": "idPlan",
             "in": "path",
+            "description": "The ID of the study plan.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -1234,6 +1237,43 @@
           {
             "name": "idUser",
             "in": "path",
+            "description": "The ID of the user making the payment.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/payment/token/{idToken}/user/{idUser}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Generates a VnPay payment URL for purchasing token packages.",
+        "description": "This API creates a VnPay payment URL for a specific token package purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idToken**: The ID of the token package to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/token/10/user/456\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
+        "parameters": [
+          {
+            "name": "idToken",
+            "in": "path",
+            "description": "The ID of the token package.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "idUser",
+            "in": "path",
+            "description": "The ID of the user making the payment.",
             "required": true,
             "schema": {
               "type": "integer",

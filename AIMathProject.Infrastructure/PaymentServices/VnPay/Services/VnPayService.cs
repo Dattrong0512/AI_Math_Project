@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Command.Payment;
 using AIMathProject.Application.Command.PlansUser;
+using AIMathProject.Application.Command.TokensUser;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
 using AIMathProject.Application.Dto.Payment.TokenPackageDto;
@@ -208,17 +209,28 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
                 };
 
                 paymentStatus = await _mediator.Send(new AddPaymentPlanCommand(paymentDto));
+                bool isAddSuccess = false;
                 if (isPlan)
                 {
                     PlanUser plUser = new PlanUser
                     {
-
                         UserId = userId,
-
                         Coins = planId == 1 ? 1 : planId == 2 ? 5 : 10
                     };
-                    planUser = await _mediator.Send(new AddPlanUserCommand(plUser));
+                    isAddSuccess = await _mediator.Send(new AddPlanUserCommand(plUser));
+                    if (isAddSuccess == false) _logger.LogError("Add PlanUser failed");
                 }
+                else
+                {
+                    TokenUser tkUser = new TokenUser
+                    {
+                        UserId = userId,
+                        Tokens = packageId == 1 ? 8000 : packageId == 2 ? 24000 : 100000
+                    };
+                    isAddSuccess = await _mediator.Send(new AddTokenUserCommand(tkUser));
+                    if (isAddSuccess == false) _logger.LogError("Add TokenUser failed"); 
+                }
+                
 
             }
             _logger.LogInformation(vnp_ResponseCode);

@@ -131,7 +131,7 @@ builder.Services.AddScoped<IPaymentRepository<PaymentDto>, PaymentRepository>();
 builder.Services.AddScoped<IPlanRepository<PlansDto>, PlanRepository>();
 builder.Services.AddScoped<IPlanUserRepository<PlanUser>, PlanUserRepository>();
 builder.Services.AddScoped<ITokenPackageRepository<TokenPackageDto>, TokenPackageRepository>();
-
+builder.Services.AddScoped<ITokenUserRepository<TokenUser>, TokenUserRepository>();
 
         
 // Đăng ký CustomAuthenticationSchemeProvider

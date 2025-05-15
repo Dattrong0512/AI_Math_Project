@@ -21,7 +21,7 @@ namespace AIMathProject.Application.Mappers.PaymentServices
 
                 Tokens = package.Tokens,
 
-                Price = package.Tokens,
+                Price = package.Price,
 
                 Description = package.Description
             };

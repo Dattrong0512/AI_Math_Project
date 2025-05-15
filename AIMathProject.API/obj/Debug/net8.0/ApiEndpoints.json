@@ -777,6 +777,48 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "CreatePaymentPlansUrlVnPay",
+    "RelativePath": "api/payment/plan/{idPlan}/user/{idUser}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPlan",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "CreatePaymentTokenUrlVnPay",
+    "RelativePath": "api/payment/token/{idToken}/user/{idUser}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idToken",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.QuestionController",
     "Method": "GetQuestionByGrade",
     "RelativePath": "api/question/grade/{grade}/lessonorder/{lessonorder}",
@@ -915,27 +957,6 @@
         "Name": "token",
         "Type": "System.String",
         "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
-    "Method": "CreatePaymentUrlVnPay",
-    "RelativePath": "payment/plan/{idPlan}/user/{idUser}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "idPlan",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "idUser",
-        "Type": "System.Int32",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []
