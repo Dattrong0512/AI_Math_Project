@@ -110,3 +110,19 @@ C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Application\obj
 C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\refint\AIMathProject.Application.dll
 C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.pdb
 C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\ref\AIMathProject.Application.dll
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Application.deps.json
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Application.dll
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Application.pdb
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Domain.dll
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Domain.pdb
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.csproj.AssemblyReference.cache
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.GeneratedMSBuildEditorConfig.editorconfig
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.AssemblyInfoInputs.cache
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.AssemblyInfo.cs
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.csproj.CoreCompileInputs.cache
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.sourcelink.json
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathPr.5B067450.Up2Date
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.dll
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\refint\AIMathProject.Application.dll
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.pdb
+J:\Study\GraduationProject\be\New folder (2)\AIMath_backend\AIMathProject.Application\obj\Debug\net8.0\ref\AIMathProject.Application.dll

@@ -9,8 +9,10 @@ using AIMathProject.Application.Dto.ExerciseResultDto;
 namespace AIMathProject.Application.Dto.ExerciseDto
 {
     public class ExerciseDto
-    { 
+    {
         public string ExerciseName { get; set; } = null!;
+
+        public int? ExerciseId { get; set; }
 
         public int? LessonId { get; set; }
 

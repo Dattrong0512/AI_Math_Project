@@ -1,4 +1,6 @@
-﻿using AIMathProject.Application.Dto.ExerciseWithChapterDto;
+﻿using AIMathProject.Application.Dto.ExerciseDetailDto;
+using AIMathProject.Application.Dto.ExerciseDto;
+using AIMathProject.Application.Dto.ExerciseWithChapterDto;
 using AIMathProject.Application.Dto.LessonDto;
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Entities;
@@ -48,90 +50,180 @@ namespace AIMathProject.Infrastructure.Repositories
 
         public async Task<LessonDto> GetDetailLessonById(int grade, int lesson_order)
         {
-            var lessonId = from Chapter in _context.Chapters
-                           join Lesson in _context.Lessons
-                           on Chapter.ChapterId equals Lesson.ChapterId
-                           where (Chapter.Grade == grade && Lesson.LessonOrder == lesson_order)
-                           select (Lesson.LessonId);
+            var lessonQuery = from chapter in _context.Chapters
+                              join lesson in _context.Lessons on chapter.ChapterId equals lesson.ChapterId
+                              where chapter.Grade == grade && lesson.LessonOrder == lesson_order
+                              select new
+                              {
+                                  Lesson = lesson,
+                                  ChapterOrder = chapter.ChapterOrder
+                              };
 
+            var lessonData = await lessonQuery.FirstOrDefaultAsync();
+            if (lessonData == null)
+                return new LessonDto();
 
-            var questionId = (from Excercise in _context.Exercises
-                              join ExcerciseDt in _context.ExerciseDetails
-                              on Excercise.ExerciseId equals ExcerciseDt.ExerciseId
-                              where Excercise.LessonId == lessonId.FirstOrDefault()
-                              select ExcerciseDt.QuestionId)
-                          .ToList();
+            // Tìm bài tập chính 
+            var mainExercise = await (from e in _context.Exercises
+                                      where e.LessonId == lessonData.Lesson.LessonId &&
+                                            e.ExerciseName.Contains(lessonData.Lesson.LessonName)
+                                      select e).FirstOrDefaultAsync();
 
-            var questionList = await _context.Questions
-                .Where(qs => questionId.Contains(qs.QuestionId))
-                .ToListAsync();
+            // Lấy các câu hỏi từ bài tập chính
+            var questions = new List<Question>();
 
-            List<Question> questionListReturn = new List<Question>() { };
-            foreach (var question in questionList)
+            if (mainExercise != null)
             {
-                if (question.QuestionType == "multiple_choice")
-                {
-                    var Answer = _context.ChoiceAnswers
-                        .Where(choice => choice.QuestionId == question.QuestionId)
-                        .ToList();
-                    question.ChoiceAnswers = Answer;
-
-                }
-                else if (question.QuestionType == "matching")
-                {
-                    var Answer = _context.MatchingAnswers
-                        .Where(match => match.QuestionId == question.QuestionId)
-                        .ToList();
-                    question.MatchingAnswers = Answer;
-
-                }
-                else if (question.QuestionType == "fill_in_blank")
-                {
-                    var Answer = _context.FillAnswers
-                        .Where(match => match.QuestionId == question.QuestionId)
-                        .ToList();
-                    question.FillAnswers = Answer;
-
-                }
-                questionListReturn.Add(question);
+                questions = await (from ed in _context.ExerciseDetails
+                                   join q in _context.Questions on ed.QuestionId equals q.QuestionId
+                                   where ed.ExerciseId == mainExercise.ExerciseId
+                                   select q)
+                                  .Include(q => q.ChoiceAnswers)
+                                  .Include(q => q.MatchingAnswers)
+                                  .Include(q => q.FillAnswers)
+                                  .ToListAsync();
             }
-            var lesson = await _context.Lessons
-                   .Where(l => l.LessonId == lessonId.FirstOrDefault())
-                   .Select(l => new LessonDto
-                   {
-                       LessonOrder = l.LessonOrder,
-                       LessonName = l.LessonName,
-                       LessonVideoUrl = l.LessonVideoUrl,
-                       LessonPdfUrl = l.LessonPdfUrl,
-                       ChapterOrder = l.Chapter.ChapterOrder,
-                       Questions = questionListReturn.ToQuestionDtoList()
-                   })
-                   .FirstOrDefaultAsync();
-            return lesson ?? new LessonDto();
+
+            // Lấy danh sách các bài tập phụ kèm chi tiết câu hỏi
+            var extraExercisesQuery = from e in _context.Exercises
+                                      where e.LessonId == lessonData.Lesson.LessonId &&
+                                           (mainExercise == null || e.ExerciseId != mainExercise.ExerciseId)
+                                      select e;
+
+            var extraExercises = await extraExercisesQuery.ToListAsync();
+            var extraExerciseDtos = new List<ExerciseExtraForLessonDto>();
+
+            foreach (var exercise in extraExercises)
+            {
+                // Lấy tất cả exercise details cho mỗi exercise phụ
+                var exerciseDetails = await (from ed in _context.ExerciseDetails
+                                             where ed.ExerciseId == exercise.ExerciseId
+                                             select ed)
+                                            .Include(ed => ed.Question)
+                                                .ThenInclude(q => q.ChoiceAnswers)
+                                            .Include(ed => ed.Question)
+                                                .ThenInclude(q => q.MatchingAnswers)
+                                            .Include(ed => ed.Question)
+                                                .ThenInclude(q => q.FillAnswers)
+                                            .ToListAsync();
+
+                // Tạo DTO cho mỗi exercise phụ
+                var exerciseDto = new ExerciseExtraForLessonDto
+                {
+                    ExerciseId = exercise.ExerciseId,
+                    ExerciseName = exercise.ExerciseName,
+                    ExerciseResults = exerciseDetails.Select(ed => new ExerciseDetailDto
+                    {
+                        Question = ed.Question?.ToQuestionDto()
+                    }).ToList()
+                };
+
+                extraExerciseDtos.Add(exerciseDto);
+            }
+
+            // Tạo và trả về LessonDto
+            var lessonDto = new LessonDto
+            {
+                LessonOrder = lessonData.Lesson.LessonOrder,
+                LessonName = lessonData.Lesson.LessonName,
+                LessonVideoUrl = lessonData.Lesson.LessonVideoUrl,
+                LessonPdfUrl = lessonData.Lesson.LessonPdfUrl,
+                ChapterOrder = lessonData.ChapterOrder,
+                ExerciseId = mainExercise?.ExerciseId,
+                ExtraExercise = extraExerciseDtos,
+                Questions = questions.ToQuestionDtoList()
+            };
+
+            return lessonDto;
         }
 
         public async Task<ICollection<LessonDto>> GetDetailLessonByName(int grade, string lesson_name)
         {
-            var lesson = from Chapter in _context.Chapters
-                         join Lesson in _context.Lessons
-                         on Chapter.ChapterId equals Lesson.ChapterId
-                         where Chapter.Grade == grade
-                         select new LessonDto
-                         {
-                             LessonName = Lesson.LessonName,
-                             LessonOrder = Lesson.LessonOrder,
-                             LessonPdfUrl = Lesson.LessonPdfUrl,
-                             LessonVideoUrl = Lesson.LessonVideoUrl,
-                             ChapterOrder = Chapter.ChapterOrder
-                         };
+            // Lấy thông tin bài học cùng với lesson ID
+            var lessonsQuery = from chapter in _context.Chapters
+                               join lesson in _context.Lessons on chapter.ChapterId equals lesson.ChapterId
+                               where chapter.Grade == grade
+                               select new
+                               {
+                                   LessonId = lesson.LessonId,
+                                   LessonName = lesson.LessonName,
+                                   LessonOrder = lesson.LessonOrder,
+                                   LessonPdfUrl = lesson.LessonPdfUrl,
+                                   LessonVideoUrl = lesson.LessonVideoUrl,
+                                   ChapterOrder = chapter.ChapterOrder
+                               };
 
-            var lessonList = await lesson.ToListAsync();
+            var lessonList = await lessonsQuery.ToListAsync();
 
+            // Lọc bài học theo tên
             var filteredLessons = lessonList
-                .Where(l => RemoveDiacriticsUtils.RemoveDiacritics(l.LessonName.ToLower()).Contains(RemoveDiacriticsUtils.RemoveDiacritics(lesson_name.ToLower())))
+                .Where(l => RemoveDiacriticsUtils.RemoveDiacritics(l.LessonName.ToLower())
+                       .Contains(RemoveDiacriticsUtils.RemoveDiacritics(lesson_name.ToLower())))
                 .ToList();
 
-            return filteredLessons;
+            // Danh sách kết quả
+            var result = new List<LessonDto>();
+
+            // Với mỗi bài học phù hợp, tìm bài tập chính và bài tập phụ
+            foreach (var l in filteredLessons)
+            {
+                // Tìm bài tập chính
+                var mainExercise = await (from e in _context.Exercises
+                                          where e.LessonId == l.LessonId &&
+                                                e.ExerciseName.Contains(l.LessonName)
+                                          select e).FirstOrDefaultAsync();
+
+                // Tìm các bài tập phụ kèm chi tiết câu hỏi
+                var extraExercisesQuery = from e in _context.Exercises
+                                          where e.LessonId == l.LessonId &&
+                                               (mainExercise == null || e.ExerciseId != mainExercise.ExerciseId)
+                                          select e;
+
+                var extraExercises = await extraExercisesQuery.ToListAsync();
+                var extraExerciseDtos = new List<ExerciseExtraForLessonDto>();
+
+                foreach (var exercise in extraExercises)
+                {
+                    // Lấy tất cả exercise details cho mỗi exercise phụ
+                    var exerciseDetails = await (from ed in _context.ExerciseDetails
+                                                 where ed.ExerciseId == exercise.ExerciseId
+                                                 select ed)
+                                                .Include(ed => ed.Question)
+                                                    .ThenInclude(q => q.ChoiceAnswers)
+                                                .Include(ed => ed.Question)
+                                                    .ThenInclude(q => q.MatchingAnswers)
+                                                .Include(ed => ed.Question)
+                                                    .ThenInclude(q => q.FillAnswers)
+                                                .ToListAsync();
+
+                    // Tạo DTO cho mỗi exercise phụ
+                    var exerciseDto = new ExerciseExtraForLessonDto
+                    {
+                        ExerciseId = exercise.ExerciseId,
+                        ExerciseName = exercise.ExerciseName,
+                        ExerciseResults = exerciseDetails.Select(ed => new ExerciseDetailDto
+                        {
+                            Question = ed.Question?.ToQuestionDto()
+                        }).ToList()
+                    };
+
+                    extraExerciseDtos.Add(exerciseDto);
+                }
+
+                // Thêm vào kết quả
+                result.Add(new LessonDto
+                {
+                    LessonName = l.LessonName,
+                    LessonOrder = l.LessonOrder,
+                    LessonPdfUrl = l.LessonPdfUrl,
+                    LessonVideoUrl = l.LessonVideoUrl,
+                    ChapterOrder = l.ChapterOrder,
+                    ExerciseId = mainExercise?.ExerciseId,
+                    ExtraExercise = extraExerciseDtos
+                });
+            }
+
+            return result;
         }
 
         public async Task<List<LessonWithChapterAndExerciseDto>> GetLessonsWithExercises(int grade)

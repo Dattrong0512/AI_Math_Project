@@ -23,66 +23,66 @@ namespace AIMathProject.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<bool> UpsertExerciseDetailResult(int enrollment_id, int lesson_order, List<ExerciseDetailResultDto> edrDtoList)
+        public async Task<bool> UpsertExerciseDetailResult(int enrollment_id, int exerciseId, List<ExerciseDetailResultDto> edrDtoList)
         {
+            // Tìm ExerciseResult dựa trên enrollmentId và exerciseId
             var exerciseResultId = (from er in _context.ExerciseResults
-                                    join e in _context.Exercises on er.ExerciseId equals e.ExerciseId
-                                    join l in _context.Lessons on e.LessonId equals l.LessonId
-                                    where er.EnrollmentId == enrollment_id && l.LessonOrder == lesson_order
+                                    where er.EnrollmentId == enrollment_id && er.ExerciseId == exerciseId
                                     select er.ExerciseResultId).FirstOrDefault();
 
+            // Nếu chưa có ExerciseResult, tạo mới
             if (exerciseResultId == 0)
             {
-                ExerciseResult exerciseResult;
-                exerciseResult = new ExerciseResult
+                ExerciseResult exerciseResult = new ExerciseResult
                 {
-                    ExerciseId = (from e in _context.Exercises
-                                  join l in _context.Lessons on e.LessonId equals l.LessonId
-                                  where l.LessonOrder == lesson_order
-                                  select e.ExerciseId).FirstOrDefault(),
+                    ExerciseId = exerciseId,
                     EnrollmentId = enrollment_id,
                 };
 
                 await _context.ExerciseResults.AddAsync(exerciseResult);
                 await _context.SaveChangesAsync();
 
+                // Lấy ID của ExerciseResult vừa tạo
                 exerciseResultId = (from er in _context.ExerciseResults
-                                    join e in _context.Exercises on er.ExerciseId equals e.ExerciseId
-                                    join l in _context.Lessons on e.LessonId equals l.LessonId
-                                    where er.EnrollmentId == enrollment_id && l.LessonOrder == lesson_order
+                                    where er.EnrollmentId == enrollment_id && er.ExerciseId == exerciseId
                                     select er.ExerciseResultId).FirstOrDefault();
             }
 
+            // Cập nhật hoặc thêm mới từng ExerciseDetailResult
             foreach (var edrItem in edrDtoList)
             {
+                // Tìm ExerciseDetail dựa trên questionId và exerciseId
                 var exerciseDetailId = (from ed in _context.ExerciseDetails
-                                        join e in _context.Exercises on ed.ExerciseId equals e.ExerciseId
-                                        join l in _context.Lessons on e.LessonId equals l.LessonId
-                                        where ed.QuestionId == edrItem.QuestionId && l.LessonOrder == lesson_order
+                                        where ed.QuestionId == edrItem.QuestionId && ed.ExerciseId == exerciseId
                                         select ed.ExerciseDetailId).FirstOrDefault();
 
                 if (exerciseDetailId == 0)
                 {
-                    throw new Exception($"ExerciseDetail not found for QuestionId: {edrItem.QuestionId}");
+                    throw new Exception($"ExerciseDetail not found for QuestionId: {edrItem.QuestionId} and ExerciseId: {exerciseId}");
                 }
 
+                // Kiểm tra đã có kết quả chưa
                 var existingResult = _context.ExerciseDetailResults
-                .FirstOrDefault(edr => edr.ExerciseDetailId == exerciseDetailId && edr.ExerciseResultId == exerciseResultId);
+                    .FirstOrDefault(edr => edr.ExerciseDetailId == exerciseDetailId && edr.ExerciseResultId == exerciseResultId);
 
                 if (existingResult != null)
                 {
+                    // Cập nhật kết quả hiện có
                     existingResult.IsCorrect = edrItem.IsCorrect;
                     _context.ExerciseDetailResults.Update(existingResult);
                 }
                 else
                 {
+                    // Thêm mới kết quả
                     ExerciseDetailResult edr = edrItem.ToExerciseDetailResultFromExerciseDetailResultDto(exerciseDetailId, exerciseResultId);
                     await _context.ExerciseDetailResults.AddAsync(edr);
                 }
             };
+
             await _context.SaveChangesAsync();
 
             return true;
         }
     }
 }
+

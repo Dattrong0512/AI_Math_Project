@@ -26,7 +26,7 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Creates or updates exercise detail results for a user's enrollment in a specific lesson.
+        /// Creates or updates exercise detail results for a user's enrollment in a specific exercise.
         /// </summary>
         /// <remarks>
         /// *Only logged in users can use this api (including user and admin)*
@@ -34,7 +34,7 @@ namespace AIMathProject.API.Controllers
         /// 
         /// **Request Parameters:**
         /// - **id** (int): The enrollment ID of the user.
-        /// - **lessonorder** (int): The sequential order of the lesson.
+        /// - **exercise id** (int): The exercise id of the exercise.
         /// - **edrDtoList** (List&lt;ExerciseDetailResultDto&gt;): List of exercise detail results. Each item should include:
         ///   - **questionId** (int): The unique identifier of the question being answered.
         ///   - **isCorrect** (bool): Whether the user's answer is correct or not.
@@ -45,7 +45,7 @@ namespace AIMathProject.API.Controllers
         /// 
         /// **Example Request:**
         /// ```http
-        /// POST /api/exerciseresult/enrollment/id/11/lessonorder/1
+        /// POST /api/exerciseresult/enrollment/id/11/exercise/1
         /// Content-Type: application/json
         /// [
         ///   {
@@ -74,14 +74,14 @@ namespace AIMathProject.API.Controllers
         /// ```
         /// </remarks>
         /// <returns>Returns `true` if operation succeeds, or a `BadRequest` with an error message if it fails.</returns>
-        
+
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpPost("exerciseresult/enrollment/id/{id:int}/lessonorder/{lessonorder:int}")]
+        [HttpPost("exerciseresult/enrollment/id/{id:int}/exercise/id/{exerciseid:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpsertExerciseDetailResult([FromRoute] int id, [FromRoute] int lessonorder, [FromBody] List<ExerciseDetailResultDto> edrDtoList)
+        public async Task<IActionResult> UpsertExerciseDetailResult([FromRoute] int id, [FromRoute] int exerciseid, [FromBody] List<ExerciseDetailResultDto> edrDtoList)
         {
-            bool result = await _mediator.Send(new UpsertExerciseDetailResultCommand(id, lessonorder, edrDtoList));
+            bool result = await _mediator.Send(new UpsertExerciseDetailResultCommand(id, exerciseid, edrDtoList));
             if (result)
             {
                 return Ok(true);

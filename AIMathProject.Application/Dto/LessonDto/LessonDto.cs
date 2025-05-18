@@ -20,8 +20,11 @@ namespace AIMathProject.Application.Dto.LessonDto
         [StringLength(255)]
         public string? LessonPdfUrl { get; set; }
 
+        public int? ExerciseId { get; set; }
+
         public short? ChapterOrder { get; set; }
 
         public List<QuestionDto.QuestionDto>? Questions { get; set; } = new List<QuestionDto.QuestionDto>();
+        public List<ExerciseDto.ExerciseExtraForLessonDto> ExtraExercise { get; set; } = new List<ExerciseDto.ExerciseExtraForLessonDto>();
     }
 }

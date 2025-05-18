@@ -14,8 +14,6 @@ namespace AIMathProject.Application.Mappers
         {
             ExerciseDetailDto dto = new ExerciseDetailDto
             {
-                QuestionId = edd.QuestionId,
-                ExerciseId = edd.ExerciseId,
                 Question = edd.Question?.ToQuestionDto()
             };
             return dto;

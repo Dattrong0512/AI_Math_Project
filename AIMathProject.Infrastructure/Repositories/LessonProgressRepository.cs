@@ -51,7 +51,7 @@ namespace AIMathProject.Infrastructure.Repositories
             return lessonProgressDtos;
         }
 
-    
+
 
         public async Task<ICollection<LessonProgressDto>> GetAllInfLessonProgressClassified(int id, int grade, int semester)
         {
@@ -91,10 +91,10 @@ namespace AIMathProject.Infrastructure.Repositories
                 return null;
             }
 
-            return lp.ToLessonProgressDto(); 
+            return lp.ToLessonProgressDto();
         }
 
-        public async Task<LessonProgressDto> UpdateLearningProgress(int lessonId,int enrollmentId, string status)
+        public async Task<LessonProgressDto> UpdateLearningProgress(int lessonId, int enrollmentId, string status)
         {
             var progress = await _context.LessonProgresses
             .FirstOrDefaultAsync(lp => lp.LessonId == lessonId && lp.EnrollmentId == enrollmentId);

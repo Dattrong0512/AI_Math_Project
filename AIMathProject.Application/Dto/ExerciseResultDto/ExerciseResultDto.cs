@@ -18,7 +18,6 @@ namespace AIMathProject.Application.Dto.ExerciseResultDto
 
         public DateTime? DoneAt { get; set; }
 
-        public Lesson lesson { get; set; } = null!;
-        public List<ExerciseDetailResultDto.ExerciseDetailResultDto> ExerciseDetailResults { get; set; } = new List<ExerciseDetailResultDto.ExerciseDetailResultDto>();
+        public List<ExerciseDetailResultDto.ExerciseDetailResultForGetDto> ExerciseDetailResults { get; set; } = new List<ExerciseDetailResultDto.ExerciseDetailResultForGetDto>();
     }
 }

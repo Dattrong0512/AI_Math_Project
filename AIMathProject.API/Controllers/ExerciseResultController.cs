@@ -26,15 +26,15 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Retrieves the exercise result details associated with a specific enrollment ID and lesson order.
+        /// Retrieves the exercise result details associated with a specific enrollment ID and exercise ID.
         /// </summary>
         /// <remarks>
-        /// *Only logged in users can use this api (including user and admin)*
+        /// *Only logged in users can use this API (including user and admin)*
         /// This API returns the detailed information about an exercise result, including the questions and answers.
         /// 
         /// **Request Parameters:**
         /// - **id** (int): The enrollment ID of the user.
-        /// - **lessonorder** (int): The sequential order of the lesson.
+        /// - **exerciseid** (int): The unique identifier of the exercise.
         /// 
         /// **Response Format:**
         /// The response will return the exercise result details, including:
@@ -42,16 +42,10 @@ namespace AIMathProject.API.Controllers
         /// - **enrollmentId** (int): The ID of the enrollment.
         /// - **score** (decimal, nullable): The score achieved for this exercise.
         /// - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
-        /// - **lesson** (object, nullable): Information about the associated lesson.
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
-        ///   - **questionId** (int, nullable): The ID of the question.
-        ///   - **isCorrect** (bool): Whether the answer is correct or not.
-        ///   - **exerciseDetailId** (int): The ID of the exercise detail.
-        ///   - **exerciseResultId** (int): The ID of the exercise result.
-        ///   - **exerciseDetail** (object): Details about the exercise, including:
-        ///     - **exerciseId** (int): The ID of the exercise.
-        ///     - **questionId** (int): The ID of the question.
-        ///     - **question** (object): The complete question information, including:
+        ///   - **isCorrect** (bool, nullable): Whether the answer is correct or not.
+        ///   - **exerciseDetail** (object, nullable): Details about the exercise, including:
+        ///     - **question** (object, nullable): The complete question information, including:
         ///       - **questionId** (int): The unique identifier of the question.
         ///       - **questionType** (string): The type of question (e.g., "multiple_choice").
         ///       - **difficulty** (int): The difficulty level of the question.
@@ -69,16 +63,16 @@ namespace AIMathProject.API.Controllers
         /// 
         /// **Example Request:**
         /// ```http
-        /// GET /api/exerciseresult/enrollment/id/11/lessonorder/1
+        /// GET /exerciseresult/enrollment/id/11/exercise/id/25
         /// ```
         /// </remarks>
         /// <returns>Returns the exercise result details for the specified enrollment ID and lesson order.</returns>
 
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("exerciseresult/enrollment/id/{id:int}/lessonorder/{lessonorder:int}")]
-        public async Task<ActionResult<LessonDto>> GetExerciseResultByID([FromRoute] int id, [FromRoute] int lessonorder)
+        [HttpGet("exerciseresult/enrollment/id/{id:int}/exercise/id/{exerciseid:int}")]
+        public async Task<ActionResult<LessonDto>> GetExerciseResultByID([FromRoute] int id, [FromRoute] int exerciseid)
         {
-            return Ok(await _mediator.Send(new GetDetailExerciseResultByIdQuery(id, lessonorder)));
+            return Ok(await _mediator.Send(new GetDetailExerciseResultByIdQuery(id, exerciseid)));
         }
 
         /// <summary>
@@ -101,8 +95,6 @@ namespace AIMathProject.API.Controllers
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
         ///   - **questionId** (int, nullable): The ID of the question.
         ///   - **isCorrect** (bool): Whether the answer is correct or not.
-        ///   - **exerciseDetailId** (int): The ID of the exercise detail.
-        ///   - **exerciseResultId** (int): The ID of the exercise result.
         ///   - **exerciseDetail** (object): Details about the exercise, including:
         ///     - **exerciseId** (int): The ID of the exercise.
         ///     - **questionId** (int): The ID of the question.
