@@ -1222,7 +1222,7 @@
           "Payment"
         ],
         "summary": "Generates a VnPay payment URL for purchasing a study plan.",
-        "description": "This API creates a VnPay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/plan/5/user/123\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
+        "description": "*Only logged in users can use this api*\r\nThis API creates a VnPay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/plan/5/user/123\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
         "parameters": [
           {
             "name": "idPlan",
@@ -1258,7 +1258,7 @@
           "Payment"
         ],
         "summary": "Generates a VnPay payment URL for purchasing token packages.",
-        "description": "This API creates a VnPay payment URL for a specific token package purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idToken**: The ID of the token package to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/token/10/user/456\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
+        "description": "*Only logged in users can use this api*\r\nThis API creates a VnPay payment URL for a specific token package purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idToken**: The ID of the token package to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/token/10/user/456\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
         "parameters": [
           {
             "name": "idToken",
@@ -1293,6 +1293,125 @@
         "tags": [
           "Payment"
         ],
+        "summary": "Handles the VnPay payment callback and displays the payment result.\r\nUsed only by back-end, front-end doesn't care",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/payment/user/{userId}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Retrieve the latest payment information for a specific user.",
+        "description": "*Only logged in users can use this api*  \r\nThis API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  \r\nThe response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  \r\n            \r\n**Request:**  \r\nSend a request with the following route parameter:  \r\n- **userId**: The ID of the user whose payment information is to be retrieved.  \r\n            \r\n**Example Request:**  \r\n```http\r\nGET /api/payment/user/1\r\n```",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user whose payment information is to be retrieved.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the payment information successfully.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Indicates that no payment information was found for the given user ID."
+          }
+        }
+      }
+    },
+    "/api/payment/user/{userId}/all": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Retrieves payment information for a specific user.",
+        "description": "*Only logged in users can use this api*  \r\nThis API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  \r\nThe response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  \r\n            \r\n**Request:**  \r\nSend a request with the following route parameter:  \r\n- **userId**: The ID of the user whose payment information is to be retrieved.  \r\n            \r\n**Example Request:**  \r\n```http\r\nGET /api/payment/user/1\r\n```",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user whose payment information is to be retrieved.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the payment information successfully.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Indicates that no payment information was found for the given user ID."
+          }
+        }
+      }
+    },
+    "/api/paymentmethod": {
+      "get": {
+        "tags": [
+          "PaymentMethod"
+        ],
+        "summary": "Only logged user can use this api (include admin and user)\r\nThis API return all Payment method.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/plan": {
+      "get": {
+        "tags": [
+          "Plan"
+        ],
+        "summary": "Only logged user can use this api (include user or admin)\r\nThis api return all plan to user buy it",
         "responses": {
           "200": {
             "description": "OK"
@@ -1327,6 +1446,19 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tokenpackage": {
+      "get": {
+        "tags": [
+          "TokenPackage"
+        ],
+        "summary": "Only logged user can use this api\r\nThis API return all token package.",
         "responses": {
           "200": {
             "description": "OK"
@@ -2495,6 +2627,21 @@
         },
         "additionalProperties": false
       },
+      "MethodDto": {
+        "type": "object",
+        "properties": {
+          "methodId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "methodName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Notification": {
         "type": "object",
         "properties": {
@@ -2596,6 +2743,70 @@
           },
           "user": {
             "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentDto": {
+        "type": "object",
+        "properties": {
+          "paymentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "methodId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tokenPackageId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "planId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "orderID": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionID": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "$ref": "#/components/schemas/MethodDto"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/PlansDto"
+          },
+          "tokenPackage": {
+            "$ref": "#/components/schemas/TokenPackageDto"
           }
         },
         "additionalProperties": false
@@ -2710,6 +2921,34 @@
           },
           "user": {
             "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlansDto": {
+        "type": "object",
+        "properties": {
+          "planId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "planName": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "coins": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3112,6 +3351,34 @@
             "items": {
               "$ref": "#/components/schemas/Payment"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenPackageDto": {
+        "type": "object",
+        "properties": {
+          "tokenPackageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "packageName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokens": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           }
         },

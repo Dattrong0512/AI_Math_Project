@@ -907,6 +907,7 @@
              Generates a VnPay payment URL for purchasing a study plan.
              </summary>
              <remarks>
+             *Only logged in users can use this api*
              This API creates a VnPay payment URL for a specific study plan purchase by a user.
             
              **Request:**
@@ -935,6 +936,7 @@
              Generates a VnPay payment URL for purchasing token packages.
              </summary>
              <remarks>
+             *Only logged in users can use this api*
              This API creates a VnPay payment URL for a specific token package purchase by a user.
             
              **Request:**
@@ -958,7 +960,72 @@
              <param name="idUser">The ID of the user making the payment.</param>
              <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:AIMathProject.API.Controllers.PaymentController.PaymentCallBackVnPay" -->
+        <member name="M:AIMathProject.API.Controllers.PaymentController.PaymentCallBackVnPay">
+            <summary>
+            Handles the VnPay payment callback and displays the payment result.
+            Used only by back-end, front-end doesn't care     
+            </summary>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.GetLatestInforUserPaymentById(System.Int32)">
+             <summary>
+             Retrieve the latest payment information for a specific user.
+             </summary>
+             <remarks>
+             *Only logged in users can use this api*  
+             This API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  
+             The response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  
+            
+             **Request:**  
+             Send a request with the following route parameter:  
+             - **userId**: The ID of the user whose payment information is to be retrieved.  
+            
+             **Example Request:**  
+             ```http
+             GET /api/payment/user/1
+             ``` 
+             </remarks>
+             <param name="userId">The ID of the user whose payment information is to be retrieved.</param>
+             <returns>Returns the payment details for the user or an error if no data is found.</returns>
+             <response code="200">Returns the payment information successfully.</response>
+             <response code="404">Indicates that no payment information was found for the given user ID.</response>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.GetAllInforUserPaymentById(System.Int32)">
+             <summary>
+             Retrieves payment information for a specific user.
+             </summary>
+             <remarks>
+             *Only logged in users can use this api*  
+             This API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  
+             The response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  
+            
+             **Request:**  
+             Send a request with the following route parameter:  
+             - **userId**: The ID of the user whose payment information is to be retrieved.  
+            
+             **Example Request:**  
+             ```http
+             GET /api/payment/user/1
+             ``` 
+             </remarks>
+             <param name="userId">The ID of the user whose payment information is to be retrieved.</param>
+             <returns>Returns the payment details for the user or an error if no data is found.</returns>
+             <response code="200">Returns the payment information successfully.</response>
+             <response code="404">Indicates that no payment information was found for the given user ID.</response>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentMethodController.GetAllPaymentMethod">
+            <summary>
+            Only logged user can use this api (include admin and user)
+            This API return all Payment method.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.PlanController.GetAllPlan">
+            <summary>
+            Only logged user can use this api (include user or admin)
+            This api return all plan to user buy it
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.QuestionController.GetQuestionByGrade(System.Int32,System.Int32)">
              <summary>
              Retrieves all questions associated with a specific grade and lesson order.
@@ -1000,6 +1067,13 @@
              ```
              </remarks>
              <returns>Returns a list of questions matching the specified grade and lesson order.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.TokenPackageController.GetAllTokenPackage">
+            <summary>
+            Only logged user can use this api
+            This API return all token package.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:AIMathProject.API.Controllers.UserController.GetInfoUser(System.Int32,System.Int32)">
             <summary>

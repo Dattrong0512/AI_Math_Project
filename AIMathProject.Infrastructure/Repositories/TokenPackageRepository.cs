@@ -21,6 +21,12 @@ namespace AIMathProject.Infrastructure.Repositories
             _context = context;
         }
 
+        public async Task<ICollection<TokenPackageDto>> GetAllInfoTokenPackage()
+        {
+            List<TokenPackage> dto = await _context.TokenPackages.ToListAsync();
+            return dto.ToListTokenPackageDto();
+        }
+
         public async Task<TokenPackageDto> GetInfoTokenPackageById(int id)
         {
             TokenPackage package = await _context.TokenPackages.FirstOrDefaultAsync(tkp => tkp.TokenPackageId == id);

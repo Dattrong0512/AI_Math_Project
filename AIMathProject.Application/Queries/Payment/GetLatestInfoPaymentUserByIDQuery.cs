@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Application.Queries.Payment 
 {
-    public record GetInfoPaymentUserQuery(int idUser) : IRequest<PaymentDto>;
+    public record GetLatestInfoPaymentUserByIDQuery(int idUser) : IRequest<PaymentDto>;
     public class GetInfoPaymentUserQueryHandler(IPaymentRepository<PaymentDto> repository)
-        : IRequestHandler<GetInfoPaymentUserQuery, PaymentDto>
+        : IRequestHandler<GetLatestInfoPaymentUserByIDQuery, PaymentDto>
     {
-        public Task<PaymentDto> Handle(GetInfoPaymentUserQuery request, CancellationToken cancellationToken)
+        public Task<PaymentDto> Handle(GetLatestInfoPaymentUserByIDQuery request, CancellationToken cancellationToken)
         {
-            return repository.GetInfoPaymentUser(request.idUser);
+            return repository.GetLatestInfoPaymentUserById(request.idUser);
         }
     }
 }

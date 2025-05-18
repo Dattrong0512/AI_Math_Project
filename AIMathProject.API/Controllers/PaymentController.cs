@@ -1,9 +1,13 @@
 ﻿using AIMathProject.Application.Abstracts;
+using AIMathProject.Application.Dto.Payment.PaymentDto;
+using AIMathProject.Application.Queries.Payment;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Printing;
 using System.Web;
 
 namespace AIMathProject.API.Controllers
@@ -15,13 +19,16 @@ namespace AIMathProject.API.Controllers
 
         private readonly ITemplateReader _templateReader;
         private readonly IVnPayService _vnPay;
-        public PaymentController(ILogger<PaymentController> logger, IVnPayService vnPay, ITemplateReader templateReader)
+        private readonly IMediator _mediator;
+
+        public PaymentController(ILogger<PaymentController> logger, IVnPayService vnPay, ITemplateReader templateReader, IMediator mediator)
         {
             _logger = logger;
             _vnPay = vnPay;
             _templateReader = templateReader;
+            _mediator = mediator;
         }
-
+        #region CreateUrlVnPayForPlan
         /// <summary>
         /// Generates a VnPay payment URL for purchasing a study plan.
         /// </summary>
@@ -57,7 +64,9 @@ namespace AIMathProject.API.Controllers
             _logger.LogInformation(url);
             return Ok(new { paymentUrl = url });
         }
+        #endregion
 
+        #region CallbackVnPayForPackage
         /// <summary>
         /// Generates a VnPay payment URL for purchasing token packages.
         /// </summary>
@@ -93,7 +102,9 @@ namespace AIMathProject.API.Controllers
             _logger.LogInformation(url);
             return Ok(new { paymentUrl = url });
         }
+        #endregion
 
+        #region VnPayCallback
         /// <summary>
         /// Handles the VnPay payment callback and displays the payment result.
         /// Used only by back-end, front-end doesn't care     
@@ -179,6 +190,64 @@ namespace AIMathProject.API.Controllers
                                     .Replace("{12}", errorMessage);
 
             return Content(htmlContent, "text/html");
+        }
+        #endregion
+
+
+        /// <summary>
+        /// Retrieve the latest payment information for a specific user.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this api*  
+        /// This API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  
+        /// The response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  
+        ///
+        /// **Request:**  
+        /// Send a request with the following route parameter:  
+        /// - **userId**: The ID of the user whose payment information is to be retrieved.  
+        ///
+        /// **Example Request:**  
+        /// ```http
+        /// GET /api/payment/user/1
+        /// ``` 
+        /// </remarks>
+        /// <param name="userId">The ID of the user whose payment information is to be retrieved.</param>
+        /// <returns>Returns the payment details for the user or an error if no data is found.</returns>
+        /// <response code="200">Returns the payment information successfully.</response>
+        /// <response code="404">Indicates that no payment information was found for the given user ID.</response>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("api/payment/user/{userId:int}")]
+        public async Task<ActionResult<PaymentDto>> GetLatestInforUserPaymentById([FromRoute] int userId)
+        {
+            return Ok(await _mediator.Send(new GetLatestInfoPaymentUserByIDQuery(userId)));
+        }
+
+        /// <summary>
+        /// Retrieves all payment information for a specific user.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this api*  
+        /// This API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  
+        /// The response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  
+        ///
+        /// **Request:**  
+        /// Send a request with the following route parameter:  
+        /// - **userId**: The ID of the user whose payment information is to be retrieved.  
+        ///
+        /// **Example Request:**  
+        /// ```http
+        /// GET /api/payment/user/1/all
+        /// ``` 
+        /// </remarks>
+        /// <param name="userId">The ID of the user whose payment information is to be retrieved.</param>
+        /// <returns>Returns the payment details for the user or an error if no data is found.</returns>
+        /// <response code="200">Returns the payment information successfully.</response>
+        /// <response code="404">Indicates that no payment information was found for the given user ID.</response>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("api/payment/user/{userId:int}/all")]
+        public async Task<ActionResult<PaymentDto>> GetAllInforUserPaymentById([FromRoute] int userId)
+        {
+            return Ok(await _mediator.Send(new GetAllInfoPaymentUserByIDQuery(userId)));
         }
     }
 }

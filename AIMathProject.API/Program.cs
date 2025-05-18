@@ -35,6 +35,7 @@ using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
 using AIMathProject.Application.Dto.Payment.TokenPackageDto;
+using AIMathProject.Application.Dto.Payment.MethodDto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -132,6 +133,8 @@ builder.Services.AddScoped<IPlanRepository<PlansDto>, PlanRepository>();
 builder.Services.AddScoped<IPlanUserRepository<PlanUser>, PlanUserRepository>();
 builder.Services.AddScoped<ITokenPackageRepository<TokenPackageDto>, TokenPackageRepository>();
 builder.Services.AddScoped<ITokenUserRepository<TokenUser>, TokenUserRepository>();
+builder.Services.AddScoped<IPaymentMethodRepository<MethodDto>, PaymentMethodRepository>();
+
 
         
 // Đăng ký CustomAuthenticationSchemeProvider

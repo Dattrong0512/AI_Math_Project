@@ -33,8 +33,8 @@ namespace AIMathProject.Application.Dto.Payment.PaymentDto
             public string? OrderID { get; set; }
             public string? TransactionID { get; set; }
 
-            public  PaymentMethod Method { get; set; } = null!;
-
+            public MethodDto.MethodDto Method { get; set; }
+    
             public  PlansDto? Plan { get; set; }
 
             public TokenPackageDto.TokenPackageDto? TokenPackage { get; set; }

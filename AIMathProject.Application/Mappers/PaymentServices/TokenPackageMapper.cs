@@ -1,4 +1,5 @@
-﻿using AIMathProject.Application.Dto.Payment.TokenPackageDto;
+﻿using AIMathProject.Application.Dto.Payment.PlanDto;
+using AIMathProject.Application.Dto.Payment.TokenPackageDto;
 using AIMathProject.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,15 @@ namespace AIMathProject.Application.Mappers.PaymentServices
             };
             return dto;
 
+        }
+        public static ICollection<TokenPackageDto> ToListTokenPackageDto(this ICollection<TokenPackage> list)
+        {
+            List<TokenPackageDto> dto = new List<TokenPackageDto>();
+            foreach (var pl in list)
+            {
+                dto.Add(pl.ToTokenPackageDto());
+            }
+            return dto;
         }
     }
 }

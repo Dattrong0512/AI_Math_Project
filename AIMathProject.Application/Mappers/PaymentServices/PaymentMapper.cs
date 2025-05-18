@@ -1,4 +1,5 @@
-﻿using AIMathProject.Application.Dto.Payment.PaymentDto;
+﻿using AIMathProject.Application.Dto.Payment.MethodDto;
+using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
 using AIMathProject.Application.Dto.Payment.TokenPackageDto;
 using  AIMathProject.Domain.Entities;
@@ -13,63 +14,52 @@ namespace AIMathProject.Application.Mappers.PaymentServices
             PaymentDto dto = new PaymentDto
             {
                 PaymentId = payment.PaymentId,
-
                 MethodId = payment.MethodId,
-
                 UserId = payment.UserId,
-
                 TokenPackageId = payment.TokenPackageId,
-
                 PlanId = payment.PlanId,
-
                 Date = payment.Date,
-
                 Description = payment.Description,
-
                 Status = payment.Status,
-
                 Price = payment.Price,
                 OrderID = payment.OrderId,
                 TransactionID = payment.TransactionId,
-
-                Method = payment.Method,
-
-                Plan = payment.Plan.ToPlansDto(),
-
-                TokenPackage = payment.TokenPackage.ToTokenPackageDto()
+                Method = payment.Method !=null ? payment.Method.ToMethodDto() : null,
+                Plan = payment.Plan != null ? payment.Plan.ToPlansDto() : null,
+                TokenPackage = payment.TokenPackage != null ? payment.TokenPackage.ToTokenPackageDto() : null
             };
+            return dto;
+        }
+
+        public static ICollection<PaymentDto> ToListPaymentDto(ICollection<Payment> list)
+        {
+            List<PaymentDto> dto = new List<PaymentDto>();
+            foreach(var item in list)
+            {
+                dto.Add(item.ToPaymentDto());
+            }
             return dto;
         }
         public static Payment ToPayment(this PaymentDto dto)
         {
             Payment payment = new Payment
             {
-
                 MethodId = dto.MethodId,
-
                 UserId = dto.UserId,
-
                 TokenPackageId = dto.TokenPackageId,
-
                 PlanId = dto.PlanId,
-
                 Date = dto.Date,
-
                 Description = dto.Description,
-
                 Status = dto.Status,
-
                 Price = dto.Price,
                 OrderId = dto.OrderID,
                 TransactionId = dto.TransactionID,
-                Method = dto.Method,
-
+                Method = null,
                 Plan = null,
-
                 TokenPackage = null
             };
             return payment;
-        }
+         }
 
 
     }

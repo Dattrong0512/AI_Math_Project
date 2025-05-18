@@ -30,5 +30,15 @@ namespace AIMathProject.Application.Mappers.PaymentServices
 
         }
 
+        public static ICollection<PlansDto> ToListPlansDto(this ICollection<Plan> list)
+        {
+            List<PlansDto> dto = new List<PlansDto>();
+            foreach(var pl in list)
+            {
+                dto.Add(pl.ToPlansDto());
+            }
+            return dto;
+        }
+             
     }
 }

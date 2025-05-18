@@ -819,6 +819,78 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "GetLatestInforUserPaymentById",
+    "RelativePath": "api/payment/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "GetAllInforUserPaymentById",
+    "RelativePath": "api/payment/user/{userId}/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentMethodController",
+    "Method": "GetAllPaymentMethod",
+    "RelativePath": "api/paymentmethod",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PlanController",
+    "Method": "GetAllPlan",
+    "RelativePath": "api/plan",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.QuestionController",
     "Method": "GetQuestionByGrade",
     "RelativePath": "api/question/grade/{grade}/lessonorder/{lessonorder}",
@@ -837,6 +909,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.TokenPackageController",
+    "Method": "GetAllTokenPackage",
+    "RelativePath": "api/tokenpackage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -33,6 +33,13 @@ namespace AIMathProject.Infrastructure.Repositories
             return null;
 
         }
+        public async Task<ICollection<PlansDto>> GetAllPlan()
+        {
+            List<Plan> listPl = await _context.Plans.ToListAsync();
+
+            return listPl.ToListPlansDto();
+        }
+
     }
 
 

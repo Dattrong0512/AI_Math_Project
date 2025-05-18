@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Domain.Interfaces
 {
-    public interface ITokenPackageRepository<T> where T : class
+    public interface IPaymentMethodRepository<T> where T : class
     {
-        Task<T> GetInfoTokenPackageById(int id);
-
-        Task<ICollection<T>> GetAllInfoTokenPackage();
+        Task<ICollection<T>> GetAllPaymentMethod();
     }
 }
