@@ -824,11 +824,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "J:\\Study\\GraduationProject\\be\\New folder (2)\\AIMath_backend\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
+      "projectUniqueName": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
       "projectName": "AIMathProject.Domain",
-      "projectPath": "J:\\Study\\GraduationProject\\be\\New folder (2)\\AIMath_backend\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
+      "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
       "packagesPath": "C:\\Users\\Bach Yen\\.nuget\\packages\\",
-      "outputPath": "J:\\Study\\GraduationProject\\be\\New folder (2)\\AIMath_backend\\AIMathProject.Domain\\obj\\",
+      "outputPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

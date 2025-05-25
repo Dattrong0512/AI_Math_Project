@@ -15,6 +15,7 @@ namespace AIMathProject.Application.Abstracts
         Task<User?> GetUserByRefreshTokenAsync(string refreshToken);
         Task<Pagination<UserDto>> GetInfoUser(int pageIndex, int pageSize);
         Task<Unit> SendEmailConfirm(User user, CancellationToken cancellationToken);
+        Task<Pagination<UserDto>> GetUsersWithFilters(string? searchTerm, int? role, bool? status, int pageIndex, int pageSize);
         Task<UserDto> GetInfoUserLogin();
     }
 }

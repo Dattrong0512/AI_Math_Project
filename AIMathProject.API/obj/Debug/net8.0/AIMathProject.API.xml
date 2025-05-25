@@ -1086,6 +1086,48 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.UserController.GetUsersWithFilters(System.String,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Int32,System.Int32)">
+             <summary>
+             Gets users with advanced filtering and searching capabilities
+             </summary>
+             <remarks>
+             *Only administrators can use this API*
+             
+             **Functionality:**
+             - Search users by email or username (case-insensitive matching)
+             - Filter users by role (1 for User, 2 for Admin)
+             - Filter users by status (true for active, false for inactive)
+             - All filters are optional - leave empty to skip filtering
+             - Results are paginated and ordered alphabetically by username
+            
+             **Request:**
+             The request can include the following query parameters:
+             - **searchTerm** (optional): Text to search in email and username fields
+             - **role** (optional): Filter by user role (1 for User, 2 for Admin)
+             - **status** (optional): Filter by account status (true for active, false for inactive)
+             - **pageindex**: The page index (starts from 0)
+             - **pagesize**: Number of records per page
+            
+             **Response:**
+             The response will return a paginated list of users:
+             - **pageIndex**: Current page index
+             - **pageSize**: Number of items per page
+             - **totalCount**: Total number of matching users
+             - **items**: Array of user objects containing id, userName, email, phoneNumber, gender, dob, avatar, and status
+            
+             **Example Requests:**
+             ```
+             GET /api/user/filter?pageindex=0&amp;pagesize=10
+             GET /api/user/filter?searchTerm=john&amp;role=1&amp;status=true&amp;pageindex=0&amp;pagesize=10
+             ```
+             </remarks>
+             <param name="searchTerm">Text to search in email and username fields</param>
+             <param name="role">Filter by user role (1 for User, 2 for Admin)</param>
+             <param name="status">Filter by account status (true for active, false for inactive)</param>
+             <param name="pageindex">The page index (starts from 0)</param>
+             <param name="pagesize">Number of records per page</param>
+             <returns>Returns a paginated list of users matching the search and filter criteria</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.UserController.DeleteUser(System.String)">
             <summary>
             Deletes a user by their email, accessible only to users with Admin privileges.
@@ -1106,6 +1148,32 @@
             <remarks>
             - This endpoint requires the caller to be authenticated and have the  role.
             </remarks>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.UserStatisticsController.GetUserStatistics(System.String)">
+            <summary>
+            Get user statistics for a specific time period
+            </summary>
+            <remarks>
+            This API retrieves comprehensive user statistics based on the specified time period.
+            
+            **Period Types:**
+            - **day**: Statistics for the current day compared to the previous day
+            - **week**: Statistics for the current week compared to the previous week
+            - **month**: Statistics for the current month compared to the previous month
+            - **year**: Statistics for the current year compared to the previous year
+            
+            **Response includes:**
+            - User count statistics (current period, previous period, growth rate)
+            - User engagement metrics (average usage time in minutes, change rate)
+            - Daily breakdown of user activity
+            
+            **Example Request:**
+            ```http
+            GET /api/users/statistics/week
+            ```
+            </remarks>
+            <param name="periodType">The time period type ('day', 'week', 'month', or 'year')</param>
+            <returns>Returns detailed user statistics for the specified period</returns>
         </member>
     </members>
 </doc>

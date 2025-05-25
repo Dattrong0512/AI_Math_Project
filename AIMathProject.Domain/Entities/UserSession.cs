@@ -13,7 +13,7 @@ public partial class UserSession
 
     public DateTime? LogoutTime { get; set; }
 
-    public TimeOnly? Duration { get; set; }
+    public TimeSpan? Duration { get; set; }
 
     public virtual User User { get; set; } = null!;
 }

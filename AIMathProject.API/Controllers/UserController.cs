@@ -63,6 +63,64 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
+        /// Gets users with advanced filtering and searching capabilities
+        /// </summary>
+        /// <remarks>
+        /// *Only administrators can use this API*
+        /// 
+        /// **Functionality:**
+        /// - Search users by email or username (case-insensitive matching)
+        /// - Filter users by role (1 for User, 2 for Admin)
+        /// - Filter users by status (true for active, false for inactive)
+        /// - All filters are optional - leave empty to skip filtering
+        /// - Results are paginated and ordered alphabetically by username
+        ///
+        /// **Request:**
+        /// The request can include the following query parameters:
+        /// - **searchTerm** (optional): Text to search in email and username fields
+        /// - **role** (optional): Filter by user role (1 for User, 2 for Admin)
+        /// - **status** (optional): Filter by account status (true for active, false for inactive)
+        /// - **pageindex**: The page index (starts from 0)
+        /// - **pagesize**: Number of records per page
+        ///
+        /// **Response:**
+        /// The response will return a paginated list of users:
+        /// - **pageIndex**: Current page index
+        /// - **pageSize**: Number of items per page
+        /// - **totalCount**: Total number of matching users
+        /// - **items**: Array of user objects containing id, userName, email, phoneNumber, gender, dob, avatar, and status
+        ///
+        /// **Example Requests:**
+        /// ```
+        /// GET /api/user/filter?pageindex=0&amp;pagesize=10
+        /// GET /api/user/filter?searchTerm=john&amp;role=1&amp;status=true&amp;pageindex=0&amp;pagesize=10
+        /// ```
+        /// </remarks>
+        /// <param name="searchTerm">Text to search in email and username fields</param>
+        /// <param name="role">Filter by user role (1 for User, 2 for Admin)</param>
+        /// <param name="status">Filter by account status (true for active, false for inactive)</param>
+        /// <param name="pageindex">The page index (starts from 0)</param>
+        /// <param name="pagesize">Number of records per page</param>
+        /// <returns>Returns a paginated list of users matching the search and filter criteria</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Authorize(Policy = "Admin")]
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetUsersWithFilters(
+            [FromQuery] string? searchTerm = null,
+            [FromQuery] int? role = null,
+            [FromQuery] bool? status = null,
+            [FromQuery] int pageindex = 0,
+            [FromQuery] int pagesize = 10)
+        {
+            return Ok(await _mediator.Send(new GetUsersWithFiltersQuery(searchTerm, role, status, pageindex, pagesize)));
+        }
+
+
+        /// <summary>
         /// Deletes a user by their email, accessible only to users with Admin privileges.
         /// </summary>
         /// <param name="email">The email of the user to delete.</param>

@@ -12,8 +12,6 @@ namespace AIMathProject.Application.Dto.UserDto
         public int UserId { get; set; }
         public string UserName { get; set; } = null!;
         public string? Gender { get; set; }
-        public int? CoinRemains { get; set; }
-        public int? TokenRemains { get; set; }
         public DateTime? Dob { get; set; }
         public string? Avatar { get; set; }
         public bool? Status { get; set; }

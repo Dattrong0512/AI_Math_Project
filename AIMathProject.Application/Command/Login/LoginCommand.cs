@@ -27,12 +27,12 @@ namespace AIMathProject.Application.Command.Login
     {
         private readonly UserManager<User> _userManager;
         private readonly IAuthTokenProcessor _authTokenProcessor;
-        //private readonly IUserStatisticsRepository _userStatisticsRepository;
-        public LoginCommandHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor)
+        private readonly IUserStatisticsRepository _userStatisticsRepository;
+        public LoginCommandHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor, IUserStatisticsRepository userStatisticsRepository)
         {
             _userManager = userManager;
             _authTokenProcessor = authTokenProcessor;
-            //_userStatisticsRepository = userStatisticsRepository;
+            _userStatisticsRepository = userStatisticsRepository;
         }
 
         public async Task<(string jwtToken, string refreshToken)> Handle(LoginCommand request, CancellationToken cancellationToken)
@@ -59,10 +59,10 @@ namespace AIMathProject.Application.Command.Login
             _authTokenProcessor.WriteAuthTokenAsHttpOnlyCookie("REFRESH_TOKEN", refreshToken, refreshTokenExpirationDateInUtc);
 
             var roles = await _userManager.GetRolesAsync(user);
-            //if (!roles.Contains("Admin"))
-            //{
-            //    await _userStatisticsRepository.StartUserSession(user.Id);
-            //}
+            if (!roles.Contains("Admin"))
+            {
+                await _userStatisticsRepository.StartUserSession(user.Id);
+            }
 
             return (jwtToken, refreshToken);
         }

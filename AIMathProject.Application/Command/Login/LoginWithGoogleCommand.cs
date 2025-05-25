@@ -30,14 +30,14 @@ namespace AIMathProject.Application.Command.Login
         private readonly UserManager<User> _userManager;
         private readonly IAuthTokenProcessor _authTokenProcessor;
         private readonly RoleManager<IdentityRole<int>> _roleManager;
-        //private readonly IUserStatisticsRepository _userStatisticsRepository;
+        private readonly IUserStatisticsRepository _userStatisticsRepository;
 
-        public LoginCommandGoogleHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor, RoleManager<IdentityRole<int>> roleManager)
+        public LoginCommandGoogleHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor, RoleManager<IdentityRole<int>> roleManager, IUserStatisticsRepository userStatisticsRepository)
         {
             _userManager = userManager;
             _authTokenProcessor = authTokenProcessor;
             _roleManager = roleManager;
-            //_userStatisticsRepository = userStatisticsRepository;
+            _userStatisticsRepository = userStatisticsRepository;
         }
 
 
@@ -143,10 +143,10 @@ namespace AIMathProject.Application.Command.Login
             _authTokenProcessor.WriteAuthTokenAsHttpOnlyCookie("REFRESH_TOKEN", refreshToken, refreshTokenExpirationDateInUtc);
 
             var roles = await _userManager.GetRolesAsync(user);
-            //if (!roles.Contains("Admin"))
-            //{
-            //    await _userStatisticsRepository.StartUserSession(user.Id);
-            //}
+            if (!roles.Contains("Admin"))
+            {
+                await _userStatisticsRepository.StartUserSession(user.Id);
+            }
 
             return Unit.Value;
 

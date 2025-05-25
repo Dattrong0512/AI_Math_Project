@@ -48,7 +48,7 @@ namespace AIMathProject.Infrastructure.Repositories
                                         .Skip(pageIndex * pageSize)
                                         .Take(pageSize)
                                         .ToListAsync();
-
+            
             Pagination<UserDto> pagination = new Pagination<UserDto>
             {
                 PageIndex = pageIndex,
@@ -110,6 +110,66 @@ namespace AIMathProject.Infrastructure.Repositories
                 Content = body
             }, cancellationToken);
             return Unit.Value;
+        }
+
+        public async Task<Pagination<UserDto>> GetUsersWithFilters(string? searchTerm, int? role, bool? status, int pageIndex, int pageSize)
+        {
+            // Start with the base query
+            IQueryable<User> query = _context.Users;
+            
+            // Search
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                searchTerm = searchTerm.ToLower();
+                query = query.Where(u =>
+                    u.Email.ToLower().Contains(searchTerm) ||
+                    u.UserName.ToLower().Contains(searchTerm));
+            }
+
+            // Role
+            if (role.HasValue)
+            {
+                if (role.Value == 1) // User role
+                {
+                    query = from user in query
+                            join userRole in _context.UserRoles on user.Id equals userRole.UserId
+                            join r in _context.Roles on userRole.RoleId equals r.Id
+                            where r.Name == "User"
+                            select user;
+                }
+                else if (role.Value == 2) // Admin role
+                {
+                    query = from user in query
+                            join userRole in _context.UserRoles on user.Id equals userRole.UserId
+                            join r in _context.Roles on userRole.RoleId equals r.Id
+                            where r.Name == "Admin"
+                            select user;
+                }
+            }
+
+            // Status
+            if (status.HasValue)
+            {
+                query = query.Where(u => u.Status == status.Value);
+            }
+
+            var totalCount = await query.CountAsync();
+
+            var users = await query
+                .OrderBy(u => u.UserName)
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            Pagination<UserDto> pagination = new Pagination<UserDto>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                Items = _mapper.Map<List<UserDto>>(users)
+            };
+
+            return pagination;
         }
     }
 }
