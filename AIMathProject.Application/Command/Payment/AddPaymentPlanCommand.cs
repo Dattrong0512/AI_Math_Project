@@ -17,7 +17,7 @@ namespace AIMathProject.Application.Command.Payment
         public async Task<bool> Handle(AddPaymentPlanCommand request, CancellationToken cancellationToken)
         {   
             await repository.AddPayment(request.dto);
-            await walletRepository.UpdateCoins(request.dto.WalletId, -request.coin);
+            await walletRepository.UpdateCoinUsed(request.dto.WalletId, -request.coin);
             return true;
         }
     }

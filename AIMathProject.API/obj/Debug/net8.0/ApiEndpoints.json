@@ -777,9 +777,123 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "CreatePaymentPlansUrlVnPay",
+    "RelativePath": "api/payment/plan/{idPlan}/user/{idUser}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPlan",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "CreatePaymentTokenPackage",
+    "RelativePath": "api/payment/token/{tokenPackageId}/user/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tokenPackageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "GetLatestInforUserPaymentById",
+    "RelativePath": "api/payment/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "GetAllInforUserPaymentById",
+    "RelativePath": "api/payment/user/{userId}/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.PaymentMethodController",
     "Method": "GetAllPaymentMethod",
     "RelativePath": "api/paymentmethod",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PlanController",
+    "Method": "GetAllPlan",
+    "RelativePath": "api/plan",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -805,6 +919,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.TokenPackageController",
+    "Method": "GetAllTokenPackage",
+    "RelativePath": "api/tokenpackage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1007,6 +1131,74 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.WalletController",
+    "Method": "UpdateCoinUsed",
+    "RelativePath": "api/wallet/coin",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "wallet",
+        "Type": "AIMathProject.Application.Dto.UpdateWalletRequests.UpdateWalletRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Payment.Wallet.WalletDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.WalletController",
+    "Method": "UpdateTokenUsed",
+    "RelativePath": "api/wallet/token",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "wallet",
+        "Type": "AIMathProject.Application.Dto.UpdateWalletRequests.UpdateWalletRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Payment.Wallet.WalletDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.WalletController",
+    "Method": "GetWalletByUserId",
+    "RelativePath": "api/wallet/user/{UserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.LoginWithUSPW",
     "Method": "ConfirmEmail",
     "RelativePath": "confirm-email",
@@ -1029,152 +1221,12 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.PaymentController",
-    "Method": "CreatePaymentPlansUrlVnPay",
-    "RelativePath": "payment/plan/{idPlan}/user/{idUser}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "idPlan",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "idUser",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
-    "Method": "CreatePaymentTokenPackage",
-    "RelativePath": "payment/token/{tokenPackageId}/user/{userId}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "tokenPackageId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
-    "Method": "GetLatestInforUserPaymentById",
-    "RelativePath": "payment/user/{userId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
-    "Method": "GetAllInforUserPaymentById",
-    "RelativePath": "payment/user/{userId}/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
     "Method": "PaymentCallBackVnPay",
     "RelativePath": "payment/vnpay/callback",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.PlanController",
-    "Method": "GetAllPlan",
-    "RelativePath": "plan",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.TokenPackageController",
-    "Method": "GetAllTokenPackage",
-    "RelativePath": "tokenpackage",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.WalletController",
-    "Method": "GetWalletByUserId",
-    "RelativePath": "Wallet/user/{UserId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "UserId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
     "ReturnTypes": []
   }
 ]

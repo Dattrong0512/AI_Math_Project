@@ -57,8 +57,8 @@ namespace AIMathProject.API.Controllers
         /// <param name="idPlan">The ID of the study plan.</param>
         /// <param name="idUser">The ID of the user making the payment.</param>
         /// <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
-        //[Authorize(Policy = "User")]
-        [HttpPost("payment/plan/{idPlan:int}/user/{idUser:int}")]
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpPost("api/payment/plan/{idPlan:int}/user/{idUser:int}")]
         public async Task<IActionResult> CreatePaymentPlansUrlVnPay([FromRoute] int idPlan, [FromRoute] int idUser)
         {
             string url = await _vnPay.CreatePayment(idPlan, idUser, HttpContext);
@@ -172,7 +172,8 @@ namespace AIMathProject.API.Controllers
         /// <param name="tokenPackageId">The ID of the token package.</param>
         /// <param name="userId">The ID of the user making the payment.</param>
         /// <returns>Returns string to know success or fail</returns>
-        [HttpPost("payment/token/{tokenPackageId:int}/user/{userId:int}")]
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpPost("api/payment/token/{tokenPackageId:int}/user/{userId:int}")]
         public async Task<ActionResult<PaymentDto>> CreatePaymentTokenPackage([FromRoute] int tokenPackageId, [FromRoute] int userId)
         {
             var payment = await _mediator.Send(new CreatePaymentTokenPackage(userId, tokenPackageId));
@@ -204,8 +205,8 @@ namespace AIMathProject.API.Controllers
         /// <returns>Returns the payment details for the user or an error if no data is found.</returns>
         /// <response code="200">Returns the payment information successfully.</response>
         /// <response code="404">Indicates that no payment information was found for the given user ID.</response>
-        //[Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("payment/user/{userId:int}")]
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("api/payment/user/{userId:int}")]
         public async Task<ActionResult<PaymentDto>> GetLatestInforUserPaymentById([FromRoute] int userId)
         {
             return Ok(await _mediator.Send(new GetLatestInfoPayment(userId)));
@@ -233,8 +234,8 @@ namespace AIMathProject.API.Controllers
         /// <returns>Returns the payment details for the user or an error if no data is found.</returns>
         /// <response code="200">Returns the payment information successfully.</response>
         /// <response code="404">Indicates that no payment information was found for the given user ID.</response>
-        //[Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("payment/user/{userId:int}/all")]
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("api/payment/user/{userId:int}/all")]
         public async Task<ActionResult<PaymentDto>> GetAllInforUserPaymentById([FromRoute] int userId)
         {
             return Ok(await _mediator.Send(new GetAllPaymentInfoQuery(userId)));

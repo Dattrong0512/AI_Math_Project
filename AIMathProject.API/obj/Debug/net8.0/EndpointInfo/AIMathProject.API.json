@@ -1216,7 +1216,7 @@
         }
       }
     },
-    "/payment/plan/{idPlan}/user/{idUser}": {
+    "/api/payment/plan/{idPlan}/user/{idUser}": {
       "post": {
         "tags": [
           "Payment"
@@ -1265,7 +1265,7 @@
         }
       }
     },
-    "/payment/token/{tokenPackageId}/user/{userId}": {
+    "/api/payment/token/{tokenPackageId}/user/{userId}": {
       "post": {
         "tags": [
           "Payment"
@@ -1318,7 +1318,7 @@
         }
       }
     },
-    "/payment/user/{userId}": {
+    "/api/payment/user/{userId}": {
       "get": {
         "tags": [
           "Payment"
@@ -1364,7 +1364,7 @@
         }
       }
     },
-    "/payment/user/{userId}/all": {
+    "/api/payment/user/{userId}/all": {
       "get": {
         "tags": [
           "Payment"
@@ -1415,7 +1415,7 @@
         "tags": [
           "PaymentMethod"
         ],
-        "summary": "Only logged user can use this api (include admin and user)\r\nThis API return all Payment method.",
+        "summary": "Only logged user can use this api (include admin and user).\r\nThis API return all Payment method.",
         "responses": {
           "200": {
             "description": "OK"
@@ -1423,12 +1423,12 @@
         }
       }
     },
-    "/plan": {
+    "/api/plan": {
       "get": {
         "tags": [
           "Plan"
         ],
-        "summary": "Only logged user can use this api (include user or admin)\r\nThis api return all plan to user buy it",
+        "summary": "Only logged user can use this api (include user or admin).\r\nThis api return all plan to user buy it.",
         "responses": {
           "200": {
             "description": "OK"
@@ -1470,12 +1470,12 @@
         }
       }
     },
-    "/tokenpackage": {
+    "/api/tokenpackage": {
       "get": {
         "tags": [
           "TokenPackage"
         ],
-        "summary": "Only logged user can use this api\r\nThis API return all token package.",
+        "summary": "Only logged user can use this api.\r\nThis API return all token package.",
         "responses": {
           "200": {
             "description": "OK"
@@ -1810,15 +1810,17 @@
         }
       }
     },
-    "/Wallet/user/{UserId}": {
+    "/api/wallet/user/{UserId}": {
       "get": {
         "tags": [
           "Wallet"
         ],
+        "summary": "Get a wallet by user ID.",
         "parameters": [
           {
             "name": "UserId",
             "in": "path",
+            "description": "",
             "required": true,
             "schema": {
               "type": "integer",
@@ -1829,6 +1831,104 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/wallet/token": {
+      "patch": {
+        "tags": [
+          "Wallet"
+        ],
+        "summary": "Update the amount of tokens used in a wallet.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWalletRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWalletRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWalletRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/wallet/coin": {
+      "patch": {
+        "tags": [
+          "Wallet"
+        ],
+        "summary": "Update the amount of coins used in a wallet.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWalletRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWalletRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWalletRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletDto"
+                }
+              }
+            }
           }
         }
       }
@@ -1915,6 +2015,47 @@
           "imgUrl": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoinTransactionDto": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinTransactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tokenPackageId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isTokenPackage": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "coinRemains": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tokenPackage": {
+            "$ref": "#/components/schemas/TokenPackageDto"
           }
         },
         "additionalProperties": false
@@ -2570,6 +2711,63 @@
         },
         "additionalProperties": false
       },
+      "TokenPackageDto": {
+        "type": "object",
+        "properties": {
+          "tokenPackageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "packageName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tokens": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenTransactionDto": {
+        "type": "object",
+        "properties": {
+          "tokenTransactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "walletId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tokenRemains": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "tokenAmount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateRequest": {
         "type": "object",
         "properties": {
@@ -2592,6 +2790,20 @@
           "phoneNumber": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateWalletRequest": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2684,6 +2896,49 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserDailyStatisticsDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WalletDto": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinRemains": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tokenRemains": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coinTransactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CoinTransactionDto"
+            },
+            "nullable": true
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentDto"
+            },
+            "nullable": true
+          },
+          "tokenTransactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenTransactionDto"
             },
             "nullable": true
           }

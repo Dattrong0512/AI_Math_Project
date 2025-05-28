@@ -19,7 +19,7 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Only logged user can use this api (include admin and user)
+        /// Only logged user can use this api (include admin and user).
         /// This API return all Payment method.
         /// </summary>
         /// <returns></returns>

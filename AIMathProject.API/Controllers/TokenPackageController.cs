@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AIMathProject.API.Controllers
 {
-    [Route("tokenpackage")]
+    [Route("api/tokenpackage")]
     [ApiController]
     public class TokenPackageController : ControllerBase
     {
@@ -18,11 +18,11 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Only logged user can use this api
+        /// Only logged user can use this api.
         /// This API return all token package.
         /// </summary>
         /// <returns></returns>
-        //[Authorize(Policy = "UserOrAdmin")]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpGet]
         public async Task<IActionResult> GetAllTokenPackage()
         {

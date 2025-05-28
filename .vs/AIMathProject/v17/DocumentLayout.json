@@ -3,6 +3,82 @@
   "WorkspaceRootPath": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\plancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\plancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\paymentmethodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\paymentmethodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\tokenpackagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\tokenpackagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\middleware\\refreshtokenmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\middleware\\refreshtokenmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\command\\payment\\createpaymenttokenpackage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\payment\\createpaymenttokenpackage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\dto\\updatewalletrequests\\updatewalletrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\dto\\updatewalletrequests\\updatewalletrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\repositories\\walletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\walletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.domain\\interfaces\\iwalletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\iwalletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\command\\wallet\\updatetokenusedcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\wallet\\updatetokenusedcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\command\\wallet\\updatecoinusedcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\wallet\\updatecoinusedcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\userstatisticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\userstatisticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\command\\payment\\addpaymentplancommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\payment\\addpaymentplancommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\mappers\\paymentservices\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\mappers\\paymentservices\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\queries\\payment\\getallpaymentinfoquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\queries\\payment\\getallpaymentinfoquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\queries\\lessonprogress\\getinfoonelessonprogressquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\queries\\lessonprogress\\getinfoonelessonprogressquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,36 +91,16 @@
       "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\queries\\wallet\\getwalletbyuseridquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.domain\\interfaces\\iwalletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\iwalletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.domain\\interfaces\\iuserstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\iuserstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\repositories\\walletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\walletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.domain\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\mappers\\paymentservices\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\mappers\\paymentservices\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\mappers\\paymentservices\\tokentransactionmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\mappers\\paymentservices\\tokentransactionmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,44 +115,12 @@
       "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\mappers\\paymentservices\\walletmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\command\\payment\\createpaymenttokenpackage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\payment\\createpaymenttokenpackage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\plancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\plancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\questioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\tokenpackagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\tokenpackagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\middleware\\refreshtokenmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\middleware\\refreshtokenmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\command\\payment\\addpaymentplancommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\payment\\addpaymentplancommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\paymentservices\\vnpay\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\vnpay\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\paymentmethodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\paymentmethodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\userstatisticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\userstatisticscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\logoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -123,10 +147,6 @@
       "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\ipaymentmethodrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\command\\user\\updateusercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\command\\user\\updateusercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -149,10 +169,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\queries\\tokenpackage\\getalltokenpackagequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\queries\\tokenpackage\\getalltokenpackagequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\queries\\payment\\getallpaymentinfoquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\queries\\payment\\getallpaymentinfoquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -193,10 +209,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\repositories\\cointransactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\cointransactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.application\\mappers\\paymentservices\\cointransactionmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -396,11 +408,128 @@
         },
         {
           "DockedWidth": 418,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RefreshTokenMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
+              "RelativeToolTip": "AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:48:34.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WalletController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\WalletController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\WalletController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\WalletController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\WalletController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAqwC8AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:50:55.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\PaymentController.cs",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAAAO0AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:19:22.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\UserController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:38:58.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WalletRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAlwGUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T03:24:09.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlanController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PlanController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\PlanController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PlanController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\PlanController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:25:32.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TokenPackageController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\TokenPackageController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\TokenPackageController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\TokenPackageController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\TokenPackageController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:05:00.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UpdateTokenUsedCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Wallet\\UpdateTokenUsedCommand.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\Wallet\\UpdateTokenUsedCommand.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Wallet\\UpdateTokenUsedCommand.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\Wallet\\UpdateTokenUsedCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T10:27:59.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Program.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Program.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Program.cs",
+              "RelativeToolTip": "AIMathProject.API\\Program.cs",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAowAQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:54:49.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "PaymentMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\PaymentMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\PaymentMapper.cs",
@@ -413,488 +542,98 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IPaymentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:04:30.346Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "WalletRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAiwF0AAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:24:09.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IWalletRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:23:33.013Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IUserStatisticsRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:55:55.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetWalletByUserIdQuery.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAiwBkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:52:48.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GetLatestInfoPayment.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAUwA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T06:50:44.983Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GetInfoOneLessonProgressQuery.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T06:49:19.82Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TokenTransactionMapper.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAAB4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:47:25.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "WalletMapper.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:36:51.314Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PaymentController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PaymentController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\PaymentController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PaymentController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\PaymentController.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAiwLsAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:19:22.067Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "WalletController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\WalletController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\WalletController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\WalletController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\WalletController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:50:55.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAAAFMAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:05:32.309Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "WalletDto.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAqwBAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:19:20.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CreatePaymentTokenPackage.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAArwBEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:09:53.029Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:38:58.739Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "QuestionController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\QuestionController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\QuestionController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\QuestionController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\QuestionController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:25:32.335Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "TokenPackageController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\TokenPackageController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\TokenPackageController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\TokenPackageController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\TokenPackageController.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAqwBkAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:05:00.847Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "RefreshTokenMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
-              "RelativeToolTip": "AIMathProject.API\\Middleware\\RefreshTokenMiddleware.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:48:34.151Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PlanController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PlanController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\PlanController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PlanController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\PlanController.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwB0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:25:32.978Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "AddPaymentPlanCommand.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAArwBMAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:22:14.017Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
               "Title": "PaymentMethodController.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PaymentMethodController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\PaymentMethodController.cs",
               "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\PaymentMethodController.cs",
               "RelativeToolTip": "AIMathProject.API\\Controllers\\PaymentMethodController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAkwCEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAkwBUAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T02:49:17.656Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "VnPayService.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAiwNwAAABvAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "CreatePaymentTokenPackage.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\Payment\\CreatePaymentTokenPackage.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAswBUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:07:53.548Z",
+              "WhenOpened": "2025-05-28T07:09:53.029Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 9,
+              "Title": "IWalletRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IWalletRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAawA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T03:23:33.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UpdateWalletRequest.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\UpdateWalletRequests\\UpdateWalletRequest.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\UpdateWalletRequests\\UpdateWalletRequest.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\UpdateWalletRequests\\UpdateWalletRequest.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Dto\\UpdateWalletRequests\\UpdateWalletRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T10:39:39.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UpdateCoinUsedCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Wallet\\UpdateCoinUsedCommand.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\Wallet\\UpdateCoinUsedCommand.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Wallet\\UpdateCoinUsedCommand.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\Wallet\\UpdateCoinUsedCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowBIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T10:26:31.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "UserStatisticsController.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\UserStatisticsController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\UserStatisticsController.cs",
               "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\UserStatisticsController.cs",
               "RelativeToolTip": "AIMathProject.API\\Controllers\\UserStatisticsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T07:38:59.399Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "IPlanRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "AddPaymentPlanCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\Payment\\AddPaymentPlanCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:34:14.219Z",
+              "WhenOpened": "2025-05-28T03:22:14.017Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "LogoutController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LogoutController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LogoutController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LogoutController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\LogoutController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T06:52:35Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "LessonController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LessonController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LessonController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LessonController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\LessonController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T04:14:44.951Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "IPaymentMethodRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:34:20.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "ILessonWithExerciseRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:34:21.729Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "ILessonProgressRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:34:22.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Program.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Program.cs",
-              "RelativeToolTip": "AIMathProject.API\\Program.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAawAoBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:54:49.336Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "DeleteUserCommand.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:09:25.341Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "UpdateUserCommand.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:09:25.791Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "RefreshTokenCommand.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T07:09:01.565Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "TokenPackageRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBsAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:56:59.127Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "ITokenPackageRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:55:55.138Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "GetAllTokenPackageQuery.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBEAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:58:52.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "TokenPackage.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\TokenPackage.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\TokenPackage.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\TokenPackage.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Entities\\TokenPackage.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAWwBEAAABRAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:28:13.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 17,
               "Title": "GetAllPaymentInfoQuery.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Payment\\GetAllPaymentInfoQuery.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Payment\\GetAllPaymentInfoQuery.cs",
@@ -907,98 +646,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "GetAllInfoProgressQuery.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T06:37:40.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "PaymentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAAAFgAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:03:03.155Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "IChapterRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T04:05:54.935Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "TokenPackageMapper.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
-              "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAADAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:31:42.43Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "CoinTransaction.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\CoinTransaction.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\CoinTransaction.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\CoinTransaction.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Entities\\CoinTransaction.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAWwAwAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:26:04.54Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "Lesson.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Lesson.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\Lesson.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Lesson.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Entities\\Lesson.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T04:14:36.842Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "ICoinTransactionRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:43:20.691Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 18,
               "Title": "UserStatisticsRepository.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\UserStatisticsRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\UserStatisticsRepository.cs",
@@ -1011,7 +659,380 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "GetInfoOneLessonProgressQuery.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Queries\\LessonProgress\\GetInfoOneLessonProgressQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T06:49:19.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "GetLatestInfoPayment.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Queries\\Payment\\GetLatestInfoPayment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAUwA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T06:50:44.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GetWalletByUserIdQuery.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Queries\\Wallet\\GetWalletByUserIdQuery.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAiwBkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:52:48.239Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IUserStatisticsRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IUserStatisticsRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:55:55.456Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IPaymentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T03:04:30.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "TokenTransactionMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenTransactionMapper.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAB4AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:47:25.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "WalletMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\WalletMapper.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:36:51.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAAAFMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T03:05:32.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "WalletDto.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\Wallet\\WalletDto.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:19:20.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "QuestionController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\QuestionController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\QuestionController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\QuestionController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\QuestionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:25:32.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "VnPayService.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\VnPayService.cs",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAiwNwAAABvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:07:53.548Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "IPlanRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IPlanRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:34:14.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "LogoutController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LogoutController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LogoutController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LogoutController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\LogoutController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T06:52:35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "LessonController.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LessonController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LessonController.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\LessonController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\LessonController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T04:14:44.951Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IPaymentMethodRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IPaymentMethodRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:34:20.534Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ILessonWithExerciseRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ILessonWithExerciseRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:34:21.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ILessonProgressRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ILessonProgressRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:34:22.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "DeleteUserCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\User\\DeleteUserCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:09:25.341Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "UpdateUserCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\User\\UpdateUserCommand.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:09:25.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "RefreshTokenCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Command\\RefreshToken\\RefreshTokenCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T07:09:01.565Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "TokenPackageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBsAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:56:59.127Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "ITokenPackageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ITokenPackageRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:55:55.138Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "GetAllTokenPackageQuery.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Queries\\TokenPackage\\GetAllTokenPackageQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:58:52.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "TokenPackage.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\TokenPackage.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\TokenPackage.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\TokenPackage.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Entities\\TokenPackage.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAWwBEAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:28:13.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "GetAllInfoProgressQuery.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Queries\\LessonProgress\\GetAllInfoProgressQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T06:37:40.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "PaymentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAAFgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T03:03:03.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "IChapterRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IChapterRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T04:05:54.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "TokenPackageMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\TokenPackageMapper.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAAADAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:31:42.43Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 44,
+              "Title": "CoinTransaction.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\CoinTransaction.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\CoinTransaction.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\CoinTransaction.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Entities\\CoinTransaction.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAWwAwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T02:26:04.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "Lesson.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Lesson.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\Lesson.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Lesson.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Entities\\Lesson.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T04:14:36.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "ICoinTransactionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
+              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\ICoinTransactionRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T03:43:20.691Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
               "Title": "Payment.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Payment.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\Payment.cs",
@@ -1019,12 +1040,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\Payment.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAIwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:22:05.262Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:22:05.262Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 52,
               "Title": "CoinTransactionMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\CoinTransactionMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\CoinTransactionMapper.cs",
@@ -1032,12 +1052,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\CoinTransactionMapper.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAqwDUAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:32:47.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:32:47.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 53,
               "Title": "PlansMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\PlansMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\PlansMapper.cs",
@@ -1045,12 +1064,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\PlansMapper.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAAABAAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:31:25.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:31:25.938Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 51,
               "Title": "CoinTransactionRepository.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\CoinTransactionRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\CoinTransactionRepository.cs",
@@ -1058,12 +1076,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\CoinTransactionRepository.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwB4AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:49:28.015Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:49:28.015Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 54,
               "Title": "CoinTransactionDto.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\CoinTransaction\\CoinTransactionDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\CoinTransaction\\CoinTransactionDto.cs",
@@ -1071,12 +1088,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\CoinTransaction\\CoinTransactionDto.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAgwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:25:03.903Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:25:03.903Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 55,
               "Title": "ChapterRepository.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\ChapterRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\ChapterRepository.cs",
@@ -1084,12 +1100,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\ChapterRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:52:02.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:52:02.459Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 56,
               "Title": "QuestionRepository.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\QuestionRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\QuestionRepository.cs",
@@ -1097,12 +1112,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\QuestionRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:26:47.729Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:26:47.729Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 57,
               "Title": "TokenPackageDto.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\TokenPackage\\TokenPackageDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\TokenPackage\\TokenPackageDto.cs",
@@ -1110,12 +1124,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\TokenPackage\\TokenPackageDto.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:25:28.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:25:28.083Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 58,
               "Title": "LessonRepository.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
@@ -1123,12 +1136,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:26:46.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:26:46.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 62,
               "Title": "ExerciseDetailResultMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\ExerciseDetailResultMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\ExerciseDetailResultMapper.cs",
@@ -1136,12 +1148,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\ExerciseDetailResultMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:05:42.688Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:05:42.688Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 61,
               "Title": "LessonProgressMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\LessonProgressMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\LessonProgressMapper.cs",
@@ -1149,12 +1160,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\LessonProgressMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:05:43.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:05:43.24Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 59,
               "Title": "UserSessionMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\UserSessionMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\UserSessionMapper.cs",
@@ -1162,12 +1172,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\UserSessionMapper.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAqwBYAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:00:02.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:00:02.127Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 60,
               "Title": "QuestionMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\QuestionMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\QuestionMapper.cs",
@@ -1175,12 +1184,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\QuestionMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T03:05:43.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T03:05:43.942Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 65,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\User.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\User.cs",
@@ -1188,12 +1196,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\User.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAowBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:19:45.787Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:19:45.787Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 63,
               "Title": "Wallet.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Wallet.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\Wallet.cs",
@@ -1201,12 +1208,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\Wallet.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:19:26.643Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:19:26.643Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 67,
               "Title": "GetInfoTokenPackageByIdQuery.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Queries\\TokenPackage\\GetInfoTokenPackageByIdQuery.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\TokenPackage\\GetInfoTokenPackageByIdQuery.cs",
@@ -1214,12 +1220,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Queries\\TokenPackage\\GetInfoTokenPackageByIdQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:59:08.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:59:08.279Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 64,
               "Title": "UserSession.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\UserSession.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\UserSession.cs",
@@ -1227,12 +1232,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\UserSession.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAqwA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:19:25.87Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:19:25.87Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 66,
               "Title": "PaymentDto.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\PaymentDto\\PaymentDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\PaymentDto\\PaymentDto.cs",
@@ -1240,12 +1244,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\PaymentDto\\PaymentDto.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAjwBsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:23:35.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:23:35.182Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 68,
               "Title": "ExerciseDetailMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\ExerciseDetailMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\ExerciseDetailMapper.cs",
@@ -1253,12 +1256,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\ExerciseDetailMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:47:47.328Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:47:47.328Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 70,
               "Title": "TestResult.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\TestResult.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\TestResult.cs",
@@ -1266,12 +1268,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\TestResult.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:47:40.46Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:47:40.46Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 71,
               "Title": "ChoiceAnswerMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\ChoiceAnswerMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\ChoiceAnswerMapper.cs",
@@ -1279,12 +1280,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\ChoiceAnswerMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:45:56.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:45:56.337Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 69,
               "Title": "TokenTransaction.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\TokenTransaction.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\TokenTransaction.cs",
@@ -1292,12 +1292,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\TokenTransaction.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:19:56.218Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:19:56.218Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 72,
               "Title": "AutoMapperConfig.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\AutoMapperConfig.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\AutoMapperConfig.cs",
@@ -1305,12 +1304,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\AutoMapperConfig.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:45:35.991Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:45:35.991Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 73,
               "Title": "ChapterMappers.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\ChapterMappers.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\ChapterMappers.cs",
@@ -1318,12 +1316,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\ChapterMappers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:45:45.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:45:45.539Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 74,
               "Title": "PaymentMethodRepository.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Infrastructure\\Repositories\\PaymentMethodRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\PaymentMethodRepository.cs",
@@ -1331,12 +1328,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\PaymentMethodRepository.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAQwBsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:41:53.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:41:53.15Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 75,
               "Title": "PaymentMethodMapper.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Mappers\\PaymentServices\\PaymentMethodMapper.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\PaymentServices\\PaymentMethodMapper.cs",
@@ -1344,12 +1340,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Mappers\\PaymentServices\\PaymentMethodMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:31:22.447Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:31:22.447Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 77,
               "Title": "TokenTransactionDto.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\TokenTransaction\\TokenTransactionDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\TokenTransaction\\TokenTransactionDto.cs",
@@ -1357,12 +1352,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\TokenTransaction\\TokenTransactionDto.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:25:47.23Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:25:47.23Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 78,
               "Title": "MethodDto.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\MethodDto\\MethodDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\MethodDto\\MethodDto.cs",
@@ -1370,12 +1364,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\MethodDto\\MethodDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:29:07.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:29:07.341Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 76,
               "Title": "PlansDto.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Application\\Dto\\Payment\\PlanDto\\PlansDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\Payment\\PlanDto\\PlansDto.cs",
@@ -1383,12 +1376,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\Payment\\PlanDto\\PlansDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBIAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:22:10.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:22:10.803Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 80,
               "Title": "ExerciseDetailResult.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\ExerciseDetailResult.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\ExerciseDetailResult.cs",
@@ -1396,12 +1388,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\ExerciseDetailResult.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:22:08.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:22:08.985Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 79,
               "Title": "UserFillAnswer.cs",
               "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\UserFillAnswer.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\UserFillAnswer.cs",
@@ -1409,8 +1400,7 @@
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\UserFillAnswer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T02:19:58.116Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-28T02:19:58.116Z"
             }
           ]
         }

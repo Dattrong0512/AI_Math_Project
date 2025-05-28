@@ -22,12 +22,13 @@ namespace AIMathProject.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<bool> UpdateCoins(int userID, int amount)
+        public async Task<WalletDto> UpdateCoinUsed(int walletId, int amount)
         {
-            var wallet = _context.Wallets.FirstOrDefault(w => w.UserId == userID);
+            Wallet wallet = new Wallet();
+            wallet = _context.Wallets.FirstOrDefault(w => w.WalletId == walletId);
             if (wallet == null)
             {
-                return false;
+                return null;
             }
 
             wallet.CoinRemains -= amount;
@@ -44,7 +45,14 @@ namespace AIMathProject.Infrastructure.Repositories
             };
             _context.CoinTransactions.Add(coinTransaction);
             await _context.SaveChangesAsync();
-            return true;
+            return new WalletDto
+            {
+                WalletId = wallet.WalletId,
+                UserId = wallet.UserId,
+                CoinRemains = wallet.CoinRemains,
+                TokenRemains = wallet.TokenRemains
+            }
+            ;
         }
 
         public async Task<string> UpdateCoinBuyToken(int userID, int TokenPackageID)
@@ -86,24 +94,31 @@ namespace AIMathProject.Infrastructure.Repositories
             return "Thanh toán thành công cho gói token " + tkpk.PackageName + " với số lượng " + tkpk.Tokens + " token.";
         }
 
-        public async Task<bool> UpdateTokenUsed(int WalletId, int amount)
+        public async Task<WalletDto> UpdateTokenUsed(int walletId, int TokenRemain)
         {
-            var wallet = _context.Wallets.FirstOrDefault(w => w.WalletId == WalletId);
+            Wallet wallet = _context.Wallets.FirstOrDefault(w => w.WalletId == walletId);
             if (wallet == null)
             {
-                return false;
+                return null;
             }
-            wallet.TokenRemains -= amount;
+            wallet.TokenRemains -= TokenRemain;
             var tokenTransaction = new Domain.Entities.TokenTransaction
             {
-                WalletId = WalletId,
+                WalletId = wallet.WalletId,
                 TokenRemains = wallet.TokenRemains,
-                TokenAmount = -amount,
+                TokenAmount = -TokenRemain,
                 Date = DateTime.UtcNow
             };
             _context.TokenTransactions.Add(tokenTransaction);
             await _context.SaveChangesAsync();
-            return true;
+            return new WalletDto
+            {
+                WalletId = wallet.WalletId,
+                UserId = wallet.UserId,
+                CoinRemains = wallet.CoinRemains,
+                TokenRemains = wallet.TokenRemains
+            }
+            ;
         }
 
         public async Task<WalletDto> GetWalletByUserId(int userId)
