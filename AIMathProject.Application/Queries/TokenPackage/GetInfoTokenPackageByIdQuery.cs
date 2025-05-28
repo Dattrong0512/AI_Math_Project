@@ -1,4 +1,4 @@
-﻿using AIMathProject.Application.Dto.Payment.TokenPackageDto;
+﻿using AIMathProject.Application.Dto.Payment.TokenPackage;
 using AIMathProject.Domain.Interfaces;
 using MediatR;
 using System;

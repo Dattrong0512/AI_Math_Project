@@ -8,12 +8,14 @@ using System.Collections.Generic;
 
 namespace AIMathProject.Infrastructure.Data;
 
-public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, IdentityRole<int>, int>
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
+    }
 
-
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Domain.Entities.User> Users { get; set; }
 
     public virtual DbSet<Chapter> Chapters { get; set; }
 
@@ -22,6 +24,8 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
     public virtual DbSet<ChatMessage> ChatMessages { get; set; }
 
     public virtual DbSet<ChoiceAnswer> ChoiceAnswers { get; set; }
+
+    public virtual DbSet<CoinTransaction> CoinTransactions { get; set; }
 
     public virtual DbSet<Comment> Comments { get; set; }
 
@@ -53,10 +57,6 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
     public virtual DbSet<Plan> Plans { get; set; }
 
-    public virtual DbSet<PlanTransaction> PlanTransactions { get; set; }
-
-    public virtual DbSet<PlanUser> PlanUsers { get; set; }
-
     public virtual DbSet<Question> Questions { get; set; }
 
     public virtual DbSet<Test> Tests { get; set; }
@@ -71,15 +71,18 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
     public virtual DbSet<TokenTransaction> TokenTransactions { get; set; }
 
-    public virtual DbSet<TokenUser> TokenUsers { get; set; }
+    public virtual DbSet<UserFillAnswer> UserFillAnswers { get; set; }
 
     public virtual DbSet<UserSession> UserSessions { get; set; }
 
-    public virtual DbSet<UserFillAnswer> UserFillAnswers { get; set; }
+    public virtual DbSet<Wallet> Wallets { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().ToTable("Users");
+
+     
+      
 
         modelBuilder.Entity<Chapter>(entity =>
         {
@@ -171,6 +174,32 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasForeignKey(d => d.QuestionId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK__Choice_An__quest__0B91BA14");
+        });
+
+        modelBuilder.Entity<CoinTransaction>(entity =>
+        {
+            entity.HasKey(e => e.CoinTransactionId).HasName("PK__Coin_Tra__6422D8A467FE1B99");
+
+            entity.ToTable("Coin_Transaction");
+
+            entity.Property(e => e.CoinTransactionId).HasColumnName("coin_transaction_id");
+            entity.Property(e => e.Amount).HasColumnName("amount");
+            entity.Property(e => e.CoinRemains).HasColumnName("coin_remains");
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime")
+                .HasColumnName("date");
+            entity.Property(e => e.IsTokenPackage).HasColumnName("is_token_package");
+            entity.Property(e => e.TokenPackageId).HasColumnName("token_package_id");
+            entity.Property(e => e.WalletId).HasColumnName("wallet_id");
+
+            entity.HasOne(d => d.TokenPackage).WithMany(p => p.CoinTransactions)
+                .HasForeignKey(d => d.TokenPackageId)
+                .HasConstraintName("FK__Coin_Tran__token__3CF40B7E");
+
+            entity.HasOne(d => d.Wallet).WithMany(p => p.CoinTransactions)
+                .HasForeignKey(d => d.WalletId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Coin_Tran__walle__3EDC53F0");
         });
 
         modelBuilder.Entity<Comment>(entity =>
@@ -315,14 +344,20 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 });
 
             entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
+            entity.Property(e => e.ChoiceAnswerId).HasColumnName("choice_answer_id");
             entity.Property(e => e.ExerciseDetailId).HasColumnName("exercise_detail_id");
             entity.Property(e => e.ExerciseResultId).HasColumnName("exercise_result_id");
             entity.Property(e => e.IsCorrect).HasColumnName("is_correct");
-            entity.Property(e => e.ChoiceAnswerId).HasColumnName("choice_answer_id");
             entity.Property(e => e.QuestionType)
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnName("question_type");
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("question_type");
+
+            entity.HasOne(d => d.ChoiceAnswer).WithMany(p => p.ExerciseDetailResults)
+                .HasForeignKey(d => d.ChoiceAnswerId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Exercise___choic__42ACE4D4");
+
             entity.HasOne(d => d.ExerciseDetail).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseDetailId)
                 .HasConstraintName("FK__Exercise___exerc__14270015");
@@ -330,20 +365,6 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.ExerciseResult).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseResultId)
                 .HasConstraintName("FK__Exercise___exerc__151B244E");
-        });
-
-        modelBuilder.Entity<UserFillAnswer>(entity =>
-        {
-            entity.HasKey(e => e.UserFillAnswerId).HasName("PK__User_Fil__E5105288981F1E0A");
-            entity.ToTable("User_Fill_Answer");
-            entity.Property(e => e.UserFillAnswerId).HasColumnName("user_fill_answer_id");
-            entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
-            entity.Property(e => e.WrongAnswer).HasColumnName("wrong_answer");
-            entity.Property(e => e.Position).HasColumnName("position");
-
-            entity.HasOne(d => d.ExerciseDetailResult).WithMany(p => p.UserFillAnswers)
-                .HasForeignKey(d => d.ExerciseDetailResultId)
-                .HasConstraintName("FK__User_Fill__exerc__41B8C09B");
         });
 
         modelBuilder.Entity<ExerciseResult>(entity =>
@@ -502,7 +523,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA9A4D8340");
+            entity.HasKey(e => e.PaymentId).HasName("PK__Payment__ED1FC9EA104764AA");
 
             entity.ToTable("Payment");
 
@@ -525,30 +546,24 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.Property(e => e.Status)
                 .HasMaxLength(30)
                 .HasColumnName("status");
-            entity.Property(e => e.TokenPackageId).HasColumnName("token_package_id");
             entity.Property(e => e.TransactionId)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("TransactionID");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.WalletId).HasColumnName("wallet_id");
 
             entity.HasOne(d => d.Method).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.MethodId)
-                .HasConstraintName("FK__Payment__method___0E391C95");
+                .HasConstraintName("FK__Payment__method___32767D0B");
 
             entity.HasOne(d => d.Plan).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.PlanId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Payment__plan_id__10216507");
+                .HasConstraintName("FK__Payment__plan_id__336AA144");
 
-            entity.HasOne(d => d.TokenPackage).WithMany(p => p.Payments)
-                .HasForeignKey(d => d.TokenPackageId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Payment__token_p__0F2D40CE");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Payments)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Payment__user_id__11158940");
+            entity.HasOne(d => d.Wallet).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.WalletId)
+                .HasConstraintName("FK__Payment__wallet___251C81ED");
         });
 
         modelBuilder.Entity<PaymentMethod>(entity =>
@@ -578,42 +593,6 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
-        });
-
-        modelBuilder.Entity<PlanTransaction>(entity =>
-        {
-            entity.HasKey(e => e.PlanTransactionId).HasName("PK__Plan_Tra__6A8B2E597B60B984");
-
-            entity.ToTable("Plan_Transaction");
-
-            entity.Property(e => e.PlanTransactionId).HasColumnName("plan_transaction_id");
-            entity.Property(e => e.Amount).HasColumnName("amount");
-            entity.Property(e => e.Date)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("date");
-            entity.Property(e => e.PlanUserId).HasColumnName("plan_user_id");
-
-            entity.HasOne(d => d.PlanUser).WithMany(p => p.PlanTransactions)
-                .HasForeignKey(d => d.PlanUserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Plan_Tran__plan___02C769E9");
-        });
-
-        modelBuilder.Entity<PlanUser>(entity =>
-        {
-            entity.HasKey(e => e.PlanUserId).HasName("PK__Plan_Use__C1E9976CD2F8B327");
-
-            entity.ToTable("Plan_User");
-
-            entity.Property(e => e.PlanUserId).HasColumnName("plan_user_id");
-            entity.Property(e => e.Coins).HasColumnName("coins");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.User).WithMany(p => p.PlanUsers)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Plan_User__user___03BB8E22");
         });
 
         modelBuilder.Entity<Question>(entity =>
@@ -736,7 +715,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
         modelBuilder.Entity<TokenPackage>(entity =>
         {
-            entity.HasKey(e => e.TokenPackageId).HasName("PK__Token_Pa__F49422B1ED52AC91");
+            entity.HasKey(e => e.TokenPackageId).HasName("PK__Token_Pa__F49422B1B0F65FB7");
 
             entity.ToTable("Token_Package");
 
@@ -747,46 +726,46 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.Property(e => e.PackageName)
                 .HasMaxLength(100)
                 .HasColumnName("package_name");
-            entity.Property(e => e.Price)
-                .HasColumnType("decimal(10, 2)")
-                .HasColumnName("price");
+            entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.Tokens).HasColumnName("tokens");
         });
 
         modelBuilder.Entity<TokenTransaction>(entity =>
         {
-            entity.HasKey(e => e.TokenTransactionId).HasName("PK__Token_Tr__A3DC9D592A0E48DC");
+            entity.HasKey(e => e.TokenTransactionId).HasName("PK__Token_Tr__A3DC9D59C57A3C7D");
 
             entity.ToTable("Token_Transaction");
 
             entity.Property(e => e.TokenTransactionId).HasColumnName("token_transaction_id");
-            entity.Property(e => e.Amount).HasColumnName("amount");
             entity.Property(e => e.Date)
-                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("date");
-            entity.Property(e => e.TokenUserId).HasColumnName("token_user_id");
+            entity.Property(e => e.TokenAmount).HasColumnName("token_amount");
+            entity.Property(e => e.TokenRemains).HasColumnName("token_remains");
+            entity.Property(e => e.WalletId).HasColumnName("wallet_id");
 
-            entity.HasOne(d => d.TokenUser).WithMany(p => p.TokenTransactions)
-                .HasForeignKey(d => d.TokenUserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Token_Tra__token__0880433F");
+            entity.HasOne(d => d.Wallet).WithMany(p => p.TokenTransactions)
+                .HasForeignKey(d => d.WalletId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Token_Tra__walle__3BFFE745");
         });
 
-        modelBuilder.Entity<TokenUser>(entity =>
+        modelBuilder.Entity<UserFillAnswer>(entity =>
         {
-            entity.HasKey(e => e.TokenUserId).HasName("PK__Token_Us__7FCD61737CFC9431");
+            entity.HasKey(e => e.UserFillAnswerId).HasName("PK__User_Fil__E5105288981F1E0A");
 
-            entity.ToTable("Token_User");
+            entity.ToTable("User_Fill_Answer");
 
-            entity.Property(e => e.TokenUserId).HasColumnName("token_user_id");
-            entity.Property(e => e.Tokens).HasColumnName("tokens");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.UserFillAnswerId).HasColumnName("user_fill_answer_id");
+            entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
+            entity.Property(e => e.Position).HasColumnName("position");
+            entity.Property(e => e.WrongAnswer)
+                .HasMaxLength(100)
+                .HasColumnName("wrong_answer");
 
-            entity.HasOne(d => d.User).WithMany(p => p.TokenUsers)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Token_Use__user___09746778");
+            entity.HasOne(d => d.ExerciseDetailResult).WithMany(p => p.UserFillAnswers)
+                .HasForeignKey(d => d.ExerciseDetailResultId)
+                .HasConstraintName("FK__User_Fill__exerc__41B8C09B");
         });
 
         modelBuilder.Entity<UserSession>(entity =>
@@ -808,7 +787,24 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
                 .HasConstraintName("FK__User_Session__user_id__4F7CD00D");
         });
 
+        modelBuilder.Entity<Wallet>(entity =>
+        {
+            entity.HasKey(e => e.WalletId).HasName("PK__Wallet__0EE6F0414E6E92A0");
+
+            entity.ToTable("Wallet");
+
+            entity.Property(e => e.WalletId).HasColumnName("wallet_id");
+            entity.Property(e => e.CoinRemains).HasColumnName("coin_remains");
+            entity.Property(e => e.TokenRemains).HasColumnName("token_remains");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Wallets)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__Wallet__user_id__24285DB4");
+        });
+
         base.OnModelCreating(modelBuilder);
     }
+
 
 }

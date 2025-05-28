@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Dto.Payment.MethodDto;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
+using AIMathProject.Application.Dto.Payment.PlanDto;
 using AIMathProject.Application.Mappers.PaymentServices;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
@@ -41,80 +42,91 @@ namespace AIMathProject.Infrastructure.Repositories
             return false;
         }
 
-        public async Task<ICollection<PaymentDto>> GetAllInfoPaymentUserById(int id)
+        public Task<List<PaymentDto>> GetAllPayment(int userID)
         {
-            var paymentDtos = await (from pm in _context.Payments
-                                     join pmt in _context.PaymentMethods on pm.MethodId equals pmt.MethodId
-                                     join pl in _context.Plans on pm.PlanId equals pl.PlanId into plJoin
-                                     from pl in plJoin.DefaultIfEmpty() // LEFT JOIN cho Plans
-                                     join tkp in _context.TokenPackages on pm.TokenPackageId equals tkp.TokenPackageId into tkpJoin
-                                     from tkp in tkpJoin.DefaultIfEmpty() // LEFT JOIN cho TokenPackage
-                                     where pm.UserId == id
-                                     select new PaymentDto
-                                     {
-                                         PaymentId = pm.PaymentId,
-                                         MethodId = pm.MethodId,
-                                         UserId = pm.UserId,
-                                         TokenPackageId = pm.TokenPackageId,
-                                         PlanId = pm.PlanId,
-                                         Date = pm.Date,
-                                         Description = pm.Description,
-                                         Status = pm.Status,
-                                         Price = pm.Price,
-                                         OrderID = pm.OrderId,
-                                         TransactionID = pm.TransactionId,
-                                         Method = pmt != null ? pmt.ToMethodDto() : null,
-                                         Plan = pl != null ? pl.ToPlansDto() : null,
-                                         TokenPackage = tkp != null ? tkp.ToTokenPackageDto() : null
-                                     })
-                                     .ToListAsync();
-
-            _logger.LogInformation($"logger: Retrieved {paymentDtos.Count} payment records for user {id}");
-
-            if (!paymentDtos.Any())
-            {
-                throw new KeyNotFoundException($"Không tìm thấy thanh toán nào cho user_id {id}.");
-            }
-
-            return paymentDtos;
+            int wlId = _context.Wallets
+                .Where(w => w.UserId == userID)
+                .Select(w => w.WalletId)
+                .FirstOrDefault();
+            var listPayment = 
+                from pm in _context.Payments
+                join pmt in _context.PaymentMethods
+                on pm.MethodId equals pmt.MethodId
+                join pl in _context.Plans
+                on pm.PlanId equals pl.PlanId into planGroup
+                from pl in planGroup.DefaultIfEmpty()
+                where pm.WalletId == wlId
+                select new PaymentDto
+                {
+                    PaymentId = pm.PaymentId,
+                    MethodId = pm.MethodId,
+                    WalletId = pm.WalletId,
+                    TransactionID = pm.TransactionId,
+                    PlanId = pm.PlanId,
+                    Date = pm.Date,
+                    Description = pm.Description,
+                    Status = pm.Status,
+                    Price = pm.Price,
+                    Method = new MethodDto
+                    {
+                        MethodId = pmt.MethodId,
+                        MethodName = pmt.MethodName
+                    },
+                    Plan = pl != null ? new PlansDto
+                    {
+                        PlanId = pl.PlanId,
+                        PlanName = pl.PlanName,
+                        Price = pl.Price,
+                        Coins = pl.Coins,
+                        Description = pl.Description,
+                    } : null
+                };
+            return listPayment.ToListAsync();
         }
 
-        public async Task<PaymentDto> GetLatestInfoPaymentUserById(int id)
+        public Task<PaymentDto> GetLatestPayment(int userID)
         {
-            PaymentDto ?paymentDto = await (from pm in _context.Payments
-                                           join pmt in _context.PaymentMethods on pm.MethodId equals pmt.MethodId
-                                           join pl in _context.Plans on pm.PlanId equals pl.PlanId into plJoin
-                                           from pl in plJoin.DefaultIfEmpty() // LEFT JOIN cho Plans
-                                           join tkp in _context.TokenPackages on pm.TokenPackageId equals tkp.TokenPackageId into tkpJoin
-                                           from tkp in tkpJoin.DefaultIfEmpty() // LEFT JOIN cho TokenPackage
-                                           where pm.UserId == id
-                                           orderby pm.PaymentId descending
-                                           select new PaymentDto
-                                           {
-                                               PaymentId = pm.PaymentId,
-                                               MethodId = pm.MethodId,
-                                               UserId = pm.UserId,
-                                               TokenPackageId = pm.TokenPackageId,
-                                               PlanId = pm.PlanId,
-                                               Date = pm.Date,
-                                               Description = pm.Description,
-                                               Status = pm.Status,
-                                               Price = pm.Price,
-                                               OrderID = pm.OrderId,
-                                               TransactionID = pm.TransactionId,
-                                               Method = pmt != null ? pmt.ToMethodDto() : null,
-                                               Plan = pl != null ? pl.ToPlansDto() : null,
-                                               TokenPackage = tkp != null ? tkp.ToTokenPackageDto() : null
-                                           })
-                              .FirstOrDefaultAsync();
-            _logger.LogInformation($"logger {paymentDto}");
-            if (paymentDto != null)
-            {
-                return paymentDto;
-            }
-            else return null;
-        }
+            int wlId = _context.Wallets
+              .Where(w => w.UserId == userID)
+              .Select(w => w.WalletId)
+              .FirstOrDefault();
+            var listPayment =
+                from pm in _context.Payments
+                join pmt in _context.PaymentMethods
+                on pm.MethodId equals pmt.MethodId
+                join pl in _context.Plans
+                on pm.PlanId equals pl.PlanId into planGroup
+                from pl in planGroup.DefaultIfEmpty()
+                where pm.WalletId == wlId
+                orderby pm.Date descending
+                select new PaymentDto
+                {
+                    PaymentId = pm.PaymentId,
+                    MethodId = pm.MethodId,
+                    WalletId = pm.WalletId,
+                    TransactionID = pm.TransactionId,
+                    PlanId = pm.PlanId,
+                    Date = pm.Date,
+                    Description = pm.Description,
+                    Status = pm.Status,
+                    Price = pm.Price,
+                    Method = new MethodDto
+                    {
+                        MethodId = pmt.MethodId,
+                        MethodName = pmt.MethodName
+                    },
+                    Plan = pl != null ? new PlansDto
+                    {
+                        PlanId = pl.PlanId,
+                        PlanName = pl.PlanName,
+                        Price = pl.Price,
+                        Coins = pl.Coins,
+                        Description = pl.Description,
+                    } : null
+                };
+            return listPayment.FirstOrDefaultAsync();
 
+        }
     }
 }
  

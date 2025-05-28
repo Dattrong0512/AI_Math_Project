@@ -9,13 +9,11 @@ public partial class Payment
 
     public int MethodId { get; set; }
 
-    public int UserId { get; set; }
+    public int WalletId { get; set; }
 
     public string? OrderId { get; set; }
 
     public string? TransactionId { get; set; }
-
-    public int? TokenPackageId { get; set; }
 
     public int? PlanId { get; set; }
 
@@ -31,7 +29,5 @@ public partial class Payment
 
     public virtual Plan? Plan { get; set; }
 
-    public virtual TokenPackage? TokenPackage { get; set; }
-
-    public virtual User User { get; set; } = null!;
+    public virtual Wallet Wallet { get; set; } = null!;
 }

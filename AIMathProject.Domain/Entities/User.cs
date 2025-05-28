@@ -6,7 +6,6 @@ namespace AIMathProject.Domain.Entities;
 
 public class User : IdentityUser<int>
 {
-
     public bool? Gender { get; set; }
 
     public DateTime? Dob { get; set; }
@@ -17,7 +16,6 @@ public class User : IdentityUser<int>
     public string? RefreshToken { get; set; }
 
     public DateTime? RefreshTokenExpiredAtUtc { get; set; }
-
 
     public virtual ICollection<Chat> ChatSupportAgents { get; set; } = new List<Chat>();
 
@@ -31,13 +29,9 @@ public class User : IdentityUser<int>
 
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
-
-    public virtual ICollection<PlanUser> PlanUsers { get; set; } = new List<PlanUser>();
-
-    public virtual ICollection<TokenUser> TokenUsers { get; set; } = new List<TokenUser>();
-
     public virtual ICollection<UserSession> UserSessions { get; set; } = new List<UserSession>();
+
+    public virtual ICollection<Wallet> Wallets { get; set; } = new List<Wallet>();
     public static User Create(string username, string email, DateTime dob, string phonenumber)
     {
         return new User
@@ -53,3 +47,4 @@ public class User : IdentityUser<int>
         return $"User is: {Email} has Id: {Id} ";
     }
 }
+

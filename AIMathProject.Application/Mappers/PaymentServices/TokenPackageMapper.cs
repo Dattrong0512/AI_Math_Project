@@ -1,5 +1,5 @@
 ﻿using AIMathProject.Application.Dto.Payment.PlanDto;
-using AIMathProject.Application.Dto.Payment.TokenPackageDto;
+using AIMathProject.Application.Dto.Payment.TokenPackage;
 using AIMathProject.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Application.Mappers.PaymentServices
 {
-    public static class TokenPackageMapper 
+    public static class TokenPackageMapper
     {
-        public static TokenPackageDto ToTokenPackageDto (this TokenPackage package)
+        public static TokenPackageDto ToTokenPackageDto(this TokenPackage package)
         {
             TokenPackageDto dto = new TokenPackageDto
             {
                 TokenPackageId = package.TokenPackageId,
 
-                 PackageName = package.PackageName,
+                PackageName = package.PackageName,
 
                 Tokens = package.Tokens,
 
@@ -29,14 +29,26 @@ namespace AIMathProject.Application.Mappers.PaymentServices
             return dto;
 
         }
-        public static ICollection<TokenPackageDto> ToListTokenPackageDto(this ICollection<TokenPackage> list)
+        public static List<TokenPackageDto> ToListTokenPackageDto(ICollection<TokenPackage> list)
         {
             List<TokenPackageDto> dto = new List<TokenPackageDto>();
-            foreach (var pl in list)
+            foreach (var item in list)
             {
-                dto.Add(pl.ToTokenPackageDto());
+                dto.Add(item.ToTokenPackageDto());
             }
             return dto;
+        }
+        public static TokenPackage ToTokenPackage(this TokenPackageDto dto)
+        {
+            TokenPackage package = new TokenPackage
+            {
+                TokenPackageId = dto.TokenPackageId,
+                PackageName = dto.PackageName,
+                Tokens = dto.Tokens,
+                Price = dto.Price,
+                Description = dto.Description
+            };
+            return package;
         }
     }
 }

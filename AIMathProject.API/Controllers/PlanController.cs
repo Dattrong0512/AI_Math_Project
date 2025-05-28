@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AIMathProject.API.Controllers
 {
-    [Route("api/plan")]
+    [Route("plan")]
     [ApiController]
     public class PlanController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace AIMathProject.API.Controllers
         /// This api return all plan to user buy it
         /// </summary>
         /// <returns></returns>
-        [Authorize(Policy = "UserOrAdmin")]
+        //[Authorize(Policy = "UserOrAdmin")]
         [HttpGet]
         public async Task<IActionResult> GetAllPlan()
         {

@@ -10,8 +10,7 @@ namespace AIMathProject.Domain.Interfaces
     public interface IPaymentRepository<T> where T : class
     {
         Task<bool> AddPayment(T payment);
-        Task<T> GetLatestInfoPaymentUserById(int id);
-
-        Task<ICollection<T>> GetAllInfoPaymentUserById(int id);
+        Task<List<T>> GetAllPayment(int userID);
+        Task<T> GetLatestPayment(int userID);
     }
 }

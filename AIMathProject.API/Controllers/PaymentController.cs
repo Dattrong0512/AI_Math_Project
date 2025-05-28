@@ -1,4 +1,5 @@
 ﻿using AIMathProject.Application.Abstracts;
+using AIMathProject.Application.Command.Payment;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Queries.Payment;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
@@ -56,49 +57,11 @@ namespace AIMathProject.API.Controllers
         /// <param name="idPlan">The ID of the study plan.</param>
         /// <param name="idUser">The ID of the user making the payment.</param>
         /// <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
-        [Authorize(Policy = "User")]
-        [HttpPost("api/payment/plan/{idPlan:int}/user/{idUser:int}")]
+        //[Authorize(Policy = "User")]
+        [HttpPost("payment/plan/{idPlan:int}/user/{idUser:int}")]
         public async Task<IActionResult> CreatePaymentPlansUrlVnPay([FromRoute] int idPlan, [FromRoute] int idUser)
         {
-            string url =  await _vnPay.CreatePayment(true, idPlan, idUser, HttpContext);
-            _logger.LogInformation(url);
-            return Ok(new { paymentUrl = url });
-        }
-        #endregion
-
-        #region CallbackVnPayForPackage
-        /// <summary>
-        /// Generates a VnPay payment URL for purchasing token packages.
-        /// </summary>
-        /// <remarks>
-        /// *Only logged in users can use this api*
-        /// This API creates a VnPay payment URL for a specific token package purchase by a user.
-        ///
-        /// **Request:**
-        /// Send a request with the following route parameters:
-        /// - **idToken**: The ID of the token package to be purchased.
-        /// - **idUser**: The ID of the user making the payment.
-        ///
-        /// **Example Request:**
-        /// ```http
-        /// POST /payment/token/10/user/456
-        /// ```
-        ///
-        /// **Response:**
-        /// ```json
-        /// {
-        ///     "paymentUrl": "https://sandbox.vnpayment.vn/payment/link-to-pay"
-        /// }
-        /// ```
-        /// </remarks>
-        /// <param name="idToken">The ID of the token package.</param>
-        /// <param name="idUser">The ID of the user making the payment.</param>
-        /// <returns>Returns a VnPay payment URL to redirect the user for payment.</returns>
-        [Authorize(Policy = "User")]
-        [HttpPost("api/payment/token/{idToken:int}/user/{idUser:int}")]
-        public async Task<IActionResult> CreatePaymentTokenUrlVnPay([FromRoute] int idToken, [FromRoute] int idUser)
-        {
-            string url = await _vnPay.CreatePayment(false, idToken, idUser, HttpContext);
+            string url = await _vnPay.CreatePayment(idPlan, idUser, HttpContext);
             _logger.LogInformation(url);
             return Ok(new { paymentUrl = url });
         }
@@ -195,6 +158,32 @@ namespace AIMathProject.API.Controllers
 
 
         /// <summary>
+        /// Creates a payment for a token package purchase.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this API*
+        /// This API initiates a payment process for a specific token package purchase by a user.
+        ///
+        /// **Request:**
+        /// Send a request with the following route parameters:
+        /// - **tokenPackageId**: The ID of the token package to be purchased.
+        /// - **userId**: The ID of the user making the payment.
+        /// </remarks>
+        /// <param name="tokenPackageId">The ID of the token package.</param>
+        /// <param name="userId">The ID of the user making the payment.</param>
+        /// <returns>Returns string to know success or fail</returns>
+        [HttpPost("payment/token/{tokenPackageId:int}/user/{userId:int}")]
+        public async Task<ActionResult<PaymentDto>> CreatePaymentTokenPackage([FromRoute] int tokenPackageId, [FromRoute] int userId)
+        {
+            var payment = await _mediator.Send(new CreatePaymentTokenPackage(userId, tokenPackageId));
+            if (payment == null)
+            {
+                return NotFound("No payment information found for the given user ID.");
+            }
+            return Ok(payment);
+        }
+
+        /// <summary>
         /// Retrieve the latest payment information for a specific user.
         /// </summary>
         /// <remarks>
@@ -215,11 +204,12 @@ namespace AIMathProject.API.Controllers
         /// <returns>Returns the payment details for the user or an error if no data is found.</returns>
         /// <response code="200">Returns the payment information successfully.</response>
         /// <response code="404">Indicates that no payment information was found for the given user ID.</response>
-        [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("api/payment/user/{userId:int}")]
+        //[Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("payment/user/{userId:int}")]
         public async Task<ActionResult<PaymentDto>> GetLatestInforUserPaymentById([FromRoute] int userId)
         {
-            return Ok(await _mediator.Send(new GetLatestInfoPaymentUserByIDQuery(userId)));
+            return Ok(await _mediator.Send(new GetLatestInfoPayment(userId)));
+
         }
 
         /// <summary>
@@ -243,11 +233,14 @@ namespace AIMathProject.API.Controllers
         /// <returns>Returns the payment details for the user or an error if no data is found.</returns>
         /// <response code="200">Returns the payment information successfully.</response>
         /// <response code="404">Indicates that no payment information was found for the given user ID.</response>
-        [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("api/payment/user/{userId:int}/all")]
+        //[Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("payment/user/{userId:int}/all")]
         public async Task<ActionResult<PaymentDto>> GetAllInforUserPaymentById([FromRoute] int userId)
         {
-            return Ok(await _mediator.Send(new GetAllInfoPaymentUserByIDQuery(userId)));
+            return Ok(await _mediator.Send(new GetAllPaymentInfoQuery(userId)));
         }
+
+
+
     }
 }

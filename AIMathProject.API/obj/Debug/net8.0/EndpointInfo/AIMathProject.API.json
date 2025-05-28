@@ -407,13 +407,13 @@
         }
       }
     },
-    "/api/exerciseresult/enrollment/id/{id}/lessonorder/{lessonorder}": {
+    "/api/exerciseresult/enrollment/id/{id}/exercise/id/{exerciseid}": {
       "post": {
         "tags": [
           "ExerciseDetailResult"
         ],
-        "summary": "Creates or updates exercise detail results for a user's enrollment in a specific lesson.",
-        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates or updates the exercise detail results based on the user's answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **lessonorder** (int): The sequential order of the lesson.\r\n- **edrDtoList** (List<ExerciseDetailResultDto>): List of exercise detail results. Each item should include:\r\n  - **questionId** (int): The unique identifier of the question being answered.\r\n  - **isCorrect** (bool): Whether the user's answer is correct or not.\r\n\r\n**Response Format:**\r\n- **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.\r\n- **400 Bad Request**: If the operation fails, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/exerciseresult/enrollment/id/11/lessonorder/1\r\nContent-Type: application/json\r\n[\r\n  {\r\n    \"questionId\": 1,\r\n    \"isCorrect\": true\r\n  },\r\n  {\r\n    \"questionId\": 2,\r\n    \"isCorrect\": false\r\n  },\r\n  {\r\n    \"questionId\": 3,\r\n    \"isCorrect\": true\r\n  },\r\n  {\r\n    \"questionId\": 4,\r\n    \"isCorrect\": true\r\n  }\r\n]\r\n```\r\n\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 200 OK\r\ntrue\r\n```",
+        "summary": "Creates or updates exercise detail results for a user's enrollment in a specific exercise.",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates or updates the exercise detail results based on the user's answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The exercise id of the exercise.\r\n- **edrDtoList** (List<ExerciseDetailResultDto>): List of exercise detail results. Each item should include:\r\n  - **questionId** (int): The unique identifier of the question being answered.\r\n  - **isCorrect** (bool): Whether the user's answer is correct or not.\r\n  - **questionType** (string): Type of the question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **choiceAnswerId** (int, optional): For multiple_choice questions, the ID of the selected choice.\r\n  - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n\r\n**Response Format:**\r\n- **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.\r\n- **400 Bad Request**: If the operation fails, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/exerciseresult/enrollment/id/8/exercise/id/132\r\nContent-Type: application/json\r\n[\r\n  {\r\n    \"questionId\": 9,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"  \r\n  },\r\n  {\r\n    \"questionId\": 10,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"fill_in_blank\",\r\n    \"userFillAnswers\": [\r\n      {\r\n        \"wrongAnswer\": \"750\",\r\n        \"position\": 1\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"questionId\": 11,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"multiple_choice\"\r\n  },\r\n  {\r\n    \"questionId\": 12,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"multiple_choice\",\r\n    \"choiceAnswerId\": 22\r\n  },\r\n  {\r\n    \"questionId\": 13,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"\r\n  }\r\n]\r\n```\r\n\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 200 OK\r\ntrue\r\n```",
         "parameters": [
           {
             "name": "id",
@@ -425,7 +425,7 @@
             }
           },
           {
-            "name": "lessonorder",
+            "name": "exerciseid",
             "in": "path",
             "required": true,
             "schema": {
@@ -473,8 +473,8 @@
         "tags": [
           "ExerciseResult"
         ],
-        "summary": "Retrieves the exercise result details associated with a specific enrollment ID and lesson order.",
-        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API returns the detailed information about an exercise result, including the questions and answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **lessonorder** (int): The sequential order of the lesson.\r\n\r\n**Response Format:**\r\nThe response will return the exercise result details, including:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **lesson** (object, nullable): Information about the associated lesson.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **questionId** (int, nullable): The ID of the question.\r\n  - **isCorrect** (bool): Whether the answer is correct or not.\r\n  - **exerciseDetailId** (int): The ID of the exercise detail.\r\n  - **exerciseResultId** (int): The ID of the exercise result.\r\n  - **exerciseDetail** (object): Details about the exercise, including:\r\n    - **exerciseId** (int): The ID of the exercise.\r\n    - **questionId** (int): The ID of the question.\r\n    - **question** (object): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers:\r\n        - **answerId** (int): The unique identifier of the answer choice.\r\n        - **content** (string): The text of the answer choice.\r\n        - **isCorrect** (bool): Whether this choice is the correct answer.\r\n        - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresult/enrollment/id/11/lessonorder/1\r\n```",
+        "summary": "Retrieves the exercise result details associated with a specific enrollment ID and exercise ID.",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns the detailed information about an exercise result, including the questions and answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The unique identifier of the exercise.\r\n\r\n**Response Format:**\r\nThe response will return the exercise result details, including:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:\r\n    - **answerId** (int): The unique identifier of the answer choice.\r\n    - **content** (string): The text of the answer choice.\r\n    - **isCorrect** (bool): Whether this choice is the correct answer.\r\n    - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresult/enrollment/id/11/exercise/id/25\r\n```",
         "parameters": [
           {
             "name": "id",
@@ -486,7 +486,7 @@
             }
           },
           {
-            "name": "lessonorder",
+            "name": "exerciseid",
             "in": "path",
             "required": true,
             "schema": {
@@ -515,7 +515,7 @@
           "ExerciseResult"
         ],
         "summary": "Retrieves all exercise results associated with a specific enrollment ID.",
-        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**\r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **lesson** (object, nullable): Information about the associated lesson.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **questionId** (int, nullable): The ID of the question.\r\n  - **isCorrect** (bool): Whether the answer is correct or not.\r\n  - **exerciseDetailId** (int): The ID of the exercise detail.\r\n  - **exerciseResultId** (int): The ID of the exercise result.\r\n  - **exerciseDetail** (object): Details about the exercise, including:\r\n    - **exerciseId** (int): The ID of the exercise.\r\n    - **questionId** (int): The ID of the question.\r\n    - **question** (object): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers:\r\n        - **answerId** (int): The unique identifier of the answer choice.\r\n        - **content** (string): The text of the answer choice.\r\n        - **isCorrect** (bool): Whether this choice is the correct answer.\r\n        - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n            \r\n**Example Request:**\r\nGET /api/exerciseresults/enrollment/id/11",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**\r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:\r\n    - **answerId** (int): The unique identifier of the answer choice.\r\n    - **content** (string): The text of the answer choice.\r\n    - **isCorrect** (bool): Whether this choice is the correct answer.\r\n    - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresults/enrollment/id/11 \r\n```",
         "parameters": [
           {
             "name": "id",
@@ -1216,7 +1216,7 @@
         }
       }
     },
-    "/api/payment/plan/{idPlan}/user/{idUser}": {
+    "/payment/plan/{idPlan}/user/{idUser}": {
       "post": {
         "tags": [
           "Payment"
@@ -1228,42 +1228,6 @@
             "name": "idPlan",
             "in": "path",
             "description": "The ID of the study plan.",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "idUser",
-            "in": "path",
-            "description": "The ID of the user making the payment.",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/payment/token/{idToken}/user/{idUser}": {
-      "post": {
-        "tags": [
-          "Payment"
-        ],
-        "summary": "Generates a VnPay payment URL for purchasing token packages.",
-        "description": "*Only logged in users can use this api*\r\nThis API creates a VnPay payment URL for a specific token package purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idToken**: The ID of the token package to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/token/10/user/456\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
-        "parameters": [
-          {
-            "name": "idToken",
-            "in": "path",
-            "description": "The ID of the token package.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -1301,7 +1265,60 @@
         }
       }
     },
-    "/api/payment/user/{userId}": {
+    "/payment/token/{tokenPackageId}/user/{userId}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Creates a payment for a token package purchase.",
+        "description": "*Only logged in users can use this API*\r\nThis API initiates a payment process for a specific token package purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **tokenPackageId**: The ID of the token package to be purchased.\r\n- **userId**: The ID of the user making the payment.",
+        "parameters": [
+          {
+            "name": "tokenPackageId",
+            "in": "path",
+            "description": "The ID of the token package.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user making the payment.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment/user/{userId}": {
       "get": {
         "tags": [
           "Payment"
@@ -1347,13 +1364,13 @@
         }
       }
     },
-    "/api/payment/user/{userId}/all": {
+    "/payment/user/{userId}/all": {
       "get": {
         "tags": [
           "Payment"
         ],
-        "summary": "Retrieves payment information for a specific user.",
-        "description": "*Only logged in users can use this api*  \r\nThis API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  \r\nThe response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  \r\n            \r\n**Request:**  \r\nSend a request with the following route parameter:  \r\n- **userId**: The ID of the user whose payment information is to be retrieved.  \r\n            \r\n**Example Request:**  \r\n```http\r\nGET /api/payment/user/1\r\n```",
+        "summary": "Retrieves all payment information for a specific user.",
+        "description": "*Only logged in users can use this api*  \r\nThis API fetches the latest payment details associated with a given user ID, including payment method, plan, and token package information (if available).  \r\nThe response includes data such as payment ID, method ID, user ID, plan details, and transaction information.  \r\n            \r\n**Request:**  \r\nSend a request with the following route parameter:  \r\n- **userId**: The ID of the user whose payment information is to be retrieved.  \r\n            \r\n**Example Request:**  \r\n```http\r\nGET /api/payment/user/1/all\r\n```",
         "parameters": [
           {
             "name": "userId",
@@ -1406,7 +1423,7 @@
         }
       }
     },
-    "/api/plan": {
+    "/plan": {
       "get": {
         "tags": [
           "Plan"
@@ -1453,7 +1470,7 @@
         }
       }
     },
-    "/api/tokenpackage": {
+    "/tokenpackage": {
       "get": {
         "tags": [
           "TokenPackage"
@@ -1578,6 +1595,130 @@
         }
       }
     },
+    "/api/user/filter": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Gets users with advanced filtering and searching capabilities",
+        "description": "*Only administrators can use this API*\r\n\r\n**Functionality:**\r\n- Search users by email or username (case-insensitive matching)\r\n- Filter users by role (1 for User, 2 for Admin)\r\n- Filter users by status (true for active, false for inactive)\r\n- All filters are optional - leave empty to skip filtering\r\n- Results are paginated and ordered alphabetically by username\r\n            \r\n**Request:**\r\nThe request can include the following query parameters:\r\n- **searchTerm** (optional): Text to search in email and username fields\r\n- **role** (optional): Filter by user role (1 for User, 2 for Admin)\r\n- **status** (optional): Filter by account status (true for active, false for inactive)\r\n- **pageindex**: The page index (starts from 0)\r\n- **pagesize**: Number of records per page\r\n            \r\n**Response:**\r\nThe response will return a paginated list of users:\r\n- **pageIndex**: Current page index\r\n- **pageSize**: Number of items per page\r\n- **totalCount**: Total number of matching users\r\n- **items**: Array of user objects containing id, userName, email, phoneNumber, gender, dob, avatar, and status\r\n            \r\n**Example Requests:**\r\n```\r\nGET /api/user/filter?pageindex=0&pagesize=10\r\nGET /api/user/filter?searchTerm=john&role=1&status=true&pageindex=0&pagesize=10\r\n```",
+        "parameters": [
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "description": "Text to search in email and username fields",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "Filter by user role (1 for User, 2 for Admin)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by account status (true for active, false for inactive)",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pageindex",
+            "in": "query",
+            "description": "The page index (starts from 0)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "description": "Number of records per page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/user/delete/{email}": {
       "delete": {
         "tags": [
@@ -1636,57 +1777,65 @@
           }
         }
       }
+    },
+    "/api/users/statistics/{periodType}": {
+      "get": {
+        "tags": [
+          "UserStatistics"
+        ],
+        "summary": "Get user statistics for a specific time period",
+        "description": "This API retrieves comprehensive user statistics based on the specified time period.\r\n\r\n**Period Types:**\r\n- **day**: Statistics for the current day compared to the previous day\r\n- **week**: Statistics for the current week compared to the previous week\r\n- **month**: Statistics for the current month compared to the previous month\r\n- **year**: Statistics for the current year compared to the previous year\r\n\r\n**Response includes:**\r\n- User count statistics (current period, previous period, growth rate)\r\n- User engagement metrics (average usage time in minutes, change rate)\r\n- Daily breakdown of user activity\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/users/statistics/week\r\n```",
+        "parameters": [
+          {
+            "name": "periodType",
+            "in": "path",
+            "description": "The time period type ('day', 'week', 'month', or 'year')",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserStatisticsSummaryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Wallet/user/{UserId}": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "Chapter": {
-        "type": "object",
-        "properties": {
-          "chapterId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "chapterOrder": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "chapterName": {
-            "type": "string",
-            "nullable": true
-          },
-          "grade": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "semester": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "lessons": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Lesson"
-            },
-            "nullable": true
-          },
-          "tests": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Test"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "ChapterDto": {
         "type": "object",
         "properties": {
@@ -1748,105 +1897,6 @@
         },
         "additionalProperties": false
       },
-      "Chat": {
-        "type": "object",
-        "properties": {
-          "chatId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "supportAgentId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "chatMessages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChatMessage"
-            },
-            "nullable": true
-          },
-          "supportAgent": {
-            "$ref": "#/components/schemas/User"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ChatMessage": {
-        "type": "object",
-        "properties": {
-          "messageId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "chatId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "messageDirection": {
-            "type": "string",
-            "nullable": true
-          },
-          "messageContent": {
-            "type": "string",
-            "nullable": true
-          },
-          "sentAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "chat": {
-            "$ref": "#/components/schemas/Chat"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ChoiceAnswer": {
-        "type": "object",
-        "properties": {
-          "answerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "questionId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "content": {
-            "type": "string",
-            "nullable": true
-          },
-          "isCorrect": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "imgUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "question": {
-            "$ref": "#/components/schemas/Question"
-          }
-        },
-        "additionalProperties": false
-      },
       "ChoiceAnswerDto": {
         "type": "object",
         "properties": {
@@ -1865,129 +1915,6 @@
           "imgUrl": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Comment": {
-        "type": "object",
-        "properties": {
-          "commentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "parentCommentId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "lessonId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "commentContent": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "inverseParentComment": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Comment"
-            },
-            "nullable": true
-          },
-          "lesson": {
-            "$ref": "#/components/schemas/Lesson"
-          },
-          "parentComment": {
-            "$ref": "#/components/schemas/Comment"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Enrollment": {
-        "type": "object",
-        "properties": {
-          "enrollmentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "grade": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "enrollmentDate": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
-          },
-          "avgScore": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "semester": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "startYear": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "endYear": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "exerciseResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExerciseResult"
-            },
-            "nullable": true
-          },
-          "lessonProgresses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LessonProgress"
-            },
-            "nullable": true
-          },
-          "testResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TestResult"
-            },
-            "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
           }
         },
         "additionalProperties": false
@@ -2037,155 +1964,11 @@
         },
         "additionalProperties": false
       },
-      "ErrorReport": {
-        "type": "object",
-        "properties": {
-          "errorId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "errorMessage": {
-            "type": "string",
-            "nullable": true
-          },
-          "errorType": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "resolved": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Exercise": {
-        "type": "object",
-        "properties": {
-          "exerciseId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "exerciseName": {
-            "type": "string",
-            "nullable": true
-          },
-          "lessonId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "exerciseDetails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExerciseDetail"
-            },
-            "nullable": true
-          },
-          "exerciseResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExerciseResult"
-            },
-            "nullable": true
-          },
-          "lesson": {
-            "$ref": "#/components/schemas/Lesson"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ExerciseDetail": {
-        "type": "object",
-        "properties": {
-          "exerciseDetailId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "exerciseId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "questionId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "exercise": {
-            "$ref": "#/components/schemas/Exercise"
-          },
-          "exerciseDetailResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExerciseDetailResult"
-            },
-            "nullable": true
-          },
-          "question": {
-            "$ref": "#/components/schemas/Question"
-          }
-        },
-        "additionalProperties": false
-      },
       "ExerciseDetailDto": {
         "type": "object",
         "properties": {
-          "exerciseId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "questionId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "question": {
             "$ref": "#/components/schemas/QuestionDto"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ExerciseDetailResult": {
-        "type": "object",
-        "properties": {
-          "exerciseDetailResultId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "exerciseDetailId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "exerciseResultId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "isCorrect": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "exerciseDetail": {
-            "$ref": "#/components/schemas/ExerciseDetail"
-          },
-          "exerciseResult": {
-            "$ref": "#/components/schemas/ExerciseResult"
           }
         },
         "additionalProperties": false
@@ -2193,6 +1976,10 @@
       "ExerciseDetailResultDto": {
         "type": "object",
         "properties": {
+          "questionType": {
+            "type": "string",
+            "nullable": true
+          },
           "questionId": {
             "type": "integer",
             "format": "int32",
@@ -2200,6 +1987,11 @@
           },
           "isCorrect": {
             "type": "boolean",
+            "nullable": true
+          },
+          "choiceAnswerId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "exerciseDetailId": {
@@ -2214,6 +2006,45 @@
           },
           "exerciseDetail": {
             "$ref": "#/components/schemas/ExerciseDetailDto"
+          },
+          "choiceAnswer": {
+            "$ref": "#/components/schemas/ChoiceAnswerDto"
+          },
+          "userFillAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserFillAnswerDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseDetailResultForGetDto": {
+        "type": "object",
+        "properties": {
+          "isCorrect": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "questionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "choiceAnswerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "userFillAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserFillAnswerDto"
+            },
+            "nullable": true
+          },
+          "exerciseDetail": {
+            "$ref": "#/components/schemas/ExerciseDetailDto"
           }
         },
         "additionalProperties": false
@@ -2223,6 +2054,11 @@
         "properties": {
           "exerciseName": {
             "type": "string",
+            "nullable": true
+          },
+          "exerciseId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "lessonId": {
@@ -2240,43 +2076,22 @@
         },
         "additionalProperties": false
       },
-      "ExerciseResult": {
+      "ExerciseExtraForLessonDto": {
         "type": "object",
         "properties": {
-          "exerciseResultId": {
-            "type": "integer",
-            "format": "int32"
+          "exerciseName": {
+            "type": "string",
+            "nullable": true
           },
           "exerciseId": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "enrollmentId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "score": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "doneAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "enrollment": {
-            "$ref": "#/components/schemas/Enrollment"
-          },
-          "exercise": {
-            "$ref": "#/components/schemas/Exercise"
-          },
-          "exerciseDetailResults": {
+          "exerciseResults": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ExerciseDetailResult"
+              "$ref": "#/components/schemas/ExerciseDetailDto"
             },
             "nullable": true
           }
@@ -2306,41 +2121,12 @@
             "format": "date-time",
             "nullable": true
           },
-          "lesson": {
-            "$ref": "#/components/schemas/Lesson"
-          },
           "exerciseDetailResults": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ExerciseDetailResultDto"
+              "$ref": "#/components/schemas/ExerciseDetailResultForGetDto"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "FillAnswer": {
-        "type": "object",
-        "properties": {
-          "answerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "questionId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "correctAnswer": {
-            "type": "string",
-            "nullable": true
-          },
-          "position": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "question": {
-            "$ref": "#/components/schemas/Question"
           }
         },
         "additionalProperties": false
@@ -2359,69 +2145,6 @@
           "position": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Lesson": {
-        "type": "object",
-        "properties": {
-          "lessonId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "lessonOrder": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "lessonName": {
-            "type": "string",
-            "nullable": true
-          },
-          "chapterId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "lessonVideoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "lessonPdfUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "chapter": {
-            "$ref": "#/components/schemas/Chapter"
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Comment"
-            },
-            "nullable": true
-          },
-          "exercises": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Exercise"
-            },
-            "nullable": true
-          },
-          "lessonProgresses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LessonProgress"
-            },
-            "nullable": true
-          },
-          "questions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Question"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2452,6 +2175,11 @@
             "type": "string",
             "nullable": true
           },
+          "exerciseId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "chapterOrder": {
             "type": "integer",
             "format": "int32",
@@ -2463,36 +2191,13 @@
               "$ref": "#/components/schemas/QuestionDto"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "LessonProgress": {
-        "type": "object",
-        "properties": {
-          "learningProgressId": {
-            "type": "integer",
-            "format": "int32"
           },
-          "lessonId": {
-            "type": "integer",
-            "format": "int32",
+          "extraExercise": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseExtraForLessonDto"
+            },
             "nullable": true
-          },
-          "enrollmentId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "enrollment": {
-            "$ref": "#/components/schemas/Enrollment"
-          },
-          "lesson": {
-            "$ref": "#/components/schemas/Lesson"
           }
         },
         "additionalProperties": false
@@ -2583,32 +2288,6 @@
         },
         "additionalProperties": false
       },
-      "MatchingAnswer": {
-        "type": "object",
-        "properties": {
-          "answerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "questionId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "correctAnswer": {
-            "type": "string",
-            "nullable": true
-          },
-          "imgUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "question": {
-            "$ref": "#/components/schemas/Question"
-          }
-        },
-        "additionalProperties": false
-      },
       "MatchingAnswerDto": {
         "type": "object",
         "properties": {
@@ -2642,111 +2321,6 @@
         },
         "additionalProperties": false
       },
-      "Notification": {
-        "type": "object",
-        "properties": {
-          "notificationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "notificationType": {
-            "type": "string",
-            "nullable": true
-          },
-          "notificationTitle": {
-            "type": "string",
-            "nullable": true
-          },
-          "notificationMessage": {
-            "type": "string",
-            "nullable": true
-          },
-          "sentAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Payment": {
-        "type": "object",
-        "properties": {
-          "paymentId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "methodId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "orderId": {
-            "type": "string",
-            "nullable": true
-          },
-          "transactionId": {
-            "type": "string",
-            "nullable": true
-          },
-          "tokenPackageId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "planId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "method": {
-            "$ref": "#/components/schemas/PaymentMethod"
-          },
-          "plan": {
-            "$ref": "#/components/schemas/Plan"
-          },
-          "tokenPackage": {
-            "$ref": "#/components/schemas/TokenPackage"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "additionalProperties": false
-      },
       "PaymentDto": {
         "type": "object",
         "properties": {
@@ -2759,13 +2333,16 @@
             "type": "integer",
             "format": "int32"
           },
-          "userId": {
+          "walletId": {
             "type": "integer",
             "format": "int32"
           },
-          "tokenPackageId": {
-            "type": "integer",
-            "format": "int32",
+          "orderID": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionID": {
+            "type": "string",
             "nullable": true
           },
           "planId": {
@@ -2791,136 +2368,29 @@
             "format": "double",
             "nullable": true
           },
-          "orderID": {
-            "type": "string",
-            "nullable": true
-          },
-          "transactionID": {
-            "type": "string",
-            "nullable": true
-          },
           "method": {
             "$ref": "#/components/schemas/MethodDto"
           },
           "plan": {
             "$ref": "#/components/schemas/PlansDto"
-          },
-          "tokenPackage": {
-            "$ref": "#/components/schemas/TokenPackageDto"
           }
         },
         "additionalProperties": false
       },
-      "PaymentMethod": {
+      "PeriodUserStatisticsDto": {
         "type": "object",
         "properties": {
-          "methodId": {
-            "type": "integer",
-            "format": "int32"
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
           },
-          "methodName": {
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "periodType": {
             "type": "string",
             "nullable": true
-          },
-          "payments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Payment"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Plan": {
-        "type": "object",
-        "properties": {
-          "planId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "planName": {
-            "type": "string",
-            "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "coins": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "payments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Payment"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "PlanTransaction": {
-        "type": "object",
-        "properties": {
-          "planTransactionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "planUserId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "amount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "planUser": {
-            "$ref": "#/components/schemas/PlanUser"
-          }
-        },
-        "additionalProperties": false
-      },
-      "PlanUser": {
-        "type": "object",
-        "properties": {
-          "planUserId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "coins": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "planTransactions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PlanTransaction"
-            },
-            "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
           }
         },
         "additionalProperties": false
@@ -2979,80 +2449,6 @@
           }
         },
         "additionalProperties": { }
-      },
-      "Question": {
-        "type": "object",
-        "properties": {
-          "questionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "questionType": {
-            "type": "string",
-            "nullable": true
-          },
-          "difficulty": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "lessonId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "imgUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "questionContent": {
-            "type": "string",
-            "nullable": true
-          },
-          "pdfSolution": {
-            "type": "string",
-            "nullable": true
-          },
-          "choiceAnswers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ChoiceAnswer"
-            },
-            "nullable": true
-          },
-          "exerciseDetails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExerciseDetail"
-            },
-            "nullable": true
-          },
-          "fillAnswers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FillAnswer"
-            },
-            "nullable": true
-          },
-          "lesson": {
-            "$ref": "#/components/schemas/Lesson"
-          },
-          "matchingAnswers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MatchingAnswer"
-            },
-            "nullable": true
-          },
-          "testDetails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TestDetail"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "QuestionDto": {
         "type": "object",
@@ -3174,274 +2570,6 @@
         },
         "additionalProperties": false
       },
-      "Test": {
-        "type": "object",
-        "properties": {
-          "testId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "chapterId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "testName": {
-            "type": "string",
-            "nullable": true
-          },
-          "chapter": {
-            "$ref": "#/components/schemas/Chapter"
-          },
-          "testDetails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TestDetail"
-            },
-            "nullable": true
-          },
-          "testResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TestResult"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TestDetail": {
-        "type": "object",
-        "properties": {
-          "testDetailId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "testId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "questionId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "question": {
-            "$ref": "#/components/schemas/Question"
-          },
-          "test": {
-            "$ref": "#/components/schemas/Test"
-          },
-          "testDetailResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TestDetailResult"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TestDetailResult": {
-        "type": "object",
-        "properties": {
-          "testDetailResultId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "testDetailId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "testResultId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "isCorrect": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "testDetail": {
-            "$ref": "#/components/schemas/TestDetail"
-          },
-          "testResult": {
-            "$ref": "#/components/schemas/TestResult"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TestResult": {
-        "type": "object",
-        "properties": {
-          "testResultId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "testId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "enrollmentId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "score": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "completionTime": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "doneAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "enrollment": {
-            "$ref": "#/components/schemas/Enrollment"
-          },
-          "test": {
-            "$ref": "#/components/schemas/Test"
-          },
-          "testDetailResults": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TestDetailResult"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TokenPackage": {
-        "type": "object",
-        "properties": {
-          "tokenPackageId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "packageName": {
-            "type": "string",
-            "nullable": true
-          },
-          "tokens": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "payments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Payment"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TokenPackageDto": {
-        "type": "object",
-        "properties": {
-          "tokenPackageId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "packageName": {
-            "type": "string",
-            "nullable": true
-          },
-          "tokens": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TokenTransaction": {
-        "type": "object",
-        "properties": {
-          "tokenTransactionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "tokenUserId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "amount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "tokenUser": {
-            "$ref": "#/components/schemas/TokenUser"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TokenUser": {
-        "type": "object",
-        "properties": {
-          "tokenUserId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "tokens": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "tokenTransactions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TokenTransaction"
-            },
-            "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "additionalProperties": false
-      },
       "UpdateRequest": {
         "type": "object",
         "properties": {
@@ -3468,192 +2596,96 @@
         },
         "additionalProperties": false
       },
-      "User": {
+      "UserCountStatisticsDto": {
         "type": "object",
         "properties": {
-          "gender": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "dob": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "avatar": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "refreshToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "refreshTokenExpiredAtUtc": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "chatSupportAgents": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Chat"
-            },
-            "nullable": true
-          },
-          "chatUsers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Chat"
-            },
-            "nullable": true
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Comment"
-            },
-            "nullable": true
-          },
-          "enrollments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Enrollment"
-            },
-            "nullable": true
-          },
-          "errorReports": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ErrorReport"
-            },
-            "nullable": true
-          },
-          "notifications": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Notification"
-            },
-            "nullable": true
-          },
-          "payments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Payment"
-            },
-            "nullable": true
-          },
-          "planUsers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PlanUser"
-            },
-            "nullable": true
-          },
-          "tokenUsers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TokenUser"
-            },
-            "nullable": true
-          },
-          "userSessions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserSession"
-            },
-            "nullable": true
-          },
-          "id": {
+          "currentCount": {
             "type": "integer",
             "format": "int32"
           },
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedUserName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "emailConfirmed": {
-            "type": "boolean"
-          },
-          "passwordHash": {
-            "type": "string",
-            "nullable": true
-          },
-          "securityStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumberConfirmed": {
-            "type": "boolean"
-          },
-          "twoFactorEnabled": {
-            "type": "boolean"
-          },
-          "lockoutEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "lockoutEnabled": {
-            "type": "boolean"
-          },
-          "accessFailedCount": {
+          "previousCount": {
             "type": "integer",
             "format": "int32"
+          },
+          "growthRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "period": {
+            "$ref": "#/components/schemas/PeriodUserStatisticsDto"
           }
         },
         "additionalProperties": false
       },
-      "UserSession": {
+      "UserDailyStatisticsDto": {
         "type": "object",
         "properties": {
-          "userSessionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "loginTime": {
+          "date": {
             "type": "string",
             "format": "date-time"
           },
-          "logoutTime": {
+          "userCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageUsageMinutes": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserEngagementStatisticsDto": {
+        "type": "object",
+        "properties": {
+          "currentAverageMinutes": {
+            "type": "number",
+            "format": "double"
+          },
+          "previousAverageMinutes": {
+            "type": "number",
+            "format": "double"
+          },
+          "changeRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "period": {
+            "$ref": "#/components/schemas/PeriodUserStatisticsDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserFillAnswerDto": {
+        "type": "object",
+        "properties": {
+          "wrongAnswer": {
             "type": "string",
-            "format": "date-time",
             "nullable": true
           },
-          "duration": {
-            "type": "string",
-            "format": "time",
+          "position": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserStatisticsSummaryDto": {
+        "type": "object",
+        "properties": {
+          "userCounts": {
+            "$ref": "#/components/schemas/UserCountStatisticsDto"
           },
-          "user": {
-            "$ref": "#/components/schemas/User"
+          "userEngagement": {
+            "$ref": "#/components/schemas/UserEngagementStatisticsDto"
+          },
+          "dailyStatistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDailyStatisticsDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

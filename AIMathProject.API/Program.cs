@@ -34,8 +34,9 @@ using AIMathProject.Application.Seeding;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
-using AIMathProject.Application.Dto.Payment.TokenPackageDto;
 using AIMathProject.Application.Dto.Payment.MethodDto;
+using AIMathProject.Application.Dto.Payment.TokenPackage;
+using AIMathProject.Application.Dto.Payment.Wallet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -130,13 +131,11 @@ builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, E
 builder.Services.AddScoped<IVnPayService, VnPayService>();
 builder.Services.AddScoped<IPaymentRepository<PaymentDto>, PaymentRepository>();
 builder.Services.AddScoped<IPlanRepository<PlansDto>, PlanRepository>();
-builder.Services.AddScoped<IPlanUserRepository<PlanUser>, PlanUserRepository>();
 builder.Services.AddScoped<ITokenPackageRepository<TokenPackageDto>, TokenPackageRepository>();
-builder.Services.AddScoped<ITokenUserRepository<TokenUser>, TokenUserRepository>();
 builder.Services.AddScoped<IPaymentMethodRepository<MethodDto>, PaymentMethodRepository>();
+builder.Services.AddScoped<IWalletRepository<WalletDto>, WalletRepository>();   
 
 
-        
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();
 builder.Services.AddAuthentication(opt =>

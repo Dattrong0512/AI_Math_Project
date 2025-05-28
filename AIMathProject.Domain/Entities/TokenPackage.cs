@@ -11,9 +11,9 @@ public partial class TokenPackage
 
     public int? Tokens { get; set; }
 
-    public decimal? Price { get; set; }
+    public int? Price { get; set; }
 
     public string? Description { get; set; }
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public virtual ICollection<CoinTransaction> CoinTransactions { get; set; } = new List<CoinTransaction>();
 }

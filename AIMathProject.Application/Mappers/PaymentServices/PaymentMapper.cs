@@ -1,7 +1,7 @@
 ﻿using AIMathProject.Application.Dto.Payment.MethodDto;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
-using AIMathProject.Application.Dto.Payment.TokenPackageDto;
+using AIMathProject.Application.Dto.Payment.TokenPackage;
 using  AIMathProject.Domain.Entities;
 
 
@@ -15,8 +15,7 @@ namespace AIMathProject.Application.Mappers.PaymentServices
             {
                 PaymentId = payment.PaymentId,
                 MethodId = payment.MethodId,
-                UserId = payment.UserId,
-                TokenPackageId = payment.TokenPackageId,
+                WalletId = payment.WalletId,
                 PlanId = payment.PlanId,
                 Date = payment.Date,
                 Description = payment.Description,
@@ -26,12 +25,11 @@ namespace AIMathProject.Application.Mappers.PaymentServices
                 TransactionID = payment.TransactionId,
                 Method = payment.Method !=null ? payment.Method.ToMethodDto() : null,
                 Plan = payment.Plan != null ? payment.Plan.ToPlansDto() : null,
-                TokenPackage = payment.TokenPackage != null ? payment.TokenPackage.ToTokenPackageDto() : null
             };
             return dto;
         }
 
-        public static ICollection<PaymentDto> ToListPaymentDto(ICollection<Payment> list)
+        public static List<PaymentDto> ToListPaymentDto(ICollection<Payment> list)
         {
             List<PaymentDto> dto = new List<PaymentDto>();
             foreach(var item in list)
@@ -45,8 +43,7 @@ namespace AIMathProject.Application.Mappers.PaymentServices
             Payment payment = new Payment
             {
                 MethodId = dto.MethodId,
-                UserId = dto.UserId,
-                TokenPackageId = dto.TokenPackageId,
+                WalletId = dto.WalletId,
                 PlanId = dto.PlanId,
                 Date = dto.Date,
                 Description = dto.Description,
@@ -56,7 +53,7 @@ namespace AIMathProject.Application.Mappers.PaymentServices
                 TransactionId = dto.TransactionID,
                 Method = null,
                 Plan = null,
-                TokenPackage = null
+
             };
             return payment;
          }

@@ -1,4 +1,5 @@
-﻿using AIMathProject.Application.Dto.Payment.TokenPackageDto;
+﻿using AIMathProject.Application.Dto.Payment.TokenPackage;
+
 using AIMathProject.Application.Mappers.PaymentServices;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
@@ -24,7 +25,7 @@ namespace AIMathProject.Infrastructure.Repositories
         public async Task<ICollection<TokenPackageDto>> GetAllInfoTokenPackage()
         {
             List<TokenPackage> dto = await _context.TokenPackages.ToListAsync();
-            return dto.ToListTokenPackageDto();
+            return TokenPackageMapper.ToListTokenPackageDto(dto);
         }
 
         public async Task<TokenPackageDto> GetInfoTokenPackageById(int id)

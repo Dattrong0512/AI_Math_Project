@@ -1,4 +1,5 @@
 ﻿using AIMathProject.Application.Dto.Payment.PaymentDto;
+using AIMathProject.Application.Dto.Payment.Wallet;
 using AIMathProject.Domain.Interfaces;
 using MediatR;
 using System;
@@ -9,12 +10,15 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Application.Command.Payment
 {
-    public record AddPaymentPlanCommand(PaymentDto dto) : IRequest<bool>;
-    public class AddPaymentPlanCommandHandler(IPaymentRepository<PaymentDto> repository) : IRequestHandler<AddPaymentPlanCommand, bool>
+    public record AddPaymentPlanCommand(PaymentDto dto, int coin) : IRequest<bool>;
+    public class AddPaymentPlanCommandHandler(IPaymentRepository<PaymentDto> repository,
+        IWalletRepository<WalletDto> walletRepository) : IRequestHandler<AddPaymentPlanCommand, bool>
     {
         public async Task<bool> Handle(AddPaymentPlanCommand request, CancellationToken cancellationToken)
-        {
-            return await repository.AddPayment(request.dto);
+        {   
+            await repository.AddPayment(request.dto);
+            await walletRepository.UpdateCoins(request.dto.WalletId, -request.coin);
+            return true;
         }
     }
 }

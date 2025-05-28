@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AIMathProject.Application.Dto.Payment.TokenPackageDto
+namespace AIMathProject.Application.Dto.Payment.TokenPackage
 {
     public class TokenPackageDto
     {
@@ -14,7 +14,7 @@ namespace AIMathProject.Application.Dto.Payment.TokenPackageDto
 
         public int? Tokens { get; set; }
 
-        public decimal? Price { get; set; }
+        public int? Price { get; set; }
 
         public string? Description { get; set; }
 

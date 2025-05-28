@@ -17,11 +17,11 @@ public partial class ExerciseDetailResult
 
     public string? QuestionType { get; set; }
 
+    public virtual ChoiceAnswer? ChoiceAnswer { get; set; }
+
     public virtual ExerciseDetail? ExerciseDetail { get; set; }
 
     public virtual ExerciseResult? ExerciseResult { get; set; }
 
-    public virtual ChoiceAnswer? ChoiceAnswer { get; set; }
-
-    public virtual ICollection<UserFillAnswer>? UserFillAnswers { get; set; } = new List<UserFillAnswer>();
+    public virtual ICollection<UserFillAnswer> UserFillAnswers { get; set; } = new List<UserFillAnswer>();
 }
