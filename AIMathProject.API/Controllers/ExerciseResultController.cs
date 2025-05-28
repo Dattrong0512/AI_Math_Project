@@ -44,6 +44,15 @@ namespace AIMathProject.API.Controllers
         /// - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
         ///   - **isCorrect** (bool, nullable): Whether the answer is correct or not.
+        ///   - **questionType** (string): The type of question ("multiple_choice", "fill_in_blank", "matching").
+        ///   - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:
+        ///     - **answerId** (int): The unique identifier of the answer choice.
+        ///     - **content** (string): The text of the answer choice.
+        ///     - **isCorrect** (bool): Whether this choice is the correct answer.
+        ///     - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+        ///   - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:
+        ///     - **wrongAnswer** (string): The incorrect answer provided by the user.
+        ///     - **position** (int): The position of the blank in the question.
         ///   - **exerciseDetail** (object, nullable): Details about the exercise, including:
         ///     - **question** (object, nullable): The complete question information, including:
         ///       - **questionId** (int): The unique identifier of the question.
@@ -53,17 +62,13 @@ namespace AIMathProject.API.Controllers
         ///       - **imgUrl** (string): The URL of an image related to the question.
         ///       - **questionContent** (string): The text content of the question.
         ///       - **pdfSolution** (string, nullable): A PDF solution reference, if available.
-        ///       - **choiceAnswers** (array): List of multiple-choice answers:
-        ///         - **answerId** (int): The unique identifier of the answer choice.
-        ///         - **content** (string): The text of the answer choice.
-        ///         - **isCorrect** (bool): Whether this choice is the correct answer.
-        ///         - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+        ///       - **choiceAnswers** (array): List of multiple-choice answers.
         ///       - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).
         ///       - **matchingAnswers** (array): List of matching question pairs (if applicable).
         /// 
         /// **Example Request:**
         /// ```http
-        /// GET /exerciseresult/enrollment/id/11/exercise/id/25
+        /// GET /api/exerciseresult/enrollment/id/11/exercise/id/25
         /// ```
         /// </remarks>
         /// <returns>Returns the exercise result details for the specified enrollment ID and lesson order.</returns>
@@ -91,31 +96,24 @@ namespace AIMathProject.API.Controllers
         /// - **enrollmentId** (int): The ID of the enrollment.
         /// - **score** (decimal, nullable): The score achieved for this exercise.
         /// - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
-        /// - **lesson** (object, nullable): Information about the associated lesson.
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
-        ///   - **questionId** (int, nullable): The ID of the question.
-        ///   - **isCorrect** (bool): Whether the answer is correct or not.
-        ///   - **exerciseDetail** (object): Details about the exercise, including:
-        ///     - **exerciseId** (int): The ID of the exercise.
-        ///     - **questionId** (int): The ID of the question.
-        ///     - **question** (object): The complete question information, including:
-        ///       - **questionId** (int): The unique identifier of the question.
-        ///       - **questionType** (string): The type of question (e.g., "multiple_choice").
-        ///       - **difficulty** (int): The difficulty level of the question.
-        ///       - **lessonId** (int): The ID of the associated lesson.
-        ///       - **imgUrl** (string): The URL of an image related to the question.
-        ///       - **questionContent** (string): The text content of the question.
-        ///       - **pdfSolution** (string, nullable): A PDF solution reference, if available.
-        ///       - **choiceAnswers** (array): List of multiple-choice answers:
-        ///         - **answerId** (int): The unique identifier of the answer choice.
-        ///         - **content** (string): The text of the answer choice.
-        ///         - **isCorrect** (bool): Whether this choice is the correct answer.
-        ///         - **imgUrl** (string, nullable): An optional image URL for the answer choice.
-        ///       - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).
-        ///       - **matchingAnswers** (array): List of matching question pairs (if applicable).
+        ///   - **isCorrect** (bool, nullable): Whether the answer is correct or not.
+        ///   - **questionType** (string): The type of question ("multiple_choice", "fill_in_blank", "matching").
+        ///   - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:
+        ///     - **answerId** (int): The unique identifier of the answer choice.
+        ///     - **content** (string): The text of the answer choice.
+        ///     - **isCorrect** (bool): Whether this choice is the correct answer.
+        ///     - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+        ///   - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:
+        ///     - **wrongAnswer** (string): The incorrect answer provided by the user.
+        ///     - **position** (int): The position of the blank in the question.
+        ///   - **exerciseDetail** (object, nullable): Details about the exercise, including:
+        ///     - **question** (object, nullable): The complete question information.
         ///
         /// **Example Request:**
+        /// ```http
         /// GET /api/exerciseresults/enrollment/id/11 
+        /// ```
         /// </remarks>
         /// <param name="id">The enrollment ID of the user.</param>
         /// <returns>Returns a list of exercise results for the specified enrollment ID.</returns>

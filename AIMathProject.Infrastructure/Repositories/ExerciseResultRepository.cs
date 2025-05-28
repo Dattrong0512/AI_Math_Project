@@ -46,6 +46,10 @@ namespace AIMathProject.Infrastructure.Repositories
                                           .ThenInclude(edr => edr.ExerciseDetail)
                                               .ThenInclude(ed => ed.Question)
                                                   .ThenInclude(q => q.FillAnswers)
+                                      .Include(er => er.ExerciseDetailResults)
+                                              .ThenInclude(edr => edr.UserFillAnswers)
+                                      .Include(er => er.ExerciseDetailResults)
+                                              .ThenInclude(edr => edr.ChoiceAnswer)
                                       .FirstOrDefaultAsync();
 
             if (exerciseResult == null)
@@ -64,6 +68,17 @@ namespace AIMathProject.Infrastructure.Repositories
                     .Select(edr => new ExerciseDetailResultForGetDto
                     {
                         IsCorrect = edr.IsCorrect,
+                        QuestionType = edr.QuestionType,
+                        // Map ChoiceAnswer nếu có
+                        ChoiceAnswerId = edr.ChoiceAnswerId,
+                        // Map UserFillAnswer nếu có
+                        UserFillAnswers = edr.UserFillAnswers != null ?
+                            edr.UserFillAnswers.Select(ufa => new UserFillAnswerDto
+                            {
+                                WrongAnswer = ufa.WrongAnswer,
+                                Position = ufa.Position
+                            }).ToList() :
+                            new List<UserFillAnswerDto>(),
                         ExerciseDetail = edr.ExerciseDetail != null
                             ? new ExerciseDetailDto
                             {
@@ -95,6 +110,10 @@ namespace AIMathProject.Infrastructure.Repositories
                     .ThenInclude(edr => edr.ExerciseDetail)
                         .ThenInclude(ed => ed.Question)
                             .ThenInclude(q => q.FillAnswers)
+                .Include(er => er.ExerciseDetailResults)
+                                              .ThenInclude(edr => edr.UserFillAnswers)
+                                      .Include(er => er.ExerciseDetailResults)
+                                              .ThenInclude(edr => edr.ChoiceAnswer)
                 .ToListAsync();
 
             if (!exerciseResults.Any())
@@ -112,6 +131,18 @@ namespace AIMathProject.Infrastructure.Repositories
                     .Select(edr => new ExerciseDetailResultForGetDto
                     {
                         IsCorrect = edr.IsCorrect,
+                        QuestionType = edr.QuestionType,
+                        // Map ChoiceAnswer nếu có
+                        ChoiceAnswerId = edr.ChoiceAnswerId,
+                        // Map UserFillAnswer nếu có
+                        UserFillAnswers = edr.UserFillAnswers != null ?
+                            edr.UserFillAnswers.Select(ufa => new UserFillAnswerDto
+                            {
+                                WrongAnswer = ufa.WrongAnswer,
+                                Position = ufa.Position
+                            }).ToList() :
+                            new List<UserFillAnswerDto>(),
+
                         ExerciseDetail = edr.ExerciseDetail != null
                             ? new ExerciseDetailDto
                             {

@@ -9,6 +9,12 @@ namespace AIMathProject.Application.Dto.ExerciseDetailResultDto
     public class ExerciseDetailResultForGetDto
     {
         public bool? IsCorrect { get; set; }
+        public string? QuestionType { get; set; }
+
+        public int? ChoiceAnswerId { get; set; }
+
+        public virtual List<AnswerDto.UserFillAnswerDto> UserFillAnswers { get; set; } = new List<AnswerDto.UserFillAnswerDto>();
+        
         public ExerciseDetailDto.ExerciseDetailDto? ExerciseDetail
         {
             get; set;

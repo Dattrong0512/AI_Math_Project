@@ -65,22 +65,56 @@ namespace AIMathProject.Infrastructure.Repositories
                 var existingResult = _context.ExerciseDetailResults
                     .FirstOrDefault(edr => edr.ExerciseDetailId == exerciseDetailId && edr.ExerciseResultId == exerciseResultId);
 
+                int exerciseDetailResultId;
+
                 if (existingResult != null)
                 {
                     // Cập nhật kết quả hiện có
                     existingResult.IsCorrect = edrItem.IsCorrect;
+                    existingResult.QuestionType = edrItem.QuestionType;
+                    // Nếu là loại câu hỏi multiple choice thì cập nhật ChoiceAnswerId
+                    if (edrItem.QuestionType == "multiple_choice" && edrItem.ChoiceAnswerId.HasValue)
+                    {
+                        existingResult.ChoiceAnswerId = edrItem.ChoiceAnswerId;
+                    }
                     _context.ExerciseDetailResults.Update(existingResult);
+                    exerciseDetailResultId = existingResult.ExerciseDetailResultId;
+
+                    // Xóa tất cả UserFillAnswers cũ nếu có
+                    var existingUserFillAnswers = _context.UserFillAnswers
+                        .Where(ufa => ufa.ExerciseDetailResultId == exerciseDetailResultId);
+                    if (existingUserFillAnswers.Any())
+                    {
+                        _context.UserFillAnswers.RemoveRange(existingUserFillAnswers);
+                    }
                 }
                 else
                 {
                     // Thêm mới kết quả
                     ExerciseDetailResult edr = edrItem.ToExerciseDetailResultFromExerciseDetailResultDto(exerciseDetailId, exerciseResultId);
                     await _context.ExerciseDetailResults.AddAsync(edr);
+                    await _context.SaveChangesAsync(); // Lưu để lấy ID mới tạo
+                    exerciseDetailResultId = edr.ExerciseDetailResultId;
                 }
-            };
+
+                // Thêm UserFillAnswers nếu có
+                if (edrItem.UserFillAnswers != null && edrItem.UserFillAnswers.Any())
+                {
+                    foreach (var userFillAnswerDto in edrItem.UserFillAnswers)
+                    {
+                        var userFillAnswer = new UserFillAnswer
+                        {
+                            ExerciseDetailResultId = exerciseDetailResultId,
+                            WrongAnswer = userFillAnswerDto.WrongAnswer,
+                            Position = userFillAnswerDto.Position
+                        };
+
+                        await _context.UserFillAnswers.AddAsync(userFillAnswer);
+                    }
+                }
+            }
 
             await _context.SaveChangesAsync();
-
             return true;
         }
     }

@@ -34,10 +34,15 @@ namespace AIMathProject.API.Controllers
         /// 
         /// **Request Parameters:**
         /// - **id** (int): The enrollment ID of the user.
-        /// - **exercise id** (int): The exercise id of the exercise.
+        /// - **exerciseid** (int): The exercise id of the exercise.
         /// - **edrDtoList** (List&lt;ExerciseDetailResultDto&gt;): List of exercise detail results. Each item should include:
         ///   - **questionId** (int): The unique identifier of the question being answered.
         ///   - **isCorrect** (bool): Whether the user's answer is correct or not.
+        ///   - **questionType** (string): Type of the question ("multiple_choice", "fill_in_blank", "matching").
+        ///   - **choiceAnswerId** (int, optional): For multiple_choice questions, the ID of the selected choice.
+        ///   - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:
+        ///     - **wrongAnswer** (string): The incorrect answer provided by the user.
+        ///     - **position** (int): The position of the blank in the question.
         /// 
         /// **Response Format:**
         /// - **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.
@@ -45,24 +50,40 @@ namespace AIMathProject.API.Controllers
         /// 
         /// **Example Request:**
         /// ```http
-        /// POST /api/exerciseresult/enrollment/id/11/exercise/1
+        /// POST /api/exerciseresult/enrollment/id/8/exercise/id/132
         /// Content-Type: application/json
         /// [
         ///   {
-        ///     "questionId": 1,
-        ///     "isCorrect": true
+        ///     "questionId": 9,
+        ///     "isCorrect": true,
+        ///     "questionType": "fill_in_blank"  
         ///   },
         ///   {
-        ///     "questionId": 2,
-        ///     "isCorrect": false
+        ///     "questionId": 10,
+        ///     "isCorrect": false,
+        ///     "questionType": "fill_in_blank",
+        ///     "userFillAnswers": [
+        ///       {
+        ///         "wrongAnswer": "750",
+        ///         "position": 1
+        ///       }
+        ///     ]
         ///   },
         ///   {
-        ///     "questionId": 3,
-        ///     "isCorrect": true
+        ///     "questionId": 11,
+        ///     "isCorrect": true,
+        ///     "questionType": "multiple_choice"
         ///   },
         ///   {
-        ///     "questionId": 4,
-        ///     "isCorrect": true
+        ///     "questionId": 12,
+        ///     "isCorrect": false,
+        ///     "questionType": "multiple_choice",
+        ///     "choiceAnswerId": 22
+        ///   },
+        ///   {
+        ///     "questionId": 13,
+        ///     "isCorrect": true,
+        ///     "questionType": "fill_in_blank"
         ///   }
         /// ]
         /// ```

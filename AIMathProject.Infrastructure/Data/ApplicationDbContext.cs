@@ -75,6 +75,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
     public virtual DbSet<UserSession> UserSessions { get; set; }
 
+    public virtual DbSet<UserFillAnswer> UserFillAnswers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -317,7 +318,11 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.Property(e => e.ExerciseDetailId).HasColumnName("exercise_detail_id");
             entity.Property(e => e.ExerciseResultId).HasColumnName("exercise_result_id");
             entity.Property(e => e.IsCorrect).HasColumnName("is_correct");
-
+            entity.Property(e => e.ChoiceAnswerId).HasColumnName("choice_answer_id");
+            entity.Property(e => e.QuestionType)
+                        .HasMaxLength(20)
+                        .IsUnicode(false)
+                        .HasColumnName("question_type");
             entity.HasOne(d => d.ExerciseDetail).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseDetailId)
                 .HasConstraintName("FK__Exercise___exerc__14270015");
@@ -325,6 +330,20 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             entity.HasOne(d => d.ExerciseResult).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseResultId)
                 .HasConstraintName("FK__Exercise___exerc__151B244E");
+        });
+
+        modelBuilder.Entity<UserFillAnswer>(entity =>
+        {
+            entity.HasKey(e => e.UserFillAnswerId).HasName("PK__User_Fil__E5105288981F1E0A");
+            entity.ToTable("User_Fill_Answer");
+            entity.Property(e => e.UserFillAnswerId).HasColumnName("user_fill_answer_id");
+            entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
+            entity.Property(e => e.WrongAnswer).HasColumnName("wrong_answer");
+            entity.Property(e => e.Position).HasColumnName("position");
+
+            entity.HasOne(d => d.ExerciseDetailResult).WithMany(p => p.UserFillAnswers)
+                .HasForeignKey(d => d.ExerciseDetailResultId)
+                .HasConstraintName("FK__User_Fill__exerc__41B8C09B");
         });
 
         modelBuilder.Entity<ExerciseResult>(entity =>

@@ -18,6 +18,7 @@ namespace AIMathProject.Application.Mappers
             {
                 QuestionId = question_id,
                 IsCorrect = entity.IsCorrect,
+                QuestionType = entity.QuestionType,  
             };
         }
 
