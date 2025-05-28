@@ -44,7 +44,7 @@ namespace AIMathProject.API.Controllers
         ///
         /// **Example Request:**
         /// ```http
-        /// POST /payment/plan/5/user/123
+        /// POST /payment/plan/2/user/1
         /// ```
         ///
         /// **Response:**
@@ -168,6 +168,12 @@ namespace AIMathProject.API.Controllers
         /// Send a request with the following route parameters:
         /// - **tokenPackageId**: The ID of the token package to be purchased.
         /// - **userId**: The ID of the user making the payment.
+        /// 
+        /// /// **Example Request:**
+        /// ```http
+        /// POST /payment/token/1/user/1
+        /// ```
+        /// 
         /// </remarks>
         /// <param name="tokenPackageId">The ID of the token package.</param>
         /// <param name="userId">The ID of the user making the payment.</param>

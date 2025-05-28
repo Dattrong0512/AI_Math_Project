@@ -72,11 +72,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     // Cập nhật kết quả hiện có
                     existingResult.IsCorrect = edrItem.IsCorrect;
                     existingResult.QuestionType = edrItem.QuestionType;
-                    // Nếu là loại câu hỏi multiple choice thì cập nhật ChoiceAnswerId
-                    if (edrItem.QuestionType == "multiple_choice" && edrItem.ChoiceAnswerId.HasValue)
-                    {
-                        existingResult.ChoiceAnswerId = edrItem.ChoiceAnswerId;
-                    }
+
                     _context.ExerciseDetailResults.Update(existingResult);
                     exerciseDetailResultId = existingResult.ExerciseDetailResultId;
 
@@ -87,19 +83,43 @@ namespace AIMathProject.Infrastructure.Repositories
                     {
                         _context.UserFillAnswers.RemoveRange(existingUserFillAnswers);
                     }
+
+                    //Xóa tất cả UserChoiceAnswers cũ nêu sco
+                    var existingUserChoiceAnswers = _context.UserChoiceAnswers
+                    .Where(uca => uca.ExerciseDetailResultId == exerciseDetailResultId);
+                    if (existingUserChoiceAnswers.Any())
+                    {
+                        _context.UserChoiceAnswers.RemoveRange(existingUserChoiceAnswers);
+                    }
                 }
                 else
                 {
                     // Thêm mới kết quả
                     ExerciseDetailResult edr = edrItem.ToExerciseDetailResultFromExerciseDetailResultDto(exerciseDetailId, exerciseResultId);
                     await _context.ExerciseDetailResults.AddAsync(edr);
-                    await _context.SaveChangesAsync(); // Lưu để lấy ID mới tạo
+                    await _context.SaveChangesAsync();
                     exerciseDetailResultId = edr.ExerciseDetailResultId;
                 }
 
-                // Thêm UserFillAnswers nếu có
-                if (edrItem.UserFillAnswers != null && edrItem.UserFillAnswers.Any())
+                // Xử lý dựa vào QuestionType
+                if (edrItem.QuestionType == "multiple_choice" && edrItem.UserChoiceAnswers != null && edrItem.UserChoiceAnswers.Any())
                 {
+                    // Thêm UserChoiceAnswers
+                    foreach (var userChoiceAnswerDto in edrItem.UserChoiceAnswers)
+                    {
+                        var userChoiceAnswer = new UserChoiceAnswer
+                        {
+                            ExerciseDetailResultId = exerciseDetailResultId,
+                            AnswerId = userChoiceAnswerDto.AnswerId,
+                            IsCorrect = userChoiceAnswerDto.IsCorrect
+                        };
+
+                        await _context.UserChoiceAnswers.AddAsync(userChoiceAnswer);
+                    }
+                }
+                else if (edrItem.QuestionType == "fill_in_blank" && edrItem.UserFillAnswers != null && edrItem.UserFillAnswers.Any())
+                {
+                    // Thêm UserFillAnswers
                     foreach (var userFillAnswerDto in edrItem.UserFillAnswers)
                     {
                         var userFillAnswer = new UserFillAnswer

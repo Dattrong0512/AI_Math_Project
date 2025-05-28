@@ -49,7 +49,7 @@ namespace AIMathProject.Infrastructure.Repositories
                                       .Include(er => er.ExerciseDetailResults)
                                               .ThenInclude(edr => edr.UserFillAnswers)
                                       .Include(er => er.ExerciseDetailResults)
-                                              .ThenInclude(edr => edr.ChoiceAnswer)
+                                              .ThenInclude(edr => edr.UserChoiceAnswers)
                                       .FirstOrDefaultAsync();
 
             if (exerciseResult == null)
@@ -69,9 +69,13 @@ namespace AIMathProject.Infrastructure.Repositories
                     {
                         IsCorrect = edr.IsCorrect,
                         QuestionType = edr.QuestionType,
-                        // Map ChoiceAnswer nếu có
-                        ChoiceAnswerId = edr.ChoiceAnswerId,
-                        // Map UserFillAnswer nếu có
+                        UserChoiceAnswers = edr.UserChoiceAnswers != null ?
+                            edr.UserChoiceAnswers.Select(uca => new UserChoiceAnswerDto
+                            {
+                                AnswerId = uca.AnswerId,
+                                IsCorrect = uca.IsCorrect
+                            }).ToList() :
+                            new List<UserChoiceAnswerDto>(),
                         UserFillAnswers = edr.UserFillAnswers != null ?
                             edr.UserFillAnswers.Select(ufa => new UserFillAnswerDto
                             {
@@ -113,7 +117,7 @@ namespace AIMathProject.Infrastructure.Repositories
                 .Include(er => er.ExerciseDetailResults)
                                               .ThenInclude(edr => edr.UserFillAnswers)
                                       .Include(er => er.ExerciseDetailResults)
-                                              .ThenInclude(edr => edr.ChoiceAnswer)
+                                              .ThenInclude(edr => edr.UserChoiceAnswers)
                 .ToListAsync();
 
             if (!exerciseResults.Any())
@@ -132,9 +136,13 @@ namespace AIMathProject.Infrastructure.Repositories
                     {
                         IsCorrect = edr.IsCorrect,
                         QuestionType = edr.QuestionType,
-                        // Map ChoiceAnswer nếu có
-                        ChoiceAnswerId = edr.ChoiceAnswerId,
-                        // Map UserFillAnswer nếu có
+                        UserChoiceAnswers = edr.UserChoiceAnswers != null ?
+                            edr.UserChoiceAnswers.Select(uca => new UserChoiceAnswerDto
+                            {
+                                AnswerId = uca.AnswerId,
+                                IsCorrect = uca.IsCorrect
+                            }).ToList() :
+                            new List<UserChoiceAnswerDto>(),
                         UserFillAnswers = edr.UserFillAnswers != null ?
                             edr.UserFillAnswers.Select(ufa => new UserFillAnswerDto
                             {

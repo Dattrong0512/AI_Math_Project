@@ -15,7 +15,5 @@ public partial class ChoiceAnswer
 
     public string? ImgUrl { get; set; }
 
-    public virtual ICollection<ExerciseDetailResult> ExerciseDetailResults { get; set; } = new List<ExerciseDetailResult>();
-
     public virtual Question? Question { get; set; }
 }

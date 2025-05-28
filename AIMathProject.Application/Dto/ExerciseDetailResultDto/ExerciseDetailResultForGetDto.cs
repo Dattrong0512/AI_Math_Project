@@ -11,8 +11,8 @@ namespace AIMathProject.Application.Dto.ExerciseDetailResultDto
         public bool? IsCorrect { get; set; }
         public string? QuestionType { get; set; }
 
-        public int? ChoiceAnswerId { get; set; }
 
+        public virtual List<AnswerDto.UserChoiceAnswerDto> UserChoiceAnswers { get; set; } = new List<AnswerDto.UserChoiceAnswerDto>();
         public virtual List<AnswerDto.UserFillAnswerDto> UserFillAnswers { get; set; } = new List<AnswerDto.UserFillAnswerDto>();
         
         public ExerciseDetailDto.ExerciseDetailDto? ExerciseDetail

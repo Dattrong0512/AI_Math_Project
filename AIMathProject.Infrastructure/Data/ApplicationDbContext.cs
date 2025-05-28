@@ -72,6 +72,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
     public virtual DbSet<TokenTransaction> TokenTransactions { get; set; }
 
     public virtual DbSet<UserFillAnswer> UserFillAnswers { get; set; }
+    public virtual DbSet<UserChoiceAnswer> UserChoiceAnswers { get; set; }
 
     public virtual DbSet<UserSession> UserSessions { get; set; }
 
@@ -344,7 +345,6 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 });
 
             entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
-            entity.Property(e => e.ChoiceAnswerId).HasColumnName("choice_answer_id");
             entity.Property(e => e.ExerciseDetailId).HasColumnName("exercise_detail_id");
             entity.Property(e => e.ExerciseResultId).HasColumnName("exercise_result_id");
             entity.Property(e => e.IsCorrect).HasColumnName("is_correct");
@@ -353,10 +353,10 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .IsUnicode(false)
                 .HasColumnName("question_type");
 
-            entity.HasOne(d => d.ChoiceAnswer).WithMany(p => p.ExerciseDetailResults)
-                .HasForeignKey(d => d.ChoiceAnswerId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Exercise___choic__42ACE4D4");
+            //entity.HasOne(d => d.ChoiceAnswer).WithMany(p => p.ExerciseDetailResults)
+            //    .HasForeignKey(d => d.ChoiceAnswerId)
+            //    .OnDelete(DeleteBehavior.Cascade)
+            //    .HasConstraintName("FK__Exercise___choic__42ACE4D4");
 
             entity.HasOne(d => d.ExerciseDetail).WithMany(p => p.ExerciseDetailResults)
                 .HasForeignKey(d => d.ExerciseDetailId)
@@ -766,6 +766,20 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.HasOne(d => d.ExerciseDetailResult).WithMany(p => p.UserFillAnswers)
                 .HasForeignKey(d => d.ExerciseDetailResultId)
                 .HasConstraintName("FK__User_Fill__exerc__41B8C09B");
+        });
+
+        modelBuilder.Entity<UserChoiceAnswer>(entity =>
+        {
+            entity.HasKey(e => e.UserChoiceAnswerId).HasName("PK__User_Cho__31EEBA91B2F2A794");
+            entity.ToTable("User_Choice_Answer");
+            entity.Property(e => e.UserChoiceAnswerId).HasColumnName("user_choice_answer_id");
+            entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
+            entity.Property(e => e.AnswerId).HasColumnName("answer_id");
+            entity.Property(e => e.IsCorrect).HasColumnName("is_correct");
+
+            entity.HasOne(d => d.ExerciseDetailResult).WithMany(p => p.UserChoiceAnswers)
+                .HasForeignKey(d => d.ExerciseDetailResultId)
+                .HasConstraintName("FK__User_Choi__exerc__4959E263");
         });
 
         modelBuilder.Entity<UserSession>(entity =>

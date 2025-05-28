@@ -39,7 +39,9 @@ namespace AIMathProject.API.Controllers
         ///   - **questionId** (int): The unique identifier of the question being answered.
         ///   - **isCorrect** (bool): Whether the user's answer is correct or not.
         ///   - **questionType** (string): Type of the question ("multiple_choice", "fill_in_blank", "matching").
-        ///   - **choiceAnswerId** (int, optional): For multiple_choice questions, the ID of the selected choice.
+        ///   - **userChoiceAnswers** (array, nullable): For multiple_choices questions, contains the user's wrong answers:
+        ///     - **answerId** (string): The incorrect answer id provided by the user.
+        ///     - **isCorrect** (int): whether the answer is correct or not.
         ///   - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:
         ///     - **wrongAnswer** (string): The incorrect answer provided by the user.
         ///     - **position** (int): The position of the blank in the question.
@@ -78,7 +80,12 @@ namespace AIMathProject.API.Controllers
         ///     "questionId": 12,
         ///     "isCorrect": false,
         ///     "questionType": "multiple_choice",
-        ///     "choiceAnswerId": 22
+        ///      "userChoiceAnswers": [
+        ///        {
+        ///          "answerId": "22",
+        ///          "isCorrect": false
+        ///        }
+        ///      ]
         ///   },
         ///   {
         ///     "questionId": 13,

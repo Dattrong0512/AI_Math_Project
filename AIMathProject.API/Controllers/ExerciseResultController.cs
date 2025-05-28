@@ -45,11 +45,9 @@ namespace AIMathProject.API.Controllers
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
         ///   - **isCorrect** (bool, nullable): Whether the answer is correct or not.
         ///   - **questionType** (string): The type of question ("multiple_choice", "fill_in_blank", "matching").
-        ///   - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:
-        ///     - **answerId** (int): The unique identifier of the answer choice.
-        ///     - **content** (string): The text of the answer choice.
-        ///     - **isCorrect** (bool): Whether this choice is the correct answer.
-        ///     - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+        ///   - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:
+        ///     - **answerId** (string): The incorrect answer id provided by the user.
+        ///     - **isCorrect** (int): whether the answer is correct or not.
         ///   - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:
         ///     - **wrongAnswer** (string): The incorrect answer provided by the user.
         ///     - **position** (int): The position of the blank in the question.
@@ -99,11 +97,9 @@ namespace AIMathProject.API.Controllers
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
         ///   - **isCorrect** (bool, nullable): Whether the answer is correct or not.
         ///   - **questionType** (string): The type of question ("multiple_choice", "fill_in_blank", "matching").
-        ///   - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:
-        ///     - **answerId** (int): The unique identifier of the answer choice.
-        ///     - **content** (string): The text of the answer choice.
-        ///     - **isCorrect** (bool): Whether this choice is the correct answer.
-        ///     - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+        ///   - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:
+        ///     - **answerId** (string): The incorrect answer id provided by the user.
+        ///     - **isCorrect** (int): whether the answer is correct or not.
         ///   - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:
         ///     - **wrongAnswer** (string): The incorrect answer provided by the user.
         ///     - **position** (int): The position of the blank in the question.
