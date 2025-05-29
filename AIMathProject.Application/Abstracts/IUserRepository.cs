@@ -17,5 +17,7 @@ namespace AIMathProject.Application.Abstracts
         Task<Unit> SendEmailConfirm(User user, CancellationToken cancellationToken);
         Task<Pagination<UserDto>> GetUsersWithFilters(string? searchTerm, int? role, bool? status, int pageIndex, int pageSize);
         Task<UserDto> GetInfoUserLogin();
+
+        Task CreateUserWallet(int userId, CancellationToken cancellationToken);
     }
 }

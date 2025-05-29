@@ -6124,11 +6124,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.API\\AIMathProject.API.csproj",
+      "projectUniqueName": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.API\\AIMathProject.API.csproj",
       "projectName": "AIMathProject.API",
-      "projectPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.API\\AIMathProject.API.csproj",
+      "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.API\\AIMathProject.API.csproj",
       "packagesPath": "C:\\Users\\Bach Yen\\.nuget\\packages\\",
-      "outputPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.API\\obj\\",
+      "outputPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6151,11 +6151,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Application\\AIMathProject.Application.csproj": {
-              "projectPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Application\\AIMathProject.Application.csproj"
+            "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj": {
+              "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj"
             },
-            "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj": {
-              "projectPath": "J:\\Study\\GraduationProject\\be\\test\\AIMath_backend\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj"
+            "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj": {
+              "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj"
             }
           }
         }

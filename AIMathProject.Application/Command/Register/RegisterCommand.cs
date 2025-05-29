@@ -4,6 +4,7 @@ using AIMathProject.Domain.Exceptions;
 using AIMathProject.Domain.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
 namespace AIMathProject.Application.Command.Register
@@ -13,8 +14,8 @@ namespace AIMathProject.Application.Command.Register
         public RegisterRequest RegisterRequest { get; set; }
         public string Role;
 
-        
-        public RegisterCommand(RegisterRequest registerRequest,string role)
+
+        public RegisterCommand(RegisterRequest registerRequest, string role)
         {
             RegisterRequest = registerRequest;
             Role = role;
@@ -24,11 +25,15 @@ namespace AIMathProject.Application.Command.Register
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Unit>
     {
         private readonly UserManager<User> _userManager;
-
         private readonly RoleManager<IdentityRole<int>> _roleManager;
-
         private readonly IUserRepository _userRepository;
-        public RegisterCommandHandler(UserManager<User> userManager, RoleManager<IdentityRole<int>> roleManager, IEmailHelper emailHelper, ITemplateReader emailTemplateReader, IUserRepository userRepository)
+
+        public RegisterCommandHandler(
+            UserManager<User> userManager,
+            RoleManager<IdentityRole<int>> roleManager,
+            IEmailHelper emailHelper,
+            ITemplateReader emailTemplateReader,
+            IUserRepository userRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -68,7 +73,11 @@ namespace AIMathProject.Application.Command.Register
                     throw new Exception("Can't assign User Role to user: " + string.Join(", ", addToRoleResult.Errors.Select(e => e.Description)));
                 }
             }
-          
+            else if (request.Role == "User")
+            {
+                await _userRepository.CreateUserWallet(user.Id, cancellationToken);
+            }
+
             return Unit.Value;
         }
     }

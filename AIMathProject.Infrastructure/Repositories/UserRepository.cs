@@ -171,5 +171,18 @@ namespace AIMathProject.Infrastructure.Repositories
 
             return pagination;
         }
+
+        public async Task CreateUserWallet(int userId, CancellationToken cancellationToken)
+        {
+            var wallet = new Wallet
+            {
+                UserId = userId,
+                CoinRemains = 0,
+                TokenRemains = 0
+            };
+
+            _context.Wallets.Add(wallet);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
