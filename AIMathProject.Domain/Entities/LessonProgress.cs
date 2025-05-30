@@ -13,6 +13,8 @@ public partial class LessonProgress
 
     public int? Process { get; set; }
 
+    public string? Status { get; set; }
+
     public virtual Enrollment? Enrollment { get; set; }
 
     public virtual Lesson? Lesson { get; set; }

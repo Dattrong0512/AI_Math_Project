@@ -40,6 +40,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
                     Process = lp.Process,
+                    Status = lp.Status,
                     Lesson = new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
@@ -67,6 +68,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     LearningProgressId = lp.LearningProgressId,
                     LessonId = lp.LessonId,
                     Process = lp.Process,
+                    Status = lp.Status,
                     Lesson = new LessonDto
                     {
                         LessonOrder = l.LessonOrder,
@@ -94,7 +96,7 @@ namespace AIMathProject.Infrastructure.Repositories
             return lp.ToLessonProgressDto();
         }
 
-        public async Task<LessonProgressDto> UpdateLearningProgress(int lessonId, int enrollmentId, int process)
+        public async Task<LessonProgressDto> UpdateLearningProgress(int lessonId, int enrollmentId, int process, string status)
         {
             var progress = await _context.LessonProgresses
             .FirstOrDefaultAsync(lp => lp.LessonId == lessonId && lp.EnrollmentId == enrollmentId);
@@ -103,6 +105,7 @@ namespace AIMathProject.Infrastructure.Repositories
                 return null;
             }
             progress.Process = process;
+            progress.Status = status;
             await _context.SaveChangesAsync();
             return await GetInfoOneLessonProgress(progress.LearningProgressId);
         }

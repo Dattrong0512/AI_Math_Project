@@ -661,6 +661,7 @@
              - **learningProgressId**: The unique identifier of the progress record.
              - **lessonId**: The unique identifier of the lesson.
              - **status**: The current status of the lesson (not_started, in_progress, completed).
+             - **process** (int): The updated progress of the user in the lesson (e.g., 20,30,70).
              - **lesson**: An object containing lesson details:
                - **lessonOrder**: The order of the lesson in the study plan.
                - **lessonName**: The name of the lesson.
@@ -673,7 +674,7 @@
              </remarks>
              <returns>Returns filtered lesson progress information based on chapter's grade and semester.</returns> 
         </member>
-        <member name="M:AIMathProject.API.Controllers.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int32,System.Int32)">
+        <member name="M:AIMathProject.API.Controllers.LessonProgressController.UpdateLearningProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
              <summary>
              Updates the learning progress of a specific lesson progress record.
              </summary>
@@ -685,12 +686,14 @@
              The request should include:
              - **lessonID** (int): The unique identifier of the lesson .
              - **enrollmentID** (int): The unique identifier of the enrollment.
+             - **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).
              - **process** (int): The updated progress of the user in the lesson (e.g., 20,30,70).
             
              **Response:**
              If successful, the response will return the updated lesson progress information:
              - **learningProgressId**: The unique identifier of the lesson progress.
              - **lessonId**: The unique identifier of the lesson.
+             - **status**: The updated progress of the user in the lesson (e.g., completed).
              - **process**: The updated progress of the user in the lesson (e.g., 20,30,70).
              - **lesson**: An object containing lesson details:
                - **lessonOrder**: The order of the lesson in the study plan.
@@ -699,7 +702,7 @@
             
              **Example Request:**
              ```http
-             PATCH /update/lesson/25/enrollment/2/status/1
+             PATCH /update/lesson/25/enrollment/2/status/2/process/20
              </remarks>
              <returns>Returns the updated learning progress information.</returns>
         </member>

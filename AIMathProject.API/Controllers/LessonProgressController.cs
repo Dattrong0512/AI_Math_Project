@@ -75,6 +75,7 @@ namespace AIMathProject.API.Controllers
         /// - **learningProgressId**: The unique identifier of the progress record.
         /// - **lessonId**: The unique identifier of the lesson.
         /// - **status**: The current status of the lesson (not_started, in_progress, completed).
+        /// - **process** (int): The updated progress of the user in the lesson (e.g., 20,30,70).
         /// - **lesson**: An object containing lesson details:
         ///   - **lessonOrder**: The order of the lesson in the study plan.
         ///   - **lessonName**: The name of the lesson.
@@ -106,12 +107,14 @@ namespace AIMathProject.API.Controllers
         /// The request should include:
         /// - **lessonID** (int): The unique identifier of the lesson .
         /// - **enrollmentID** (int): The unique identifier of the enrollment.
+        /// - **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).
         /// - **process** (int): The updated progress of the user in the lesson (e.g., 20,30,70).
         ///
         /// **Response:**
         /// If successful, the response will return the updated lesson progress information:
         /// - **learningProgressId**: The unique identifier of the lesson progress.
         /// - **lessonId**: The unique identifier of the lesson.
+        /// - **status**: The updated progress of the user in the lesson (e.g., completed).
         /// - **process**: The updated progress of the user in the lesson (e.g., 20,30,70).
         /// - **lesson**: An object containing lesson details:
         ///   - **lessonOrder**: The order of the lesson in the study plan.
@@ -120,14 +123,28 @@ namespace AIMathProject.API.Controllers
         ///
         /// **Example Request:**
         /// ```http
-        /// PATCH /update/lesson/25/enrollment/2/process/20
+        /// PATCH /update/lesson/25/enrollment/2/status/2/process/20
         /// </remarks>
         /// <returns>Returns the updated learning progress information.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpPatch("update/lesson/{lessonId:int}/enrollment/{enrollmentId:int}/process/{process:int}")]
-        public async Task<IActionResult> UpdateLearningProgress([FromRoute] int lessonId, [FromRoute] int enrollmentId, [FromRoute] int process)
+        [HttpPatch("update/lesson/{lessonId:int}/enrollment/{enrollmentId:int}/status/{status:int}/process/{process:int}")]
+        public async Task<IActionResult> UpdateLearningProgress([FromRoute] int lessonId, [FromRoute] int enrollmentId, [FromRoute] int status, [FromRoute] int process)
         {
-            return Ok(await _mediator.Send(new UpdateLearningProgressCommand(lessonId, enrollmentId, process)));
+            string str_status = "";
+            if (status == 0)
+            {
+                str_status = "not_started";
+            }
+            else if (status == 1)
+            {
+                str_status = "completed";
+            }
+            else if (status == 2)
+            {
+                str_status = "in_progress";
+            }
+            else { return BadRequest("Failed to update lesson progress, please input a valid status."); }
+            return Ok(await _mediator.Send(new UpdateLearningProgressCommand(lessonId, enrollmentId, process, str_status)));
         }
     }
 }

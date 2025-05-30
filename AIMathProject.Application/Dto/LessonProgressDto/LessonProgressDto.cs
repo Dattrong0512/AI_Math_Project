@@ -15,6 +15,8 @@ namespace AIMathProject.Application.Dto.LessonProgressDto
 
         public int? Process { get; set; }
 
+        public string? Status { get; set; }
+
         public LessonDto.LessonDto? Lesson { get; set; }
 
 

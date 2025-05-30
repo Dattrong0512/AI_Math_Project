@@ -477,6 +477,10 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.Property(e => e.EnrollmentId).HasColumnName("enrollment_id");
             entity.Property(e => e.LessonId).HasColumnName("lesson_id");
             entity.Property(e => e.Process).HasColumnName("process");
+            entity.Property(e => e.Status)
+                .HasMaxLength(15)
+                .IsUnicode(false)
+                .HasColumnName("status"); ;
 
             entity.HasOne(d => d.Enrollment).WithMany(p => p.LessonProgresses)
                 .HasForeignKey(d => d.EnrollmentId)
