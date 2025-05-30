@@ -76,6 +76,8 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
 
     public virtual DbSet<UserSession> UserSessions { get; set; }
 
+    public virtual DbSet<EnrollmentUnlockExercise> EnrollmentUnlockExercises { get; set; }
+
     public virtual DbSet<Wallet> Wallets { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -296,6 +298,25 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .HasConstraintName("FK__Error_Rep__user___10566F31");
         });
 
+        modelBuilder.Entity<EnrollmentUnlockExercise>(entity =>
+        {
+
+            entity.ToTable("Enrollment_Unlock_Exercise");
+            entity.HasKey(e => e.EnrollmentUnlockExerciseId).HasName("PK__Enrollme__E81C034ED29BA84A");
+            entity.Property(e => e.EnrollmentUnlockExerciseId).HasColumnName("enrollment_unlock_exercise_id");
+            entity.Property(e => e.ExerciseId).HasColumnName("exercise_id");
+            entity.Property(e => e.EnrollmentId).HasColumnName("enrollment_id");
+            entity.Property(e => e.UnlockDate).HasColumnName("unlock_date");
+            
+            entity.HasOne(d => d.Enrollment).WithMany(p => p.EnrollmentUnlockExercises)
+                .HasForeignKey(d => d.EnrollmentId)
+                .HasConstraintName("FK__Enrollmen__enrol__4E1E9780");
+
+            entity.HasOne(d => d.Exercise).WithMany(p => p.EnrollmentUnlockExercises)
+                .HasForeignKey(d => d.ExerciseId)
+                .HasConstraintName("FK__Enrollmen__exerc__4F12BBB9");
+        });
+
         modelBuilder.Entity<Exercise>(entity =>
         {
             entity.HasKey(e => e.ExerciseId).HasName("PK__Exercise__C121418EC9CD6A75");
@@ -307,6 +328,10 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .HasMaxLength(100)
                 .HasColumnName("exercise_name");
             entity.Property(e => e.LessonId).HasColumnName("lesson_id");
+            entity.Property(e => e.Description)
+                .HasMaxLength(255)
+                .HasColumnName("description");
+            entity.Property(e => e.IsLocked).HasColumnName("is_locked");
 
             entity.HasOne(d => d.Lesson).WithMany(p => p.Exercises)
                 .HasForeignKey(d => d.LessonId)
@@ -451,10 +476,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.Property(e => e.LearningProgressId).HasColumnName("learning_progress_id");
             entity.Property(e => e.EnrollmentId).HasColumnName("enrollment_id");
             entity.Property(e => e.LessonId).HasColumnName("lesson_id");
-            entity.Property(e => e.Status)
-                .HasMaxLength(15)
-                .IsUnicode(false)
-                .HasColumnName("status");
+            entity.Property(e => e.Process).HasColumnName("process");
 
             entity.HasOne(d => d.Enrollment).WithMany(p => p.LessonProgresses)
                 .HasForeignKey(d => d.EnrollmentId)

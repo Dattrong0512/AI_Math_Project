@@ -27,65 +27,53 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Retrieves all exercise results associated with a specific enrollment ID.
+        /// Retrieves all locked exercises that have been unlocked for a specific enrollment.
         /// </summary>
         /// <remarks>
         /// *Only logged-in users (including user and admin) can access this API.*  
-        /// This API returns a list of exercise results for a given enrollment ID, including details about each exercise result.
+        /// This API returns a list of premium exercises (IsLocked=true) that have been specifically unlocked for the given enrollment.
         ///
         /// **Request Parameters:**  
         /// - **id** (int): The enrollment ID of the user.
+        /// - **grade** (int): The grade level to filter exercises.
         ///
         /// **Response Format:**  
-        /// The response will return a list of exercise results, where each result includes:
+        /// The response will return a list of unlocked exercises, where each exercise includes:
+        /// - **exerciseName** (string): The name of the exercise.
         /// - **exerciseId** (int): The unique identifier of the exercise.
-        /// - **enrollmentId** (int): The ID of the enrollment.
-        /// - **score** (decimal, nullable): The score achieved for this exercise.
-        /// - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
-        /// - **lesson** (object, nullable): Information about the associated lesson:
-        ///   - **lessonOrder** (short, nullable): The order of the lesson.
-        ///   - **lessonName** (string): The name of the lesson.
-        ///   - **lessonVideoUrl** (string, nullable): The URL of the lesson video.
-        ///   - **lessonPdfUrl** (string, nullable): The URL of the lesson PDF.
-        ///   - **chapterOrder** (short, nullable): The order of the chapter.
-        ///   - **questions** (array, nullable): List of questions associated with the lesson.
-        /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
-        ///   - **exerciseDetailId** (int): The ID of the exercise detail.
-        ///   - **exerciseResultId** (int): The ID of the exercise result.
-        ///   - **exerciseDetail** (object): Details about the exercise, including:
-        ///     - **exerciseId** (int): The ID of the exercise.
-        ///     - **questionId** (int): The ID of the question.
-        ///     - **question** (object): The complete question information, including:
-        ///       - **questionId** (int): The unique identifier of the question.
-        ///       - **questionType** (string): The type of question (e.g., "multiple_choice").
-        ///       - **difficulty** (int): The difficulty level of the question.
-        ///       - **lessonId** (int): The ID of the associated lesson.
-        ///       - **imgUrl** (string): The URL of an image related to the question.
-        ///       - **questionContent** (string): The text content of the question.
-        ///       - **pdfSolution** (string, nullable): A PDF solution reference, if available.
-        ///       - **choiceAnswers** (array): List of multiple-choice answers:
-        ///         - **answerId** (int): The unique identifier of the answer choice.
-        ///         - **content** (string): The text of the answer choice.
-        ///         - **isCorrect** (bool): Whether this choice is the correct answer.
-        ///         - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+        /// - **isLocked** (boolean): Will always be true, as these are unlocked premium exercises.
+        /// - **description** (string): The description of the exercise.
+        /// - **exerciseDetails** (array): List of exercise details, each containing:
+        ///   - **question** (object): Complete question information, including:
+        ///     - **questionId** (int): The unique identifier of the question.
+        ///     - **questionType** (string): The type of question (e.g., "multiple_choice", "fill_in_blank", "matching").
+        ///     - **difficulty** (int): The difficulty level of the question.
+        ///     - **lessonId** (int): The ID of the associated lesson.
+        ///     - **imgUrl** (string): The URL of an image related to the question.
+        ///     - **questionContent** (string): The text content of the question.
+        ///     - **pdfSolution** (string, nullable): A PDF solution reference, if available.
+        ///     - **choiceAnswers** (array): List of multiple-choice answers (for "multiple_choice" questions).
+        ///     - **fillAnswers** (array): List of fill-in answers (for "fill_in_blank" questions).
+        ///     - **matchingAnswers** (array): List of matching answers (for "matching" questions).
         ///
         /// **Example Request:**  
         /// 
-        /// GET /api/exerciseresults/enrollment/id/8
+        /// GET /api/exercise/detail/enrollment/id/35/grade/1
         ///
         /// **Response Codes:**  
-        /// - **200 OK**: Successfully retrieved the exercise results.  
-        /// - **404 Not Found**: No exercise results found for the given enrollment ID.
+        /// - **200 OK**: Successfully retrieved the unlocked exercises.
+        /// - **400 Bad Request**: No unlocked exercises found for this enrollment.
         /// </remarks>
         /// <param name="id">The enrollment ID of the user.</param>
-        /// <returns>Returns a list of exercise results for the specified enrollment ID.</returns>
+        /// <param name="grade">The grade level to filter exercises.</param>
+        /// <returns>Returns a list of locked exercises that have been unlocked for the specified enrollment.</returns>
         [Authorize(Policy = "UserOrAdmin")]
-        [HttpGet("exercise/detail/enrollment/id/{id:int}")]
+        [HttpGet("exercise/detail/enrollment/id/{id:int}/grade/{grade:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpsertExerciseDetailResult([FromRoute] int id)
+        public async Task<IActionResult> GetUnlockExerciseDetail([FromRoute] int id, [FromRoute] int grade)
         {
-            var result = await _mediator.Send(new GetExercisesWithResultsByEnrollmentIdQuery(id));
+            var result = await _mediator.Send(new GetExercisesWithResultsByEnrollmentIdQuery(id, grade));
             if (result != null)
             {
                 return Ok(result);

@@ -16,7 +16,7 @@ namespace AIMathProject.Application.Mappers
             {
                 LearningProgressId = lesson.LearningProgressId,
                 LessonId = lesson.LessonId,
-                Status = lesson.Status,
+                Process = lesson.Process,
                 Lesson = lesson.Lesson != null ? lesson.Lesson.ToLessonDto() : null
             };
 

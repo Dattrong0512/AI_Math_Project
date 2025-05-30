@@ -28,10 +28,10 @@ namespace AIMathProject.Infrastructure.Repositories
 
         public async Task<bool> CreateLesson(int grade, int chapterorder, LessonDto lessionDto)
         {
+            // Existing code remains unchanged
             if (lessionDto is null)
             {
                 throw new Exception("Lesson is allowed null");
-
             }
             else
             {
@@ -69,10 +69,10 @@ namespace AIMathProject.Infrastructure.Repositories
                                             e.ExerciseName.Contains(lessonData.Lesson.LessonName)
                                       select e).FirstOrDefaultAsync();
 
-            // Lấy các câu hỏi từ bài tập chính
+            // Lấy các câu hỏi từ bài tập chính nếu không bị khóa
             var questions = new List<Question>();
 
-            if (mainExercise != null)
+            if (mainExercise != null && !(mainExercise.IsLocked ?? false))
             {
                 questions = await (from ed in _context.ExerciseDetails
                                    join q in _context.Questions on ed.QuestionId equals q.QuestionId
@@ -95,28 +95,36 @@ namespace AIMathProject.Infrastructure.Repositories
 
             foreach (var exercise in extraExercises)
             {
-                // Lấy tất cả exercise details cho mỗi exercise phụ
-                var exerciseDetails = await (from ed in _context.ExerciseDetails
-                                             where ed.ExerciseId == exercise.ExerciseId
-                                             select ed)
-                                            .Include(ed => ed.Question)
-                                                .ThenInclude(q => q.ChoiceAnswers)
-                                            .Include(ed => ed.Question)
-                                                .ThenInclude(q => q.MatchingAnswers)
-                                            .Include(ed => ed.Question)
-                                                .ThenInclude(q => q.FillAnswers)
-                                            .ToListAsync();
-
                 // Tạo DTO cho mỗi exercise phụ
                 var exerciseDto = new ExerciseExtraForLessonDto
                 {
                     ExerciseId = exercise.ExerciseId,
                     ExerciseName = exercise.ExerciseName,
-                    ExerciseResults = exerciseDetails.Select(ed => new ExerciseDetailDto
+                    IsLocked = exercise.IsLocked,
+                    Description = exercise.Description,
+                    ExerciseDetails = new List<ExerciseDetailDto>() 
+                };
+
+                // Chỉ lấy exercise details nếu bài tập không bị khóa
+                if (!(exercise.IsLocked ?? false))
+                {
+                    // Lấy tất cả exercise details cho mỗi exercise phụ
+                    var exerciseDetails = await (from ed in _context.ExerciseDetails
+                                                 where ed.ExerciseId == exercise.ExerciseId
+                                                 select ed)
+                                              .Include(ed => ed.Question)
+                                                  .ThenInclude(q => q.ChoiceAnswers)
+                                              .Include(ed => ed.Question)
+                                                  .ThenInclude(q => q.MatchingAnswers)
+                                              .Include(ed => ed.Question)
+                                                  .ThenInclude(q => q.FillAnswers)
+                                              .ToListAsync();
+
+                    exerciseDto.ExerciseDetails = exerciseDetails.Select(ed => new ExerciseDetailDto
                     {
                         Question = ed.Question?.ToQuestionDto()
-                    }).ToList()
-                };
+                    }).ToList();
+                }
 
                 extraExerciseDtos.Add(exerciseDto);
             }
@@ -131,7 +139,7 @@ namespace AIMathProject.Infrastructure.Repositories
                 ChapterOrder = lessonData.ChapterOrder,
                 ExerciseId = mainExercise?.ExerciseId,
                 ExtraExercise = extraExerciseDtos,
-                Questions = questions.ToQuestionDtoList()
+                Questions = questions.ToQuestionDtoList() // This is already empty if exercise is locked
             };
 
             return lessonDto;
@@ -184,28 +192,36 @@ namespace AIMathProject.Infrastructure.Repositories
 
                 foreach (var exercise in extraExercises)
                 {
-                    // Lấy tất cả exercise details cho mỗi exercise phụ
-                    var exerciseDetails = await (from ed in _context.ExerciseDetails
-                                                 where ed.ExerciseId == exercise.ExerciseId
-                                                 select ed)
-                                                .Include(ed => ed.Question)
-                                                    .ThenInclude(q => q.ChoiceAnswers)
-                                                .Include(ed => ed.Question)
-                                                    .ThenInclude(q => q.MatchingAnswers)
-                                                .Include(ed => ed.Question)
-                                                    .ThenInclude(q => q.FillAnswers)
-                                                .ToListAsync();
-
                     // Tạo DTO cho mỗi exercise phụ
                     var exerciseDto = new ExerciseExtraForLessonDto
                     {
                         ExerciseId = exercise.ExerciseId,
                         ExerciseName = exercise.ExerciseName,
-                        ExerciseResults = exerciseDetails.Select(ed => new ExerciseDetailDto
+                        IsLocked = exercise.IsLocked,
+                        Description = exercise.Description,
+                        ExerciseDetails = new List<ExerciseDetailDto>() // Initialize with empty list
+                    };
+
+                    // Chỉ lấy exercise details nếu bài tập không bị khóa
+                    if (!(exercise.IsLocked ?? false))
+                    {
+                        // Lấy tất cả exercise details cho mỗi exercise phụ
+                        var exerciseDetails = await (from ed in _context.ExerciseDetails
+                                                     where ed.ExerciseId == exercise.ExerciseId
+                                                     select ed)
+                                                  .Include(ed => ed.Question)
+                                                      .ThenInclude(q => q.ChoiceAnswers)
+                                                  .Include(ed => ed.Question)
+                                                      .ThenInclude(q => q.MatchingAnswers)
+                                                  .Include(ed => ed.Question)
+                                                      .ThenInclude(q => q.FillAnswers)
+                                                  .ToListAsync();
+
+                        exerciseDto.ExerciseDetails = exerciseDetails.Select(ed => new ExerciseDetailDto
                         {
                             Question = ed.Question?.ToQuestionDto()
-                        }).ToList()
-                    };
+                        }).ToList();
+                    }
 
                     extraExerciseDtos.Add(exerciseDto);
                 }
@@ -254,7 +270,10 @@ namespace AIMathProject.Infrastructure.Repositories
                         {
                             ExerciseName = e.ExerciseName,
                             LessonId = e.LessonId,
-                            ExerciseResults = new List<Application.Dto.ExerciseResultDto.ExerciseResultDto>() // Empty as requested
+                            ExerciseId = e.ExerciseId,
+                            IsLocked = e.IsLocked,
+                            Description = e.Description,
+                            ExerciseResults = new List<Application.Dto.ExerciseResultDto.ExerciseResultDto>() // Always empty as requested
                         })
                         .ToList()
                 })

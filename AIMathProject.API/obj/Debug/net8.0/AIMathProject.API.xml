@@ -187,60 +187,74 @@
             <param name="enrollmentDto">The enrollment object to create.</param>
             <returns>Returns the newly created enrollment record.</returns>
         </member>
-        <member name="M:AIMathProject.API.Controllers.ExerciseController.UpsertExerciseDetailResult(System.Int32)">
+        <member name="M:AIMathProject.API.Controllers.EnrollmentUnlockExerciseController.UnlockExercise(System.Int32,System.Int32)">
+            <summary>
+            Unlocks a specific exercise for a user's enrollment by spending coins.
+            </summary>
+            <remarks>
+            *Only logged-in users can access this API.*
+            This API unlocks a specific exercise for the given enrollment by spending 1 coin from the user's wallet.
+            
+            **Request Parameters:**
+            - **enrollmentId** (int): The ID of the enrollment.
+            - **exerciseId** (int): The ID of the exercise to unlock.
+            
+            /// **Example Request:**
+            ```http
+            POST api/enrollment/8/exercise/401/unlock
+            ```
+            
+            **Response Codes:**
+            - **200 OK**: Successfully unlocked the exercise.
+            - **400 Bad Request**: Unable to unlock the exercise (see message for details).
+            - **401 Unauthorized**: User is not authorized.
+            </remarks>
+            <param name="enrollmentId">The ID of the enrollment</param>
+            <param name="exerciseId">The ID of the exercise to unlock</param>
+            <returns>A result indicating success or failure with a message</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.ExerciseController.GetUnlockExerciseDetail(System.Int32,System.Int32)">
              <summary>
-             Retrieves all exercise results associated with a specific enrollment ID.
+             Retrieves all locked exercises that have been unlocked for a specific enrollment.
              </summary>
              <remarks>
              *Only logged-in users (including user and admin) can access this API.*  
-             This API returns a list of exercise results for a given enrollment ID, including details about each exercise result.
+             This API returns a list of premium exercises (IsLocked=true) that have been specifically unlocked for the given enrollment.
             
              **Request Parameters:**  
              - **id** (int): The enrollment ID of the user.
+             - **grade** (int): The grade level to filter exercises.
             
              **Response Format:**  
-             The response will return a list of exercise results, where each result includes:
+             The response will return a list of unlocked exercises, where each exercise includes:
+             - **exerciseName** (string): The name of the exercise.
              - **exerciseId** (int): The unique identifier of the exercise.
-             - **enrollmentId** (int): The ID of the enrollment.
-             - **score** (decimal, nullable): The score achieved for this exercise.
-             - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
-             - **lesson** (object, nullable): Information about the associated lesson:
-               - **lessonOrder** (short, nullable): The order of the lesson.
-               - **lessonName** (string): The name of the lesson.
-               - **lessonVideoUrl** (string, nullable): The URL of the lesson video.
-               - **lessonPdfUrl** (string, nullable): The URL of the lesson PDF.
-               - **chapterOrder** (short, nullable): The order of the chapter.
-               - **questions** (array, nullable): List of questions associated with the lesson.
-             - **exerciseDetailResults** (array): List of exercise detail results, each containing:
-               - **exerciseDetailId** (int): The ID of the exercise detail.
-               - **exerciseResultId** (int): The ID of the exercise result.
-               - **exerciseDetail** (object): Details about the exercise, including:
-                 - **exerciseId** (int): The ID of the exercise.
-                 - **questionId** (int): The ID of the question.
-                 - **question** (object): The complete question information, including:
-                   - **questionId** (int): The unique identifier of the question.
-                   - **questionType** (string): The type of question (e.g., "multiple_choice").
-                   - **difficulty** (int): The difficulty level of the question.
-                   - **lessonId** (int): The ID of the associated lesson.
-                   - **imgUrl** (string): The URL of an image related to the question.
-                   - **questionContent** (string): The text content of the question.
-                   - **pdfSolution** (string, nullable): A PDF solution reference, if available.
-                   - **choiceAnswers** (array): List of multiple-choice answers:
-                     - **answerId** (int): The unique identifier of the answer choice.
-                     - **content** (string): The text of the answer choice.
-                     - **isCorrect** (bool): Whether this choice is the correct answer.
-                     - **imgUrl** (string, nullable): An optional image URL for the answer choice.
+             - **isLocked** (boolean): Will always be true, as these are unlocked premium exercises.
+             - **description** (string): The description of the exercise.
+             - **exerciseDetails** (array): List of exercise details, each containing:
+               - **question** (object): Complete question information, including:
+                 - **questionId** (int): The unique identifier of the question.
+                 - **questionType** (string): The type of question (e.g., "multiple_choice", "fill_in_blank", "matching").
+                 - **difficulty** (int): The difficulty level of the question.
+                 - **lessonId** (int): The ID of the associated lesson.
+                 - **imgUrl** (string): The URL of an image related to the question.
+                 - **questionContent** (string): The text content of the question.
+                 - **pdfSolution** (string, nullable): A PDF solution reference, if available.
+                 - **choiceAnswers** (array): List of multiple-choice answers (for "multiple_choice" questions).
+                 - **fillAnswers** (array): List of fill-in answers (for "fill_in_blank" questions).
+                 - **matchingAnswers** (array): List of matching answers (for "matching" questions).
             
              **Example Request:**  
              
-             GET /api/exerciseresults/enrollment/id/8
+             GET /api/exercise/detail/enrollment/id/35/grade/1
             
              **Response Codes:**  
-             - **200 OK**: Successfully retrieved the exercise results.  
-             - **404 Not Found**: No exercise results found for the given enrollment ID.
+             - **200 OK**: Successfully retrieved the unlocked exercises.
+             - **400 Bad Request**: No unlocked exercises found for this enrollment.
              </remarks>
              <param name="id">The enrollment ID of the user.</param>
-             <returns>Returns a list of exercise results for the specified enrollment ID.</returns>
+             <param name="grade">The grade level to filter exercises.</param>
+             <returns>Returns a list of locked exercises that have been unlocked for the specified enrollment.</returns>
         </member>
         <member name="M:AIMathProject.API.Controllers.ExerciseController.GetExercisesWithChapterInfo(System.Int32)">
              <summary>
@@ -671,13 +685,13 @@
              The request should include:
              - **lessonID** (int): The unique identifier of the lesson .
              - **enrollmentID** (int): The unique identifier of the enrollment.
-             - **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).
+             - **process** (int): The updated progress of the user in the lesson (e.g., 20,30,70).
             
              **Response:**
              If successful, the response will return the updated lesson progress information:
              - **learningProgressId**: The unique identifier of the lesson progress.
              - **lessonId**: The unique identifier of the lesson.
-             - **status**: The updated progress of the user in the lesson (e.g., completed).
+             - **process**: The updated progress of the user in the lesson (e.g., 20,30,70).
              - **lesson**: An object containing lesson details:
                - **lessonOrder**: The order of the lesson in the study plan.
                - **lessonName**: The name of the lesson.

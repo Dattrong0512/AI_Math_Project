@@ -12,6 +12,10 @@ namespace AIMathProject.Application.Dto.ExerciseDto
 
         public int? ExerciseId { get; set; }
 
-        public virtual List<ExerciseDetailDto.ExerciseDetailDto> ExerciseResults { get; set; } = new List<ExerciseDetailDto.ExerciseDetailDto>();
+        public bool? IsLocked { get; set; }
+
+        public string? Description { get; set; }
+
+        public virtual List<ExerciseDetailDto.ExerciseDetailDto> ExerciseDetails { get; set; } = new List<ExerciseDetailDto.ExerciseDetailDto>();
     }
 }

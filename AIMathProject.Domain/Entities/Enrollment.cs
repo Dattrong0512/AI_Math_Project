@@ -25,6 +25,8 @@ public partial class Enrollment
 
     public virtual ICollection<LessonProgress> LessonProgresses { get; set; } = new List<LessonProgress>();
 
+    public virtual ICollection<EnrollmentUnlockExercise> EnrollmentUnlockExercises { get; set; } = new List<EnrollmentUnlockExercise>();
+
     public virtual ICollection<TestResult> TestResults { get; set; } = new List<TestResult>();
 
     public virtual User? User { get; set; }

@@ -16,7 +16,7 @@ using AIMathProject.Application.Dto.QuestionDto;
 
 namespace AIMathProject.Infrastructure.Repositories
 {
-    public class ExerciseRepository : IExerciseRepository<ExerciseDto>, IExerciseSummaryRepository<ExerciseWithChapterDto>
+    public class ExerciseRepository : IExerciseRepository<ExerciseExtraForLessonDto>, IExerciseSummaryRepository<ExerciseWithChapterDto>
     {
         private readonly ApplicationDbContext _context;
 
@@ -25,70 +25,62 @@ namespace AIMathProject.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<List<ExerciseDto>> GetExercisesWithResultsByEnrollmentId(int enrollmentId)
+        public async Task<List<ExerciseExtraForLessonDto>> GetExercisesWithResultsByEnrollmentId(int enrollmentId, int grade)
         {
-            // Lấy tất cả các bài tập, bao gồm cả những bài không có ExerciseResults
-            var exercises = await _context.Exercises
-                .Include(e => e.ExerciseResults)
-                    .ThenInclude(er => er.ExerciseDetailResults)
-                        .ThenInclude(edr => edr.ExerciseDetail)
-                            .ThenInclude(ed => ed.Question)
+            // Get all exercises that have been unlocked for this enrollment
+            var unlockedExerciseIds = await _context.EnrollmentUnlockExercises
+                .Where(eue => eue.EnrollmentId == enrollmentId)
+                .Select(eue => eue.ExerciseId.Value)
                 .ToListAsync();
 
+            // Get only exercises that are:
+            // 1. Locked (IsLocked = true)
+            // 2. AND specifically unlocked for this enrollment in EnrollmentUnlockExercises
+            var exercises = await _context.Exercises
+                .Include(e => e.Lesson)
+                    .ThenInclude(l => l.Chapter)
+                .Where(e => e.Lesson.Chapter.Grade == grade &&
+                          (e.IsLocked == true) &&
+                          unlockedExerciseIds.Contains(e.ExerciseId))
+                .ToListAsync();
+
+            var exerciseDtos = new List<ExerciseExtraForLessonDto>();
+
+            // Process each exercise
             foreach (var exercise in exercises)
             {
-                foreach (var exerciseResult in exercise.ExerciseResults.Where(er => er.EnrollmentId == enrollmentId))
+                // Create the basic exercise DTO
+                var exerciseDto = new ExerciseExtraForLessonDto
                 {
-                    foreach (var edr in exerciseResult.ExerciseDetailResults)
+                    ExerciseName = exercise.ExerciseName,
+                    ExerciseId = exercise.ExerciseId,
+                    IsLocked = true, // Always true based on our filter
+                    Description = exercise.Description,
+                    ExerciseDetails = new List<ExerciseDetailDto>()
+                };
+
+                // Get exercise details for this exercise with all question data
+                var exerciseDetails = await (from ed in _context.ExerciseDetails
+                                             where ed.ExerciseId == exercise.ExerciseId
+                                             select ed)
+                                            .Include(ed => ed.Question)
+                                                .ThenInclude(q => q.ChoiceAnswers)
+                                            .Include(ed => ed.Question)
+                                                .ThenInclude(q => q.MatchingAnswers)
+                                            .Include(ed => ed.Question)
+                                                .ThenInclude(q => q.FillAnswers)
+                                            .ToListAsync();
+
+                // Map exercise details directly to ExerciseDetailDto
+                exerciseDto.ExerciseDetails = exerciseDetails
+                    .Select(ed => new ExerciseDetailDto
                     {
-                        var question = edr.ExerciseDetail?.Question;
-                        if (question == null) continue;
+                        Question = ed.Question?.ToQuestionDto()
+                    })
+                    .ToList();
 
-                        switch (question.QuestionType)
-                        {
-                            case "multiple_choice":
-                                question.ChoiceAnswers = await _context.ChoiceAnswers
-                                    .Where(ca => ca.QuestionId == question.QuestionId)
-                                    .ToListAsync();
-                                break;
-
-                            case "matching":
-                                question.MatchingAnswers = await _context.MatchingAnswers
-                                    .Where(ma => ma.QuestionId == question.QuestionId)
-                                    .ToListAsync();
-                                break;
-
-                            case "fill_in_blank":
-                                question.FillAnswers = await _context.FillAnswers
-                                    .Where(fa => fa.QuestionId == question.QuestionId)
-                                    .ToListAsync();
-                                break;
-                        }
-                    }
-                }
+                exerciseDtos.Add(exerciseDto);
             }
-            var exerciseDtos = exercises.Select(e => new ExerciseDto
-            {
-                ExerciseName = e.ExerciseName,
-                LessonId = e.LessonId,
-                ExerciseResults = e.ExerciseResults
-                    .Where(er => er.EnrollmentId == enrollmentId)
-                    .Select(er => new ExerciseResultDto
-                    {
-                        ExerciseId = er.ExerciseId,
-                        EnrollmentId = er.EnrollmentId,
-                        Score = er.Score,
-                        DoneAt = er.DoneAt,
-                        ExerciseDetailResults = er.ExerciseDetailResults.Select(edr => new ExerciseDetailResultForGetDto
-                        {
-                            IsCorrect = edr.IsCorrect,
-                            ExerciseDetail = edr.ExerciseDetail != null ? new ExerciseDetailDto
-                            {
-                                Question = edr.ExerciseDetail.Question?.ToQuestionDto()
-                            } : null
-                        }).ToList()
-                    }).ToList()
-            }).ToList();
 
             return exerciseDtos;
         }

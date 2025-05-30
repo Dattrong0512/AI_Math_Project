@@ -255,6 +255,47 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.EnrollmentUnlockExerciseController",
+    "Method": "UnlockExercise",
+    "RelativePath": "api/enrollment/{enrollmentId}/exercise/{exerciseId}/unlock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enrollmentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "exerciseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.EnrollmentController",
     "Method": "CreateEnrollment",
     "RelativePath": "api/enrollment/create",
@@ -394,14 +435,19 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.ExerciseController",
-    "Method": "UpsertExerciseDetailResult",
-    "RelativePath": "api/exercise/detail/enrollment/id/{id}",
+    "Method": "GetUnlockExerciseDetail",
+    "RelativePath": "api/exercise/detail/enrollment/id/{id}/grade/{grade}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "grade",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -722,7 +768,7 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.LessonProgressController",
     "Method": "UpdateLearningProgress",
-    "RelativePath": "api/LessonProgress/update/lesson/{lessonId}/enrollment/{enrollmentId}/status/{status}",
+    "RelativePath": "api/LessonProgress/update/lesson/{lessonId}/enrollment/{enrollmentId}/process/{process}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -738,7 +784,7 @@
         "IsRequired": true
       },
       {
-        "Name": "status",
+        "Name": "process",
         "Type": "System.Int32",
         "IsRequired": true
       }

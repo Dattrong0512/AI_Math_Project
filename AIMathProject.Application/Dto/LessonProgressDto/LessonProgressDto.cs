@@ -13,10 +13,7 @@ namespace AIMathProject.Application.Dto.LessonProgressDto
 
         public int? LessonId { get; set; }
 
-        [StringLength(15)]
-        public string? Status { get; set; }
-
-        public short? LearningProgress { get; set; }
+        public int? Process { get; set; }
 
         public LessonDto.LessonDto? Lesson { get; set; }
 

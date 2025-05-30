@@ -11,6 +11,7 @@ using AIMathProject.Application.Dto.QuestionDto;
 using AIMathProject.Application.Dto.ExerciseDetailResultDto;
 using AIMathProject.Application.Dto.ExerciseResultDto;
 using AIMathProject.Application.Dto.ExerciseWithChapterDto;
+using AIMathProject.Application.Dto.EnrollmentUnlockExerciseDto;
 using AIMathProject.Application.Mappers;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
@@ -126,7 +127,7 @@ builder.Services.AddScoped<IQuestionRepository<QuestionDto>, QuestionRepository>
 builder.Services.AddScoped<IExerciseDetailResultRepository<ExerciseDetailResultDto>, ExerciseDetailResultRepository>();
 builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, ExerciseResultRepository>();
 builder.Services.AddScoped<IUserStatisticsRepository, UserStatisticsRepository>();
-builder.Services.AddScoped<IExerciseRepository<ExerciseDto>, ExerciseRepository>();
+builder.Services.AddScoped<IExerciseRepository<ExerciseExtraForLessonDto>, ExerciseRepository>();
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
 builder.Services.AddScoped<IPaymentRepository<PaymentDto>, PaymentRepository>();
@@ -134,7 +135,7 @@ builder.Services.AddScoped<IPlanRepository<PlansDto>, PlanRepository>();
 builder.Services.AddScoped<ITokenPackageRepository<TokenPackageDto>, TokenPackageRepository>();
 builder.Services.AddScoped<IPaymentMethodRepository<MethodDto>, PaymentMethodRepository>();
 builder.Services.AddScoped<IWalletRepository<WalletDto>, WalletRepository>();   
-
+builder.Services.AddScoped<IEnrollmentUnlockExerciseRepository<EnrollmentUnlockExerciseDto>, EnrollmentUnlockExerciseRepository>();
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();

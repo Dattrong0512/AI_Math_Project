@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace AIMathProject.Application.Queries.Exercise
 {
-    public record GetExercisesWithResultsByEnrollmentIdQuery(int EnrollmentId) : IRequest<List<ExerciseDto>>;
+    public record GetExercisesWithResultsByEnrollmentIdQuery(int EnrollmentId, int Grade) : IRequest<List<ExerciseExtraForLessonDto>>;
 
-    public class GetExercisesWithResultsByEnrollmentIdHandler : IRequestHandler<GetExercisesWithResultsByEnrollmentIdQuery, List<ExerciseDto>>
+    public class GetExercisesWithResultsByEnrollmentIdHandler : IRequestHandler<GetExercisesWithResultsByEnrollmentIdQuery, List<ExerciseExtraForLessonDto>>
     {
-        private readonly IExerciseRepository<ExerciseDto> _repository;
+        private readonly IExerciseRepository<ExerciseExtraForLessonDto> _repository;
 
-        public GetExercisesWithResultsByEnrollmentIdHandler(IExerciseRepository<ExerciseDto> repository)
+        public GetExercisesWithResultsByEnrollmentIdHandler(IExerciseRepository<ExerciseExtraForLessonDto> repository)
         {
             _repository = repository;
         }
 
-        public async Task<List<ExerciseDto>> Handle(GetExercisesWithResultsByEnrollmentIdQuery request, CancellationToken cancellationToken)
+        public async Task<List<ExerciseExtraForLessonDto>> Handle(GetExercisesWithResultsByEnrollmentIdQuery request, CancellationToken cancellationToken)
         {
-            return await _repository.GetExercisesWithResultsByEnrollmentId(request.EnrollmentId);
+            return await _repository.GetExercisesWithResultsByEnrollmentId(request.EnrollmentId, request.Grade);
         }
     }
 }
