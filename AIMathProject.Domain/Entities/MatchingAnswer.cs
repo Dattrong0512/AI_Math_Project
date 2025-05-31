@@ -9,9 +9,9 @@ public partial class MatchingAnswer
 
     public int? QuestionId { get; set; }
 
-    public string CorrectAnswer { get; set; } = null!;
+    public string AnswerContent1 { get; set; } = null!;
 
-    public string ImgUrl { get; set; } = null!;
+    public string AnswerContent2 { get; set; } = null!;
 
     public virtual Question? Question { get; set; }
 }

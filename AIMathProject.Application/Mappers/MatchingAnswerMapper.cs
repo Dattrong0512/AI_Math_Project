@@ -17,9 +17,9 @@ namespace AIMathProject.Application.Mappers
             {
                 AnswerId = ma.AnswerId,
 
-                CorrectAnswer = ma.CorrectAnswer,
+                AnswerContent1 = ma.AnswerContent1,
 
-                ImgUrl = ma.ImgUrl
+                AnswerContent2 = ma.AnswerContent2
             };
             return dto;
         }

@@ -14,7 +14,8 @@ namespace AIMathProject.Application.Dto.ExerciseDetailResultDto
 
         public virtual List<AnswerDto.UserChoiceAnswerDto> UserChoiceAnswers { get; set; } = new List<AnswerDto.UserChoiceAnswerDto>();
         public virtual List<AnswerDto.UserFillAnswerDto> UserFillAnswers { get; set; } = new List<AnswerDto.UserFillAnswerDto>();
-        
+
+        public virtual List<AnswerDto.UserMatchingAnswerDto> UserMatchingAnswers { get; set; } = new List<AnswerDto.UserMatchingAnswerDto>();
         public ExerciseDetailDto.ExerciseDetailDto? ExerciseDetail
         {
             get; set;

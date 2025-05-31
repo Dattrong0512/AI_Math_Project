@@ -74,6 +74,8 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
     public virtual DbSet<UserFillAnswer> UserFillAnswers { get; set; }
     public virtual DbSet<UserChoiceAnswer> UserChoiceAnswers { get; set; }
 
+    public virtual DbSet<UserMatchingAnswer> UserMatchingAnswers { get; set; }
+
     public virtual DbSet<UserSession> UserSessions { get; set; }
 
     public virtual DbSet<EnrollmentUnlockExercise> EnrollmentUnlockExercises { get; set; }
@@ -500,13 +502,12 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.ToTable("Matching_Answer");
 
             entity.Property(e => e.AnswerId).HasColumnName("answer_id");
-            entity.Property(e => e.CorrectAnswer)
-                .HasMaxLength(100)
-                .HasColumnName("correct_answer");
-            entity.Property(e => e.ImgUrl)
-                .HasMaxLength(300)
-                .IsUnicode(false)
-                .HasColumnName("img_url");
+            entity.Property(e => e.AnswerContent1)
+                .HasMaxLength(255)
+                .HasColumnName("answer_content_1");
+            entity.Property(e => e.AnswerContent2)
+                .HasMaxLength(255)
+                .HasColumnName("answer_content_2");
             entity.Property(e => e.QuestionId).HasColumnName("question_id");
 
             entity.HasOne(d => d.Question).WithMany(p => p.MatchingAnswers)
@@ -806,6 +807,20 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.HasOne(d => d.ExerciseDetailResult).WithMany(p => p.UserChoiceAnswers)
                 .HasForeignKey(d => d.ExerciseDetailResultId)
                 .HasConstraintName("FK__User_Choi__exerc__4959E263");
+        });
+
+        modelBuilder.Entity<UserMatchingAnswer>(entity =>
+        {
+            entity.HasKey(e => e.UserMatchingAnswerId).HasName("PK__User_Mat__56D09C694F119DFE");
+            entity.ToTable("User_Matching_Answer");
+            entity.Property(e => e.UserMatchingAnswerId).HasColumnName("user_matching_answer_id");
+            entity.Property(e => e.ExerciseDetailResultId).HasColumnName("exercise_detail_result_id");
+            entity.Property(e => e.AnswerContent1).HasColumnName("answer_content_1");
+            entity.Property(e => e.AnswerContent2).HasColumnName("answer_content_2");
+
+            entity.HasOne(d => d.ExerciseDetailResult).WithMany(p => p.UserMatchingAnswers)
+                .HasForeignKey(d => d.ExerciseDetailResultId)
+                .HasConstraintName("FK__User_Matc__exerc__52E34C9D");
         });
 
         modelBuilder.Entity<UserSession>(entity =>

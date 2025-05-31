@@ -44,7 +44,7 @@ namespace AIMathProject.Infrastructure.Repositories
             List<Question> questionListReturn = new List<Question>() { };
             foreach (var question in questionList)
             {
-                if (question.QuestionType == "multiple_choice")
+                if (question.QuestionType == "multiple_choice" || question.QuestionType == "single_choice")
                 {
                     var Answer = _context.ChoiceAnswers
                         .Where(choice => choice.QuestionId == question.QuestionId)
@@ -52,7 +52,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     question.ChoiceAnswers = Answer;
 
                 }
-                else if (question.QuestionType == "matching")
+                else if (question.QuestionType == "image_matching" || question.QuestionType == "text_image_matching")
                 {
                     var Answer = _context.MatchingAnswers
                         .Where(match => match.QuestionId == question.QuestionId)
@@ -60,7 +60,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     question.MatchingAnswers = Answer;
 
                 }
-                else if (question.QuestionType == "fill_in_blank")
+                else if (question.QuestionType == "fill_in_blank" || question.QuestionType == "vertical_calculation")
                 {
                     var Answer = _context.FillAnswers
                         .Where(match => match.QuestionId == question.QuestionId)

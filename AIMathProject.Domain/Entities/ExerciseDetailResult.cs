@@ -23,4 +23,6 @@ public partial class ExerciseDetailResult
     public virtual ICollection<UserChoiceAnswer>? UserChoiceAnswers { get; set; } = new List<UserChoiceAnswer>();
 
     public virtual ICollection<UserFillAnswer> UserFillAnswers { get; set; } = new List<UserFillAnswer>();
+
+    public virtual ICollection<UserMatchingAnswer> UserMatchingAnswers { get; set; } = new List<UserMatchingAnswer>();
 }
