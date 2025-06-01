@@ -125,7 +125,7 @@ namespace AIMathProject.Infrastructure.Repositories
                         await _context.UserChoiceAnswers.AddAsync(userChoiceAnswer);
                     }
                 }
-                else if ((edrItem.QuestionType == "fill_in_blank" || edrItem.QuestionType == "vertical_calculation") && edrItem.UserFillAnswers != null && edrItem.UserFillAnswers.Any())
+                else if ((edrItem.QuestionType == "fill_in_blank" || edrItem.QuestionType == "vertical_calculation_add" || edrItem.QuestionType == "vertical_calculation_sub" || edrItem.QuestionType == "vertical_calculation_multi" || edrItem.QuestionType == "vertical_calculation_div") && edrItem.UserFillAnswers != null && edrItem.UserFillAnswers.Any())
                 {
                     // Thêm UserFillAnswers
                     foreach (var userFillAnswerDto in edrItem.UserFillAnswers)

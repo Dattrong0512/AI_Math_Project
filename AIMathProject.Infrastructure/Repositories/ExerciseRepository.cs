@@ -136,5 +136,59 @@ namespace AIMathProject.Infrastructure.Repositories
 
             return exerciseDtos;
         }
+
+        public async Task<ExerciseExtraForLessonDto> GetExerciseByIdWithEnrollmentCheck(int exerciseId, int? enrollmentId)
+        {
+            // First get the basic exercise data
+            var exercise = await _context.Exercises
+                .Include(e => e.Lesson)
+                    .ThenInclude(l => l.Chapter)
+                .FirstOrDefaultAsync(e => e.ExerciseId == exerciseId);
+
+            if (exercise == null)
+                return null;
+
+            bool isUnlockedForEnrollment = false;
+            if (enrollmentId.HasValue && (bool)exercise.IsLocked)
+            {
+                isUnlockedForEnrollment = await _context.EnrollmentUnlockExercises
+                    .AnyAsync(eue => eue.ExerciseId == exerciseId && eue.EnrollmentId == enrollmentId.Value);
+            }
+
+            bool isLocked = (bool)exercise.IsLocked && !isUnlockedForEnrollment;
+
+            var exerciseDto = new ExerciseExtraForLessonDto
+            {
+                ExerciseName = exercise.ExerciseName,
+                ExerciseId = exercise.ExerciseId,
+                IsLocked = isLocked,
+                Description = exercise.Description,
+                ExerciseDetails = new List<ExerciseDetailDto>()
+            };
+
+            if (!isLocked)
+            {
+                // Get exercise details with question data
+                var exerciseDetails = await _context.ExerciseDetails
+                    .Where(ed => ed.ExerciseId == exercise.ExerciseId)
+                    .Include(ed => ed.Question)
+                        .ThenInclude(q => q.ChoiceAnswers)
+                    .Include(ed => ed.Question)
+                        .ThenInclude(q => q.MatchingAnswers)
+                    .Include(ed => ed.Question)
+                        .ThenInclude(q => q.FillAnswers)
+                    .ToListAsync();
+
+                // Map exercise details to DTOs
+                exerciseDto.ExerciseDetails = exerciseDetails
+                    .Select(ed => new ExerciseDetailDto
+                    {
+                        Question = ed.Question?.ToQuestionDto()
+                    })
+                    .ToList();
+            }
+
+            return exerciseDto;
+        }
     }
 }

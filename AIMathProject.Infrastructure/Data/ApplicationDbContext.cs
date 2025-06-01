@@ -376,7 +376,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.Property(e => e.ExerciseResultId).HasColumnName("exercise_result_id");
             entity.Property(e => e.IsCorrect).HasColumnName("is_correct");
             entity.Property(e => e.QuestionType)
-                .HasMaxLength(20)
+                .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("question_type");
 
@@ -644,7 +644,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .HasMaxLength(255)
                 .HasColumnName("question_content");
             entity.Property(e => e.QuestionType)
-                .HasMaxLength(20)
+                .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("question_type");
 

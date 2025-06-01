@@ -82,6 +82,44 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
+        /// Get exercise by ID with enrollment-specific lock status
+        /// </summary>
+        /// <remarks>
+        /// *Authenticated users can access this API*
+        /// 
+        /// This API retrieves exercise data and checks if it's unlocked for a specific enrollment.
+        /// If the exercise is locked, it will return basic information without questions.
+        /// If unlocked, it will include all question details.
+        /// 
+        /// **Parameters:**
+        /// - **exerciseId**: The unique identifier of the exercise
+        /// - **enrollmentId**: Optional enrollment ID to check unlock status
+        /// </remarks>
+        /// <param name="exerciseId">The unique identifier of the exercise</param>
+        /// <param name="enrollmentId">Optional enrollment ID to check unlock status</param>
+        /// <returns>Exercise data with questions if unlocked</returns>
+        /// <response code="200">Returns the exercise data</response>
+        /// <response code="404">If the exercise is not found</response>
+        /// <response code="401">If the user is not authenticated</response>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("exercise/id/{exerciseId:int}/enrollment/id/{enrollmentId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ExerciseExtraForLessonDto>> GetExerciseByIdWithEnrollmentCheck(
+            [FromRoute] int exerciseId,
+            [FromRoute] int enrollmentId)
+        {
+            var exercise = await _mediator.Send(new GetExerciseByIdWithEnrollmentCheckQuery(exerciseId, enrollmentId));
+
+            if (exercise == null)
+            {
+                return NotFound($"Exercise with ID {exerciseId} not found.");
+            }
+
+            return Ok(exercise);
+        }
+
+        /// <summary>
         /// Retrieves all exercises with chapter information associated with a specific enrollment ID.
         /// </summary>
         /// <remarks>

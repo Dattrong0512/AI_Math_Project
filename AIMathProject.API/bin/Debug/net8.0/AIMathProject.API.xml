@@ -256,6 +256,28 @@
              <param name="grade">The grade level to filter exercises.</param>
              <returns>Returns a list of locked exercises that have been unlocked for the specified enrollment.</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.ExerciseController.GetExerciseByIdWithEnrollmentCheck(System.Int32,System.Int32)">
+            <summary>
+            Get exercise by ID with enrollment-specific lock status
+            </summary>
+            <remarks>
+            *Authenticated users can access this API*
+            
+            This API retrieves exercise data and checks if it's unlocked for a specific enrollment.
+            If the exercise is locked, it will return basic information without questions.
+            If unlocked, it will include all question details.
+            
+            **Parameters:**
+            - **exerciseId**: The unique identifier of the exercise
+            - **enrollmentId**: Optional enrollment ID to check unlock status
+            </remarks>
+            <param name="exerciseId">The unique identifier of the exercise</param>
+            <param name="enrollmentId">Optional enrollment ID to check unlock status</param>
+            <returns>Exercise data with questions if unlocked</returns>
+            <response code="200">Returns the exercise data</response>
+            <response code="404">If the exercise is not found</response>
+            <response code="401">If the user is not authenticated</response>
+        </member>
         <member name="M:AIMathProject.API.Controllers.ExerciseController.GetExercisesWithChapterInfo(System.Int32)">
              <summary>
              Retrieves all exercises with chapter information associated with a specific enrollment ID.
@@ -1052,7 +1074,7 @@
             
             **Example Request:**
             ```http
-            GET /api/payments/2025-01-01/2025-06-01
+            GET /api/payments/2025-05-28/2025-06-01
             ```
             
             **Response:**

@@ -3,12 +3,68 @@
   "WorkspaceRootPath": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.api\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.domain\\interfaces\\iexerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\iexerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.application\\queries\\exercise\\getexercisebyidwithenrollmentcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\queries\\exercise\\getexercisebyidwithenrollmentcheck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.application\\queries\\exercise\\getexerciseswithchapterinfobyenrollmentid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\queries\\exercise\\getexerciseswithchapterinfobyenrollmentid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\exerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\exerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\exercisedetailresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\exercisedetailresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\questionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\questionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\exerciseresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\exerciseresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\enrollmentunlockexerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\enrollmentunlockexerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\lessonprogressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\lessonprogressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\lessonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\lessonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\paymentmethodrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\paymentmethodrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,18 +103,6 @@
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\revenuestatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\exercisedetailresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\exercisedetailresultrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\questionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\questionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.domain\\interfaces\\iquestionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\iquestionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -83,10 +127,6 @@
       "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\irevenuerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\userstatisticsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\walletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\walletrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -102,7 +142,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 284,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -114,33 +154,163 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ExerciseController.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Controllers\\ExerciseController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\ExerciseController.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Controllers\\ExerciseController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\ExerciseController.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAuwHIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T13:22:15.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "IExerciseRepository.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Domain\\Interfaces\\IExerciseRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IExerciseRepository.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Domain\\Interfaces\\IExerciseRepository.cs",
+              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IExerciseRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T13:21:23.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GetExercisesWithChapterInfoByEnrollmentId.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\Exercise\\GetExercisesWithChapterInfoByEnrollmentId.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Exercise\\GetExercisesWithChapterInfoByEnrollmentId.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\Exercise\\GetExercisesWithChapterInfoByEnrollmentId.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Queries\\Exercise\\GetExercisesWithChapterInfoByEnrollmentId.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T13:20:58.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetExerciseByIdWithEnrollmentCheck.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\Exercise\\GetExerciseByIdWithEnrollmentCheck.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Exercise\\GetExerciseByIdWithEnrollmentCheck.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\Exercise\\GetExerciseByIdWithEnrollmentCheck.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Queries\\Exercise\\GetExerciseByIdWithEnrollmentCheck.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T13:20:52.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LessonProgressRepository.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\LessonProgressRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\LessonProgressRepository.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\LessonProgressRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\LessonProgressRepository.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T12:29:38.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PaymentMethodRepository.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\PaymentMethodRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\PaymentMethodRepository.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\PaymentMethodRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\PaymentMethodRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T12:29:36.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExerciseRepository.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAuwIsAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T12:29:21.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ExerciseResultRepository.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseResultRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\ExerciseResultRepository.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseResultRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\ExerciseResultRepository.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T12:29:20.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "LessonRepository.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T12:29:17.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EnrollmentUnlockExerciseRepository.cs",
+              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\EnrollmentUnlockExerciseRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\EnrollmentUnlockExerciseRepository.cs",
+              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\EnrollmentUnlockExerciseRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\EnrollmentUnlockExerciseRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-01T12:29:16.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "PaymentController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Controllers\\PaymentController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\PaymentController.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Controllers\\PaymentController.cs",
               "RelativeToolTip": "AIMathProject.API\\Controllers\\PaymentController.cs",
-              "ViewState": "AgIAAPwAAAAAAAAAAAAAAAcBAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAcBAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T06:18:09.367Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 19,
               "Title": "GetAllPaymentsFilterByDateQuery.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\Payment\\GetAllPaymentsFilterByDateQuery.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\Payment\\GetAllPaymentsFilterByDateQuery.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\Payment\\GetAllPaymentsFilterByDateQuery.cs",
               "RelativeToolTip": "AIMathProject.Application\\Queries\\Payment\\GetAllPaymentsFilterByDateQuery.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwA4AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T06:11:48.187Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 17,
               "Title": "UserStatisticsController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Controllers\\UserStatisticsController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\UserStatisticsController.cs",
@@ -153,7 +323,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 18,
               "Title": "EnrollmentController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Controllers\\EnrollmentController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\EnrollmentController.cs",
@@ -166,20 +336,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 16,
               "Title": "Program.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Program.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Program.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Program.cs",
               "RelativeToolTip": "AIMathProject.API\\Program.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAAAIUAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAIBJwIUAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T05:31:33.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 21,
               "Title": "RevenueStatisticsController.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.API\\Controllers\\RevenueStatisticsController.cs",
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\RevenueStatisticsController.cs",
@@ -192,7 +362,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 22,
               "Title": "GetUserStatisticsQuery.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\UserStatistics\\GetUserStatisticsQuery.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\UserStatistics\\GetUserStatisticsQuery.cs",
@@ -205,7 +375,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 23,
               "Title": "GetRevenueStatisticsQuery.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Queries\\RevenueStatistics\\GetRevenueStatisticsQuery.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Queries\\RevenueStatistics\\GetRevenueStatisticsQuery.cs",
@@ -218,7 +388,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "PlanRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\PlanRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\PlanRepository.cs",
@@ -226,25 +396,24 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\PlanRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T05:16:01.974Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T05:16:01.974Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 8,
               "Title": "QuestionRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\QuestionRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\QuestionRepository.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\QuestionRepository.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\QuestionRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwD4AAAD0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T05:14:36.204Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 25,
               "Title": "IQuestionRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Domain\\Interfaces\\IQuestionRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IQuestionRepository.cs",
@@ -252,12 +421,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IQuestionRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T05:11:54.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T05:11:54.912Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 30,
               "Title": "IRevenueRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Domain\\Interfaces\\IRevenueRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IRevenueRepository.cs",
@@ -265,12 +433,11 @@
               "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\IRevenueRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T05:10:18.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T05:10:18.156Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 24,
               "Title": "RevenueStatisticsRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\RevenueStatisticsRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\RevenueStatisticsRepository.cs",
@@ -283,20 +450,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 15,
               "Title": "PaymentRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\PaymentRepository.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAswLsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAwwLsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T05:05:09.86Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 20,
               "Title": "IPaymentRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\IPaymentRepository.cs",
@@ -309,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 27,
               "Title": "PeriodRevenueStatisticsDto.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Dto\\RevenueStatisticsDto\\PeriodRevenueStatisticsDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\RevenueStatisticsDto\\PeriodRevenueStatisticsDto.cs",
@@ -317,12 +484,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\RevenueStatisticsDto\\PeriodRevenueStatisticsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T05:03:32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T05:03:32Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 26,
               "Title": "RevenueStatisticsDto.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Application\\Dto\\RevenueStatisticsDto\\RevenueStatisticsDto.cs",
               "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\RevenueStatisticsDto\\RevenueStatisticsDto.cs",
@@ -330,12 +496,11 @@
               "RelativeToolTip": "AIMathProject.Application\\Dto\\RevenueStatisticsDto\\RevenueStatisticsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T05:03:08.678Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T05:03:08.678Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 31,
               "Title": "WalletRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
@@ -343,12 +508,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\WalletRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T04:53:37.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T04:53:37.204Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 29,
               "Title": "TokenPackageRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
@@ -356,12 +520,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\TokenPackageRepository.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T04:53:27.171Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T04:53:27.171Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 32,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\UserRepository.cs",
@@ -369,12 +532,11 @@
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\UserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T04:53:23.88Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-01T04:53:23.88Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 5,
               "Title": "UserStatisticsRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\UserStatisticsRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\UserStatisticsRepository.cs",
@@ -387,26 +549,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 6,
               "Title": "ExerciseDetailResultRepository.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseDetailResultRepository.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\ExerciseDetailResultRepository.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseDetailResultRepository.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\ExerciseDetailResultRepository.cs",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAYwH8AAAAbAQAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T03:11:09.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
               "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAYwEwAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAHkBAAAAAAAAAAAAAHoBAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T02:59:25.931Z",
               "EditorCaption": ""

@@ -501,6 +501,42 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.ExerciseController",
+    "Method": "GetExerciseByIdWithEnrollmentCheck",
+    "RelativePath": "api/exercise/id/{exerciseId}/enrollment/id/{enrollmentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "exerciseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "enrollmentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.ExerciseDetailResultController",
     "Method": "UpsertExerciseDetailResult",
     "RelativePath": "api/exerciseresult/enrollment/id/{id}/exercise/id/{exerciseid}",
