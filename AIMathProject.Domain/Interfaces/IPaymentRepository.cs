@@ -12,5 +12,7 @@ namespace AIMathProject.Domain.Interfaces
         Task<bool> AddPayment(T payment);
         Task<List<T>> GetAllPayment(int userID);
         Task<T> GetLatestPayment(int userID);
+
+        Task<List<T>> GetAllPaymentsFilterByDate(DateTime? startDate = null, DateTime? endDate = null);
     }
 }

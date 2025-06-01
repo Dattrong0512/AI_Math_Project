@@ -942,6 +942,37 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "GetAllSystemPaymentsWithDateRange",
+    "RelativePath": "api/payments/filter/{startDate}/{endDate}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.PlanController",
     "Method": "GetAllPlan",
     "RelativePath": "api/plan",
@@ -967,6 +998,22 @@
       {
         "Name": "lessonorder",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.Api.Controllers.RevenueStatisticsController",
+    "Method": "GetRevenueStatistics",
+    "RelativePath": "api/revenue/statistics/period/{periodType}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "periodType",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],

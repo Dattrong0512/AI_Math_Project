@@ -1037,6 +1037,31 @@
              <response code="200">Returns the payment information successfully.</response>
              <response code="404">Indicates that no payment information was found for the given user ID.</response>
         </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.GetAllSystemPaymentsWithDateRange(System.DateTime,System.DateTime)">
+            <summary>
+            Retrieves all payments in the system with optional date filtering.
+            </summary>
+            <remarks>
+            *Only admin users can access this API*
+            This API returns all payment records in the system, with optional date range filtering.
+            
+            **Request:**
+            The date parameters are optional route parameters:
+            - **startDate**: Filter payments made on or after this date (format: YYYY-MM-DD)
+            - **endDate**: Filter payments made on or before this date (format: YYYY-MM-DD)
+            
+            **Example Request:**
+            ```http
+            GET /api/payments/2025-01-01/2025-06-01
+            ```
+            
+            **Response:**
+            Returns a list of payment records with details including payment method, plan details, and transaction information.
+            </remarks>
+            <param name="startDate">Optional start date for filtering (YYYY-MM-DD)</param>
+            <param name="endDate">Optional end date for filtering (YYYY-MM-DD)</param>
+            <returns>A list of all payments matching the filter criteria</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.PaymentMethodController.GetAllPaymentMethod">
             <summary>
             Only logged user can use this api (include admin and user).
@@ -1230,6 +1255,35 @@
             <param name="walletId"></param>
             <param name="amount"></param>
             <returns></returns>
+        </member>
+        <member name="M:AIMathProject.Api.Controllers.RevenueStatisticsController.GetRevenueStatistics(System.String)">
+            <summary>
+            Get revenue statistics for a specific time period
+            </summary>
+            <remarks>
+            *Only admin users can access this API*
+            
+            This API retrieves comprehensive revenue statistics based on the specified time period.
+            
+            **Period Types:**
+            - **day**: Statistics for the current day compared to the previous day
+            - **week**: Statistics for the current week compared to the previous week
+            - **month**: Statistics for the current month compared to the previous month
+            - **year**: Statistics for the current year compared to the previous year
+            
+            **Response includes:**
+            - **currentRevenue**: Total revenue for the current period
+            - **previousRevenue**: Total revenue for the previous equivalent period
+            - **growthRate**: Percentage change between current and previous period
+            - **period**: Details about the time period including start date, end date, and period type
+            
+            **Example Request:**
+            ```http
+            GET /api/revenue/statistics/period/month
+            ```
+            </remarks>
+            <param name="periodType">The time period type (day, week, month, year)</param>
+            <returns>Revenue statistics for the specified period</returns>
         </member>
     </members>
 </doc>

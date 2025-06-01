@@ -247,7 +247,39 @@ namespace AIMathProject.API.Controllers
             return Ok(await _mediator.Send(new GetAllPaymentInfoQuery(userId)));
         }
 
+        /// <summary>
+        /// Retrieves all payments in the system with optional date filtering.
+        /// </summary>
+        /// <remarks>
+        /// *Only admin users can access this API*
+        /// This API returns all payment records in the system, with optional date range filtering.
+        /// 
+        /// **Request:**
+        /// The date parameters are optional route parameters:
+        /// - **startDate**: Filter payments made on or after this date (format: YYYY-MM-DD)
+        /// - **endDate**: Filter payments made on or before this date (format: YYYY-MM-DD)
+        /// 
+        /// **Example Request:**
+        /// ```http
+        /// GET /api/payments/2025-05-28/2025-06-01
+        /// ```
+        /// 
+        /// **Response:**
+        /// Returns a list of payment records with details including payment method, plan details, and transaction information.
+        /// </remarks>
+        /// <param name="startDate">Optional start date for filtering (YYYY-MM-DD)</param>
+        /// <param name="endDate">Optional end date for filtering (YYYY-MM-DD)</param>
+        /// <returns>A list of all payments matching the filter criteria</returns>
 
+        [Authorize(Policy = "Admin")]
+        [HttpGet("api/payments/filter/{startDate}/{endDate}")]
+        public async Task<ActionResult<List<PaymentDto>>> GetAllSystemPaymentsWithDateRange(
+            [FromRoute] DateTime startDate,
+            [FromRoute] DateTime endDate)
+        {
+            var payments = await _mediator.Send(new GetAllPaymentsFilterByDateQuery(startDate, endDate));
+            return Ok(payments);
+        }
 
     }
 }

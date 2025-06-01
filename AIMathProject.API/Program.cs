@@ -34,6 +34,7 @@ using System.Text;
 using AIMathProject.Application.Seeding;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
+using AIMathProject.Application.Dto.RevenueStatisticsDto;
 using AIMathProject.Application.Dto.Payment.PlanDto;
 using AIMathProject.Application.Dto.Payment.MethodDto;
 using AIMathProject.Application.Dto.Payment.TokenPackage;
@@ -127,6 +128,7 @@ builder.Services.AddScoped<IQuestionRepository<QuestionDto>, QuestionRepository>
 builder.Services.AddScoped<IExerciseDetailResultRepository<ExerciseDetailResultDto>, ExerciseDetailResultRepository>();
 builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, ExerciseResultRepository>();
 builder.Services.AddScoped<IUserStatisticsRepository, UserStatisticsRepository>();
+builder.Services.AddScoped<IRevenueRepository<RevenueStatisticsDto>, RevenueStatisticsRepository>();
 builder.Services.AddScoped<IExerciseRepository<ExerciseExtraForLessonDto>, ExerciseRepository>();
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();

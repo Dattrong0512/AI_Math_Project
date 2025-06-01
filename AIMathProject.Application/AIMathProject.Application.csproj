@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dto\RevenueStatisticDto\**" />
+    <Compile Remove="Dto\Re\**" />
+    <EmbeddedResource Remove="Dto\RevenueStatisticDto\**" />
+    <EmbeddedResource Remove="Dto\Re\**" />
+    <None Remove="Dto\RevenueStatisticDto\**" />
+    <None Remove="Dto\Re\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />

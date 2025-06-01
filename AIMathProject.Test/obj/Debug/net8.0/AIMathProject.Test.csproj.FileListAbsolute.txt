@@ -236,3 +236,13 @@ j:\Study\GraduationProject\be\current\AI_Math_Project\AIMathProject.Test\obj\Deb
 j:\Study\GraduationProject\be\current\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.dll
 j:\Study\GraduationProject\be\current\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\refint\AIMathProject.Test.dll
 j:\Study\GraduationProject\be\current\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.pdb
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\bin\Debug\net8.0\CoverletSourceRootsMapping_AIMathProject.Test
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.csproj.AssemblyReference.cache
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.GeneratedMSBuildEditorConfig.editorconfig
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.AssemblyInfoInputs.cache
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.AssemblyInfo.cs
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.csproj.CoreCompileInputs.cache
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.sourcelink.json
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.dll
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\refint\AIMathProject.Test.dll
+j:\Study\GraduationProject\be\New folder\AI_Math_Project\AIMathProject.Test\obj\Debug\net8.0\AIMathProject.Test.pdb
