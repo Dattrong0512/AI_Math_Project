@@ -1,4 +1,5 @@
 ﻿using AIMathProject.Application.Dto.EnrollmentDto;
+using AIMathProject.Application.Dto.RevenueStatisticsDto;
 using AIMathProject.Application.Queries.RevenueStatistics;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -53,6 +54,33 @@ namespace AIMathProject.Api.Controllers
         {
             var query = new GetRevenueStatisticsQuery(periodType);
             var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        // Thêm endpoint này vào RevenueStatisticsController
+        /// <summary>
+        /// Get daily revenue by date range with specific time
+        /// </summary>
+        /// 
+        /// /// **Example Request:**
+        /// ```http
+        /// GET /api/dailyrevenue/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
+        /// ```
+        /// <param name="startDateTime">Start date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
+        /// <param name="endDateTime">End date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
+        /// <returns>List of daily revenue data</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpGet("dailyrevenue/startdate/{startDateTime}/enddate/{endDateTime}")]
+        public async Task<ActionResult<List<DailyRevenueDto>>> GetDailyRevenueByDateRange(
+            [FromRoute] DateTime startDateTime,
+            [FromRoute] DateTime endDateTime)
+        {
+            if (startDateTime > endDateTime)
+            {
+                return BadRequest("Start date must be before or equal to end date.");
+            }
+
+            var result = await _mediator.Send(new GetDailyRevenueByDateRangeQuery(startDateTime, endDateTime));
             return Ok(result);
         }
     }

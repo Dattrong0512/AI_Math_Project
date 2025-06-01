@@ -1059,29 +1059,26 @@
              <response code="200">Returns the payment information successfully.</response>
              <response code="404">Indicates that no payment information was found for the given user ID.</response>
         </member>
-        <member name="M:AIMathProject.API.Controllers.PaymentController.GetAllSystemPaymentsWithDateRange(System.DateTime,System.DateTime)">
+        <member name="M:AIMathProject.API.Controllers.PaymentController.GetAllPaymentsPaginated(System.Int32,System.Int32)">
             <summary>
-            Retrieves all payments in the system with optional date filtering.
+            Get all system payments with pagination
             </summary>
             <remarks>
             *Only admin users can access this API*
-            This API returns all payment records in the system, with optional date range filtering.
             
-            **Request:**
-            The date parameters are optional route parameters:
-            - **startDate**: Filter payments made on or after this date (format: YYYY-MM-DD)
-            - **endDate**: Filter payments made on or before this date (format: YYYY-MM-DD)
+            This API retrieves all payment records in the system with pagination support.
+            Results are ordered by date in descending order (most recent first).
             
-            **Example Request:**
-            ```http
-            GET /api/payments/2025-05-28/2025-06-01
-            ```
+            **Path Parameters:**
+            - **pageIndex**: Zero-based page index (0 for first page)
+            - **pageSize**: Number of items per page (recommended: 10-50)
             
-            **Response:**
-            Returns a list of payment records with details including payment method, plan details, and transaction information.
+            **Example Requests:**
+            - First page with 10 items: `/api/payments/pageindex/0/pagesize/10`
+            - Second page with 20 items: `/api/payments/pageindex/1/pagesize/20`
             </remarks>
-            <param name="startDate">Optional start date for filtering (YYYY-MM-DD)</param>
-            <param name="endDate">Optional end date for filtering (YYYY-MM-DD)</param>
+            <param name="pageIndex">Zero-based page index (0 for first page)</param>
+            <param name="pageSize">Number of items per page</param>
             <returns>A list of all payments matching the filter criteria</returns>
         </member>
         <member name="M:AIMathProject.API.Controllers.PaymentMethodController.GetAllPaymentMethod">
@@ -1306,6 +1303,19 @@
             </remarks>
             <param name="periodType">The time period type (day, week, month, year)</param>
             <returns>Revenue statistics for the specified period</returns>
+        </member>
+        <member name="M:AIMathProject.Api.Controllers.RevenueStatisticsController.GetDailyRevenueByDateRange(System.DateTime,System.DateTime)">
+            <summary>
+            Get daily revenue by date range with specific time
+            </summary>
+            
+            /// **Example Request:**
+            ```http
+            GET /api/dailyrevenue/startdate/2023-05-01T08:30:00/enddate/2023-05-31T17:45:00
+            ```
+            <param name="startDateTime">Start date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
+            <param name="endDateTime">End date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
+            <returns>List of daily revenue data</returns>
         </member>
     </members>
 </doc>

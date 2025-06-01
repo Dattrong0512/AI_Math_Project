@@ -255,6 +255,35 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.Api.Controllers.RevenueStatisticsController",
+    "Method": "GetDailyRevenueByDateRange",
+    "RelativePath": "api/dailyrevenue/startdate/{startDateTime}/enddate/{endDateTime}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDateTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "endDateTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.RevenueStatisticsDto.DailyRevenueDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.EnrollmentUnlockExerciseController",
     "Method": "UnlockExercise",
     "RelativePath": "api/enrollment/{enrollmentId}/exercise/{exerciseId}/unlock",
@@ -979,26 +1008,26 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.PaymentController",
-    "Method": "GetAllSystemPaymentsWithDateRange",
-    "RelativePath": "api/payments/filter/{startDate}/{endDate}",
+    "Method": "GetAllPaymentsPaginated",
+    "RelativePath": "api/payments/pageindex/{pageIndex}/pagesize/{pageSize}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "startDate",
-        "Type": "System.DateTime",
+        "Name": "pageIndex",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "endDate",
-        "Type": "System.DateTime",
+        "Name": "pageSize",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "AIMathProject.Application.Dto.Pagination.Pagination\u00601[[AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

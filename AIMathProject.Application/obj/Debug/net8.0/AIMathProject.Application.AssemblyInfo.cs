@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AIMathProject.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95779d5fb15e2d253e3e86426659009d4e7ad6d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f8c15f4b69cf54c80b59d71a225b0d3cbc29cda")]
 [assembly: System.Reflection.AssemblyProductAttribute("AIMathProject.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AIMathProject.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

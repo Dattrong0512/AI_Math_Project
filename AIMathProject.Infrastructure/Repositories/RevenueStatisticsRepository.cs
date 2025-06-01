@@ -107,5 +107,38 @@ namespace AIMathProject.Infrastructure.Repositories
                 Period = periodDto
             };
         }
+
+        public async Task<List<(DateTime date, decimal revenue)>> GetDailyRevenueByDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                var payments = await (
+                    from p in _context.Payments
+                    where p.Date >= startDate && p.Date <= endDate && p.Status == "Success"
+                    select new
+                    {
+                        Date = p.Date,
+                        Revenue = p.Price
+                    }
+                ).ToListAsync();
+
+                var groupedRevenues = payments
+                    .Where(p => p.Date.HasValue)
+                    .GroupBy(p => p.Date.Value.Date) 
+                    .Select(g => new
+                    {
+                        Date = g.Key,
+                        Revenue = g.Sum(x => x.Revenue)
+                    })
+                    .OrderBy(dr => dr.Date)
+                    .ToList();
+
+                return groupedRevenues.Select(dr => (dr.Date, (decimal)dr.Revenue)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

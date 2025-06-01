@@ -8,10 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Dto\RevenueStatisticDto\**" />
+    <Compile Remove="Dto\RevenueStatisticsDto\NewFolder\**" />
     <Compile Remove="Dto\Re\**" />
     <EmbeddedResource Remove="Dto\RevenueStatisticDto\**" />
+    <EmbeddedResource Remove="Dto\RevenueStatisticsDto\NewFolder\**" />
     <EmbeddedResource Remove="Dto\Re\**" />
     <None Remove="Dto\RevenueStatisticDto\**" />
+    <None Remove="Dto\RevenueStatisticsDto\NewFolder\**" />
     <None Remove="Dto\Re\**" />
   </ItemGroup>
 

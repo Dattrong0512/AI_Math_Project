@@ -128,10 +128,15 @@ namespace AIMathProject.Infrastructure.Repositories
 
         }
 
-        public async Task<List<PaymentDto>> GetAllPaymentsFilterByDate(DateTime? startDate = null, DateTime? endDate = null)
+        public async Task<(List<PaymentDto> items, int totalCount, int pageIndex, int pageSize)> GetAllPaymentsPaginated(int pageIndex, int pageSize)
         {
             try
             {
+
+                // Get total count for pagination
+                var totalCount = await _context.Payments.CountAsync();
+
+                // Build query with joins
                 var query = from pm in _context.Payments
                             join pmt in _context.PaymentMethods
                             on pm.MethodId equals pmt.MethodId
@@ -164,21 +169,14 @@ namespace AIMathProject.Infrastructure.Repositories
                                 } : null
                             };
 
-                if (startDate.HasValue)
-                {
-                    var startOfDay = startDate.Value.Date;
-                    query = query.Where(p => p.Date >= startOfDay);
-                }
+                // Order by date descending and apply pagination
+                var items = await query
+                    .OrderByDescending(p => p.Date)
+                    .Skip(pageIndex * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
 
-                if (endDate.HasValue)
-                {
-                    var endOfDay = endDate.Value.Date.AddDays(1).AddMilliseconds(-1);
-                    query = query.Where(p => p.Date <= endOfDay);
-                }
-
-                query = query.OrderByDescending(p => p.Date);
-
-                return await query.ToListAsync();
+                return (items, totalCount, pageIndex, pageSize);
             }
             catch (Exception ex)
             {

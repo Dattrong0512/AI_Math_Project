@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Abstracts;
 using AIMathProject.Application.Command.Payment;
+using AIMathProject.Application.Dto.Pagination;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Queries.Payment;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
@@ -248,36 +249,43 @@ namespace AIMathProject.API.Controllers
         }
 
         /// <summary>
-        /// Retrieves all payments in the system with optional date filtering.
+        /// Get all system payments with pagination
         /// </summary>
         /// <remarks>
         /// *Only admin users can access this API*
-        /// This API returns all payment records in the system, with optional date range filtering.
         /// 
-        /// **Request:**
-        /// The date parameters are optional route parameters:
-        /// - **startDate**: Filter payments made on or after this date (format: YYYY-MM-DD)
-        /// - **endDate**: Filter payments made on or before this date (format: YYYY-MM-DD)
+        /// This API retrieves all payment records in the system with pagination support.
+        /// Results are ordered by date in descending order (most recent first).
         /// 
-        /// **Example Request:**
-        /// ```http
-        /// GET /api/payments/2025-05-28/2025-06-01
-        /// ```
+        /// **Path Parameters:**
+        /// - **pageIndex**: Zero-based page index (0 for first page)
+        /// - **pageSize**: Number of items per page (recommended: 10-50)
         /// 
-        /// **Response:**
-        /// Returns a list of payment records with details including payment method, plan details, and transaction information.
+        /// **Example Requests:**
+        /// - First page with 10 items: `/api/payments/pageindex/0/pagesize/10`
+        /// - Second page with 20 items: `/api/payments/pageindex/1/pagesize/20`
         /// </remarks>
-        /// <param name="startDate">Optional start date for filtering (YYYY-MM-DD)</param>
-        /// <param name="endDate">Optional end date for filtering (YYYY-MM-DD)</param>
+        /// <param name="pageIndex">Zero-based page index (0 for first page)</param>
+        /// <param name="pageSize">Number of items per page</param>
         /// <returns>A list of all payments matching the filter criteria</returns>
 
         [Authorize(Policy = "Admin")]
-        [HttpGet("api/payments/filter/{startDate}/{endDate}")]
-        public async Task<ActionResult<List<PaymentDto>>> GetAllSystemPaymentsWithDateRange(
-            [FromRoute] DateTime startDate,
-            [FromRoute] DateTime endDate)
+        [HttpGet("api/payments/pageindex/{pageIndex:int}/pagesize/{pageSize:int}")]
+        public async Task<ActionResult<Pagination<PaymentDto>>> GetAllPaymentsPaginated(
+            [FromRoute] int pageIndex,
+            [FromRoute] int pageSize)
         {
-            var payments = await _mediator.Send(new GetAllPaymentsFilterByDateQuery(startDate, endDate));
+            if (pageIndex < 0)
+            {
+                return BadRequest("Page index must be 0 or greater.");
+            }
+
+            if (pageSize <= 0 || pageSize > 100)
+            {
+                return BadRequest("Page size must be between 1 and 100.");
+            }
+
+            var payments = await _mediator.Send(new GetAllPaymentsPaginatedQuery(pageIndex, pageSize));
             return Ok(payments);
         }
 
