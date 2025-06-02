@@ -125,30 +125,42 @@ namespace AIMathProject.Infrastructure.Libraries
         // có chế biến cho .NET Core MVC
         public static string GetIpAddress(HttpContext context)
         {
-            var ipAddress = string.Empty;
             try
             {
-                var remoteIpAddress = context.Connection.RemoteIpAddress;
+                bool isDocker = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DOCKER_HOST")) ||
+                                Dns.GetHostName().Contains("docker");
 
-                if (remoteIpAddress != null)
+                if (isDocker)
                 {
-                    if (remoteIpAddress.AddressFamily == AddressFamily.InterNetworkV6)
+                    var hostName = Dns.GetHostName();
+                    var ipAddresses = Dns.GetHostEntry(hostName)?.AddressList;
+                    return ipAddresses?.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork)?.ToString() ?? "Unknown";
+                }
+                else
+                {
+                    var forwardedIp = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+                    if (!string.IsNullOrEmpty(forwardedIp))
                     {
-                        remoteIpAddress = Dns.GetHostEntry(remoteIpAddress).AddressList
-                            .FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork);
+                        return forwardedIp.Split(',')[0].Trim();
                     }
 
-                    if (remoteIpAddress != null) ipAddress = remoteIpAddress.ToString();
-
-                    return ipAddress;
+                    var remoteIpAddress = context.Connection.RemoteIpAddress;
+                    if (remoteIpAddress != null)
+                    {
+                        if (remoteIpAddress.AddressFamily == AddressFamily.InterNetworkV6)
+                        {
+                            return remoteIpAddress.MapToIPv4().ToString();
+                        }
+                        return remoteIpAddress.ToString();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                return "Invalid IP:" + ex.Message;
+                return "Invalid IP: " + ex.Message;
             }
 
-            return "127.0.0.1";
+            return "Unknown";
         }
     }
 

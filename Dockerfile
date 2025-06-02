@@ -23,13 +23,18 @@ COPY AIMathProject.Infrastructure/. ./AIMathProject.Infrastructure/
 # Build và publish dự án API
 WORKDIR /source/AIMathProject.API
 RUN mkdir -p /app/Template && \
-    cp Template/ConfirmEmail.html /app/Template/ConfirmEmail.html && \
+    cp -r Template/*.html /app/Template/ && \
     dotnet publish -c Release -o /app --no-restore
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app ./
+
+# Cài đặt múi giờ cho container (Asia/Ho_Chi_Minh = UTC+07:00)
+RUN apt-get update && apt-get install -y tzdata && \
+    ln -snf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime && \
+    echo "Asia/Ho_Chi_Minh" > /etc/timezone
 
 # Cấu hình port
 EXPOSE 80
