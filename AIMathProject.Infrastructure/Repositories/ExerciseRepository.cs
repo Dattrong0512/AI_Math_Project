@@ -54,7 +54,7 @@ namespace AIMathProject.Infrastructure.Repositories
                 {
                     ExerciseName = exercise.ExerciseName,
                     ExerciseId = exercise.ExerciseId,
-                    IsLocked = true, // Always true based on our filter
+                    IsLocked = false, 
                     Description = exercise.Description,
                     ExerciseDetails = new List<ExerciseDetailDto>()
                 };
