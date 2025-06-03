@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\exerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\exerciserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\study\\graduationproject\\be\\new folder\\ai_math_project\\aimathproject.infrastructure\\repositories\\enrollmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\enrollmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 284,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,32 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ExerciseRepository.cs",
-              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
-              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\ExerciseRepository.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAYwDcAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T13:50:47.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EnrollmentRepository.cs",
-              "DocumentMoniker": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\EnrollmentRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\EnrollmentRepository.cs",
-              "ToolTip": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\EnrollmentRepository.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\EnrollmentRepository.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T13:50:37.997Z",
-              "EditorCaption": ""
             }
           ]
         },

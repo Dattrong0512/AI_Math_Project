@@ -204,7 +204,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.HasOne(d => d.Wallet).WithMany(p => p.CoinTransactions)
                 .HasForeignKey(d => d.WalletId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Coin_Tran__walle__3EDC53F0");
+                .HasConstraintName("FK__Coin_Tran__walle__56B3DD81");
         });
 
         modelBuilder.Entity<Comment>(entity =>

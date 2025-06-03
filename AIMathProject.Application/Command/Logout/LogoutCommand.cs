@@ -26,12 +26,12 @@ namespace AIMathProject.Application.Command.Login
         private readonly UserManager<User> _userManager;
         private readonly IAuthTokenProcessor _authTokenProcessor;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IUserStatisticsRepository _userStatisticsRepository;
+        private readonly IStatisticsRepository _userStatisticsRepository;
         public LogoutCommandHandler(
             UserManager<User> userManager,
             IAuthTokenProcessor authTokenProcessor,
             IHttpContextAccessor httpContextAccessor,
-            IUserStatisticsRepository userStatisticsRepository)
+            IStatisticsRepository userStatisticsRepository)
         {
             _userManager = userManager;
             _authTokenProcessor = authTokenProcessor;

@@ -255,35 +255,6 @@
     ]
   },
   {
-    "ContainingType": "AIMathProject.Api.Controllers.RevenueStatisticsController",
-    "Method": "GetDailyRevenueByDateRange",
-    "RelativePath": "api/dailyrevenue/startdate/{startDateTime}/enddate/{endDateTime}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "startDateTime",
-        "Type": "System.DateTime",
-        "IsRequired": true
-      },
-      {
-        "Name": "endDateTime",
-        "Type": "System.DateTime",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.RevenueStatisticsDto.DailyRevenueDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "AIMathProject.API.Controllers.EnrollmentUnlockExerciseController",
     "Method": "UnlockExercise",
     "RelativePath": "api/enrollment/{enrollmentId}/exercise/{exerciseId}/unlock",
@@ -1069,9 +1040,38 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AIMathProject.Api.Controllers.RevenueStatisticsController",
-    "Method": "GetRevenueStatistics",
-    "RelativePath": "api/revenue/statistics/period/{periodType}",
+    "ContainingType": "AIMathProject.API.Controllers.StatisticsController",
+    "Method": "GetDailyRevenueByDateRange",
+    "RelativePath": "api/revenue/daily/startdate/{startDateTime}/enddate/{endDateTime}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDateTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "endDateTime",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.StatisticsDto.DailyRevenueDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.StatisticsController",
+    "Method": "GetUserStatistics",
+    "RelativePath": "api/statistics/{periodType}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1082,7 +1082,15 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.StatisticsDto.StatisticsSummaryDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.TokenPackageController",
@@ -1266,30 +1274,6 @@
         "Type": "System.Void",
         "MediaTypes": [],
         "StatusCode": 500
-      }
-    ]
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.UserStatisticsController",
-    "Method": "GetUserStatistics",
-    "RelativePath": "api/users/statistics/{periodType}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "periodType",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "AIMathProject.Application.Dto.UserStatisticsDto.UserStatisticsSummaryDto",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
       }
     ]
   },

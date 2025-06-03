@@ -30,9 +30,9 @@ namespace AIMathProject.Application.Command.Login
         private readonly UserManager<User> _userManager;
         private readonly IAuthTokenProcessor _authTokenProcessor;
         private readonly RoleManager<IdentityRole<int>> _roleManager;
-        private readonly IUserStatisticsRepository _userStatisticsRepository;
+        private readonly IStatisticsRepository _userStatisticsRepository;
 
-        public LoginCommandGoogleHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor, RoleManager<IdentityRole<int>> roleManager, IUserStatisticsRepository userStatisticsRepository)
+        public LoginCommandGoogleHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor, RoleManager<IdentityRole<int>> roleManager, IStatisticsRepository userStatisticsRepository)
         {
             _userManager = userManager;
             _authTokenProcessor = authTokenProcessor;

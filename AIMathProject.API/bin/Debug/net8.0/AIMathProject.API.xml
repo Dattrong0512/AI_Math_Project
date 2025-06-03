@@ -1137,6 +1137,47 @@
              </remarks>
              <returns>Returns a list of questions matching the specified grade and lesson order.</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.StatisticsController.GetUserStatistics(System.String)">
+            <summary>
+            Get user statistics for a specific time period
+            </summary>
+            <remarks>
+            This API retrieves comprehensive user statistics based on the specified time period.
+            
+            **Period Types:**
+            - **day**: Statistics for the current day compared to the previous day
+            - **week**: Statistics for the current week compared to the previous week
+            - **month**: Statistics for the current month compared to the previous month
+            - **year**: Statistics for the current year compared to the previous year
+            
+            **Response includes:**
+            - User count statistics (current period, previous period, growth rate)
+            - User engagement metrics (average usage time in minutes, change rate)
+            - Revenue statistics (current and previous periods, growth rate)
+            - Daily breakdown of user activity
+            
+            **Example Request:**
+            ```http
+            GET /api/users/statistics/week
+            ```
+            </remarks>
+            <param name="periodType">The time period type ('day', 'week', 'month', or 'year')</param>
+            <returns>Returns detailed user statistics for the specified period</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.StatisticsController.GetDailyRevenueByDateRange(System.DateTime,System.DateTime)">
+            <summary>
+            Get daily revenue by date range with specific time
+            </summary>
+            <remark>
+            **Example Request:**
+            ```http
+            GET /api/dailyrevenue/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
+            ```
+            </remark>
+            <param name="startDateTime">Start date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
+            <param name="endDateTime">End date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
+            <returns>List of daily revenue data</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.TokenPackageController.GetAllTokenPackage">
             <summary>
             Only logged user can use this api.
@@ -1226,32 +1267,6 @@
             - This endpoint requires the caller to be authenticated and have the  role.
             </remarks>
         </member>
-        <member name="M:AIMathProject.API.Controllers.UserStatisticsController.GetUserStatistics(System.String)">
-            <summary>
-            Get user statistics for a specific time period
-            </summary>
-            <remarks>
-            This API retrieves comprehensive user statistics based on the specified time period.
-            
-            **Period Types:**
-            - **day**: Statistics for the current day compared to the previous day
-            - **week**: Statistics for the current week compared to the previous week
-            - **month**: Statistics for the current month compared to the previous month
-            - **year**: Statistics for the current year compared to the previous year
-            
-            **Response includes:**
-            - User count statistics (current period, previous period, growth rate)
-            - User engagement metrics (average usage time in minutes, change rate)
-            - Daily breakdown of user activity
-            
-            **Example Request:**
-            ```http
-            GET /api/users/statistics/week
-            ```
-            </remarks>
-            <param name="periodType">The time period type ('day', 'week', 'month', or 'year')</param>
-            <returns>Returns detailed user statistics for the specified period</returns>
-        </member>
         <member name="M:AIMathProject.API.Controllers.WalletController.GetWalletByUserId(System.Int32)">
             <summary>
             Get a wallet by user ID.
@@ -1274,48 +1289,6 @@
             <param name="walletId"></param>
             <param name="amount"></param>
             <returns></returns>
-        </member>
-        <member name="M:AIMathProject.Api.Controllers.RevenueStatisticsController.GetRevenueStatistics(System.String)">
-            <summary>
-            Get revenue statistics for a specific time period
-            </summary>
-            <remarks>
-            *Only admin users can access this API*
-            
-            This API retrieves comprehensive revenue statistics based on the specified time period.
-            
-            **Period Types:**
-            - **day**: Statistics for the current day compared to the previous day
-            - **week**: Statistics for the current week compared to the previous week
-            - **month**: Statistics for the current month compared to the previous month
-            - **year**: Statistics for the current year compared to the previous year
-            
-            **Response includes:**
-            - **currentRevenue**: Total revenue for the current period
-            - **previousRevenue**: Total revenue for the previous equivalent period
-            - **growthRate**: Percentage change between current and previous period
-            - **period**: Details about the time period including start date, end date, and period type
-            
-            **Example Request:**
-            ```http
-            GET /api/revenue/statistics/period/month
-            ```
-            </remarks>
-            <param name="periodType">The time period type (day, week, month, year)</param>
-            <returns>Revenue statistics for the specified period</returns>
-        </member>
-        <member name="M:AIMathProject.Api.Controllers.RevenueStatisticsController.GetDailyRevenueByDateRange(System.DateTime,System.DateTime)">
-            <summary>
-            Get daily revenue by date range with specific time
-            </summary>
-            
-            /// **Example Request:**
-            ```http
-            GET /api/dailyrevenue/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
-            ```
-            <param name="startDateTime">Start date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
-            <param name="endDateTime">End date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
-            <returns>List of daily revenue data</returns>
         </member>
     </members>
 </doc>

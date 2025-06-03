@@ -1,4 +1,4 @@
-﻿using AIMathProject.Application.Dto.UserStatisticsDto;
+﻿using AIMathProject.Application.Dto.StatisticsDto;
 using AIMathProject.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -40,10 +40,10 @@ namespace AIMathProject.Application.Mappers
             };
         }
 
-        public static PeriodUserStatisticsDto ToPeriodStatisticsDto(
+        public static PeriodStatisticsDto ToPeriodStatisticsDto(
             this (DateTime startDate, DateTime endDate, string periodType) periodInfo)
         {
-            return new PeriodUserStatisticsDto
+            return new PeriodStatisticsDto
             {
                 StartDate = periodInfo.startDate,
                 EndDate = periodInfo.endDate,

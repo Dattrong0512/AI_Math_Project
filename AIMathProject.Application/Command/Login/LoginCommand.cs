@@ -27,8 +27,8 @@ namespace AIMathProject.Application.Command.Login
     {
         private readonly UserManager<User> _userManager;
         private readonly IAuthTokenProcessor _authTokenProcessor;
-        private readonly IUserStatisticsRepository _userStatisticsRepository;
-        public LoginCommandHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor, IUserStatisticsRepository userStatisticsRepository)
+        private readonly IStatisticsRepository _userStatisticsRepository;
+        public LoginCommandHandler(UserManager<User> userManager, IAuthTokenProcessor authTokenProcessor, IStatisticsRepository userStatisticsRepository)
         {
             _userManager = userManager;
             _authTokenProcessor = authTokenProcessor;

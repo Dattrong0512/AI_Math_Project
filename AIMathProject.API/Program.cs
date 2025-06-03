@@ -127,7 +127,7 @@ builder.Services.AddScoped<ILessonProgressRepository<LessonProgressDto>, LessonP
 builder.Services.AddScoped<IQuestionRepository<QuestionDto>, QuestionRepository>();
 builder.Services.AddScoped<IExerciseDetailResultRepository<ExerciseDetailResultDto>, ExerciseDetailResultRepository>();
 builder.Services.AddScoped<IExerciseResultRepository<ExerciseResultDto>, ExerciseResultRepository>();
-builder.Services.AddScoped<IUserStatisticsRepository, UserStatisticsRepository>();
+builder.Services.AddScoped<IStatisticsRepository, StatisticsRepository>();
 builder.Services.AddScoped<IRevenueRepository<RevenueStatisticsDto>, RevenueStatisticsRepository>();
 builder.Services.AddScoped<IExerciseRepository<ExerciseExtraForLessonDto>, ExerciseRepository>();
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
