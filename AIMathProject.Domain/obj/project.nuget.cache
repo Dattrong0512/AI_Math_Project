@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gDxWmHEo4tQ=",
+  "dgSpecHash": "O6CtZGNWjhc=",
   "success": true,
-  "projectFilePath": "J:\\Study\\GraduationProject\\be\\New folder\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
+  "projectFilePath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bach Yen\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.14\\microsoft.aspnetcore.cryptography.internal.8.0.14.nupkg.sha512",
     "C:\\Users\\Bach Yen\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.14\\microsoft.aspnetcore.cryptography.keyderivation.8.0.14.nupkg.sha512",

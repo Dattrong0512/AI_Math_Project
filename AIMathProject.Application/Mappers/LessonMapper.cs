@@ -19,8 +19,7 @@ namespace AIMathProject.Application.Mappers
                 LessonName = lesson.LessonName,
                 LessonPdfUrl = lesson.LessonPdfUrl,
                 LessonVideoUrl = lesson.LessonVideoUrl,
-                ChapterOrder = null,
-                Questions = null
+                ChapterOrder = null
             };
             return lessonDto;
         }

@@ -63,26 +63,41 @@ namespace AIMathProject.Infrastructure.Repositories
             if (lessonData == null)
                 return new LessonDto();
 
-            // Tìm bài tập chính 
             var mainExercise = await (from e in _context.Exercises
                                       where e.LessonId == lessonData.Lesson.LessonId &&
                                             e.ExerciseName.Contains(lessonData.Lesson.LessonName)
                                       select e).FirstOrDefaultAsync();
 
-            // Lấy các câu hỏi từ bài tập chính nếu không bị khóa
-            var questions = new List<Question>();
+            // Khởi tạo MainExercise DTO
+            ExerciseExtraForLessonDto mainExerciseDto = null;
 
-            if (mainExercise != null && !(mainExercise.IsLocked ?? false))
+            if (mainExercise != null)
             {
-                questions = await (from ed in _context.ExerciseDetails
-                                   join q in _context.Questions on ed.QuestionId equals q.QuestionId
-                                   where ed.ExerciseId == mainExercise.ExerciseId
-                                   select q)
-                                  .Include(q => q.ChoiceAnswers)
-                                  .Include(q => q.MatchingAnswers)
-                                  .Include(q => q.FillAnswers)
+                var exerciseDetails = await (from ed in _context.ExerciseDetails
+                                             join q in _context.Questions on ed.QuestionId equals q.QuestionId
+                                             where ed.ExerciseId == mainExercise.ExerciseId
+                                             select ed)
+                                  .Include(ed => ed.Question)
+                                      .ThenInclude(q => q.ChoiceAnswers)
+                                  .Include(ed => ed.Question)
+                                      .ThenInclude(q => q.MatchingAnswers)
+                                  .Include(ed => ed.Question)
+                                      .ThenInclude(q => q.FillAnswers)
                                   .ToListAsync();
+
+                mainExerciseDto = new ExerciseExtraForLessonDto
+                {
+                    ExerciseId = mainExercise.ExerciseId,
+                    ExerciseName = mainExercise.ExerciseName,
+                    IsLocked = mainExercise.IsLocked,
+                    Description = mainExercise.Description,
+                    ExerciseDetails = exerciseDetails.Select(ed => new ExerciseDetailDto
+                    {
+                        Question = ed.Question?.ToQuestionDto()
+                    }).ToList()
+                };
             }
+
 
             // Lấy danh sách các bài tập phụ kèm chi tiết câu hỏi
             var extraExercisesQuery = from e in _context.Exercises
@@ -102,7 +117,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     ExerciseName = exercise.ExerciseName,
                     IsLocked = exercise.IsLocked,
                     Description = exercise.Description,
-                    ExerciseDetails = new List<ExerciseDetailDto>() 
+                    ExerciseDetails = new List<ExerciseDetailDto>()
                 };
 
                 // Chỉ lấy exercise details nếu bài tập không bị khóa
@@ -137,9 +152,8 @@ namespace AIMathProject.Infrastructure.Repositories
                 LessonVideoUrl = lessonData.Lesson.LessonVideoUrl,
                 LessonPdfUrl = lessonData.Lesson.LessonPdfUrl,
                 ChapterOrder = lessonData.ChapterOrder,
-                ExerciseId = mainExercise?.ExerciseId,
+                MainExercise = mainExerciseDto,
                 ExtraExercise = extraExerciseDtos,
-                Questions = questions.ToQuestionDtoList() // This is already empty if exercise is locked
             };
 
             return lessonDto;
@@ -180,7 +194,34 @@ namespace AIMathProject.Infrastructure.Repositories
                                           where e.LessonId == l.LessonId &&
                                                 e.ExerciseName.Contains(l.LessonName)
                                           select e).FirstOrDefaultAsync();
+                ExerciseExtraForLessonDto mainExerciseDto = null;
 
+                if (mainExercise != null)
+                {
+                    var exerciseDetails = await (from ed in _context.ExerciseDetails
+                                                 join q in _context.Questions on ed.QuestionId equals q.QuestionId
+                                                 where ed.ExerciseId == mainExercise.ExerciseId
+                                                 select ed)
+                                      .Include(ed => ed.Question)
+                                          .ThenInclude(q => q.ChoiceAnswers)
+                                      .Include(ed => ed.Question)
+                                          .ThenInclude(q => q.MatchingAnswers)
+                                      .Include(ed => ed.Question)
+                                          .ThenInclude(q => q.FillAnswers)
+                                      .ToListAsync();
+
+                    mainExerciseDto = new ExerciseExtraForLessonDto
+                    {
+                        ExerciseId = mainExercise.ExerciseId,
+                        ExerciseName = mainExercise.ExerciseName,
+                        IsLocked = mainExercise.IsLocked,
+                        Description = mainExercise.Description,
+                        ExerciseDetails = exerciseDetails.Select(ed => new ExerciseDetailDto
+                        {
+                            Question = ed.Question?.ToQuestionDto()
+                        }).ToList()
+                    };
+                }
                 // Tìm các bài tập phụ kèm chi tiết câu hỏi
                 var extraExercisesQuery = from e in _context.Exercises
                                           where e.LessonId == l.LessonId &&
@@ -234,7 +275,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     LessonPdfUrl = l.LessonPdfUrl,
                     LessonVideoUrl = l.LessonVideoUrl,
                     ChapterOrder = l.ChapterOrder,
-                    ExerciseId = mainExercise?.ExerciseId,
+                    MainExercise = mainExerciseDto,
                     ExtraExercise = extraExerciseDtos
                 });
             }
