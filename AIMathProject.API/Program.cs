@@ -39,6 +39,7 @@ using AIMathProject.Application.Dto.Payment.PlanDto;
 using AIMathProject.Application.Dto.Payment.MethodDto;
 using AIMathProject.Application.Dto.Payment.TokenPackage;
 using AIMathProject.Application.Dto.Payment.Wallet;
+using AIMathProject.Application.Dto.Notification;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -138,6 +139,10 @@ builder.Services.AddScoped<ITokenPackageRepository<TokenPackageDto>, TokenPackag
 builder.Services.AddScoped<IPaymentMethodRepository<MethodDto>, PaymentMethodRepository>();
 builder.Services.AddScoped<IWalletRepository<WalletDto>, WalletRepository>();   
 builder.Services.AddScoped<IEnrollmentUnlockExerciseRepository<EnrollmentUnlockExerciseDto>, EnrollmentUnlockExerciseRepository>();
+builder.Services.AddScoped<INotificationRepository<NotificationDto>, NotificationReposioty>();
+
+
+
 
 // Đăng ký CustomAuthenticationSchemeProvider
 builder.Services.AddSingleton<IAuthenticationSchemeProvider, CustomAuthenticationSchemeProvider>();

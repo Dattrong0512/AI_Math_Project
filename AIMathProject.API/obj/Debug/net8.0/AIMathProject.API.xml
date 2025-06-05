@@ -955,6 +955,117 @@
              </remarks>
              <returns>Returns a success message upon successful logout</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.NotificationController.GetAllNotification">
+            <summary>
+            Retrieves all notifications for admin users.
+            </summary>
+            <remarks>
+            *Only admin users can use this API.*
+            This API returns a list of all notifications available in the system for administrative purposes.
+            **Response Format:**
+            The response will return a collection of notifications
+            </remarks>
+            <returns>Returns a list of all notifications accessible to admin users.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.NotificationController.GetAllNotificationById">
+             <summary>
+             Retrieves all notifications for the authenticated user.
+             </summary>
+             <remarks>
+             *Only authenticated users can use this API.*
+             This API returns a list of notifications specific to the currently logged-in user.
+            
+             **Request Parameters:**
+             None
+            
+             **Response Format:**
+             The response will return a collection of notifications
+             </remarks>
+             <returns>Returns a list of notifications for the authenticated user.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.NotificationController.GetNewestNotification">
+             <summary>
+             Retrieves the most recent notification for the authenticated user.
+             </summary>
+             <remarks>
+             *Only authenticated users can use this API.*
+             This API returns the newest notification specific to the currently logged-in user.
+            
+             **Response Format:**
+             The response will return a single the newest notification.
+            
+             </remarks>
+             <returns>Returns the most recent notification for the authenticated user.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.NotificationController.PushNotificationToAll(AIMathProject.Domain.Requests.NotificationRequestDto)">
+             <summary>
+             Sends a notification to all users.
+             </summary>
+             <remarks>
+             *Only admin users can use this API.*
+             This API sends a notification to all users in the system based on the provided notification details.
+            
+             **Request Parameters:**
+             - **requestDto** (NotificationRequestDto): The notification details, including:
+               - **notificationType** (string): The type of notification. Must be one of: "info", "warning", "success", or "error" or something else.
+               - **notificationTitle** (string): The title of the notification.
+               - **notificationMessage** (string): The content or message of the notification.
+            
+             **Example Request:**
+             ```http
+             POST /api/notification/push/all
+             Content-Type: application/json
+             {
+               "notificationType": "info",
+               "notificationTitle": "System Update",
+               "notificationMessage": "The system will undergo maintenance this weekend."
+             }
+             ```
+             </remarks>
+             <returns>Returns a confirmation message if the notification is sent successfully, or an error message if it fails.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.NotificationController.PushNotificationToUser(System.Int32,AIMathProject.Domain.Requests.NotificationRequestDto)">
+             <summary>
+             Sends a notification to a specific user by their ID.
+             </summary>
+             <remarks>
+             *Only admin users can use this API.*
+             This API sends a notification to a specific user identified by their user ID, using the provided notification details.
+            
+             **Request Parameters:**
+             - **userId** (int): The unique identifier of the target user.
+             - **requestDto** (NotificationRequestDto): The notification details, including:
+               - **notificationType** (string): The type of notification. Must be one of: "info", "warning", "success", or "error" or something else
+               - **notificationTitle** (string): The title of the notification.
+               - **notificationMessage** (string): The content or message of the notification.
+            
+             **Example Request:**
+             ```http
+             POST /api/notification/push/user/1
+             Content-Type: application/json
+             {
+               "notificationType": "success",
+               "notificationTitle": "Task Completed",
+               "notificationMessage": "Your task has been successfully completed."
+             }
+             ```
+             </remarks>
+             <returns>Returns a confirmation message if the notification is sent successfully, or an error message if it fails.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.NotificationController.UpdateStatusNotification(System.Int32)">
+             <summary>
+             Updates the status of a specific notification from Unread to Read for the authenticated user.
+             </summary>
+             <remarks>
+             *Only authenticated users can use this API.*
+             This API updates the status of a notification identified by its ID, marking it as Read for the currently logged-in user.
+            
+             **Request Parameters:**
+             - **notificationId** (int): The unique identifier of the notification to be updated.
+            
+             </remarks>
+             <returns>Returns a confirmation message if the notification status is updated successfully, or an error message if it fails.</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.PaymentController.CreatePaymentPlansUrlVnPay(System.Int32,System.Int32)">
              <summary>
              Generates a VnPay payment URL for purchasing a study plan.

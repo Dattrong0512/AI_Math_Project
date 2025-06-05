@@ -864,6 +864,89 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "GetAllNotification",
+    "RelativePath": "api/notification/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "PushNotificationToAll",
+    "RelativePath": "api/notification/push/all",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestDto",
+        "Type": "AIMathProject.Domain.Requests.NotificationRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "PushNotificationToUser",
+    "RelativePath": "api/notification/push/user/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "requestDto",
+        "Type": "AIMathProject.Domain.Requests.NotificationRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "UpdateStatusNotification",
+    "RelativePath": "api/notification/update/{notificationId}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "GetAllNotificationById",
+    "RelativePath": "api/notification/user/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "GetNewestNotification",
+    "RelativePath": "api/notification/user/newest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.PaymentController",
     "Method": "CreatePaymentPlansUrlVnPay",
     "RelativePath": "api/payment/plan/{idPlan}/user/{idUser}",

@@ -318,18 +318,84 @@
         }
       }
     },
-    "/api/exercise/detail/enrollment/id/{id}": {
+    "/api/enrollment/{enrollmentId}/exercise/{exerciseId}/unlock": {
+      "post": {
+        "tags": [
+          "EnrollmentUnlockExercise"
+        ],
+        "summary": "Unlocks a specific exercise for a user's enrollment by spending coins.",
+        "description": "*Only logged-in users can access this API.*\r\nThis API unlocks a specific exercise for the given enrollment by spending 1 coin from the user's wallet.\r\n\r\n**Request Parameters:**\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **exerciseId** (int): The ID of the exercise to unlock.\r\n\r\n/// **Example Request:**\r\n```http\r\nPOST api/enrollment/8/exercise/401/unlock\r\n```\r\n\r\n**Response Codes:**\r\n- **200 OK**: Successfully unlocked the exercise.\r\n- **400 Bad Request**: Unable to unlock the exercise (see message for details).\r\n- **401 Unauthorized**: User is not authorized.",
+        "parameters": [
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "description": "The ID of the enrollment",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "The ID of the exercise to unlock",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/exercise/detail/enrollment/id/{id}/grade/{grade}": {
       "get": {
         "tags": [
           "Exercise"
         ],
-        "summary": "Retrieves all exercise results associated with a specific enrollment ID.",
-        "description": "*Only logged-in users (including user and admin) can access this API.*  \r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**  \r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**  \r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **lesson** (object, nullable): Information about the associated lesson:\r\n  - **lessonOrder** (short, nullable): The order of the lesson.\r\n  - **lessonName** (string): The name of the lesson.\r\n  - **lessonVideoUrl** (string, nullable): The URL of the lesson video.\r\n  - **lessonPdfUrl** (string, nullable): The URL of the lesson PDF.\r\n  - **chapterOrder** (short, nullable): The order of the chapter.\r\n  - **questions** (array, nullable): List of questions associated with the lesson.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **exerciseDetailId** (int): The ID of the exercise detail.\r\n  - **exerciseResultId** (int): The ID of the exercise result.\r\n  - **exerciseDetail** (object): Details about the exercise, including:\r\n    - **exerciseId** (int): The ID of the exercise.\r\n    - **questionId** (int): The ID of the question.\r\n    - **question** (object): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers:\r\n        - **answerId** (int): The unique identifier of the answer choice.\r\n        - **content** (string): The text of the answer choice.\r\n        - **isCorrect** (bool): Whether this choice is the correct answer.\r\n        - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n            \r\n**Example Request:**  \r\n\r\nGET /api/exerciseresults/enrollment/id/8\r\n            \r\n**Response Codes:**  \r\n- **200 OK**: Successfully retrieved the exercise results.  \r\n- **404 Not Found**: No exercise results found for the given enrollment ID.",
+        "summary": "Retrieves all locked exercises that have been unlocked for a specific enrollment.",
+        "description": "*Only logged-in users (including user and admin) can access this API.*  \r\nThis API returns a list of premium exercises (IsLocked=true) that have been specifically unlocked for the given enrollment.\r\n            \r\n**Request Parameters:**  \r\n- **id** (int): The enrollment ID of the user.\r\n- **grade** (int): The grade level to filter exercises.\r\n            \r\n**Response Format:**  \r\nThe response will return a list of unlocked exercises, where each exercise includes:\r\n- **exerciseName** (string): The name of the exercise.\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **isLocked** (boolean): Will always be true, as these are unlocked premium exercises.\r\n- **description** (string): The description of the exercise.\r\n- **exerciseDetails** (array): List of exercise details, each containing:\r\n  - **question** (object): Complete question information, including:\r\n    - **questionId** (int): The unique identifier of the question.\r\n    - **questionType** (string): The type of question (e.g., \"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n    - **difficulty** (int): The difficulty level of the question.\r\n    - **lessonId** (int): The ID of the associated lesson.\r\n    - **imgUrl** (string): The URL of an image related to the question.\r\n    - **questionContent** (string): The text content of the question.\r\n    - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n    - **choiceAnswers** (array): List of multiple-choice answers (for \"multiple_choice\" questions).\r\n    - **fillAnswers** (array): List of fill-in answers (for \"fill_in_blank\" questions).\r\n    - **matchingAnswers** (array): List of matching answers (for \"matching\" questions).\r\n            \r\n**Example Request:**  \r\n\r\nGET /api/exercise/detail/enrollment/id/35/grade/1\r\n            \r\n**Response Codes:**  \r\n- **200 OK**: Successfully retrieved the unlocked exercises.\r\n- **400 Bad Request**: No unlocked exercises found for this enrollment.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "description": "The enrollment ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "grade",
+            "in": "path",
+            "description": "The grade level to filter exercises.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -357,6 +423,65 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/exercise/id/{exerciseId}/enrollment/id/{enrollmentId}": {
+      "get": {
+        "tags": [
+          "Exercise"
+        ],
+        "summary": "Get exercise by ID with enrollment-specific lock status",
+        "description": "*Authenticated users can access this API*\r\n\r\nThis API retrieves exercise data and checks if it's unlocked for a specific enrollment.\r\nIf the exercise is locked, it will return basic information without questions.\r\nIf unlocked, it will include all question details.\r\n\r\n**Parameters:**\r\n- **exerciseId**: The unique identifier of the exercise\r\n- **enrollmentId**: Optional enrollment ID to check unlock status",
+        "parameters": [
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "The unique identifier of the exercise",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "enrollmentId",
+            "in": "path",
+            "description": "Optional enrollment ID to check unlock status",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the exercise data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If the exercise is not found"
+          },
+          "401": {
+            "description": "If the user is not authenticated"
           }
         }
       }
@@ -413,7 +538,7 @@
           "ExerciseDetailResult"
         ],
         "summary": "Creates or updates exercise detail results for a user's enrollment in a specific exercise.",
-        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates or updates the exercise detail results based on the user's answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The exercise id of the exercise.\r\n- **edrDtoList** (List<ExerciseDetailResultDto>): List of exercise detail results. Each item should include:\r\n  - **questionId** (int): The unique identifier of the question being answered.\r\n  - **isCorrect** (bool): Whether the user's answer is correct or not.\r\n  - **questionType** (string): Type of the question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **choiceAnswerId** (int, optional): For multiple_choice questions, the ID of the selected choice.\r\n  - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n\r\n**Response Format:**\r\n- **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.\r\n- **400 Bad Request**: If the operation fails, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/exerciseresult/enrollment/id/8/exercise/id/132\r\nContent-Type: application/json\r\n[\r\n  {\r\n    \"questionId\": 9,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"  \r\n  },\r\n  {\r\n    \"questionId\": 10,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"fill_in_blank\",\r\n    \"userFillAnswers\": [\r\n      {\r\n        \"wrongAnswer\": \"750\",\r\n        \"position\": 1\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"questionId\": 11,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"multiple_choice\"\r\n  },\r\n  {\r\n    \"questionId\": 12,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"multiple_choice\",\r\n    \"choiceAnswerId\": 22\r\n  },\r\n  {\r\n    \"questionId\": 13,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"\r\n  }\r\n]\r\n```\r\n\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 200 OK\r\ntrue\r\n```",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates or updates the exercise detail results based on the user's answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The exercise id of the exercise.\r\n- **edrDtoList** (List<ExerciseDetailResultDto>): List of exercise detail results. Each item should include:\r\n  - **questionId** (int): The unique identifier of the question being answered.\r\n  - **isCorrect** (bool): Whether the user's answer is correct or not.\r\n  - **questionType** (string): Type of the question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, contains the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n\r\n**Response Format:**\r\n- **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.\r\n- **400 Bad Request**: If the operation fails, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/exerciseresult/enrollment/id/8/exercise/id/132\r\nContent-Type: application/json\r\n[\r\n  {\r\n    \"questionId\": 9,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"  \r\n  },\r\n  {\r\n    \"questionId\": 10,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"fill_in_blank\",\r\n    \"userFillAnswers\": [\r\n      {\r\n        \"wrongAnswer\": \"750\",\r\n        \"position\": 1\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"questionId\": 11,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"multiple_choice\"\r\n  },\r\n  {\r\n    \"questionId\": 12,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"multiple_choice\",\r\n     \"userChoiceAnswers\": [\r\n       {\r\n         \"answerId\": \"22\",\r\n         \"isCorrect\": false\r\n       }\r\n     ]\r\n  },\r\n  {\r\n    \"questionId\": 13,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"\r\n  }\r\n]\r\n```\r\n\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 200 OK\r\ntrue\r\n```",
         "parameters": [
           {
             "name": "id",
@@ -474,7 +599,7 @@
           "ExerciseResult"
         ],
         "summary": "Retrieves the exercise result details associated with a specific enrollment ID and exercise ID.",
-        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns the detailed information about an exercise result, including the questions and answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The unique identifier of the exercise.\r\n\r\n**Response Format:**\r\nThe response will return the exercise result details, including:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:\r\n    - **answerId** (int): The unique identifier of the answer choice.\r\n    - **content** (string): The text of the answer choice.\r\n    - **isCorrect** (bool): Whether this choice is the correct answer.\r\n    - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresult/enrollment/id/11/exercise/id/25\r\n```",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns the detailed information about an exercise result, including the questions and answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The unique identifier of the exercise.\r\n\r\n**Response Format:**\r\nThe response will return the exercise result details, including:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresult/enrollment/id/11/exercise/id/25\r\n```",
         "parameters": [
           {
             "name": "id",
@@ -515,7 +640,7 @@
           "ExerciseResult"
         ],
         "summary": "Retrieves all exercise results associated with a specific enrollment ID.",
-        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**\r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **choiceAnswer** (object, nullable): For multiple_choice questions, the selected choice:\r\n    - **answerId** (int): The unique identifier of the answer choice.\r\n    - **content** (string): The text of the answer choice.\r\n    - **isCorrect** (bool): Whether this choice is the correct answer.\r\n    - **imgUrl** (string, nullable): An optional image URL for the answer choice.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresults/enrollment/id/11 \r\n```",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**\r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresults/enrollment/id/11 \r\n```",
         "parameters": [
           {
             "name": "id",
@@ -782,7 +907,7 @@
           "LessonProgress"
         ],
         "summary": "Returns lesson progress information filtered by chapter's grade and semester.",
-        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API retrieves lesson progress information for a specific enrollment, filtered by the chapter's grade and semester.\r\n\r\n**Request:**\r\nThe request should include the **enrollment ID**, **grade**, and **semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lesson progress records matching the specified grade and semester, each containing:\r\n- **learningProgressId**: The unique identifier of the progress record.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **status**: The current status of the lesson (not_started, in_progress, completed).\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonVideoUrl**: URL to the lesson's video content.\r\n  - **lessonPdfUrl**: URL to the lesson's PDF content.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/lessonprogress/id/14/grade/3/semester/1",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API retrieves lesson progress information for a specific enrollment, filtered by the chapter's grade and semester.\r\n\r\n**Request:**\r\nThe request should include the **enrollment ID**, **grade**, and **semester**.\r\n\r\n**Response:**\r\nThe response will return a list of lesson progress records matching the specified grade and semester, each containing:\r\n- **learningProgressId**: The unique identifier of the progress record.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **status**: The current status of the lesson (not_started, in_progress, completed).\r\n- **process** (int): The updated progress of the user in the lesson (e.g., 20,30,70).\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonVideoUrl**: URL to the lesson's video content.\r\n  - **lessonPdfUrl**: URL to the lesson's PDF content.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/lessonprogress/id/14/grade/3/semester/1",
         "parameters": [
           {
             "name": "id",
@@ -839,13 +964,13 @@
         }
       }
     },
-    "/api/LessonProgress/update/lesson/{lessonId}/enrollment/{enrollmentId}/status/{status}": {
+    "/api/LessonProgress/update/lesson/{lessonId}/enrollment/{enrollmentId}/status/{status}/process/{process}": {
       "patch": {
         "tags": [
           "LessonProgress"
         ],
         "summary": "Updates the learning progress of a specific lesson progress record.",
-        "description": "*User and admin can use this api*\r\nThis API updates the user's learning progress for a specific lesson.\r\n\r\n**Request:**\r\nThe request should include:\r\n- **lessonID** (int): The unique identifier of the lesson .\r\n- **enrollmentID** (int): The unique identifier of the enrollment.\r\n- **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).\r\n            \r\n**Response:**\r\nIf successful, the response will return the updated lesson progress information:\r\n- **learningProgressId**: The unique identifier of the lesson progress.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **status**: The updated progress of the user in the lesson (e.g., completed).\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: A link to the lesson content.\r\n            \r\n**Example Request:**\r\n```http\r\nPATCH /update/lesson/25/enrollment/2/status/1",
+        "description": "*User and admin can use this api*\r\nThis API updates the user's learning progress for a specific lesson.\r\n\r\n**Request:**\r\nThe request should include:\r\n- **lessonID** (int): The unique identifier of the lesson .\r\n- **enrollmentID** (int): The unique identifier of the enrollment.\r\n- **status** (int): The status to be updated (0 is not_started, 1 is completed, 2 is in_progress).\r\n- **process** (int): The updated progress of the user in the lesson (e.g., 20,30,70).\r\n            \r\n**Response:**\r\nIf successful, the response will return the updated lesson progress information:\r\n- **learningProgressId**: The unique identifier of the lesson progress.\r\n- **lessonId**: The unique identifier of the lesson.\r\n- **status**: The updated progress of the user in the lesson (e.g., completed).\r\n- **process**: The updated progress of the user in the lesson (e.g., 20,30,70).\r\n- **lesson**: An object containing lesson details:\r\n  - **lessonOrder**: The order of the lesson in the study plan.\r\n  - **lessonName**: The name of the lesson.\r\n  - **lessonContent**: A link to the lesson content.\r\n            \r\n**Example Request:**\r\n```http\r\nPATCH /update/lesson/25/enrollment/2/status/2/process/20",
         "parameters": [
           {
             "name": "lessonId",
@@ -867,6 +992,15 @@
           },
           {
             "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "process",
             "in": "path",
             "required": true,
             "schema": {
@@ -1216,13 +1350,157 @@
         }
       }
     },
+    "/api/notification/all": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Retrieves all notifications for admin users.",
+        "description": "*Only admin users can use this API.*\r\nThis API returns a list of all notifications available in the system for administrative purposes.\r\n**Response Format:**\r\nThe response will return a collection of notifications",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/user/all": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Retrieves all notifications for the authenticated user.",
+        "description": "*Only authenticated users can use this API.*\r\nThis API returns a list of notifications specific to the currently logged-in user.\r\n            \r\n**Request Parameters:**\r\nNone\r\n            \r\n**Response Format:**\r\nThe response will return a collection of notifications",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/user/newest": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Retrieves the most recent notification for the authenticated user.",
+        "description": "*Only authenticated users can use this API.*\r\nThis API returns the newest notification specific to the currently logged-in user.\r\n            \r\n**Response Format:**\r\nThe response will return a single the newest notification.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/push/all": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Sends a notification to all users.",
+        "description": "*Only admin users can use this API.*\r\nThis API sends a notification to all users in the system based on the provided notification details.\r\n            \r\n**Request Parameters:**\r\n- **requestDto** (NotificationRequestDto): The notification details, including:\r\n  - **notificationType** (string): The type of notification. Must be one of: \"info\", \"warning\", \"success\", or \"error\" or something else.\r\n  - **notificationTitle** (string): The title of the notification.\r\n  - **notificationMessage** (string): The content or message of the notification.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /api/notification/push/all\r\nContent-Type: application/json\r\n{\r\n  \"notificationType\": \"info\",\r\n  \"notificationTitle\": \"System Update\",\r\n  \"notificationMessage\": \"The system will undergo maintenance this weekend.\"\r\n}\r\n```",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/push/user/{userId}": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Sends a notification to a specific user by their ID.",
+        "description": "*Only admin users can use this API.*\r\nThis API sends a notification to a specific user identified by their user ID, using the provided notification details.\r\n            \r\n**Request Parameters:**\r\n- **userId** (int): The unique identifier of the target user.\r\n- **requestDto** (NotificationRequestDto): The notification details, including:\r\n  - **notificationType** (string): The type of notification. Must be one of: \"info\", \"warning\", \"success\", or \"error\" or something else\r\n  - **notificationTitle** (string): The title of the notification.\r\n  - **notificationMessage** (string): The content or message of the notification.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /api/notification/push/user/1\r\nContent-Type: application/json\r\n{\r\n  \"notificationType\": \"success\",\r\n  \"notificationTitle\": \"Task Completed\",\r\n  \"notificationMessage\": \"Your task has been successfully completed.\"\r\n}\r\n```",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/update/{notificationId}": {
+      "patch": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Updates the status of a specific notification from Unread to Read for the authenticated user.",
+        "description": "*Only authenticated users can use this API.*\r\nThis API updates the status of a notification identified by its ID, marking it as Read for the currently logged-in user.\r\n            \r\n**Request Parameters:**\r\n- **notificationId** (int): The unique identifier of the notification to be updated.",
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/payment/plan/{idPlan}/user/{idUser}": {
       "post": {
         "tags": [
           "Payment"
         ],
         "summary": "Generates a VnPay payment URL for purchasing a study plan.",
-        "description": "*Only logged in users can use this api*\r\nThis API creates a VnPay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/plan/5/user/123\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
+        "description": "*Only logged in users can use this api*\r\nThis API creates a VnPay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/plan/2/user/1\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
         "parameters": [
           {
             "name": "idPlan",
@@ -1271,7 +1549,7 @@
           "Payment"
         ],
         "summary": "Creates a payment for a token package purchase.",
-        "description": "*Only logged in users can use this API*\r\nThis API initiates a payment process for a specific token package purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **tokenPackageId**: The ID of the token package to be purchased.\r\n- **userId**: The ID of the user making the payment.",
+        "description": "*Only logged in users can use this API*\r\nThis API initiates a payment process for a specific token package purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **tokenPackageId**: The ID of the token package to be purchased.\r\n- **userId**: The ID of the user making the payment.\r\n\r\n/// **Example Request:**\r\n```http\r\nPOST /payment/token/1/user/1\r\n```",
         "parameters": [
           {
             "name": "tokenPackageId",
@@ -1410,6 +1688,59 @@
         }
       }
     },
+    "/api/payments/pageindex/{pageIndex}/pagesize/{pageSize}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Get all system payments with pagination",
+        "description": "*Only admin users can access this API*\r\n\r\nThis API retrieves all payment records in the system with pagination support.\r\nResults are ordered by date in descending order (most recent first).\r\n\r\n**Path Parameters:**\r\n- **pageIndex**: Zero-based page index (0 for first page)\r\n- **pageSize**: Number of items per page (recommended: 10-50)\r\n\r\n**Example Requests:**\r\n- First page with 10 items: `/api/payments/pageindex/0/pagesize/10`\r\n- Second page with 20 items: `/api/payments/pageindex/1/pagesize/20`",
+        "parameters": [
+          {
+            "name": "pageIndex",
+            "in": "path",
+            "description": "Zero-based page index (0 for first page)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "description": "Number of items per page",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDtoPagination"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDtoPagination"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDtoPagination"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/paymentmethod": {
       "get": {
         "tags": [
@@ -1466,6 +1797,83 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/statistics/{periodType}": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Get user statistics for a specific time period",
+        "description": "This API retrieves comprehensive user statistics based on the specified time period.\r\n\r\n**Period Types:**\r\n- **day**: Statistics for the current day compared to the previous day\r\n- **week**: Statistics for the current week compared to the previous week\r\n- **month**: Statistics for the current month compared to the previous month\r\n- **year**: Statistics for the current year compared to the previous year\r\n\r\n**Response includes:**\r\n- User count statistics (current period, previous period, growth rate)\r\n- User engagement metrics (average usage time in minutes, change rate)\r\n- Revenue statistics (current and previous periods, growth rate)\r\n- Daily breakdown of user activity\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/users/statistics/week\r\n```",
+        "parameters": [
+          {
+            "name": "periodType",
+            "in": "path",
+            "description": "The time period type ('day', 'week', 'month', or 'year')",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatisticsSummaryDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/revenue/daily/startdate/{startDateTime}/enddate/{endDateTime}": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Get daily revenue by date range with specific time",
+        "parameters": [
+          {
+            "name": "startDateTime",
+            "in": "path",
+            "description": "Start date and time (format: yyyy-MM-ddTHH:mm:ss)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDateTime",
+            "in": "path",
+            "description": "End date and time (format: yyyy-MM-ddTHH:mm:ss)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DailyRevenueDto"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1778,38 +2186,6 @@
         }
       }
     },
-    "/api/users/statistics/{periodType}": {
-      "get": {
-        "tags": [
-          "UserStatistics"
-        ],
-        "summary": "Get user statistics for a specific time period",
-        "description": "This API retrieves comprehensive user statistics based on the specified time period.\r\n\r\n**Period Types:**\r\n- **day**: Statistics for the current day compared to the previous day\r\n- **week**: Statistics for the current week compared to the previous week\r\n- **month**: Statistics for the current month compared to the previous month\r\n- **year**: Statistics for the current year compared to the previous year\r\n\r\n**Response includes:**\r\n- User count statistics (current period, previous period, growth rate)\r\n- User engagement metrics (average usage time in minutes, change rate)\r\n- Daily breakdown of user activity\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/users/statistics/week\r\n```",
-        "parameters": [
-          {
-            "name": "periodType",
-            "in": "path",
-            "description": "The time period type ('day', 'week', 'month', or 'year')",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserStatisticsSummaryDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/wallet/user/{UserId}": {
       "get": {
         "tags": [
@@ -2060,6 +2436,20 @@
         },
         "additionalProperties": false
       },
+      "DailyRevenueDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "revenue": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "EnrollmentDto": {
         "type": "object",
         "properties": {
@@ -2130,11 +2520,6 @@
             "type": "boolean",
             "nullable": true
           },
-          "choiceAnswerId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "exerciseDetailId": {
             "type": "integer",
             "format": "int32",
@@ -2148,13 +2533,24 @@
           "exerciseDetail": {
             "$ref": "#/components/schemas/ExerciseDetailDto"
           },
-          "choiceAnswer": {
-            "$ref": "#/components/schemas/ChoiceAnswerDto"
+          "userChoiceAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserChoiceAnswerDto"
+            },
+            "nullable": true
           },
           "userFillAnswers": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserFillAnswerDto"
+            },
+            "nullable": true
+          },
+          "userMatchingAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserMatchingAnswerDto"
             },
             "nullable": true
           }
@@ -2172,15 +2568,24 @@
             "type": "string",
             "nullable": true
           },
-          "choiceAnswerId": {
-            "type": "integer",
-            "format": "int32",
+          "userChoiceAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserChoiceAnswerDto"
+            },
             "nullable": true
           },
           "userFillAnswers": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserFillAnswerDto"
+            },
+            "nullable": true
+          },
+          "userMatchingAnswers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserMatchingAnswerDto"
             },
             "nullable": true
           },
@@ -2200,6 +2605,14 @@
           "exerciseId": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "isLocked": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           },
           "lessonId": {
@@ -2229,7 +2642,15 @@
             "format": "int32",
             "nullable": true
           },
-          "exerciseResults": {
+          "isLocked": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "exerciseDetails": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ExerciseDetailDto"
@@ -2316,21 +2737,12 @@
             "type": "string",
             "nullable": true
           },
-          "exerciseId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
+          "mainExercise": {
+            "$ref": "#/components/schemas/ExerciseExtraForLessonDto"
           },
           "chapterOrder": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "questions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/QuestionDto"
-            },
             "nullable": true
           },
           "extraExercise": {
@@ -2355,15 +2767,13 @@
             "format": "int32",
             "nullable": true
           },
-          "status": {
-            "maxLength": 15,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "learningProgress": {
+          "process": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
             "nullable": true
           },
           "lesson": {
@@ -2436,11 +2846,11 @@
             "type": "integer",
             "format": "int32"
           },
-          "correctAnswer": {
+          "answerContent1": {
             "type": "string",
             "nullable": true
           },
-          "imgUrl": {
+          "answerContent2": {
             "type": "string",
             "nullable": true
           }
@@ -2456,6 +2866,24 @@
             "nullable": true
           },
           "methodName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationRequestDto": {
+        "type": "object",
+        "properties": {
+          "notificationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "notificationTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "notificationMessage": {
             "type": "string",
             "nullable": true
           }
@@ -2518,7 +2946,32 @@
         },
         "additionalProperties": false
       },
-      "PeriodUserStatisticsDto": {
+      "PaymentDtoPagination": {
+        "type": "object",
+        "properties": {
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PeriodStatisticsDto": {
         "type": "object",
         "properties": {
           "startDate": {
@@ -2711,6 +3164,49 @@
         },
         "additionalProperties": false
       },
+      "RevenueStatisticsDto": {
+        "type": "object",
+        "properties": {
+          "currentRevenue": {
+            "type": "number",
+            "format": "double"
+          },
+          "previousRevenue": {
+            "type": "number",
+            "format": "double"
+          },
+          "growthRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "period": {
+            "$ref": "#/components/schemas/PeriodStatisticsDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StatisticsSummaryDto": {
+        "type": "object",
+        "properties": {
+          "userCounts": {
+            "$ref": "#/components/schemas/UserCountStatisticsDto"
+          },
+          "userEngagement": {
+            "$ref": "#/components/schemas/UserEngagementStatisticsDto"
+          },
+          "dailyStatistics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDailyStatisticsDto"
+            },
+            "nullable": true
+          },
+          "revenueStatistics": {
+            "$ref": "#/components/schemas/RevenueStatisticsDto"
+          }
+        },
+        "additionalProperties": false
+      },
       "TokenPackageDto": {
         "type": "object",
         "properties": {
@@ -2808,6 +3304,21 @@
         },
         "additionalProperties": false
       },
+      "UserChoiceAnswerDto": {
+        "type": "object",
+        "properties": {
+          "answerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UserCountStatisticsDto": {
         "type": "object",
         "properties": {
@@ -2824,7 +3335,7 @@
             "format": "double"
           },
           "period": {
-            "$ref": "#/components/schemas/PeriodUserStatisticsDto"
+            "$ref": "#/components/schemas/PeriodStatisticsDto"
           }
         },
         "additionalProperties": false
@@ -2863,7 +3374,7 @@
             "format": "double"
           },
           "period": {
-            "$ref": "#/components/schemas/PeriodUserStatisticsDto"
+            "$ref": "#/components/schemas/PeriodStatisticsDto"
           }
         },
         "additionalProperties": false
@@ -2883,20 +3394,15 @@
         },
         "additionalProperties": false
       },
-      "UserStatisticsSummaryDto": {
+      "UserMatchingAnswerDto": {
         "type": "object",
         "properties": {
-          "userCounts": {
-            "$ref": "#/components/schemas/UserCountStatisticsDto"
+          "answerContent1": {
+            "type": "string",
+            "nullable": true
           },
-          "userEngagement": {
-            "$ref": "#/components/schemas/UserEngagementStatisticsDto"
-          },
-          "dailyStatistics": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserDailyStatisticsDto"
-            },
+          "answerContent2": {
+            "type": "string",
             "nullable": true
           }
         },
