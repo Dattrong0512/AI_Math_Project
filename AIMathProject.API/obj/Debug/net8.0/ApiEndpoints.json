@@ -865,6 +865,22 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "UpdateStatusNotification",
+    "RelativePath": "api/notification/{notificationId}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
     "Method": "GetAllNotification",
     "RelativePath": "api/notification/all",
     "HttpMethod": "GET",
@@ -876,7 +892,7 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.NotificationController",
     "Method": "PushNotificationToAll",
-    "RelativePath": "api/notification/push/all",
+    "RelativePath": "api/notification/all",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -892,7 +908,7 @@
   {
     "ContainingType": "AIMathProject.API.Controllers.NotificationController",
     "Method": "PushNotificationToUser",
-    "RelativePath": "api/notification/push/user/{userId}",
+    "RelativePath": "api/notification/user/{userId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -905,22 +921,6 @@
       {
         "Name": "requestDto",
         "Type": "AIMathProject.Domain.Requests.NotificationRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
-    "Method": "UpdateStatusNotification",
-    "RelativePath": "api/notification/update/{notificationId}",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "notificationId",
-        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

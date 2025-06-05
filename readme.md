@@ -101,6 +101,15 @@ Instruction for Docker:
 - Retrieve the latest payment information for a specific user (`GET /api/payment/user/{userID}`).
 - Retrieve all payment information for a specific user (`GET /api/payment/user/{userID}/all`).
 
+#### Notification Features
+
+- Retrieve all notifications for admin users (`GET /api/notification/all`).
+- Retrieve all notifications for the authenticated user (`GET /api/notification/user/all`).
+- Retrieve the most recent notification for the authenticated user (`GET /api/notification/user/newest`).
+- Send a notification to all users by admin(`POST /api/notification/all`).
+- Send a notification to a specific user by their ID (`POST /api/notification/user/{userId}`).
+- Update the status of a specific notification from Unread to Read for the authenticated user (`PATCH /api/notification/{notificationId}`).
+
 ## Note
 
 This project is in its early stages, and features will be completed soon.

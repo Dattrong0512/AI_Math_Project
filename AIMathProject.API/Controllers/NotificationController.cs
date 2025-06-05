@@ -92,7 +92,7 @@ namespace AIMathProject.API.Controllers
         ///
         /// **Example Request:**
         /// ```http
-        /// POST /api/notification/push/all
+        /// POST /api/notification/all
         /// Content-Type: application/json
         /// {
         ///   "notificationType": "info",
@@ -103,7 +103,7 @@ namespace AIMathProject.API.Controllers
         /// </remarks>
         /// <returns>Returns a confirmation message if the notification is sent successfully, or an error message if it fails.</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPost("push/all")]
+        [HttpPost("all")]
         public async Task<IActionResult> PushNotificationToAll([FromBody] NotificationRequestDto requestDto)
         {
             bool check = await _mediator.Send(new PushNotificationForAllUserCommand(requestDto));
@@ -133,7 +133,7 @@ namespace AIMathProject.API.Controllers
         ///
         /// **Example Request:**
         /// ```http
-        /// POST /api/notification/push/user/1
+        /// POST /api/notification/user/1
         /// Content-Type: application/json
         /// {
         ///   "notificationType": "success",
@@ -144,7 +144,7 @@ namespace AIMathProject.API.Controllers
         /// </remarks>
         /// <returns>Returns a confirmation message if the notification is sent successfully, or an error message if it fails.</returns>
         [Authorize(Policy = "Admin")]
-        [HttpPost("push/user/{userId:int}")]
+        [HttpPost("user/{userId:int}")]
         public async Task<IActionResult> PushNotificationToUser([FromRoute] int userId, [FromBody] NotificationRequestDto requestDto)
         {
             bool check = await _mediator.Send(new PushNotificationForUserByIdCommand(userId, requestDto));
@@ -172,7 +172,7 @@ namespace AIMathProject.API.Controllers
         /// </remarks>
         /// <returns>Returns a confirmation message if the notification status is updated successfully, or an error message if it fails.</returns>
         [Authorize(Policy = "User")]
-        [HttpPatch("update/{notificationId:int}")]
+        [HttpPatch("{notificationId:int}")]
         public async Task<IActionResult> UpdateStatusNotification([FromRoute] int notificationId)
         {
             bool check = await _mediator.Send(new UpdateStatusNotificationCommand(notificationId));

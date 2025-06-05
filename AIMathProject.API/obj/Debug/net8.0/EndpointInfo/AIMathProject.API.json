@@ -1362,6 +1362,37 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Sends a notification to all users.",
+        "description": "*Only admin users can use this API.*\r\nThis API sends a notification to all users in the system based on the provided notification details.\r\n            \r\n**Request Parameters:**\r\n- **requestDto** (NotificationRequestDto): The notification details, including:\r\n  - **notificationType** (string): The type of notification. Must be one of: \"info\", \"warning\", \"success\", or \"error\" or something else.\r\n  - **notificationTitle** (string): The title of the notification.\r\n  - **notificationMessage** (string): The content or message of the notification.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /api/notification/all\r\nContent-Type: application/json\r\n{\r\n  \"notificationType\": \"info\",\r\n  \"notificationTitle\": \"System Update\",\r\n  \"notificationMessage\": \"The system will undergo maintenance this weekend.\"\r\n}\r\n```",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/notification/user/all": {
@@ -1392,46 +1423,13 @@
         }
       }
     },
-    "/api/notification/push/all": {
-      "post": {
-        "tags": [
-          "Notification"
-        ],
-        "summary": "Sends a notification to all users.",
-        "description": "*Only admin users can use this API.*\r\nThis API sends a notification to all users in the system based on the provided notification details.\r\n            \r\n**Request Parameters:**\r\n- **requestDto** (NotificationRequestDto): The notification details, including:\r\n  - **notificationType** (string): The type of notification. Must be one of: \"info\", \"warning\", \"success\", or \"error\" or something else.\r\n  - **notificationTitle** (string): The title of the notification.\r\n  - **notificationMessage** (string): The content or message of the notification.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /api/notification/push/all\r\nContent-Type: application/json\r\n{\r\n  \"notificationType\": \"info\",\r\n  \"notificationTitle\": \"System Update\",\r\n  \"notificationMessage\": \"The system will undergo maintenance this weekend.\"\r\n}\r\n```",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NotificationRequestDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NotificationRequestDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/NotificationRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/notification/push/user/{userId}": {
+    "/api/notification/user/{userId}": {
       "post": {
         "tags": [
           "Notification"
         ],
         "summary": "Sends a notification to a specific user by their ID.",
-        "description": "*Only admin users can use this API.*\r\nThis API sends a notification to a specific user identified by their user ID, using the provided notification details.\r\n            \r\n**Request Parameters:**\r\n- **userId** (int): The unique identifier of the target user.\r\n- **requestDto** (NotificationRequestDto): The notification details, including:\r\n  - **notificationType** (string): The type of notification. Must be one of: \"info\", \"warning\", \"success\", or \"error\" or something else\r\n  - **notificationTitle** (string): The title of the notification.\r\n  - **notificationMessage** (string): The content or message of the notification.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /api/notification/push/user/1\r\nContent-Type: application/json\r\n{\r\n  \"notificationType\": \"success\",\r\n  \"notificationTitle\": \"Task Completed\",\r\n  \"notificationMessage\": \"Your task has been successfully completed.\"\r\n}\r\n```",
+        "description": "*Only admin users can use this API.*\r\nThis API sends a notification to a specific user identified by their user ID, using the provided notification details.\r\n            \r\n**Request Parameters:**\r\n- **userId** (int): The unique identifier of the target user.\r\n- **requestDto** (NotificationRequestDto): The notification details, including:\r\n  - **notificationType** (string): The type of notification. Must be one of: \"info\", \"warning\", \"success\", or \"error\" or something else\r\n  - **notificationTitle** (string): The title of the notification.\r\n  - **notificationMessage** (string): The content or message of the notification.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /api/notification/user/1\r\nContent-Type: application/json\r\n{\r\n  \"notificationType\": \"success\",\r\n  \"notificationTitle\": \"Task Completed\",\r\n  \"notificationMessage\": \"Your task has been successfully completed.\"\r\n}\r\n```",
         "parameters": [
           {
             "name": "userId",
@@ -1469,7 +1467,7 @@
         }
       }
     },
-    "/api/notification/update/{notificationId}": {
+    "/api/notification/{notificationId}": {
       "patch": {
         "tags": [
           "Notification"

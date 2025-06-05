@@ -5,18 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.domain\\requests\\notificationrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\requests\\notificationrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.domain\\interfaces\\inotificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\interfaces\\inotificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_backend\\aimath_backend\\aimathproject.domain\\entities\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\entities\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -104,69 +92,9 @@
               "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\NotificationController.cs",
               "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.API\\Controllers\\NotificationController.cs",
               "RelativeToolTip": "AIMathProject.API\\Controllers\\NotificationController.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAAAI0AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAowKQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-05T03:21:22.759Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "f54a715d-11ed-458a-8e98-349e1a0b9898",
-        "Display": 1,
-        "X": 22,
-        "Y": 27,
-        "Width": 1531,
-        "Height": 722,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "INotificationRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\INotificationRepository.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Interfaces\\INotificationRepository.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Interfaces\\INotificationRepository.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Interfaces\\INotificationRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T02:48:51.003Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NotificationRequestDto.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Requests\\NotificationRequestDto.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Requests\\NotificationRequestDto.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Requests\\NotificationRequestDto.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Requests\\NotificationRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T02:55:39.218Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Notification.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Notification.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\Notification.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_MATH_BACKEND\\AIMath_backend\\AIMathProject.Domain\\Entities\\Notification.cs",
-              "RelativeToolTip": "AIMathProject.Domain\\Entities\\Notification.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T03:09:59.611Z",
               "EditorCaption": ""
             }
           ]

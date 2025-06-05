@@ -1013,7 +1013,7 @@
             
              **Example Request:**
              ```http
-             POST /api/notification/push/all
+             POST /api/notification/all
              Content-Type: application/json
              {
                "notificationType": "info",
@@ -1041,7 +1041,7 @@
             
              **Example Request:**
              ```http
-             POST /api/notification/push/user/1
+             POST /api/notification/user/1
              Content-Type: application/json
              {
                "notificationType": "success",
