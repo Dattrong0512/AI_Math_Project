@@ -60,7 +60,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     question.MatchingAnswers = Answer;
 
                 }
-                else if (question.QuestionType == "fill_in_blank" || question.QuestionType == "vertical_calculation_add" || question.QuestionType == "vertical_calculation_sub" || question.QuestionType == "vertical_calculation_multi" || question.QuestionType == "vertical_calculation_div")
+                else if (question.QuestionType == "fill_in_blank" || question.QuestionType == "add" || question.QuestionType == "sub" || question.QuestionType == "multi" || question.QuestionType == "div")
                 {
                     var Answer = _context.FillAnswers
                         .Where(match => match.QuestionId == question.QuestionId)

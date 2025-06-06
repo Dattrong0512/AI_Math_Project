@@ -1,16 +1,8 @@
-﻿using AIMathProject.Application.Dto.EnrollmentDto;
+﻿using AIMathProject.Application.Dto.ExerciseDetailResultDto;
 using AIMathProject.Application.Mappers;
+using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Interfaces;
 using AIMathProject.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using AIMathProject.Application.Dto.ExerciseDetailResultDto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AIMathProject.Domain.Entities;
-using AIMathProject.Application.Dto;
 
 namespace AIMathProject.Infrastructure.Repositories
 {
@@ -95,7 +87,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     //Tương tự với UserMatchingAnswers
                     var existingUserMatchingAnswers = _context.UserMatchingAnswers
                         .Where(uma => uma.ExerciseDetailResultId == exerciseDetailResultId);
-                    if (existingUserMatchingAnswers.Any()) 
+                    if (existingUserMatchingAnswers.Any())
                     {
                         _context.UserMatchingAnswers.RemoveRange(existingUserMatchingAnswers);
                     }
@@ -125,7 +117,7 @@ namespace AIMathProject.Infrastructure.Repositories
                         await _context.UserChoiceAnswers.AddAsync(userChoiceAnswer);
                     }
                 }
-                else if ((edrItem.QuestionType == "fill_in_blank" || edrItem.QuestionType == "vertical_calculation_add" || edrItem.QuestionType == "vertical_calculation_sub" || edrItem.QuestionType == "vertical_calculation_multi" || edrItem.QuestionType == "vertical_calculation_div") && edrItem.UserFillAnswers != null && edrItem.UserFillAnswers.Any())
+                else if ((edrItem.QuestionType == "fill_in_blank" || edrItem.QuestionType == "add" || edrItem.QuestionType == "sub" || edrItem.QuestionType == "multi" || edrItem.QuestionType == "div") && edrItem.UserFillAnswers != null && edrItem.UserFillAnswers.Any())
                 {
                     // Thêm UserFillAnswers
                     foreach (var userFillAnswerDto in edrItem.UserFillAnswers)
@@ -140,7 +132,8 @@ namespace AIMathProject.Infrastructure.Repositories
                         await _context.UserFillAnswers.AddAsync(userFillAnswer);
                     }
                 }
-                else if ((edrItem.QuestionType == "text_image_matching" || edrItem.QuestionType == "image_matching") && edrItem.UserMatchingAnswers != null && edrItem.UserMatchingAnswers.Any()){
+                else if ((edrItem.QuestionType == "text_image_matching" || edrItem.QuestionType == "image_matching") && edrItem.UserMatchingAnswers != null && edrItem.UserMatchingAnswers.Any())
+                {
                     foreach (var UserMatchingAnswerDto in edrItem.UserMatchingAnswers)
                     {
                         var userMatchingAnswer = new UserMatchingAnswer

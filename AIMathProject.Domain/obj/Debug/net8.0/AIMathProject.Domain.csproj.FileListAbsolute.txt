@@ -115,3 +115,16 @@ C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Domain\obj\Debu
 C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\refint\AIMathProject.Domain.dll
 C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.pdb
 C:\Users\Hi\Desktop\AI_MATH_BACKEND\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\ref\AIMathProject.Domain.dll
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.deps.json
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.dll
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.pdb
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.csproj.AssemblyReference.cache
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.AssemblyInfoInputs.cache
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.AssemblyInfo.cs
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.csproj.CoreCompileInputs.cache
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.sourcelink.json
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.dll
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\refint\AIMathProject.Domain.dll
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.pdb
+J:\Study\GraduationProject\be\current2\AIMath_backend\AIMathProject.Domain\obj\Debug\net8.0\ref\AIMathProject.Domain.dll
