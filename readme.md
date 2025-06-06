@@ -110,6 +110,23 @@ Instruction for Docker:
 - Send a notification to a specific user by their ID (`POST /api/notification/user/{userId}`).
 - Update the status of a specific notification from Unread to Read for the authenticated user (`PATCH /api/notification/{notificationId}`).
 
+### Error Report Management
+
+#### Error Report Features
+
+- Create a new error report from a user (`POST /api/ErrorReport/user/{id}`).
+- Retrieve error reports with advanced filtering and pagination (`GET /api/ErrorReport/filter`).
+- Mark an error report as resolved (Admin only) (`PUT /api/ErrorReport/{errorId}/resolve`).
+- Delete an error report (Admin only) (`DELETE /api/ErrorReport/{errorId}`).
+
+### Statistics Management
+
+#### Statistics Features
+
+- Get user statistics for a specific time period (`GET /api/statistics/{periodType}`).
+- Get daily revenue data within a date range (`GET /api/revenue/daily/startdate/{startDateTime}/enddate/{endDateTime}`).
+- Get daily error report statistics within a date range (`GET /api/errors/daily/startdate/{startDateTime}/enddate/{endDateTime}`).
+
 ## Note
 
 This project is in its early stages, and features will be completed soon.

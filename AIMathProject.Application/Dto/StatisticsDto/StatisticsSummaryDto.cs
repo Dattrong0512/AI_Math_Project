@@ -8,6 +8,7 @@ namespace AIMathProject.Application.Dto.StatisticsDto
         public UserEngagementStatisticsDto? UserEngagement { get; set; }
         public List<UserDailyStatisticsDto>? DailyStatistics { get; set; }
 
+        public ErrorReportStatisticsDto? ErrorReportStatistics { get; set; }
         public RevenueStatisticsDto? RevenueStatistics { get; set; }
     }
 }

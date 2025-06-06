@@ -213,6 +213,112 @@
             <param name="exerciseId">The ID of the exercise to unlock</param>
             <returns>A result indicating success or failure with a message</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.ErrorReportController.CreateErrorReport(System.Int32,AIMathProject.Domain.Requests.ErrorReportRequest)">
+            <summary>
+            Creates a new error report from a user
+            </summary>
+            <remarks>
+            *Only logged in users can use this api (including user and admin)*
+            This API creates a new error report with the provided error message.
+            The error_type is automatically set to "user" and resolved is set to false (0).
+            
+            **Example Request:**
+            ```http
+            POST /api/ErrorReport/user/123
+            Content-Type: application/json
+            
+            {
+                "errorMessage": "Cannot access lesson content"
+            }
+            ```
+            
+            **Response Format:**
+            The response will return the complete details of the created error report.
+            </remarks>
+            <param name="id">The user ID reporting the error</param>
+            <param name="request">The error report request containing the error message</param>
+            <returns>Returns the created error report</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.ErrorReportController.GetErrorReportsWithFilters(System.String,System.String,System.Nullable{System.Boolean},System.Int32,System.Int32)">
+             <summary>
+             Retrieves error reports with advanced filtering, searching, and pagination capabilities.
+             </summary>
+             <remarks>
+             *Only administrators can use this functionality*
+             This method retrieves error reports based on various filter criteria with pagination support.
+             
+             **Request Parameters:**
+             - **searchTerm** (string, optional): Text to search in error message field or error ID.
+             - **errorType** (string, optional): Filter by error type (e.g., "user", "procedure", "unknown").
+             - **resolved** (bool?, optional): Filter by resolution status (true for resolved, false for unresolved).
+             - **pageNumber** (int, optional): The page number for pagination (starts from 1, default: 1).
+             - **pageSize** (int, optional): Number of records per page (default: 10).
+             - **newestFirst** (bool, optional): Sort order (true for newest first, false for oldest first, default: true).
+             
+             **Response Format:**
+             The response will return a list of error reports matching the criteria, each containing:
+             - **errorId** (int): The unique identifier of the error report.
+             - **userId** (int): The ID of the user who reported the error.
+             - **errorMessage** (string): The description of the error.
+             - **errorType** (string): The type of error.
+             - **createdAt** (DateTime): The timestamp when the error was reported.
+             - **resolved** (bool): The resolution status.
+             - **resolvedAt** (DateTime?): The timestamp when the error was resolved, if applicable.
+            
+             </remarks>
+             <returns>Returns a paginated list of error reports matching the filter criteria</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.ErrorReportController.ResolveErrorReport(System.Int32)">
+            <summary>
+            Marks an error report as resolved.
+            </summary>
+            <remarks>
+            *Only administrators can use this functionality*
+            This method updates an error report's status to resolved and sets the resolution timestamp.
+            
+            **Request Parameters:**
+            - **errorId** (int): The unique identifier of the error report to resolve.
+            
+            **Response Format:**
+            The response will return the updated error report details including:
+            - **errorId** (int): The unique identifier of the error report.
+            - **userId** (int): The ID of the user who reported the error.
+            - **errorMessage** (string): The description of the error.
+            - **errorType** (string): The type of error.
+            - **createdAt** (DateTime): The timestamp when the error was reported.
+            - **resolved** (bool): The resolution status (set to true).
+            - **resolvedAt** (DateTime): The timestamp when the error was resolved.
+            
+            **Example Request:**
+            ```http
+            PUT /api/errorreport/resolve/error/id/111;
+            ```
+            </remarks>
+            <returns>Returns the updated error report with resolution details</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.ErrorReportController.DeleteErrorReport(System.Int32)">
+            <summary>
+            Deletes an error report by its unique identifier.
+            </summary>
+            <remarks>
+            *Only administrators can use this functionality*
+            This method permanently removes an error report from the system.
+            
+            **Request Parameters:**
+            - **errorId** (int): The unique identifier of the error report to delete.
+            
+            **Response Format:**
+            The response will return a boolean value:
+            - **true**: If the error report was successfully deleted.
+            - **false**: If the error report with the specified ID was not found.
+            
+            **Example Request:**
+            ```http
+            DELETE api/errorreport/delete/error/id/114;
+            ```
+            </remarks>
+            <returns>Returns true if deletion was successful, false if error report was not found</returns>
+        </member>
         <member name="M:AIMathProject.API.Controllers.ExerciseController.GetUnlockExerciseDetail(System.Int32,System.Int32)">
              <summary>
              Retrieves all locked exercises that have been unlocked for a specific enrollment.
@@ -1265,6 +1371,7 @@
             - User count statistics (current period, previous period, growth rate)
             - User engagement metrics (average usage time in minutes, change rate)
             - Revenue statistics (current and previous periods, growth rate)
+            - Error Report statistics (current and previous periods, growth rate)
             - Daily breakdown of user activity
             
             **Example Request:**
@@ -1279,15 +1386,51 @@
             <summary>
             Get daily revenue by date range with specific time
             </summary>
-            <remark>
+            <remarks>
+            This API retrieves daily revenue data for the specified date range with precise timestamps.
+            
+            **Request Parameters:**
+            - **startDateTime**: The beginning of the date range (inclusive)
+            - **endDateTime**: The end of the date range (inclusive)
+            
+            **Response Format:**
+            The response will return a list of daily revenue entries, each containing:
+            - **date** (DateTime): The specific date
+            - **totalRevenue** (decimal): Total revenue generated on that date
+            - **transactionCount** (int): Number of transactions on that date
+            - **averageTransaction** (decimal): Average transaction amount on that date
+            
             **Example Request:**
             ```http
-            GET /api/dailyrevenue/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
+            GET /api/revenue/daily/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
             ```
-            </remark>
-            <param name="startDateTime">Start date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
-            <param name="endDateTime">End date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
-            <returns>List of daily revenue data</returns>
+            </remarks>
+            <returns>Returns a list of daily revenue data for the specified date range</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.StatisticsController.GetDailyErrorReports(System.DateTime,System.DateTime)">
+            <summary>
+            Get daily error report data by date range with specific time
+            </summary>
+            <remarks>
+            This API retrieves daily error report statistics for the specified date range with precise timestamps.
+            
+            **Request Parameters:**
+            - **startDateTime**: The beginning of the date range (inclusive)
+            - **endDateTime**: The end of the date range (inclusive)
+            
+            **Response Format:**
+            The response will return a list of daily error report entries, each containing:
+            - **date** (DateTime): The specific date
+            - **totalErrors** (int): Total number of errors reported on that date
+            - **resolvedErrors** (int): Number of errors that have been resolved
+            - **unresolvedErrors** (int): Number of errors that remain unresolved
+            
+            **Example Request:**
+            ```http
+            GET /api/errors/daily/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
+            ```
+            </remarks>
+            <returns>Returns a list of daily error report statistics for the specified date range</returns>
         </member>
         <member name="M:AIMathProject.API.Controllers.TokenPackageController.GetAllTokenPackage">
             <summary>

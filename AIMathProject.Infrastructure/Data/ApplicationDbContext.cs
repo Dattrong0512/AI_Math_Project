@@ -282,7 +282,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .HasColumnType("datetime")
                 .HasColumnName("created_at");
             entity.Property(e => e.ErrorMessage)
-                .HasMaxLength(255)
+                .HasColumnType("nvarchar(max)")
                 .HasColumnName("error_message");
             entity.Property(e => e.ErrorType)
                 .HasMaxLength(10)
@@ -293,6 +293,9 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .HasDefaultValue(false)
                 .HasColumnName("resolved");
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.ResolvedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("resolved_at");
 
             entity.HasOne(d => d.User).WithMany(p => p.ErrorReports)
                 .HasForeignKey(d => d.UserId)

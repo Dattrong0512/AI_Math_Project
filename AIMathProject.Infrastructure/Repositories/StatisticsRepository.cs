@@ -179,5 +179,65 @@ namespace AIMathProject.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<int> GetErrorCountByPeriod(DateTime startDate, DateTime endDate)
+        {
+            return await _context.ErrorReports
+                .Where(e => e.CreatedAt >= startDate && e.CreatedAt <= endDate)
+                .CountAsync();
+        }
+
+        public async Task<double> GetErrorGrowthRate(DateTime currentPeriodStart, DateTime currentPeriodEnd, DateTime previousPeriodStart, DateTime previousPeriodEnd)
+        {
+            var currentCount = await GetErrorCountByPeriod(currentPeriodStart, currentPeriodEnd);
+            var previousCount = await GetErrorCountByPeriod(previousPeriodStart, previousPeriodEnd);
+
+            if (previousCount == 0)
+                return 100; 
+
+            return Math.Round(((double)(currentCount - previousCount) / previousCount) * 100, 2);
+        }
+
+        public async Task<List<(DateTime date, int totalErrors, int resolvedErrors, int unresolvedErrors)>> GetDailyErrorReportsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                // Lấy tất cả báo cáo lỗi trong khoảng thời gian
+                var errorReports = await _context.ErrorReports
+                    .Where(e => e.CreatedAt >= startDate && e.CreatedAt <= endDate)
+                    .Select(e => new
+                    {
+                        Date = e.CreatedAt.Value.Date,
+                        IsResolved = e.Resolved ?? false
+                    })
+                    .ToListAsync();
+
+                // Nhóm lỗi theo ngày và đếm số lượng
+                var result = errorReports
+                    .GroupBy(e => e.Date)
+                    .Select(g => new
+                    {
+                        Date = g.Key,
+                        TotalErrors = g.Count(),
+                        ResolvedErrors = g.Count(e => e.IsResolved),
+                        UnresolvedErrors = g.Count(e => !e.IsResolved)
+                    })
+                    .OrderBy(e => e.Date)
+                    .Select(e => (
+                        date: e.Date,
+                        totalErrors: e.TotalErrors,
+                        resolvedErrors: e.ResolvedErrors,
+                        unresolvedErrors: e.UnresolvedErrors
+                    ))
+                    .ToList();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

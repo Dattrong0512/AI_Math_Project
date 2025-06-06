@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 using System.Net.Mime;
+using AIMathProject.Application.Queries.Statistics;
 
 namespace AIMathProject.API.Controllers
 {
@@ -41,6 +42,7 @@ namespace AIMathProject.API.Controllers
         /// - User count statistics (current period, previous period, growth rate)
         /// - User engagement metrics (average usage time in minutes, change rate)
         /// - Revenue statistics (current and previous periods, growth rate)
+        /// - Error Report statistics (current and previous periods, growth rate)
         /// - Daily breakdown of user activity
         /// 
         /// **Example Request:**
@@ -83,15 +85,26 @@ namespace AIMathProject.API.Controllers
         /// <summary>
         /// Get daily revenue by date range with specific time
         /// </summary>
-        /// <remark>
+        /// <remarks>
+        /// This API retrieves daily revenue data for the specified date range with precise timestamps.
+        /// 
+        /// **Request Parameters:**
+        /// - **startDateTime**: The beginning of the date range (inclusive)
+        /// - **endDateTime**: The end of the date range (inclusive)
+        /// 
+        /// **Response Format:**
+        /// The response will return a list of daily revenue entries, each containing:
+        /// - **date** (DateTime): The specific date
+        /// - **totalRevenue** (decimal): Total revenue generated on that date
+        /// - **transactionCount** (int): Number of transactions on that date
+        /// - **averageTransaction** (decimal): Average transaction amount on that date
+        /// 
         /// **Example Request:**
         /// ```http
-        /// GET /api/dailyrevenue/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
+        /// GET /api/revenue/daily/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
         /// ```
-        /// </remark>
-        /// <param name="startDateTime">Start date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
-        /// <param name="endDateTime">End date and time (format: yyyy-MM-ddTHH:mm:ss)</param>
-        /// <returns>List of daily revenue data</returns>
+        /// </remarks>
+        /// <returns>Returns a list of daily revenue data for the specified date range</returns>
         [Authorize(Policy = "Admin")]
         [HttpGet("revenue/daily/startdate/{startDateTime}/enddate/{endDateTime}")]
         public async Task<ActionResult<List<DailyRevenueDto>>> GetDailyRevenueByDateRange(
@@ -105,6 +118,59 @@ namespace AIMathProject.API.Controllers
 
             var result = await _mediator.Send(new GetDailyRevenueByDateRangeQuery(startDateTime, endDateTime));
             return Ok(result);
+        }
+
+        /// <summary>
+        /// Get daily error report data by date range with specific time
+        /// </summary>
+        /// <remarks>
+        /// This API retrieves daily error report statistics for the specified date range with precise timestamps.
+        /// 
+        /// **Request Parameters:**
+        /// - **startDateTime**: The beginning of the date range (inclusive)
+        /// - **endDateTime**: The end of the date range (inclusive)
+        /// 
+        /// **Response Format:**
+        /// The response will return a list of daily error report entries, each containing:
+        /// - **date** (DateTime): The specific date
+        /// - **totalErrors** (int): Total number of errors reported on that date
+        /// - **resolvedErrors** (int): Number of errors that have been resolved
+        /// - **unresolvedErrors** (int): Number of errors that remain unresolved
+        /// 
+        /// **Example Request:**
+        /// ```http
+        /// GET /api/errors/daily/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00
+        /// ```
+        /// </remarks>
+        /// <returns>Returns a list of daily error report statistics for the specified date range</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpGet("errors/daily/startdate/{startDateTime}/enddate/{endDateTime}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<DailyErrorReportDto>>> GetDailyErrorReports(
+            [FromRoute] DateTime startDateTime,
+            [FromRoute] DateTime endDateTime)
+        {
+            try
+            {
+                if (startDateTime > endDateTime)
+                {
+                    return BadRequest("Start date must be before or equal to end date.");
+                }
+
+                var result = await _mediator.Send(new GetDailyErrorReportsQuery
+                {
+                    StartDate = startDateTime,
+                    EndDate = endDateTime
+                });
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while retrieving daily error reports: {ex.Message}");
+            }
         }
     }
 }

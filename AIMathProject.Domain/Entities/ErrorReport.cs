@@ -14,6 +14,7 @@ public partial class ErrorReport
     public string? ErrorType { get; set; }
 
     public DateTime? CreatedAt { get; set; }
+    public DateTime? ResolvedAt { get; set; }
 
     public bool? Resolved { get; set; }
 

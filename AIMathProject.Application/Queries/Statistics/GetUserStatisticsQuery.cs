@@ -63,6 +63,10 @@ namespace AIMathProject.Application.Queries.UserStatistics
             var previousRevenue = await _repository.GetRevenueByPeriod(previousStart, previousEnd);
             var revenueGrowthRate = await _repository.GetRevenueGrowthRate(currentStart, currentEnd, previousStart, previousEnd);
 
+            var currentErrorReport = await _repository.GetErrorCountByPeriod(currentStart, currentEnd);
+            var previousErrorReport = await _repository.GetErrorCountByPeriod(previousStart, previousEnd);
+            var errorReportGrowthRate = await _repository.GetErrorGrowthRate(currentStart, currentEnd, previousStart, previousEnd);
+
             var result = new StatisticsSummaryDto
             {
                 UserCounts = new UserCountStatisticsDto
@@ -85,6 +89,14 @@ namespace AIMathProject.Application.Queries.UserStatistics
                     CurrentRevenue = currentRevenue ?? 0,
                     PreviousRevenue = previousRevenue ?? 0,
                     GrowthRate = revenueGrowthRate,
+                    Period = period
+                },
+
+                ErrorReportStatistics = new ErrorReportStatisticsDto
+                {
+                    CurrentCount = currentErrorReport,
+                    PreviousCount = previousErrorReport,
+                    GrowthRate = errorReportGrowthRate,
                     Period = period
                 },
 

@@ -4,6 +4,7 @@ using AIMathProject.Application.Abstracts;
 using AIMathProject.Application.Command.Register;
 using AIMathProject.Application.Dto;
 using AIMathProject.Application.Dto.LessonDto;
+using AIMathProject.Application.Dto.ErrorReportDto;
 using AIMathProject.Application.Dto.ExerciseDto;
 using AIMathProject.Application.Dto.EnrollmentDto;
 using AIMathProject.Application.Dto.LessonProgressDto;
@@ -134,6 +135,7 @@ builder.Services.AddScoped<IExerciseRepository<ExerciseExtraForLessonDto>, Exerc
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
 builder.Services.AddScoped<IPaymentRepository<PaymentDto>, PaymentRepository>();
+builder.Services.AddScoped<IErrorReportRepository<ErrorReportDto>, ErrorReportRepository>();
 builder.Services.AddScoped<IPlanRepository<PlansDto>, PlanRepository>();
 builder.Services.AddScoped<ITokenPackageRepository<TokenPackageDto>, TokenPackageRepository>();
 builder.Services.AddScoped<IPaymentMethodRepository<MethodDto>, PaymentMethodRepository>();
