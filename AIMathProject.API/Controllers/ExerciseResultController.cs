@@ -75,7 +75,10 @@ namespace AIMathProject.API.Controllers
         [HttpGet("exerciseresult/enrollment/id/{id:int}/exercise/id/{exerciseid:int}")]
         public async Task<ActionResult<LessonDto>> GetExerciseResultByID([FromRoute] int id, [FromRoute] int exerciseid)
         {
-            return Ok(await _mediator.Send(new GetDetailExerciseResultByIdQuery(id, exerciseid)));
+            var result = await _mediator.Send(new GetDetailExerciseResultByIdQuery(id, exerciseid));
+            if (result == null)
+                return Ok(new{});
+            return Ok(result);
         }
 
         /// <summary>

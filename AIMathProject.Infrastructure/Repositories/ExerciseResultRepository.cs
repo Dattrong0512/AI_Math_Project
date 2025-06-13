@@ -56,7 +56,7 @@ namespace AIMathProject.Infrastructure.Repositories
 
             if (exerciseResult == null)
             {
-                throw new Exception("ExerciseResult not found.");
+                return null;
             }
 
             // Ánh xạ sang DTO
@@ -133,7 +133,7 @@ namespace AIMathProject.Infrastructure.Repositories
 
             if (!exerciseResults.Any())
             {
-                throw new Exception("ExerciseResults not found.");
+                return null;
             }
 
             var exerciseResultDtos = exerciseResults.Select(er => new ExerciseResultDto
