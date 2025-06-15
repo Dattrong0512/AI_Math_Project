@@ -106,14 +106,8 @@ namespace AIMathProject.Infrastructure.Repositories
                 Lesson = e.Lesson != null ? new LessonWithChapterDto
                 {
                     LessonName = e.Lesson.LessonName,
-                    Chapter = e.Lesson.Chapter != null ? new ChapterSummaryDto
-                    {
-                        ChapterId = e.Lesson.Chapter.ChapterId,
-                        ChapterName = e.Lesson.Chapter.ChapterName,
-                        ChapterOrder = e.Lesson.Chapter.ChapterOrder,
-                        Grade = e.Lesson.Chapter.Grade,
-                        Semester = e.Lesson.Chapter.Semester
-                    } : null
+                    ChapterName = e.Lesson.Chapter!.ChapterName,
+                    Grade = (short)e.Lesson.Chapter.Grade!
                 } : null,
                 ExerciseResults = e.ExerciseResults
                     .Where(er => er.EnrollmentId == enrollmentId)
@@ -124,12 +118,8 @@ namespace AIMathProject.Infrastructure.Repositories
                             er.ExerciseDetailResults.Select(edr => new ExerciseDetailResultSummaryDto
                             {
                                 IsCorrect = edr.IsCorrect,
-                                Question = edr.ExerciseDetail?.Question != null ? new QuestionSummaryDto
-                                {
-                                    Difficulty = edr.ExerciseDetail.Question.Difficulty,
-                                    ImgUrl = edr.ExerciseDetail.Question.ImgUrl,
-                                    QuestionContent = edr.ExerciseDetail.Question.QuestionContent
-                                } : null
+                                Difficulty = edr.ExerciseDetail!.Question!.Difficulty,
+                                QuestionContent = edr.ExerciseDetail.Question.QuestionContent,
                             }).ToList() : new List<ExerciseDetailResultSummaryDto>()
                     }).ToList()
             }).ToList();

@@ -11,6 +11,7 @@ namespace AIMathProject.Application.Dto.ExerciseDetailResultDto
     public class ExerciseDetailResultSummaryDto
     {
         public bool? IsCorrect { get; set; }
-        public QuestionSummaryDto? Question { get; set; }
+        public short? Difficulty { get; set; }
+        public string? QuestionContent { get; set; }
     }
 }
