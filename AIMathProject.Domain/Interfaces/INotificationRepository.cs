@@ -15,6 +15,8 @@ namespace AIMathProject.Domain.Interfaces
         public Task<bool> PushNotificationForAllUser(NotificationRequestDto requestDto);
         public Task<bool> PushNotificationForUserById(int userId, NotificationRequestDto requestDto);
         public Task<bool> UpdateStatusNotification(int notificationId);
+        Task<(List<T> items, int totalCount, int pageIndex, int pageSize)> GetAllNotificationPaginated(int pageIndex, int pageSize);
+        Task<(List<T> items, int totalCount, int pageIndex, int pageSize)> GetAllNotificationUserByIdPaginated(int pageIndex, int pageSize);
 
     }
 }

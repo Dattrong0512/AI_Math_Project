@@ -185,6 +185,78 @@ namespace AIMathProject.API.Controllers
                 return BadRequest("Failed to update notification status");
             }
         }
+
+        /// <summary>
+        /// Retrieves all notifications for admin users with pagination.
+        /// </summary>
+        /// <remarks>
+        /// *Only admin users can use this API.*
+        /// This API returns a paginated list of all notifications available in the system for administrative purposes.
+        /// Results are ordered by sent date in descending order (most recent first).
+        /// 
+        /// **Path Parameters:**
+        /// - **pageIndex**: Zero-based page index (0 for first page)
+        /// - **pageSize**: Number of items per page (recommended: 10-50)
+        /// 
+        /// **Example Requests:**
+        /// - First page with 10 items: `/api/notification/all/pageindex/0/pagesize/10`
+        /// - Second page with 20 items: `/api/notification/all/pageindex/1/pagesize/20`
+        /// </remarks>
+        /// <param name="pageIndex">Zero-based page index (0 for first page)</param>
+        /// <param name="pageSize">Number of items per page</param>
+        /// <returns>A paginated list of all notifications with total count information</returns>
+        [Authorize(Policy = "Admin")]
+        [HttpGet("all/pageindex/{pageIndex:int}/pagesize/{pageSize:int}")]
+        public async Task<IActionResult> GetAllNotificationPaginated([FromRoute] int pageIndex, [FromRoute] int pageSize)
+        {
+            if (pageIndex < 0)
+            {
+                return BadRequest("Page index must be 0 or greater.");
+            }
+
+            if (pageSize <= 0 || pageSize > 100)
+            {
+                return BadRequest("Page size must be between 1 and 100.");
+            }
+
+            return Ok(await _mediator.Send(new GetAllNotificationPaginatedQuery(pageIndex, pageSize)));
+        }
+
+        /// <summary>
+        /// Retrieves paginated notifications for the authenticated user.
+        /// </summary>
+        /// <remarks>
+        /// *Only authenticated users can use this API.*
+        /// This API returns a paginated list of notifications specific to the currently logged-in user.
+        /// Results are ordered by sent date in descending order (most recent first).
+        /// 
+        /// **Path Parameters:**
+        /// - **pageIndex**: Zero-based page index (0 for first page)
+        /// - **pageSize**: Number of items per page (recommended: 10-50)
+        /// 
+        /// **Example Requests:**
+        /// - First page with 10 items: `/api/notification/user/all/pageindex/0/pagesize/10`
+        /// - Second page with 20 items: `/api/notification/user/all/pageindex/1/pagesize/20`
+        /// </remarks>
+        /// <param name="pageIndex">Zero-based page index (0 for first page)</param>
+        /// <param name="pageSize">Number of items per page</param>
+        /// <returns>A paginated list of user notifications with total count information</returns>
+        [Authorize(Policy = "User")]
+        [HttpGet("user/all/pageindex/{pageIndex:int}/pagesize/{pageSize:int}")]
+        public async Task<IActionResult> GetAllNotificationByIdPaginated([FromRoute] int pageIndex, [FromRoute] int pageSize)
+        {
+            if (pageIndex < 0)
+            {
+                return BadRequest("Page index must be 0 or greater.");
+            }
+
+            if (pageSize <= 0 || pageSize > 100)
+            {
+                return BadRequest("Page size must be between 1 and 100.");
+            }
+
+            return Ok(await _mediator.Send(new GetAllNotificationByUserIdPaginatedQuery(pageIndex, pageSize)));
+        }
     }
 }
 

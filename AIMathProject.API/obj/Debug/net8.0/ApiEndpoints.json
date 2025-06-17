@@ -1110,6 +1110,27 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "GetAllNotificationPaginated",
+    "RelativePath": "api/notification/all/pageindex/{pageIndex}/pagesize/{pageSize}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageIndex",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
     "Method": "PushNotificationToUser",
     "RelativePath": "api/notification/user/{userId}",
     "HttpMethod": "POST",
@@ -1137,6 +1158,27 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.NotificationController",
+    "Method": "GetAllNotificationByIdPaginated",
+    "RelativePath": "api/notification/user/all/pageindex/{pageIndex}/pagesize/{pageSize}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageIndex",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

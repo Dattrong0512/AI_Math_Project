@@ -127,5 +127,57 @@ namespace AIMathProject.Infrastructure.Repositories
             _logger.LogError($"Failed to update notification status for ID {notificationId} and user ID {idUs}");
             return Task.FromResult(false);
         }
+
+        public async Task<(List<NotificationDto> items, int totalCount, int pageIndex, int pageSize)> GetAllNotificationPaginated(int pageIndex, int pageSize)
+        {
+            try
+            {
+                var totalCount = await _context.Notifications.CountAsync();
+
+                var notifications = await _context.Notifications
+                    .OrderByDescending(n => n.SentAt)
+                    .Skip(pageIndex * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+
+                var notificationDtos = notifications.TolistNotificationDto();
+
+                return (notificationDtos, totalCount, pageIndex, pageSize);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting paginated notifications");
+                throw;
+            }
+        }
+
+        public async Task<(List<NotificationDto> items, int totalCount, int pageIndex, int pageSize)> GetAllNotificationUserByIdPaginated(int pageIndex, int pageSize)
+        {
+            try
+            {
+                string userIdClaim = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                int idUs = int.Parse(userIdClaim);
+
+                var totalCount = await _context.Notifications
+                    .Where(n => n.UserId == idUs)
+                    .CountAsync();
+
+                var notifications = await _context.Notifications
+                    .Where(n => n.UserId == idUs)
+                    .OrderByDescending(n => n.SentAt)
+                    .Skip(pageIndex * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+
+                var notificationDtos = notifications.TolistNotificationDto();
+
+                return (notificationDtos, totalCount, pageIndex, pageSize);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting paginated notifications for user");
+                throw;
+            }
+        }
     }
 }
