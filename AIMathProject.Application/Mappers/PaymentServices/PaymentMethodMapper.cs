@@ -11,7 +11,8 @@ namespace AIMathProject.Application.Mappers.PaymentServices
             MethodDto dto = new MethodDto
             {
                 MethodId = method.MethodId,
-                MethodName = method.MethodName
+                MethodName = method.MethodName,
+                MethodIcon = method.MethodIcon
             };
             return dto;
         }

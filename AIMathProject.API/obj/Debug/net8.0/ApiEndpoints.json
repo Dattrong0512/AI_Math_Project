@@ -1296,6 +1296,42 @@
     ]
   },
   {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "GetAllPaymentsByUserPaginated",
+    "RelativePath": "api/payment/user/{userId}/pageindex/{pageIndex}/pagesize/{pageSize}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageIndex",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AIMathProject.Application.Dto.Pagination.Pagination\u00601[[AIMathProject.Application.Dto.Payment.PaymentDto.PaymentDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "AIMathProject.API.Controllers.PaymentMethodController",
     "Method": "GetAllPaymentMethod",
     "RelativePath": "api/paymentmethod",

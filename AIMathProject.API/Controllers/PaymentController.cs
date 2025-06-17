@@ -289,5 +289,50 @@ namespace AIMathProject.API.Controllers
             return Ok(payments);
         }
 
+
+        /// <summary>
+        /// Retrieves paginated payment information for a specific user.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this API*  
+        /// This API fetches paginated payment details for a specific user, including payment method, plan, and token package information.
+        /// Results are ordered by date in descending order (most recent first).
+        /// 
+        /// **Path Parameters:**
+        /// - **userId**: The ID of the user whose payment information is to be retrieved
+        /// - **pageIndex**: Zero-based page index (0 for first page)
+        /// - **pageSize**: Number of items per page (recommended: 10-50)
+        ///
+        /// **Example Request:**  
+        /// ```http
+        /// GET /api/payment/user/1/pageindex/0/pagesize/10
+        /// ``` 
+        /// </remarks>
+        /// <param name="userId">The ID of the user whose payment information is to be retrieved</param>
+        /// <param name="pageIndex">Zero-based page index (0 for first page)</param>
+        /// <param name="pageSize">Number of items per page</param>
+        /// <returns>Returns paginated payment details for the user</returns>
+        /// <response code="200">Returns the payment information successfully.</response>
+        /// <response code="400">Indicates invalid pagination parameters.</response>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpGet("api/payment/user/{userId:int}/pageindex/{pageIndex:int}/pagesize/{pageSize:int}")]
+        public async Task<ActionResult<Pagination<PaymentDto>>> GetAllPaymentsByUserPaginated(
+            [FromRoute] int userId,
+            [FromRoute] int pageIndex,
+            [FromRoute] int pageSize)
+        {
+            if (pageIndex < 0)
+            {
+                return BadRequest("Page index must be 0 or greater.");
+            }
+
+            if (pageSize <= 0 || pageSize > 100)
+            {
+                return BadRequest("Page size must be between 1 and 100.");
+            }
+
+            var payments = await _mediator.Send(new GetAllPaymentsByUserPaginatedQuery(userId, pageIndex, pageSize));
+            return Ok(payments);
+        }
     }
 }

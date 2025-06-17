@@ -9,5 +9,7 @@ public partial class PaymentMethod
 
     public string MethodName { get; set; } = null!;
 
+    public string MethodIcon { get; set; } = null!;
+
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 }

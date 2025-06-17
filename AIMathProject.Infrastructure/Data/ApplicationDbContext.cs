@@ -606,6 +606,9 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.Property(e => e.MethodName)
                 .HasMaxLength(255)
                 .HasColumnName("method_name");
+            entity.Property(e => e.MethodIcon)
+                .HasMaxLength(255)
+                .HasColumnName("method_icon");
         });
 
         modelBuilder.Entity<Plan>(entity =>

@@ -10,7 +10,9 @@ namespace AIMathProject.Application.Dto.Payment.MethodDto
     public class MethodDto
     {
         public int? MethodId { get; set; } 
-        public string? MethodName { get; set; } 
+        public string? MethodName { get; set; }
+
+        public string? MethodIcon { get; set; }
     }
 
 }

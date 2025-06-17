@@ -1340,6 +1340,32 @@
             <param name="pageSize">Number of items per page</param>
             <returns>A list of all payments matching the filter criteria</returns>
         </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.GetAllPaymentsByUserPaginated(System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Retrieves paginated payment information for a specific user.
+             </summary>
+             <remarks>
+             *Only logged in users can use this API*  
+             This API fetches paginated payment details for a specific user, including payment method, plan, and token package information.
+             Results are ordered by date in descending order (most recent first).
+             
+             **Path Parameters:**
+             - **userId**: The ID of the user whose payment information is to be retrieved
+             - **pageIndex**: Zero-based page index (0 for first page)
+             - **pageSize**: Number of items per page (recommended: 10-50)
+            
+             **Example Request:**  
+             ```http
+             GET /api/payment/user/1/pageindex/0/pagesize/10
+             ``` 
+             </remarks>
+             <param name="userId">The ID of the user whose payment information is to be retrieved</param>
+             <param name="pageIndex">Zero-based page index (0 for first page)</param>
+             <param name="pageSize">Number of items per page</param>
+             <returns>Returns paginated payment details for the user</returns>
+             <response code="200">Returns the payment information successfully.</response>
+             <response code="400">Indicates invalid pagination parameters.</response>
+        </member>
         <member name="M:AIMathProject.API.Controllers.PaymentMethodController.GetAllPaymentMethod">
             <summary>
             Only logged user can use this api (include admin and user).

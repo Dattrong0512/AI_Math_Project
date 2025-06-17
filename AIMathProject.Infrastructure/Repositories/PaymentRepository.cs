@@ -7,12 +7,6 @@ using AIMathProject.Domain.Interfaces;
 using AIMathProject.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AIMathProject.Infrastructure.Repositories
 {
@@ -70,7 +64,8 @@ namespace AIMathProject.Infrastructure.Repositories
                     Method = new MethodDto
                     {
                         MethodId = pmt.MethodId,
-                        MethodName = pmt.MethodName
+                        MethodName = pmt.MethodName,
+                        MethodIcon = pmt.MethodIcon
                     },
                     Plan = pl != null ? new PlansDto
                     {
@@ -113,7 +108,8 @@ namespace AIMathProject.Infrastructure.Repositories
                     Method = new MethodDto
                     {
                         MethodId = pmt.MethodId,
-                        MethodName = pmt.MethodName
+                        MethodName = pmt.MethodName,
+                        MethodIcon = pmt.MethodIcon
                     },
                     Plan = pl != null ? new PlansDto
                     {
@@ -157,7 +153,8 @@ namespace AIMathProject.Infrastructure.Repositories
                                 Method = new MethodDto
                                 {
                                     MethodId = pmt.MethodId,
-                                    MethodName = pmt.MethodName
+                                    MethodName = pmt.MethodName,
+                                    MethodIcon = pmt.MethodIcon
                                 },
                                 Plan = pl != null ? new PlansDto
                                 {
@@ -180,6 +177,68 @@ namespace AIMathProject.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                throw;
+            }
+        }
+
+        public async Task<(List<PaymentDto> items, int totalCount, int pageIndex, int pageSize)> GetAllPaymentsByUserPaginated(int userId, int pageIndex, int pageSize)
+        {
+            try
+            {
+                int walletId = _context.Wallets
+                    .Where(w => w.UserId == userId)
+                    .Select(w => w.WalletId)
+                    .FirstOrDefault();
+
+                var totalCount = await _context.Payments
+                    .Where(p => p.WalletId == walletId)
+                    .CountAsync();
+
+                var query = from pm in _context.Payments
+                            join pmt in _context.PaymentMethods
+                            on pm.MethodId equals pmt.MethodId
+                            join pl in _context.Plans
+                            on pm.PlanId equals pl.PlanId into planGroup
+                            from pl in planGroup.DefaultIfEmpty()
+                            where pm.WalletId == walletId
+                            select new PaymentDto
+                            {
+                                PaymentId = pm.PaymentId,
+                                MethodId = pm.MethodId,
+                                WalletId = pm.WalletId,
+                                TransactionID = pm.TransactionId,
+                                PlanId = pm.PlanId,
+                                Date = pm.Date,
+                                Description = pm.Description,
+                                Status = pm.Status,
+                                Price = pm.Price,
+                                Method = new MethodDto
+                                {
+                                    MethodId = pmt.MethodId,
+                                    MethodName = pmt.MethodName,
+                                    MethodIcon = pmt.MethodIcon
+                                },
+                                Plan = pl != null ? new PlansDto
+                                {
+                                    PlanId = pl.PlanId,
+                                    PlanName = pl.PlanName,
+                                    Price = pl.Price,
+                                    Coins = pl.Coins,
+                                    Description = pl.Description,
+                                } : null
+                            };
+
+                var items = await query
+                    .OrderByDescending(p => p.Date)
+                    .Skip(pageIndex * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+
+                return (items, totalCount, pageIndex, pageSize);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting paginated payments for user {UserId}", userId);
                 throw;
             }
         }

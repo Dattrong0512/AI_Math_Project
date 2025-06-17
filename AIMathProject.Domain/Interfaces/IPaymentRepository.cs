@@ -13,5 +13,7 @@ namespace AIMathProject.Domain.Interfaces
         Task<List<T>> GetAllPayment(int userID);
         Task<T> GetLatestPayment(int userID);
         Task<(List<T> items, int totalCount, int pageIndex, int pageSize)> GetAllPaymentsPaginated(int pageIndex, int pageSize);
+
+        Task<(List<T> items, int totalCount, int pageIndex, int pageSize)> GetAllPaymentsByUserPaginated(int userId, int pageIndex, int pageSize);
     }
 }
