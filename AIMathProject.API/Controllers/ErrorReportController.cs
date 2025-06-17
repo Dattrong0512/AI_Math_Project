@@ -52,7 +52,7 @@ namespace AIMathProject.API.Controllers
         /// <param name="id">The user ID reporting the error</param>
         /// <param name="request">The error report request containing the error message</param>
         /// <returns>Returns the created error report</returns>
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = "UserOrAdmin")]
         [HttpPost("user/{id:int}")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ErrorReportDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
