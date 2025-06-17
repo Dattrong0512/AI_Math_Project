@@ -75,7 +75,9 @@ namespace AIMathProject.Application.Command.Register
             }
             else if (request.Role == "User")
             {
-                await _userRepository.CreateUserWallet(user.Id, cancellationToken);
+                await  _userRepository.CreateUserWallet(user.Id, cancellationToken);
+                await _userRepository.CreateNotification(user.Id);
+
             }
 
             return Unit.Value;

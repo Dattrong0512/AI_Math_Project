@@ -374,6 +374,217 @@
         }
       }
     },
+    "/api/errorreport/user/{id}": {
+      "post": {
+        "tags": [
+          "ErrorReport"
+        ],
+        "summary": "Creates a new error report from a user",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates a new error report with the provided error message.\r\nThe error_type is automatically set to \"user\" and resolved is set to false (0).\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/ErrorReport/user/123\r\nContent-Type: application/json\r\n\r\n{\r\n    \"errorMessage\": \"Cannot access lesson content\"\r\n}\r\n```\r\n\r\n**Response Format:**\r\nThe response will return the complete details of the created error report.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The user ID reporting the error",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The error report request containing the error message",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErrorReportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorReportDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/errorreport/error/filter": {
+      "get": {
+        "tags": [
+          "ErrorReport"
+        ],
+        "summary": "Retrieves error reports with advanced filtering, searching, and pagination capabilities.",
+        "description": "*Only administrators can use this functionality*\r\nThis method retrieves error reports based on various filter criteria with pagination support.\r\n\r\n**Request Parameters:**\r\n- **searchTerm** (string, optional): Text to search in error message field or error ID.\r\n- **errorType** (string, optional): Filter by error type (e.g., \"user\", \"procedure\", \"unknown\").\r\n- **resolved** (bool?, optional): Filter by resolution status (true for resolved, false for unresolved).\r\n- **pageNumber** (int, optional): The page number for pagination (starts from 1, default: 1).\r\n- **pageSize** (int, optional): Number of records per page (default: 10).\r\n- **newestFirst** (bool, optional): Sort order (true for newest first, false for oldest first, default: true).\r\n\r\n**Response Format:**\r\nThe response will return a list of error reports matching the criteria, each containing:\r\n- **errorId** (int): The unique identifier of the error report.\r\n- **userId** (int): The ID of the user who reported the error.\r\n- **errorMessage** (string): The description of the error.\r\n- **errorType** (string): The type of error.\r\n- **createdAt** (DateTime): The timestamp when the error was reported.\r\n- **resolved** (bool): The resolution status.\r\n- **resolvedAt** (DateTime?): The timestamp when the error was resolved, if applicable.",
+        "parameters": [
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "errorType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resolved",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorReportDtoPagination"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/errorreport/resolve/error/id/{id}": {
+      "put": {
+        "tags": [
+          "ErrorReport"
+        ],
+        "summary": "Marks an error report as resolved.",
+        "description": "*Only administrators can use this functionality*\r\nThis method updates an error report's status to resolved and sets the resolution timestamp.\r\n\r\n**Request Parameters:**\r\n- **errorId** (int): The unique identifier of the error report to resolve.\r\n\r\n**Response Format:**\r\nThe response will return the updated error report details including:\r\n- **errorId** (int): The unique identifier of the error report.\r\n- **userId** (int): The ID of the user who reported the error.\r\n- **errorMessage** (string): The description of the error.\r\n- **errorType** (string): The type of error.\r\n- **createdAt** (DateTime): The timestamp when the error was reported.\r\n- **resolved** (bool): The resolution status (set to true).\r\n- **resolvedAt** (DateTime): The timestamp when the error was resolved.\r\n\r\n**Example Request:**\r\n```http\r\nPUT /api/errorreport/resolve/error/id/111;\r\n```",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorReportDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/errorreport/delete/error/id/{id}": {
+      "delete": {
+        "tags": [
+          "ErrorReport"
+        ],
+        "summary": "Deletes an error report by its unique identifier.",
+        "description": "*Only administrators can use this functionality*\r\nThis method permanently removes an error report from the system.\r\n\r\n**Request Parameters:**\r\n- **errorId** (int): The unique identifier of the error report to delete.\r\n\r\n**Response Format:**\r\nThe response will return a boolean value:\r\n- **true**: If the error report was successfully deleted.\r\n- **false**: If the error report with the specified ID was not found.\r\n\r\n**Example Request:**\r\n```http\r\nDELETE api/errorreport/delete/error/id/114;\r\n```",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/exercise/detail/enrollment/id/{id}/grade/{grade}": {
       "get": {
         "tags": [
@@ -1805,7 +2016,7 @@
           "Statistics"
         ],
         "summary": "Get user statistics for a specific time period",
-        "description": "This API retrieves comprehensive user statistics based on the specified time period.\r\n\r\n**Period Types:**\r\n- **day**: Statistics for the current day compared to the previous day\r\n- **week**: Statistics for the current week compared to the previous week\r\n- **month**: Statistics for the current month compared to the previous month\r\n- **year**: Statistics for the current year compared to the previous year\r\n\r\n**Response includes:**\r\n- User count statistics (current period, previous period, growth rate)\r\n- User engagement metrics (average usage time in minutes, change rate)\r\n- Revenue statistics (current and previous periods, growth rate)\r\n- Daily breakdown of user activity\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/users/statistics/week\r\n```",
+        "description": "This API retrieves comprehensive user statistics based on the specified time period.\r\n\r\n**Period Types:**\r\n- **day**: Statistics for the current day compared to the previous day\r\n- **week**: Statistics for the current week compared to the previous week\r\n- **month**: Statistics for the current month compared to the previous month\r\n- **year**: Statistics for the current year compared to the previous year\r\n\r\n**Response includes:**\r\n- User count statistics (current period, previous period, growth rate)\r\n- User engagement metrics (average usage time in minutes, change rate)\r\n- Revenue statistics (current and previous periods, growth rate)\r\n- Error Report statistics (current and previous periods, growth rate)\r\n- Daily breakdown of user activity\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/users/statistics/week\r\n```",
         "parameters": [
           {
             "name": "periodType",
@@ -1837,11 +2048,11 @@
           "Statistics"
         ],
         "summary": "Get daily revenue by date range with specific time",
+        "description": "This API retrieves daily revenue data for the specified date range with precise timestamps.\r\n\r\n**Request Parameters:**\r\n- **startDateTime**: The beginning of the date range (inclusive)\r\n- **endDateTime**: The end of the date range (inclusive)\r\n\r\n**Response Format:**\r\nThe response will return a list of daily revenue entries, each containing:\r\n- **date** (DateTime): The specific date\r\n- **totalRevenue** (decimal): Total revenue generated on that date\r\n- **transactionCount** (int): Number of transactions on that date\r\n- **averageTransaction** (decimal): Average transaction amount on that date\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/revenue/daily/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00\r\n```",
         "parameters": [
           {
             "name": "startDateTime",
             "in": "path",
-            "description": "Start date and time (format: yyyy-MM-ddTHH:mm:ss)",
             "required": true,
             "schema": {
               "type": "string",
@@ -1851,7 +2062,6 @@
           {
             "name": "endDateTime",
             "in": "path",
-            "description": "End date and time (format: yyyy-MM-ddTHH:mm:ss)",
             "required": true,
             "schema": {
               "type": "string",
@@ -1872,6 +2082,63 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/errors/daily/startdate/{startDateTime}/enddate/{endDateTime}": {
+      "get": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Get daily error report data by date range with specific time",
+        "description": "This API retrieves daily error report statistics for the specified date range with precise timestamps.\r\n\r\n**Request Parameters:**\r\n- **startDateTime**: The beginning of the date range (inclusive)\r\n- **endDateTime**: The end of the date range (inclusive)\r\n\r\n**Response Format:**\r\nThe response will return a list of daily error report entries, each containing:\r\n- **date** (DateTime): The specific date\r\n- **totalErrors** (int): Total number of errors reported on that date\r\n- **resolvedErrors** (int): Number of errors that have been resolved\r\n- **unresolvedErrors** (int): Number of errors that remain unresolved\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/errors/daily/startdate/2025-05-01T08:30:00/enddate/2025-06-01T17:45:00\r\n```",
+        "parameters": [
+          {
+            "name": "startDateTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDateTime",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DailyErrorReportDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -2434,6 +2701,28 @@
         },
         "additionalProperties": false
       },
+      "DailyErrorReportDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "errorCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "resolvedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unresolvedCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "DailyRevenueDto": {
         "type": "object",
         "properties": {
@@ -2489,6 +2778,102 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorReportDto": {
+        "type": "object",
+        "properties": {
+          "errorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resolvedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "resolved": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorReportDtoPagination": {
+        "type": "object",
+        "properties": {
+          "pageIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorReportDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorReportRequest": {
+        "required": [
+          "errorMessage"
+        ],
+        "type": "object",
+        "properties": {
+          "errorMessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorReportStatisticsDto": {
+        "type": "object",
+        "properties": {
+          "currentCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "previousCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "growthRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "period": {
+            "$ref": "#/components/schemas/PeriodStatisticsDto"
           }
         },
         "additionalProperties": false
@@ -3198,6 +3583,9 @@
               "$ref": "#/components/schemas/UserDailyStatisticsDto"
             },
             "nullable": true
+          },
+          "errorReportStatistics": {
+            "$ref": "#/components/schemas/ErrorReportStatisticsDto"
           },
           "revenueStatistics": {
             "$ref": "#/components/schemas/RevenueStatisticsDto"

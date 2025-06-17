@@ -1,9 +1,11 @@
 ﻿using AIMathProject.Application.Abstracts;
 using AIMathProject.Application.Dto;
+using AIMathProject.Application.Dto.Notification;
 using AIMathProject.Application.Dto.Pagination;
 using AIMathProject.Application.Dto.UserDto;
 using AIMathProject.Domain.Entities;
 using AIMathProject.Domain.Exceptions;
+using AIMathProject.Domain.Requests;
 using AIMathProject.Infrastructure.Data;
 using AutoMapper;
 using MediatR;
@@ -183,6 +185,25 @@ namespace AIMathProject.Infrastructure.Repositories
 
             _context.Wallets.Add(wallet);
             await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task CreateNotification(int UserId)
+        {
+            if(UserId != null)
+            {
+                Notification noti = new Notification()
+                {
+                    UserId = UserId,
+                    NotificationType = "Info",
+                    NotificationTitle = "Chào mừng",
+                    NotificationMessage = "Chào mừng thành viên mới",
+                    SentAt = DateTime.Now,
+                    Status = "Unread"                  
+                }
+                ;
+                _context.Notifications.Add(noti);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

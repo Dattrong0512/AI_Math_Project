@@ -1,5 +1,6 @@
 ﻿using AIMathProject.Application.Dto.Pagination;
 using AIMathProject.Application.Dto.UserDto;
+using AIMathProject.Application.Queries.Notification;
 using AIMathProject.Domain.Entities;
 using MediatR;
 using System;
@@ -19,5 +20,7 @@ namespace AIMathProject.Application.Abstracts
         Task<UserDto> GetInfoUserLogin();
 
         Task CreateUserWallet(int userId, CancellationToken cancellationToken);
+
+        Task CreateNotification(int UserId);
     }
 }
