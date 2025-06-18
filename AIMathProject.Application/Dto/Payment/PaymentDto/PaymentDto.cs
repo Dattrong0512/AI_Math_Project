@@ -9,6 +9,8 @@ namespace AIMathProject.Application.Dto.Payment.PaymentDto
 
             public int MethodId { get; set; }
 
+            public int UserId { get; set; }
+
             public int WalletId { get; set; }
 
             public string? OrderID { get; set; }

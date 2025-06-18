@@ -16,6 +16,7 @@ namespace AIMathProject.Application.Mappers.PaymentServices
                 PaymentId = payment.PaymentId,
                 MethodId = payment.MethodId,
                 WalletId = payment.WalletId,
+                UserId = payment.Wallet.UserId,
                 PlanId = payment.PlanId,
                 Date = payment.Date,
                 Description = payment.Description,
@@ -53,7 +54,6 @@ namespace AIMathProject.Application.Mappers.PaymentServices
                 TransactionId = dto.TransactionID,
                 Method = null,
                 Plan = null,
-
             };
             return payment;
          }

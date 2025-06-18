@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Security.Claims;
 
 namespace AIMathProject.Infrastructure.Repositories
@@ -45,18 +46,32 @@ namespace AIMathProject.Infrastructure.Repositories
 
         public async Task<Pagination<UserDto>> GetInfoUser(int pageIndex, int pageSize)
         {
-            List<User> listUser = await _context.Users
+            List<User> users = await _context.Users
                                         .OrderBy(u => u.Id)
                                         .Skip(pageIndex * pageSize)
                                         .Take(pageSize)
                                         .ToListAsync();
-            
+
+            var userDtos = new List<UserDto>();
+
+            foreach (var user in users)
+            {
+                var userDto = _mapper.Map<UserDto>(user);
+                // Lấy role đầu tiên của người dùng (vì mỗi người chỉ có một role)
+                var roles = await _userManager.GetRolesAsync(user);
+                if (roles.Contains("Admin"))
+                    userDto.Role = "Admin";
+                else if (roles.Contains("User"))
+                    userDto.Role = "User";
+                userDtos.Add(userDto);
+            }
+
             Pagination<UserDto> pagination = new Pagination<UserDto>
             {
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 TotalCount = await _context.Users.CountAsync(),
-                Items = _mapper.Map<List<UserDto>>(listUser) // Sửa ở đây
+                Items = userDtos
             };
             return pagination;
         }
@@ -82,7 +97,15 @@ namespace AIMathProject.Infrastructure.Repositories
                 throw new NoDataFoundException("user");
             }
 
-            return _mapper.Map<UserDto>(user);
+            var userDto = _mapper.Map<UserDto>(user);
+            var roles = await _userManager.GetRolesAsync(user);
+            // Lấy role của người dùng
+            if (roles.Contains("Admin"))
+                userDto.Role = "Admin";
+            else if (roles.Contains("User"))
+                userDto.Role = "User";
+
+            return userDto;
         }
 
         public async Task<User?> GetUserByRefreshTokenAsync(string refreshToken)
@@ -163,12 +186,26 @@ namespace AIMathProject.Infrastructure.Repositories
                 .Take(pageSize)
                 .ToListAsync();
 
+            var userDtos = new List<UserDto>();
+
+            foreach (var user in users)
+            {
+                var userDto = _mapper.Map<UserDto>(user);
+                // Lấy role đầu tiên của người dùng
+                var roles = await _userManager.GetRolesAsync(user);
+                if (roles.Contains("Admin"))
+                    userDto.Role = "Admin";
+                else if (roles.Contains("User"))
+                    userDto.Role = "User";
+                userDtos.Add(userDto);
+            }
+
             Pagination<UserDto> pagination = new Pagination<UserDto>
             {
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 TotalCount = totalCount,
-                Items = _mapper.Map<List<UserDto>>(users)
+                Items = userDtos
             };
 
             return pagination;

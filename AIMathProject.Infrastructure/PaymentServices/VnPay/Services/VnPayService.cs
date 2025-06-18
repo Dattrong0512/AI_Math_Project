@@ -207,6 +207,7 @@ namespace AIMathProject.Infrastructure.PaymentServices.VnPay.Services
                 PaymentDto paymentDto = new PaymentDto
                 {
                     MethodId = 1,
+                    UserId = userId,
                     WalletId = wallet_id,
                     OrderID = vnp_OrderId,
                     TransactionID = vnp_TransactionID,

@@ -17,7 +17,7 @@ namespace AIMathProject.Application.Mappers
     {
         public AutoMapperConfig()
         {
-            CreateMap<User, UserDto>().ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
+            CreateMap<User, UserDto>().ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id)).ForMember(dest => dest.NormalizedUserName, opt => opt.MapFrom(src => src.NormalizedUserName));
             CreateMap<Chapter, ChapterDto>();
         }
 

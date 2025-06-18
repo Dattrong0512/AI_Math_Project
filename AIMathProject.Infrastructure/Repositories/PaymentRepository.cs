@@ -54,6 +54,7 @@ namespace AIMathProject.Infrastructure.Repositories
                 {
                     PaymentId = pm.PaymentId,
                     MethodId = pm.MethodId,
+                    UserId = pm.Wallet.UserId,
                     WalletId = pm.WalletId,
                     TransactionID = pm.TransactionId,
                     PlanId = pm.PlanId,
@@ -99,6 +100,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     PaymentId = pm.PaymentId,
                     MethodId = pm.MethodId,
                     WalletId = pm.WalletId,
+                    UserId = pm.Wallet.UserId,
                     TransactionID = pm.TransactionId,
                     PlanId = pm.PlanId,
                     Date = pm.Date,
@@ -142,6 +144,7 @@ namespace AIMathProject.Infrastructure.Repositories
                             select new PaymentDto
                             {
                                 PaymentId = pm.PaymentId,
+                                UserId = pm.Wallet.UserId,
                                 MethodId = pm.MethodId,
                                 WalletId = pm.WalletId,
                                 TransactionID = pm.TransactionId,
@@ -206,6 +209,7 @@ namespace AIMathProject.Infrastructure.Repositories
                                 PaymentId = pm.PaymentId,
                                 MethodId = pm.MethodId,
                                 WalletId = pm.WalletId,
+                                UserId = pm.Wallet.UserId,
                                 TransactionID = pm.TransactionId,
                                 PlanId = pm.PlanId,
                                 Date = pm.Date,
