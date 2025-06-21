@@ -17,6 +17,8 @@ public partial class Question
 
     public string? QuestionContent { get; set; }
 
+    public string? QuestionPrompt { get; set; }
+
     public string? PdfSolution { get; set; }
 
     public virtual ICollection<ChoiceAnswer> ChoiceAnswers { get; set; } = new List<ChoiceAnswer>();

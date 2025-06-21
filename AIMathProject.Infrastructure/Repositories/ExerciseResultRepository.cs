@@ -64,6 +64,7 @@ namespace AIMathProject.Infrastructure.Repositories
             {
                 ExerciseId = exerciseResult.ExerciseId,
                 EnrollmentId = exerciseResult.EnrollmentId,
+                CompletionTime = exerciseResult.CompletionTime,
                 Score = exerciseResult.Score,
                 DoneAt = exerciseResult.DoneAt,
                 ExerciseDetailResults = exerciseResult.ExerciseDetailResults
@@ -140,6 +141,7 @@ namespace AIMathProject.Infrastructure.Repositories
             {
                 ExerciseId = er.ExerciseId,
                 EnrollmentId = er.EnrollmentId,
+                CompletionTime = er.CompletionTime,
                 Score = er.Score,
                 DoneAt = er.DoneAt,
                 ExerciseDetailResults = er.ExerciseDetailResults

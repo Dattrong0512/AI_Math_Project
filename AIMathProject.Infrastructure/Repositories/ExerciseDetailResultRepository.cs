@@ -15,30 +15,35 @@ namespace AIMathProject.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<bool> UpsertExerciseDetailResult(int enrollment_id, int exerciseId, List<ExerciseDetailResultDto> edrDtoList)
+        public async Task<bool> UpsertExerciseDetailResult(int enrollment_id, int exerciseId, List<ExerciseDetailResultDto> edrDtoList, int completionTime)
         {
             // Tìm ExerciseResult dựa trên enrollmentId và exerciseId
-            var exerciseResultId = (from er in _context.ExerciseResults
-                                    where er.EnrollmentId == enrollment_id && er.ExerciseId == exerciseId
-                                    select er.ExerciseResultId).FirstOrDefault();
-
+            var exerciseResult = _context.ExerciseResults
+                        .FirstOrDefault(er => er.EnrollmentId == enrollment_id && er.ExerciseId == exerciseId);
             // Nếu chưa có ExerciseResult, tạo mới
-            if (exerciseResultId == 0)
+            if (exerciseResult == null)
             {
-                ExerciseResult exerciseResult = new ExerciseResult
+                exerciseResult = new ExerciseResult
                 {
                     ExerciseId = exerciseId,
                     EnrollmentId = enrollment_id,
+                    CompletionTime = completionTime,
+                    DoneAt = DateTime.UtcNow,
                 };
 
                 await _context.ExerciseResults.AddAsync(exerciseResult);
                 await _context.SaveChangesAsync();
-
-                // Lấy ID của ExerciseResult vừa tạo
-                exerciseResultId = (from er in _context.ExerciseResults
-                                    where er.EnrollmentId == enrollment_id && er.ExerciseId == exerciseId
-                                    select er.ExerciseResultId).FirstOrDefault();
             }
+            else
+            {
+                // Cập nhật CompletionTime
+                exerciseResult.CompletionTime = completionTime;
+                exerciseResult.DoneAt = DateTime.UtcNow;
+                _context.ExerciseResults.Update(exerciseResult);
+                await _context.SaveChangesAsync();
+            }
+
+            int exerciseResultId = exerciseResult.ExerciseResultId;
 
             // Cập nhật hoặc thêm mới từng ExerciseDetailResult
             foreach (var edrItem in edrDtoList)

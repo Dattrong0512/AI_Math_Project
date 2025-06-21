@@ -41,6 +41,7 @@ namespace AIMathProject.API.Controllers
         /// - **exerciseId** (int): The unique identifier of the exercise.
         /// - **enrollmentId** (int): The ID of the enrollment.
         /// - **score** (decimal, nullable): The score achieved for this exercise.
+        /// - **completionTime** (int, nullable): The time taken to complete the exercise in seconds.
         /// - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
         ///   - **isCorrect** (bool, nullable): Whether the answer is correct or not.
@@ -55,6 +56,7 @@ namespace AIMathProject.API.Controllers
         ///     - **question** (object, nullable): The complete question information, including:
         ///       - **questionId** (int): The unique identifier of the question.
         ///       - **questionType** (string): The type of question (e.g., "multiple_choice").
+        ///       - **questionPrompt** (string): The prompt for AI of the question.
         ///       - **difficulty** (int): The difficulty level of the question.
         ///       - **lessonId** (int): The ID of the associated lesson.
         ///       - **imgUrl** (string): The URL of an image related to the question.
@@ -96,6 +98,7 @@ namespace AIMathProject.API.Controllers
         /// - **exerciseId** (int): The unique identifier of the exercise.
         /// - **enrollmentId** (int): The ID of the enrollment.
         /// - **score** (decimal, nullable): The score achieved for this exercise.
+        /// - **completionTime** (int, nullable): The time taken to complete the exercise in seconds.
         /// - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
         /// - **exerciseDetailResults** (array): List of exercise detail results, each containing:
         ///   - **isCorrect** (bool, nullable): Whether the answer is correct or not.

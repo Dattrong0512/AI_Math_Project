@@ -15,6 +15,8 @@ public partial class Exercise
 
     public bool? IsLocked { get; set; }
 
+    public int? TimeLimit { get; set; }
+
     public virtual ICollection<ExerciseDetail> ExerciseDetails { get; set; } = new List<ExerciseDetail>();
 
     public virtual ICollection<ExerciseResult> ExerciseResults { get; set; } = new List<ExerciseResult>();

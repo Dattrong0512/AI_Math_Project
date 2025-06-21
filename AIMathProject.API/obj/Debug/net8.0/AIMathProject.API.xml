@@ -462,27 +462,29 @@
              <param name="id">The enrollment ID of the user.</param>
              <returns>Returns a list of exercises with chapter information for the specified enrollment ID.</returns>
         </member>
-        <member name="M:AIMathProject.API.Controllers.ExerciseDetailResultController.UpsertExerciseDetailResult(System.Int32,System.Int32,System.Collections.Generic.List{AIMathProject.Application.Dto.ExerciseDetailResultDto.ExerciseDetailResultDto})">
+        <member name="M:AIMathProject.API.Controllers.ExerciseDetailResultController.UpsertExerciseDetailResult(System.Int32,System.Int32,AIMathProject.Application.Dto.ExerciseDetailResultDto.ExerciseResultSubmissionDto)">
             <summary>
             Creates or updates exercise detail results for a user's enrollment in a specific exercise.
             </summary>
             <remarks>
             *Only logged in users can use this api (including user and admin)*
-            This API creates or updates the exercise detail results based on the user's answers.
+            This API creates or updates the exercise detail results based on the user's answers and completion time.
             
             **Request Parameters:**
             - **id** (int): The enrollment ID of the user.
             - **exerciseid** (int): The exercise id of the exercise.
-            - **edrDtoList** (List&lt;ExerciseDetailResultDto&gt;): List of exercise detail results. Each item should include:
-              - **questionId** (int): The unique identifier of the question being answered.
-              - **isCorrect** (bool): Whether the user's answer is correct or not.
-              - **questionType** (string): Type of the question ("multiple_choice", "fill_in_blank", "matching").
-              - **userChoiceAnswers** (array, nullable): For multiple_choices questions, contains the user's wrong answers:
-                - **answerId** (string): The incorrect answer id provided by the user.
-                - **isCorrect** (int): whether the answer is correct or not.
-              - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:
-                - **wrongAnswer** (string): The incorrect answer provided by the user.
-                - **position** (int): The position of the blank in the question.
+            - **submission** (ExerciseResultSubmissionDto): Contains:
+              - **detailResults** (List&lt;ExerciseDetailResultDto&gt;): List of exercise detail results. Each item should include:
+                - **questionId** (int): The unique identifier of the question being answered.
+                - **isCorrect** (bool): Whether the user's answer is correct or not.
+                - **questionType** (string): Type of the question ("multiple_choice", "fill_in_blank", "matching").
+                - **userChoiceAnswers** (array, nullable): For multiple_choices questions, contains the user's wrong answers:
+                  - **answerId** (string): The incorrect answer id provided by the user.
+                  - **isCorrect** (int): whether the answer is correct or not.
+                - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:
+                  - **wrongAnswer** (string): The incorrect answer provided by the user.
+                  - **position** (int): The position of the blank in the question.
+              - **completionTime** (int): The time in seconds taken to complete the exercise.
             
             **Response Format:**
             - **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.
@@ -492,45 +494,48 @@
             ```http
             POST /api/exerciseresult/enrollment/id/8/exercise/id/132
             Content-Type: application/json
-            [
-              {
-                "questionId": 9,
-                "isCorrect": true,
-                "questionType": "fill_in_blank"  
-              },
-              {
-                "questionId": 10,
-                "isCorrect": false,
-                "questionType": "fill_in_blank",
-                "userFillAnswers": [
-                  {
-                    "wrongAnswer": "750",
-                    "position": 1
-                  }
-                ]
-              },
-              {
-                "questionId": 11,
-                "isCorrect": true,
-                "questionType": "multiple_choice"
-              },
-              {
-                "questionId": 12,
-                "isCorrect": false,
-                "questionType": "multiple_choice",
-                 "userChoiceAnswers": [
-                   {
-                     "answerId": "22",
-                     "isCorrect": false
-                   }
-                 ]
-              },
-              {
-                "questionId": 13,
-                "isCorrect": true,
-                "questionType": "fill_in_blank"
-              }
-            ]
+            {
+              "detailResults": [
+                {
+                  "questionId": 9,
+                  "isCorrect": true,
+                  "questionType": "fill_in_blank"  
+                },
+                {
+                  "questionId": 10,
+                  "isCorrect": false,
+                  "questionType": "fill_in_blank",
+                  "userFillAnswers": [
+                    {
+                      "wrongAnswer": "750",
+                      "position": 1
+                    }
+                  ]
+                },
+                {
+                  "questionId": 11,
+                  "isCorrect": true,
+                  "questionType": "multiple_choice"
+                },
+                {
+                  "questionId": 12,
+                  "isCorrect": false,
+                  "questionType": "multiple_choice",
+                   "userChoiceAnswers": [
+                     {
+                       "answerId": "22",
+                       "isCorrect": false
+                     }
+                   ]
+                },
+                {
+                  "questionId": 13,
+                  "isCorrect": true,
+                  "questionType": "fill_in_blank"
+                }
+              ],
+              "completionTime": 2000
+            }
             ```
             
             **Example Response (Success):**
@@ -558,6 +563,7 @@
             - **exerciseId** (int): The unique identifier of the exercise.
             - **enrollmentId** (int): The ID of the enrollment.
             - **score** (decimal, nullable): The score achieved for this exercise.
+            - **completionTime** (int, nullable): The time taken to complete the exercise in seconds.
             - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
             - **exerciseDetailResults** (array): List of exercise detail results, each containing:
               - **isCorrect** (bool, nullable): Whether the answer is correct or not.
@@ -572,6 +578,7 @@
                 - **question** (object, nullable): The complete question information, including:
                   - **questionId** (int): The unique identifier of the question.
                   - **questionType** (string): The type of question (e.g., "multiple_choice").
+                  - **questionPrompt** (string): The prompt for AI of the question.
                   - **difficulty** (int): The difficulty level of the question.
                   - **lessonId** (int): The ID of the associated lesson.
                   - **imgUrl** (string): The URL of an image related to the question.
@@ -604,6 +611,7 @@
              - **exerciseId** (int): The unique identifier of the exercise.
              - **enrollmentId** (int): The ID of the enrollment.
              - **score** (decimal, nullable): The score achieved for this exercise.
+             - **completionTime** (int, nullable): The time taken to complete the exercise in seconds.
              - **doneAt** (datetime, nullable): The timestamp when the exercise was completed.
              - **exerciseDetailResults** (array): List of exercise detail results, each containing:
                - **isCorrect** (bool, nullable): Whether the answer is correct or not.

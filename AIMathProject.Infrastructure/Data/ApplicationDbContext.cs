@@ -337,6 +337,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .HasMaxLength(255)
                 .HasColumnName("description");
             entity.Property(e => e.IsLocked).HasColumnName("is_locked");
+            entity.Property(e => e.TimeLimit).HasColumnName("time_limit");
 
             entity.HasOne(d => d.Lesson).WithMany(p => p.Exercises)
                 .HasForeignKey(d => d.LessonId)
@@ -412,7 +413,7 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
             entity.Property(e => e.Score)
                 .HasColumnType("decimal(4, 2)")
                 .HasColumnName("score");
-
+            entity.Property(e => e.CompletionTime).HasColumnName("completion_time");
             entity.HasOne(d => d.Enrollment).WithMany(p => p.ExerciseResults)
                 .HasForeignKey(d => d.EnrollmentId)
                 .OnDelete(DeleteBehavior.Cascade)
@@ -653,6 +654,9 @@ public class ApplicationDbContext : IdentityDbContext<Domain.Entities.User, Iden
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("question_type");
+
+            entity.Property(e => e.QuestionPrompt)
+                .HasColumnName("question_prompt");
 
             entity.HasOne(d => d.Lesson).WithMany(p => p.Questions)
                 .HasForeignKey(d => d.LessonId)

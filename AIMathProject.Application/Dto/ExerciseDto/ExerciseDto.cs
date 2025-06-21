@@ -18,7 +18,10 @@ namespace AIMathProject.Application.Dto.ExerciseDto
 
         public string? Description { get; set; }
 
+        public int? TimeLimit { get; set; }
+
         public int? LessonId { get; set; }
+
 
         public virtual List<ExerciseResultDto.ExerciseResultDto> ExerciseResults { get; set; } = new List<ExerciseResultDto.ExerciseResultDto>();
     }

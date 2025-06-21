@@ -758,8 +758,8 @@
         "IsRequired": true
       },
       {
-        "Name": "edrDtoList",
-        "Type": "System.Collections.Generic.List\u00601[[AIMathProject.Application.Dto.ExerciseDetailResultDto.ExerciseDetailResultDto, AIMathProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Name": "submission",
+        "Type": "AIMathProject.Application.Dto.ExerciseDetailResultDto.ExerciseResultSubmissionDto",
         "IsRequired": true
       }
     ],

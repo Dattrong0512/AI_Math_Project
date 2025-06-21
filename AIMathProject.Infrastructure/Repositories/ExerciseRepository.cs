@@ -54,7 +54,8 @@ namespace AIMathProject.Infrastructure.Repositories
                 {
                     ExerciseName = exercise.ExerciseName,
                     ExerciseId = exercise.ExerciseId,
-                    IsLocked = false, 
+                    IsLocked = false,
+                    TimeLimit = exercise.TimeLimit,
                     Description = exercise.Description,
                     ExerciseDetails = new List<ExerciseDetailDto>()
                 };
@@ -152,6 +153,7 @@ namespace AIMathProject.Infrastructure.Repositories
                 ExerciseName = exercise.ExerciseName,
                 ExerciseId = exercise.ExerciseId,
                 IsLocked = isLocked,
+                TimeLimit = exercise.TimeLimit,
                 Description = exercise.Description,
                 ExerciseDetails = new List<ExerciseDetailDto>()
             };

@@ -11,6 +11,8 @@ public partial class ExerciseResult
 
     public int? EnrollmentId { get; set; }
 
+    public int? CompletionTime { get; set; }
+
     public decimal? Score { get; set; }
 
     public DateTime? DoneAt { get; set; }

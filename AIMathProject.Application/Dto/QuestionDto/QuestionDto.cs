@@ -15,6 +15,7 @@ namespace AIMathProject.Application.Dto.QuestionDto
         public int? LessonId { get; set; }
         public string? ImgUrl { get; set; }
         public string? QuestionContent { get; set; }
+        public string? QuestionPrompt { get; set; }
         public string? PdfSolution { get; set; }
         public List<ChoiceAnswerDto>? ChoiceAnswers { get; set; } = new List<ChoiceAnswerDto>();
         public List<FillAnswerDto>? FillAnswers { get; set; } = new List<FillAnswerDto>();

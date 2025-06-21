@@ -16,6 +16,8 @@ namespace AIMathProject.Application.Dto.ExerciseResultDto
 
         public decimal? Score { get; set; }
 
+        public int? CompletionTime { get; set; }
+
         public DateTime? DoneAt { get; set; }
 
         public List<ExerciseDetailResultDto.ExerciseDetailResultForGetDto> ExerciseDetailResults { get; set; } = new List<ExerciseDetailResultDto.ExerciseDetailResultForGetDto>();

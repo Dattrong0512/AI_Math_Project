@@ -91,6 +91,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     ExerciseName = mainExercise.ExerciseName,
                     IsLocked = mainExercise.IsLocked,
                     Description = mainExercise.Description,
+                    TimeLimit = mainExercise.TimeLimit,
                     ExerciseDetails = exerciseDetails.Select(ed => new ExerciseDetailDto
                     {
                         Question = ed.Question?.ToQuestionDto()
@@ -116,6 +117,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     ExerciseId = exercise.ExerciseId,
                     ExerciseName = exercise.ExerciseName,
                     IsLocked = exercise.IsLocked,
+                    TimeLimit = exercise.TimeLimit,
                     Description = exercise.Description,
                     ExerciseDetails = new List<ExerciseDetailDto>()
                 };
@@ -215,6 +217,7 @@ namespace AIMathProject.Infrastructure.Repositories
                         ExerciseId = mainExercise.ExerciseId,
                         ExerciseName = mainExercise.ExerciseName,
                         IsLocked = mainExercise.IsLocked,
+                        TimeLimit = mainExercise.TimeLimit,
                         Description = mainExercise.Description,
                         ExerciseDetails = exerciseDetails.Select(ed => new ExerciseDetailDto
                         {
@@ -239,6 +242,7 @@ namespace AIMathProject.Infrastructure.Repositories
                         ExerciseId = exercise.ExerciseId,
                         ExerciseName = exercise.ExerciseName,
                         IsLocked = exercise.IsLocked,
+                        TimeLimit = exercise.TimeLimit,
                         Description = exercise.Description,
                         ExerciseDetails = new List<ExerciseDetailDto>() // Initialize with empty list
                     };
@@ -314,6 +318,7 @@ namespace AIMathProject.Infrastructure.Repositories
                             ExerciseId = e.ExerciseId,
                             IsLocked = e.IsLocked,
                             Description = e.Description,
+                            TimeLimit = e.TimeLimit,
                             ExerciseResults = new List<Application.Dto.ExerciseResultDto.ExerciseResultDto>() // Always empty as requested
                         })
                         .ToList()

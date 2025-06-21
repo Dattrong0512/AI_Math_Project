@@ -20,6 +20,7 @@ namespace AIMathProject.Application.Mappers
                 LessonId = question.LessonId,
                 ImgUrl = question.ImgUrl,
                 QuestionContent = question.QuestionContent,
+                QuestionPrompt = question.QuestionPrompt,
                 PdfSolution = question.PdfSolution,
                 ChoiceAnswers = question.ChoiceAnswers != null ? question.ChoiceAnswers.ToChoiAnswerDtoList() : null,
                 FillAnswers = question.FillAnswers != null ? question.FillAnswers.ToFillAnswerDtoList() : null,
@@ -44,6 +45,7 @@ namespace AIMathProject.Application.Mappers
                 Difficulty = question.Difficulty,
                 ImgUrl = question.ImgUrl,
                 QuestionContent = question.QuestionContent,
+                QuestionPrompt = question.QuestionPrompt,
             };
             return dto;
         }
