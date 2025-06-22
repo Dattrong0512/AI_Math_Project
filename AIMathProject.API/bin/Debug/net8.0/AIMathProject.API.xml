@@ -335,6 +335,7 @@
              The response will return a list of unlocked exercises, where each exercise includes:
              - **exerciseName** (string): The name of the exercise.
              - **exerciseId** (int): The unique identifier of the exercise.
+             - **timeLimit** (int): The time limit for completing the exercise, in minute.
              - **isLocked** (boolean): Will always be true, as these are unlocked premium exercises.
              - **description** (string): The description of the exercise.
              - **exerciseDetails** (array): List of exercise details, each containing:

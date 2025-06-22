@@ -20,6 +20,7 @@ namespace AIMathProject.Infrastructure.Repositories
             // Tìm ExerciseResult dựa trên enrollmentId và exerciseId
             var exerciseResult = _context.ExerciseResults
                         .FirstOrDefault(er => er.EnrollmentId == enrollment_id && er.ExerciseId == exerciseId);
+
             // Nếu chưa có ExerciseResult, tạo mới
             if (exerciseResult == null)
             {
@@ -45,18 +46,26 @@ namespace AIMathProject.Infrastructure.Repositories
 
             int exerciseResultId = exerciseResult.ExerciseResultId;
 
-            // Cập nhật hoặc thêm mới từng ExerciseDetailResult
+            // LẤY TẤT CẢ CÁC EXERCISE DETAIL CỦA BÀI TẬP
+            var allExerciseDetails = _context.ExerciseDetails
+                .Where(ed => ed.ExerciseId == exerciseId)
+                .ToList();
+
+            // Câu hỏi đã có kq
+            var submittedQuestionIds = edrDtoList.Select(edr => edr.QuestionId).ToHashSet();
+
+            // XỬ LÝ CÁC CÂU HỎI ĐÃ CÓ KẾT QUẢ
             foreach (var edrItem in edrDtoList)
             {
                 // Tìm ExerciseDetail dựa trên questionId và exerciseId
-                var exerciseDetailId = (from ed in _context.ExerciseDetails
-                                        where ed.QuestionId == edrItem.QuestionId && ed.ExerciseId == exerciseId
-                                        select ed.ExerciseDetailId).FirstOrDefault();
+                var exerciseDetail = allExerciseDetails.FirstOrDefault(ed => ed.QuestionId == edrItem.QuestionId);
 
-                if (exerciseDetailId == 0)
+                if (exerciseDetail == null)
                 {
                     throw new Exception($"ExerciseDetail not found for QuestionId: {edrItem.QuestionId} and ExerciseId: {exerciseId}");
                 }
+
+                int exerciseDetailId = exerciseDetail.ExerciseDetailId;
 
                 // Kiểm tra đã có kết quả chưa
                 var existingResult = _context.ExerciseDetailResults
@@ -73,7 +82,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     _context.ExerciseDetailResults.Update(existingResult);
                     exerciseDetailResultId = existingResult.ExerciseDetailResultId;
 
-                    // Xóa tất cả UserFillAnswers cũ nếu có
+                    // Xóa các câu trả lời cũ
                     var existingUserFillAnswers = _context.UserFillAnswers
                         .Where(ufa => ufa.ExerciseDetailResultId == exerciseDetailResultId);
                     if (existingUserFillAnswers.Any())
@@ -81,7 +90,6 @@ namespace AIMathProject.Infrastructure.Repositories
                         _context.UserFillAnswers.RemoveRange(existingUserFillAnswers);
                     }
 
-                    //Xóa tất cả UserChoiceAnswers cũ nêu sco
                     var existingUserChoiceAnswers = _context.UserChoiceAnswers
                         .Where(uca => uca.ExerciseDetailResultId == exerciseDetailResultId);
                     if (existingUserChoiceAnswers.Any())
@@ -89,7 +97,6 @@ namespace AIMathProject.Infrastructure.Repositories
                         _context.UserChoiceAnswers.RemoveRange(existingUserChoiceAnswers);
                     }
 
-                    //Tương tự với UserMatchingAnswers
                     var existingUserMatchingAnswers = _context.UserMatchingAnswers
                         .Where(uma => uma.ExerciseDetailResultId == exerciseDetailResultId);
                     if (existingUserMatchingAnswers.Any())
@@ -106,7 +113,7 @@ namespace AIMathProject.Infrastructure.Repositories
                     exerciseDetailResultId = edr.ExerciseDetailResultId;
                 }
 
-                // Xử lý dựa vào QuestionType
+                // Xử lý dựa vào QuestionType và lưu chi tiết câu trả lời
                 if ((edrItem.QuestionType == "multiple_choice" || edrItem.QuestionType == "single_choice") && edrItem.UserChoiceAnswers != null && edrItem.UserChoiceAnswers.Any())
                 {
                     // Thêm UserChoiceAnswers
@@ -153,9 +160,64 @@ namespace AIMathProject.Infrastructure.Repositories
                 }
             }
 
+            // XỬ LÝ CÁC CÂU HỎI CHƯA CÓ KẾT QUẢ TỰ CHUYỂN THÀNH FASLE
+            foreach (var exerciseDetail in allExerciseDetails)
+            {
+                if (!submittedQuestionIds.Contains(exerciseDetail.QuestionId))
+                {
+                    // Tìm ExerciseDetailResult 
+                    var existingResult = _context.ExerciseDetailResults
+                        .FirstOrDefault(edr => edr.ExerciseDetailId == exerciseDetail.ExerciseDetailId && edr.ExerciseResultId == exerciseResultId);
+
+                    if (existingResult != null)
+                    {
+                        // Cập nhật thành sai
+                        existingResult.IsCorrect = false;
+                        _context.ExerciseDetailResults.Update(existingResult);
+
+                        // Xóa các chi tiết câu trả lời cũ nếu có
+                        var existingUserFillAnswers = _context.UserFillAnswers
+                            .Where(ufa => ufa.ExerciseDetailResultId == existingResult.ExerciseDetailResultId);
+                        if (existingUserFillAnswers.Any())
+                        {
+                            _context.UserFillAnswers.RemoveRange(existingUserFillAnswers);
+                        }
+
+                        var existingUserChoiceAnswers = _context.UserChoiceAnswers
+                            .Where(uca => uca.ExerciseDetailResultId == existingResult.ExerciseDetailResultId);
+                        if (existingUserChoiceAnswers.Any())
+                        {
+                            _context.UserChoiceAnswers.RemoveRange(existingUserChoiceAnswers);
+                        }
+
+                        var existingUserMatchingAnswers = _context.UserMatchingAnswers
+                            .Where(uma => uma.ExerciseDetailResultId == existingResult.ExerciseDetailResultId);
+                        if (existingUserMatchingAnswers.Any())
+                        {
+                            _context.UserMatchingAnswers.RemoveRange(existingUserMatchingAnswers);
+                        }
+                    }
+                    else
+                    {
+                        var question = _context.Questions.FirstOrDefault(q => q.QuestionId == exerciseDetail.QuestionId);
+                        string questionType = question?.QuestionType ?? "unknown";
+
+                        // Tạo mới kết quả với IsCorrect = false
+                        var newDetailResult = new ExerciseDetailResult
+                        {
+                            ExerciseDetailId = exerciseDetail.ExerciseDetailId,
+                            ExerciseResultId = exerciseResultId,
+                            IsCorrect = false,
+                            QuestionType = questionType
+                        };
+
+                        await _context.ExerciseDetailResults.AddAsync(newDetailResult);
+                    }
+                }
+            }
+
             await _context.SaveChangesAsync();
             return true;
         }
     }
 }
-

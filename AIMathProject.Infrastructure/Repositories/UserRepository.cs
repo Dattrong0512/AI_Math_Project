@@ -191,11 +191,10 @@ namespace AIMathProject.Infrastructure.Repositories
             foreach (var user in users)
             {
                 var userDto = _mapper.Map<UserDto>(user);
-                // Lấy role đầu tiên của người dùng
                 var roles = await _userManager.GetRolesAsync(user);
-                if (roles.Contains("Admin"))
+                if (roles.Contains("Admin") && role == 2)
                     userDto.Role = "Admin";
-                else if (roles.Contains("User"))
+                else if (roles.Contains("User") && role == 1)
                     userDto.Role = "User";
                 userDtos.Add(userDto);
             }
