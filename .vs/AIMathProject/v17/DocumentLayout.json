@@ -1,54 +1,66 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\",
+  "WorkspaceRootPath": "J:\\New folder (3)\\AI_Math_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\repositories\\lessonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\repositories\\lessonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\services\\sepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\sepay\\services\\sepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.api\\controllers\\lessoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\lessoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.application\\mappers\\lessonmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\mappers\\lessonmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\services\\isepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\sepay\\services\\isepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.application\\dto\\lessondto\\lessondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A33D9ED-FF1C-466F-9589-CB5318DF6C08}|AIMathProject.Application\\AIMathProject.Application.csproj|solutionrelative:aimathproject.application\\dto\\lessondto\\lessondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\model\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\services\\sepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\sepay\\services\\sepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\services\\isepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\sepay\\services\\isepayservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\model\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\sepay\\model\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\model\\sepaywebhookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\sepay\\model\\sepaywebhookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\sepay\\model\\sepaywebhookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\vnpay\\services\\ivnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\vnpay\\services\\ivnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\vnpay\\services\\ivnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\vnpay\\model\\paymentinfomationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\vnpay\\model\\paymentinfomationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\vnpay\\model\\paymentinfomationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\vnpay\\model\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.infrastructure\\paymentservices\\vnpay\\model\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CBC1796-BFA5-4FE9-A882-733E083BF042}|AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj|solutionrelative:aimathproject.infrastructure\\paymentservices\\vnpay\\model\\paymentresponsemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.domain\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|j:\\new folder (3)\\ai_math_project\\aimathproject.domain\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E8F8C7FA-A141-4012-8740-4C7919914F23}|AIMathProject.Domain\\AIMathProject.Domain.csproj|solutionrelative:aimathproject.domain\\entities\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|c:\\users\\hi\\desktop\\ai_math_project\\aimathproject.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E354946-D61A-4051-98AC-160576E62C31}|AIMathProject.API\\AIMathProject.API.csproj|solutionrelative:aimathproject.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,108 +70,100 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 26,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:131:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:132:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:133:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:134:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:135:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:136:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:137:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:138:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:54:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\Program.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\Program.cs",
-              "RelativeToolTip": "AIMathProject.API\\Program.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAEwAQBAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T03:22:17.368Z"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SePayServices.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
-              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
-              "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAASAAAAAAAAAA==",
+              "Title": "LessonController.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\Controllers\\LessonController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\LessonController.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\Controllers\\LessonController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\LessonController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAhwDYAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T03:05:15.139Z",
+              "WhenOpened": "2025-06-28T11:30:32.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LessonRepository.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\Repositories\\LessonRepository.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAAwJEAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:29:12.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LessonMapper.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Application\\Mappers\\LessonMapper.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Mappers\\LessonMapper.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Application\\Mappers\\LessonMapper.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Mappers\\LessonMapper.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAqwB4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:27:42.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LessonDto.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Application\\Dto\\LessonDto\\LessonDto.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Application\\Dto\\LessonDto\\LessonDto.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Application\\Dto\\LessonDto\\LessonDto.cs",
+              "RelativeToolTip": "AIMathProject.Application\\Dto\\LessonDto\\LessonDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T11:22:32.611Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\Program.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Program.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\Program.cs",
+              "RelativeToolTip": "AIMathProject.API\\Program.cs",
+              "ViewState": "AgIAAPoAAAAAAAAAAAAEwAQBAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T03:22:17.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SePayServices.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
+              "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
+              "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\SePayServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-28T03:05:15.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "SePayWebhookModel.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\SePayWebhookModel.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\SePayWebhookModel.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\SePayWebhookModel.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\SePayWebhookModel.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\SePayWebhookModel.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\SePayWebhookModel.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAcwAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -167,11 +171,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "IVnPayService.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\IVnPayService.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\IVnPayService.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\IVnPayService.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\IVnPayService.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\IVnPayService.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Services\\IVnPayService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -179,11 +183,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "ISepayServices.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\ISepayServices.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\ISepayServices.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\ISepayServices.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\ISepayServices.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\ISepayServices.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Services\\ISepayServices.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -191,11 +195,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "PaymentInfomationModel.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentInfomationModel.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentInfomationModel.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentInfomationModel.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentInfomationModel.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentInfomationModel.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentInfomationModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -203,11 +207,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "Payment.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Domain\\Entities\\Payment.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Domain\\Entities\\Payment.cs",
               "RelativeDocumentMoniker": "AIMathProject.Domain\\Entities\\Payment.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Domain\\Entities\\Payment.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Domain\\Entities\\Payment.cs",
               "RelativeToolTip": "AIMathProject.Domain\\Entities\\Payment.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAA1wBsAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -215,11 +219,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "PaymentResponseModel.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentResponseModel.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentResponseModel.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentResponseModel.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentResponseModel.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentResponseModel.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\VnPay\\Model\\PaymentResponseModel.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAQwCYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -227,11 +231,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "PaymentResponseModel.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\PaymentResponseModel.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\PaymentResponseModel.cs",
               "RelativeDocumentMoniker": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\PaymentResponseModel.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\PaymentResponseModel.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\PaymentResponseModel.cs",
               "RelativeToolTip": "AIMathProject.Infrastructure\\PaymentServices\\SePay\\Model\\PaymentResponseModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -239,40 +243,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaymentController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\Controllers\\PaymentController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\PaymentController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\Controllers\\PaymentController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\PaymentController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACMAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\NotificationController.cs",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "AIMathProject.API\\Controllers\\NotificationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T02:47:34.463Z",
+              "WhenOpened": "2025-06-28T02:47:33.73Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "NotificationController.cs",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\Controllers\\NotificationController.cs",
-              "RelativeDocumentMoniker": "AIMathProject.API\\Controllers\\NotificationController.cs",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\Controllers\\NotificationController.cs",
-              "RelativeToolTip": "AIMathProject.API\\Controllers\\NotificationController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T02:47:33.73Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\appsettings.json",
+              "DocumentMoniker": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\appsettings.json",
               "RelativeDocumentMoniker": "AIMathProject.API\\appsettings.json",
-              "ToolTip": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\appsettings.json",
+              "ToolTip": "J:\\New folder (3)\\AI_Math_Project\\AIMathProject.API\\appsettings.json",
               "RelativeToolTip": "AIMathProject.API\\appsettings.json",
               "ViewState": "AgIAABgAAAAAAAAAAAAAACsAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-28T02:43:04.944Z"
+              "WhenOpened": "2025-06-28T02:43:04.944Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 9,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{4a9b7e51-aa16-11d0-a8c5-00a0c921a4d2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }

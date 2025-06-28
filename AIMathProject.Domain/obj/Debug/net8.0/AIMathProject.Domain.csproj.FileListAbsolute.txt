@@ -154,3 +154,16 @@ C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMath
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\refint\AIMathProject.Domain.dll
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.pdb
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\ref\AIMathProject.Domain.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.deps.json
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\bin\Debug\net8.0\AIMathProject.Domain.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.csproj.AssemblyReference.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.AssemblyInfoInputs.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.AssemblyInfo.cs
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.csproj.CoreCompileInputs.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.sourcelink.json
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\refint\AIMathProject.Domain.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\AIMathProject.Domain.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Domain\obj\Debug\net8.0\ref\AIMathProject.Domain.dll

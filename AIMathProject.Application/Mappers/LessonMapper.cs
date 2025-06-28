@@ -15,6 +15,7 @@ namespace AIMathProject.Application.Mappers
         {
             LessonDto lessonDto = new LessonDto
             {
+                LessonId = lesson.LessonId,
                 LessonOrder = lesson.LessonOrder,
                 LessonName = lesson.LessonName,
                 LessonPdfUrl = lesson.LessonPdfUrl,
@@ -27,7 +28,7 @@ namespace AIMathProject.Application.Mappers
         {
             Lesson lesson = new Lesson
             {
-
+                LessonId = lessonDto.LessonId,
                 LessonOrder = lessonDto.LessonOrder,
                 LessonName = lessonDto.LessonName,
                 ChapterId = chapter_id,

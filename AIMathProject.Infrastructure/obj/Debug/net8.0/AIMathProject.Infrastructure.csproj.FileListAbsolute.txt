@@ -238,3 +238,23 @@ C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.pdb
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.genruntimeconfig.cache
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\ref\AIMathProject.Infrastructure.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Infrastructure.deps.json
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Infrastructure.runtimeconfig.json
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Infrastructure.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Infrastructure.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Application.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Domain.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Application.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\bin\Debug\net8.0\AIMathProject.Domain.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.csproj.AssemblyReference.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.AssemblyInfoInputs.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.AssemblyInfo.cs
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.csproj.CoreCompileInputs.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.sourcelink.json
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathPr.8C7263B7.Up2Date
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\refint\AIMathProject.Infrastructure.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\AIMathProject.Infrastructure.genruntimeconfig.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Infrastructure\obj\Debug\net8.0\ref\AIMathProject.Infrastructure.dll

@@ -10,6 +10,7 @@ namespace AIMathProject.Application.Dto.LessonDto
 {
     public class LessonDto
     {
+        public int LessonId { get; set; }
         public short? LessonOrder { get; set; }
 
         [StringLength(100)]

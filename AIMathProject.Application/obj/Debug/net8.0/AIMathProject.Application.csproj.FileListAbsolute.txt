@@ -190,3 +190,19 @@ C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\A
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\refint\AIMathProject.Application.dll
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.pdb
 C:\Users\Hi\Desktop\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\ref\AIMathProject.Application.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Application.deps.json
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Application.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Application.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Domain.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\bin\Debug\net8.0\AIMathProject.Domain.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.csproj.AssemblyReference.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.GeneratedMSBuildEditorConfig.editorconfig
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.AssemblyInfoInputs.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.AssemblyInfo.cs
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.csproj.CoreCompileInputs.cache
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.sourcelink.json
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathPr.5B067450.Up2Date
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\refint\AIMathProject.Application.dll
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\AIMathProject.Application.pdb
+J:\New folder (3)\AI_Math_Project\AIMathProject.Application\obj\Debug\net8.0\ref\AIMathProject.Application.dll

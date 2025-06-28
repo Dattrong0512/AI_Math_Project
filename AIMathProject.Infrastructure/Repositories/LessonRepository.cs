@@ -149,6 +149,7 @@ namespace AIMathProject.Infrastructure.Repositories
             // Tạo và trả về LessonDto
             var lessonDto = new LessonDto
             {
+                LessonId = lessonData.Lesson.LessonId,
                 LessonOrder = lessonData.Lesson.LessonOrder,
                 LessonName = lessonData.Lesson.LessonName,
                 LessonVideoUrl = lessonData.Lesson.LessonVideoUrl,
