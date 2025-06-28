@@ -591,7 +591,7 @@
           "Exercise"
         ],
         "summary": "Retrieves all locked exercises that have been unlocked for a specific enrollment.",
-        "description": "*Only logged-in users (including user and admin) can access this API.*  \r\nThis API returns a list of premium exercises (IsLocked=true) that have been specifically unlocked for the given enrollment.\r\n            \r\n**Request Parameters:**  \r\n- **id** (int): The enrollment ID of the user.\r\n- **grade** (int): The grade level to filter exercises.\r\n            \r\n**Response Format:**  \r\nThe response will return a list of unlocked exercises, where each exercise includes:\r\n- **exerciseName** (string): The name of the exercise.\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **isLocked** (boolean): Will always be true, as these are unlocked premium exercises.\r\n- **description** (string): The description of the exercise.\r\n- **exerciseDetails** (array): List of exercise details, each containing:\r\n  - **question** (object): Complete question information, including:\r\n    - **questionId** (int): The unique identifier of the question.\r\n    - **questionType** (string): The type of question (e.g., \"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n    - **difficulty** (int): The difficulty level of the question.\r\n    - **lessonId** (int): The ID of the associated lesson.\r\n    - **imgUrl** (string): The URL of an image related to the question.\r\n    - **questionContent** (string): The text content of the question.\r\n    - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n    - **choiceAnswers** (array): List of multiple-choice answers (for \"multiple_choice\" questions).\r\n    - **fillAnswers** (array): List of fill-in answers (for \"fill_in_blank\" questions).\r\n    - **matchingAnswers** (array): List of matching answers (for \"matching\" questions).\r\n            \r\n**Example Request:**  \r\n\r\nGET /api/exercise/detail/enrollment/id/35/grade/1\r\n            \r\n**Response Codes:**  \r\n- **200 OK**: Successfully retrieved the unlocked exercises.\r\n- **400 Bad Request**: No unlocked exercises found for this enrollment.",
+        "description": "*Only logged-in users (including user and admin) can access this API.*  \r\nThis API returns a list of premium exercises (IsLocked=true) that have been specifically unlocked for the given enrollment.\r\n            \r\n**Request Parameters:**  \r\n- **id** (int): The enrollment ID of the user.\r\n- **grade** (int): The grade level to filter exercises.\r\n            \r\n**Response Format:**  \r\nThe response will return a list of unlocked exercises, where each exercise includes:\r\n- **exerciseName** (string): The name of the exercise.\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **timeLimit** (int): The time limit for completing the exercise, in minute.\r\n- **isLocked** (boolean): Will always be true, as these are unlocked premium exercises.\r\n- **description** (string): The description of the exercise.\r\n- **exerciseDetails** (array): List of exercise details, each containing:\r\n  - **question** (object): Complete question information, including:\r\n    - **questionId** (int): The unique identifier of the question.\r\n    - **questionType** (string): The type of question (e.g., \"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n    - **difficulty** (int): The difficulty level of the question.\r\n    - **lessonId** (int): The ID of the associated lesson.\r\n    - **imgUrl** (string): The URL of an image related to the question.\r\n    - **questionContent** (string): The text content of the question.\r\n    - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n    - **choiceAnswers** (array): List of multiple-choice answers (for \"multiple_choice\" questions).\r\n    - **fillAnswers** (array): List of fill-in answers (for \"fill_in_blank\" questions).\r\n    - **matchingAnswers** (array): List of matching answers (for \"matching\" questions).\r\n            \r\n**Example Request:**  \r\n\r\nGET /api/exercise/detail/enrollment/id/35/grade/1\r\n            \r\n**Response Codes:**  \r\n- **200 OK**: Successfully retrieved the unlocked exercises.\r\n- **400 Bad Request**: No unlocked exercises found for this enrollment.",
         "parameters": [
           {
             "name": "id",
@@ -749,7 +749,7 @@
           "ExerciseDetailResult"
         ],
         "summary": "Creates or updates exercise detail results for a user's enrollment in a specific exercise.",
-        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates or updates the exercise detail results based on the user's answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The exercise id of the exercise.\r\n- **edrDtoList** (List<ExerciseDetailResultDto>): List of exercise detail results. Each item should include:\r\n  - **questionId** (int): The unique identifier of the question being answered.\r\n  - **isCorrect** (bool): Whether the user's answer is correct or not.\r\n  - **questionType** (string): Type of the question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, contains the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n\r\n**Response Format:**\r\n- **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.\r\n- **400 Bad Request**: If the operation fails, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/exerciseresult/enrollment/id/8/exercise/id/132\r\nContent-Type: application/json\r\n[\r\n  {\r\n    \"questionId\": 9,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"  \r\n  },\r\n  {\r\n    \"questionId\": 10,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"fill_in_blank\",\r\n    \"userFillAnswers\": [\r\n      {\r\n        \"wrongAnswer\": \"750\",\r\n        \"position\": 1\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"questionId\": 11,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"multiple_choice\"\r\n  },\r\n  {\r\n    \"questionId\": 12,\r\n    \"isCorrect\": false,\r\n    \"questionType\": \"multiple_choice\",\r\n     \"userChoiceAnswers\": [\r\n       {\r\n         \"answerId\": \"22\",\r\n         \"isCorrect\": false\r\n       }\r\n     ]\r\n  },\r\n  {\r\n    \"questionId\": 13,\r\n    \"isCorrect\": true,\r\n    \"questionType\": \"fill_in_blank\"\r\n  }\r\n]\r\n```\r\n\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 200 OK\r\ntrue\r\n```",
+        "description": "*Only logged in users can use this api (including user and admin)*\r\nThis API creates or updates the exercise detail results based on the user's answers and completion time.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The exercise id of the exercise.\r\n- **submission** (ExerciseResultSubmissionDto): Contains:\r\n  - **detailResults** (List<ExerciseDetailResultDto>): List of exercise detail results. Each item should include:\r\n    - **questionId** (int): The unique identifier of the question being answered.\r\n    - **isCorrect** (bool): Whether the user's answer is correct or not.\r\n    - **questionType** (string): Type of the question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n    - **userChoiceAnswers** (array, nullable): For multiple_choices questions, contains the user's wrong answers:\r\n      - **answerId** (string): The incorrect answer id provided by the user.\r\n      - **isCorrect** (int): whether the answer is correct or not.\r\n    - **userFillAnswers** (array, optional): For fill_in_blank questions, contains user's wrong answers:\r\n      - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n      - **position** (int): The position of the blank in the question.\r\n  - **completionTime** (int): The time in seconds taken to complete the exercise.\r\n\r\n**Response Format:**\r\n- **200 OK**: If the exercise detail results are successfully created or updated, the response will be `true`.\r\n- **400 Bad Request**: If the operation fails, the response will contain an error message with details on the failure.\r\n\r\n**Example Request:**\r\n```http\r\nPOST /api/exerciseresult/enrollment/id/8/exercise/id/132\r\nContent-Type: application/json\r\n{\r\n  \"detailResults\": [\r\n    {\r\n      \"questionId\": 9,\r\n      \"isCorrect\": true,\r\n      \"questionType\": \"fill_in_blank\"  \r\n    },\r\n    {\r\n      \"questionId\": 10,\r\n      \"isCorrect\": false,\r\n      \"questionType\": \"fill_in_blank\",\r\n      \"userFillAnswers\": [\r\n        {\r\n          \"wrongAnswer\": \"750\",\r\n          \"position\": 1\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"questionId\": 11,\r\n      \"isCorrect\": true,\r\n      \"questionType\": \"multiple_choice\"\r\n    },\r\n    {\r\n      \"questionId\": 12,\r\n      \"isCorrect\": false,\r\n      \"questionType\": \"multiple_choice\",\r\n       \"userChoiceAnswers\": [\r\n         {\r\n           \"answerId\": \"22\",\r\n           \"isCorrect\": false\r\n         }\r\n       ]\r\n    },\r\n    {\r\n      \"questionId\": 13,\r\n      \"isCorrect\": true,\r\n      \"questionType\": \"fill_in_blank\"\r\n    }\r\n  ],\r\n  \"completionTime\": 2000\r\n}\r\n```\r\n\r\n**Example Response (Success):**\r\n```json\r\nHTTP/1.1 200 OK\r\ntrue\r\n```",
         "parameters": [
           {
             "name": "id",
@@ -774,10 +774,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ExerciseDetailResultDto"
-                }
+                "$ref": "#/components/schemas/ExerciseResultSubmissionDto"
               }
             }
           }
@@ -810,7 +807,7 @@
           "ExerciseResult"
         ],
         "summary": "Retrieves the exercise result details associated with a specific enrollment ID and exercise ID.",
-        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns the detailed information about an exercise result, including the questions and answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The unique identifier of the exercise.\r\n\r\n**Response Format:**\r\nThe response will return the exercise result details, including:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresult/enrollment/id/11/exercise/id/25\r\n```",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns the detailed information about an exercise result, including the questions and answers.\r\n\r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n- **exerciseid** (int): The unique identifier of the exercise.\r\n\r\n**Response Format:**\r\nThe response will return the exercise result details, including:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **completionTime** (int, nullable): The time taken to complete the exercise in seconds.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information, including:\r\n      - **questionId** (int): The unique identifier of the question.\r\n      - **questionType** (string): The type of question (e.g., \"multiple_choice\").\r\n      - **questionPrompt** (string): The prompt for AI of the question.\r\n      - **difficulty** (int): The difficulty level of the question.\r\n      - **lessonId** (int): The ID of the associated lesson.\r\n      - **imgUrl** (string): The URL of an image related to the question.\r\n      - **questionContent** (string): The text content of the question.\r\n      - **pdfSolution** (string, nullable): A PDF solution reference, if available.\r\n      - **choiceAnswers** (array): List of multiple-choice answers.\r\n      - **fillAnswers** (array): List of fill-in-the-blank answers (if applicable).\r\n      - **matchingAnswers** (array): List of matching question pairs (if applicable).\r\n\r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresult/enrollment/id/11/exercise/id/25\r\n```",
         "parameters": [
           {
             "name": "id",
@@ -851,7 +848,7 @@
           "ExerciseResult"
         ],
         "summary": "Retrieves all exercise results associated with a specific enrollment ID.",
-        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**\r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresults/enrollment/id/11 \r\n```",
+        "description": "*Only logged in users can use this API (including user and admin)*\r\nThis API returns a list of exercise results for a given enrollment ID, including details about each exercise result.\r\n            \r\n**Request Parameters:**\r\n- **id** (int): The enrollment ID of the user.\r\n            \r\n**Response Format:**\r\nThe response will return a list of exercise results, where each result includes:\r\n- **exerciseId** (int): The unique identifier of the exercise.\r\n- **enrollmentId** (int): The ID of the enrollment.\r\n- **score** (decimal, nullable): The score achieved for this exercise.\r\n- **completionTime** (int, nullable): The time taken to complete the exercise in seconds.\r\n- **doneAt** (datetime, nullable): The timestamp when the exercise was completed.\r\n- **exerciseDetailResults** (array): List of exercise detail results, each containing:\r\n  - **isCorrect** (bool, nullable): Whether the answer is correct or not.\r\n  - **questionType** (string): The type of question (\"multiple_choice\", \"fill_in_blank\", \"matching\").\r\n  - **userChoiceAnswers** (array, nullable): For multiple_choices questions, the user's wrong answers:\r\n    - **answerId** (string): The incorrect answer id provided by the user.\r\n    - **isCorrect** (int): whether the answer is correct or not.\r\n  - **userFillAnswers** (array, nullable): For fill_in_blank questions, the user's wrong answers:\r\n    - **wrongAnswer** (string): The incorrect answer provided by the user.\r\n    - **position** (int): The position of the blank in the question.\r\n  - **exerciseDetail** (object, nullable): Details about the exercise, including:\r\n    - **question** (object, nullable): The complete question information.\r\n            \r\n**Example Request:**\r\n```http\r\nGET /api/exerciseresults/enrollment/id/11 \r\n```",
         "parameters": [
           {
             "name": "id",
@@ -1703,13 +1700,85 @@
         }
       }
     },
+    "/api/notification/all/pageindex/{pageIndex}/pagesize/{pageSize}": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Retrieves all notifications for admin users with pagination.",
+        "description": "*Only admin users can use this API.*\r\nThis API returns a paginated list of all notifications available in the system for administrative purposes.\r\nResults are ordered by sent date in descending order (most recent first).\r\n\r\n**Path Parameters:**\r\n- **pageIndex**: Zero-based page index (0 for first page)\r\n- **pageSize**: Number of items per page (recommended: 10-50)\r\n\r\n**Example Requests:**\r\n- First page with 10 items: `/api/notification/all/pageindex/0/pagesize/10`\r\n- Second page with 20 items: `/api/notification/all/pageindex/1/pagesize/20`",
+        "parameters": [
+          {
+            "name": "pageIndex",
+            "in": "path",
+            "description": "Zero-based page index (0 for first page)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "description": "Number of items per page",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/user/all/pageindex/{pageIndex}/pagesize/{pageSize}": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "summary": "Retrieves paginated notifications for the authenticated user.",
+        "description": "*Only authenticated users can use this API.*\r\nThis API returns a paginated list of notifications specific to the currently logged-in user.\r\nResults are ordered by sent date in descending order (most recent first).\r\n\r\n**Path Parameters:**\r\n- **pageIndex**: Zero-based page index (0 for first page)\r\n- **pageSize**: Number of items per page (recommended: 10-50)\r\n\r\n**Example Requests:**\r\n- First page with 10 items: `/api/notification/user/all/pageindex/0/pagesize/10`\r\n- Second page with 20 items: `/api/notification/user/all/pageindex/1/pagesize/20`",
+        "parameters": [
+          {
+            "name": "pageIndex",
+            "in": "path",
+            "description": "Zero-based page index (0 for first page)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "description": "Number of items per page",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/payment/plan/{idPlan}/user/{idUser}": {
       "post": {
         "tags": [
           "Payment"
         ],
         "summary": "Generates a VnPay payment URL for purchasing a study plan.",
-        "description": "*Only logged in users can use this api*\r\nThis API creates a VnPay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST /payment/plan/2/user/1\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
+        "description": "*Only logged in users can use this api*\r\nThis API creates a VnPay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST api/payment/plan/2/user/1\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\"\r\n}\r\n```",
         "parameters": [
           {
             "name": "idPlan",
@@ -1745,6 +1814,75 @@
           "Payment"
         ],
         "summary": "Handles the VnPay payment callback and displays the payment result.\r\nUsed only by back-end, front-end doesn't care",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/payment/sepay/plan/{idPlan}/user/{idUser}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Generates a SePay payment URL for purchasing a study plan.",
+        "description": "*Only logged in users can use this api*\r\nThis API creates a SePay payment URL for a specific study plan purchase by a user.\r\n            \r\n**Request:**\r\nSend a request with the following route parameters:\r\n- **idPlan**: The ID of the study plan to be purchased.\r\n- **idUser**: The ID of the user making the payment.\r\n            \r\n**Example Request:**\r\n```http\r\nPOST api/payment/sepay/plan/1/user/1\r\n```\r\n            \r\n**Response:**\r\n```json\r\n{\r\n    \"paymentUrl\": \"https://sandbox.vnpayment.vn/payment/link-to-pay\",\r\n    \"method\": \"SePay\",\r\n    \"orderDescription\": \"Thanh toan Goi 1 coin cho nguoi dung 1\"\r\n    \"amount\": 10000\r\n}",
+        "parameters": [
+          {
+            "name": "idPlan",
+            "in": "path",
+            "description": "The ID of the study plan.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "idUser",
+            "in": "path",
+            "description": "The ID of the user making the payment.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/payment/sepay/callback": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "This API Serves for callback from SePay after payment is completed.\r\nFront-end doesn't care about this API, it is only used by back-end to handle payment results.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SePayWebhookModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SePayWebhookModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SePayWebhookModel"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1946,6 +2084,72 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/payment/user/{userId}/pageindex/{pageIndex}/pagesize/{pageSize}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Retrieves paginated payment information for a specific user.",
+        "description": "*Only logged in users can use this API*  \r\nThis API fetches paginated payment details for a specific user, including payment method, plan, and token package information.\r\nResults are ordered by date in descending order (most recent first).\r\n\r\n**Path Parameters:**\r\n- **userId**: The ID of the user whose payment information is to be retrieved\r\n- **pageIndex**: Zero-based page index (0 for first page)\r\n- **pageSize**: Number of items per page (recommended: 10-50)\r\n            \r\n**Example Request:**  \r\n```http\r\nGET /api/payment/user/1/pageindex/0/pagesize/10\r\n```",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user whose payment information is to be retrieved",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "path",
+            "description": "Zero-based page index (0 for first page)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "path",
+            "description": "Number of items per page",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the payment information successfully.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDtoPagination"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDtoPagination"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDtoPagination"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Indicates invalid pagination parameters."
           }
         }
       }
@@ -2998,6 +3202,11 @@
             "type": "string",
             "nullable": true
           },
+          "timeLimit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "lessonId": {
             "type": "integer",
             "format": "int32",
@@ -3033,6 +3242,11 @@
             "type": "string",
             "nullable": true
           },
+          "timeLimit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "exerciseDetails": {
             "type": "array",
             "items": {
@@ -3061,6 +3275,11 @@
             "format": "double",
             "nullable": true
           },
+          "completionTime": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "doneAt": {
             "type": "string",
             "format": "date-time",
@@ -3072,6 +3291,23 @@
               "$ref": "#/components/schemas/ExerciseDetailResultForGetDto"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExerciseResultSubmissionDto": {
+        "type": "object",
+        "properties": {
+          "detailResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExerciseDetailResultDto"
+            },
+            "nullable": true
+          },
+          "completionTime": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -3251,6 +3487,10 @@
           "methodName": {
             "type": "string",
             "nullable": true
+          },
+          "methodIcon": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3282,6 +3522,10 @@
             "nullable": true
           },
           "methodId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
             "type": "integer",
             "format": "int32"
           },
@@ -3456,6 +3700,10 @@
             "type": "string",
             "nullable": true
           },
+          "questionPrompt": {
+            "type": "string",
+            "nullable": true
+          },
           "pdfSolution": {
             "type": "string",
             "nullable": true
@@ -3564,6 +3812,63 @@
           },
           "period": {
             "$ref": "#/components/schemas/PeriodStatisticsDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SePayWebhookModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "gateway": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferType": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "accumulated": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "subAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

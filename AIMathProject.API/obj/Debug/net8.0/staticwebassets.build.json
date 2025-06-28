@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "wjXQlItqH230HpQLt2Qc+1gRL5U1SF31IcZQN9hHJvk=",
+  "Hash": "Y5u0tBGcvKiMaaVICVBiIkOAVA11PTui+qjygQS2QLk=",
   "Source": "AIMathProject.API",
   "BasePath": "_content/AIMathProject.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

@@ -1214,6 +1214,27 @@
   },
   {
     "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "CreatePaymentPlansUrlSepay",
+    "RelativePath": "api/payment/sepay/plan/{idPlan}/user/{idUser}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPlan",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idUser",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
     "Method": "CreatePaymentTokenPackage",
     "RelativePath": "api/payment/token/{tokenPackageId}/user/{userId}",
     "HttpMethod": "POST",
@@ -1726,6 +1747,22 @@
         "Name": "token",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AIMathProject.API.Controllers.PaymentController",
+    "Method": "PaymentCallBackSePay",
+    "RelativePath": "payment/sepay/callback",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payload",
+        "Type": "AIMathProject.Infrastructure.PaymentServices.SePay.Model.SePayWebhookModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

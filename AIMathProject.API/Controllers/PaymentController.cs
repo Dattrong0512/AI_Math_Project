@@ -3,12 +3,15 @@ using AIMathProject.Application.Command.Payment;
 using AIMathProject.Application.Dto.Pagination;
 using AIMathProject.Application.Dto.Payment.PaymentDto;
 using AIMathProject.Application.Queries.Payment;
+using AIMathProject.Infrastructure.PaymentServices.SePay.Model;
+using AIMathProject.Infrastructure.PaymentServices.SePay.Services;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Model;
 using AIMathProject.Infrastructure.PaymentServices.VnPay.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Drawing.Printing;
 using System.Web;
 
@@ -21,14 +24,19 @@ namespace AIMathProject.API.Controllers
 
         private readonly ITemplateReader _templateReader;
         private readonly IVnPayService _vnPay;
+        private readonly ISepayServices _sePay;
         private readonly IMediator _mediator;
+        private readonly IConfiguration _config;
 
-        public PaymentController(ILogger<PaymentController> logger, IVnPayService vnPay, ITemplateReader templateReader, IMediator mediator)
+
+        public PaymentController(ILogger<PaymentController> logger, IVnPayService vnPay, ITemplateReader templateReader, IMediator mediator, ISepayServices sePay, IConfiguration config)
         {
             _logger = logger;
             _vnPay = vnPay;
             _templateReader = templateReader;
             _mediator = mediator;
+            _sePay = sePay;
+            _config = config;
         }
         #region CreateUrlVnPayForPlan
         /// <summary>
@@ -45,7 +53,7 @@ namespace AIMathProject.API.Controllers
         ///
         /// **Example Request:**
         /// ```http
-        /// POST /payment/plan/2/user/1
+        /// POST api/payment/plan/2/user/1
         /// ```
         ///
         /// **Response:**
@@ -158,6 +166,75 @@ namespace AIMathProject.API.Controllers
         #endregion
 
 
+        #region CreateUrlVnPayForPlanSepay
+        /// <summary>
+        /// Generates a SePay payment URL for purchasing a study plan.
+        /// </summary>
+        /// <remarks>
+        /// *Only logged in users can use this api*
+        /// This API creates a SePay payment URL for a specific study plan purchase by a user.
+        ///
+        /// **Request:**
+        /// Send a request with the following route parameters:
+        /// - **idPlan**: The ID of the study plan to be purchased.
+        /// - **idUser**: The ID of the user making the payment.
+        ///
+        /// **Example Request:**
+        /// ```http
+        /// POST api/payment/sepay/plan/1/user/1
+        /// ```
+        ///
+        /// **Response:**
+        /// ```json
+        /// {
+        ///     "paymentUrl": "https://sandbox.vnpayment.vn/payment/link-to-pay",
+        ///     "method": "SePay",
+        ///     "orderDescription": "Thanh toan Goi 1 coin cho nguoi dung 1"
+        ///     "amount": 10000
+        /// }
+        /// </remarks>
+        /// <param name="idPlan">The ID of the study plan.</param>
+        /// <param name="idUser">The ID of the user making the payment.</param>
+        /// <returns>Returns a SePay payment URL and related payment details.</returns>
+        [Authorize(Policy = "UserOrAdmin")]
+        [HttpPost("api/payment/sepay/plan/{idPlan:int}/user/{idUser:int}")]
+        public async Task<IActionResult> CreatePaymentPlansUrlSepay([FromRoute] int idPlan, [FromRoute] int idUser)
+        {
+            var sepayResponse = await _sePay.CreateUrlPay(idPlan, idUser);
+            return Ok(new { paymentUrl = sepayResponse });
+        }
+        #endregion
+
+        #region SePayCallback
+        /// <summary>
+        /// This API Serves for callback from SePay after payment is completed.
+        /// Front-end doesn't care about this API, it is only used by back-end to handle payment results.
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns></returns>
+        [HttpPost("payment/sepay/callback")]
+        public async Task<IActionResult> PaymentCallBackSePay([FromBody] SePayWebhookModel payload)
+        {
+            string apiKey = _config["SePay:ValidApiKey"];
+            if (!Request.Headers.TryGetValue("Authorization", out var authHeader) ||
+            !authHeader.ToString().Equals($"Apikey {apiKey}"))
+            {
+                return Unauthorized(new { success = false, message = "Unauthorized" });
+            }
+            string Callback = await _sePay.PaymentCallBack(payload);
+            if(Callback == "Success")
+            {
+                return StatusCode(StatusCodes.Status201Created, new { success = true });
+            }
+            else
+            {
+                return BadRequest(new { success = false, message = Callback });
+            }
+        }
+        #endregion
+
+
+        #region CreatePaymentTokenPackage
         /// <summary>
         /// Creates a payment for a token package purchase.
         /// </summary>
@@ -190,7 +267,9 @@ namespace AIMathProject.API.Controllers
             }
             return Ok(payment);
         }
+        #endregion
 
+        #region GetLatestInforUserPaymentById
         /// <summary>
         /// Retrieve the latest payment information for a specific user.
         /// </summary>
@@ -220,6 +299,9 @@ namespace AIMathProject.API.Controllers
 
         }
 
+        #endregion
+
+        #region GetAllInforUserPaymentById
         /// <summary>
         /// Retrieves all payment information for a specific user.
         /// </summary>
@@ -247,7 +329,9 @@ namespace AIMathProject.API.Controllers
         {
             return Ok(await _mediator.Send(new GetAllPaymentInfoQuery(userId)));
         }
+        #endregion
 
+        #region GetAllPaymentsPaginated
         /// <summary>
         /// Get all system payments with pagination
         /// </summary>
@@ -288,8 +372,9 @@ namespace AIMathProject.API.Controllers
             var payments = await _mediator.Send(new GetAllPaymentsPaginatedQuery(pageIndex, pageSize));
             return Ok(payments);
         }
+        #endregion
 
-
+        #region GetAllPaymentsByUserPaginated
         /// <summary>
         /// Retrieves paginated payment information for a specific user.
         /// </summary>
@@ -334,5 +419,6 @@ namespace AIMathProject.API.Controllers
             var payments = await _mediator.Send(new GetAllPaymentsByUserPaginatedQuery(userId, pageIndex, pageSize));
             return Ok(payments);
         }
+        #endregion
     }
 }

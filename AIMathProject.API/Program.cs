@@ -41,6 +41,7 @@ using AIMathProject.Application.Dto.Payment.MethodDto;
 using AIMathProject.Application.Dto.Payment.TokenPackage;
 using AIMathProject.Application.Dto.Payment.Wallet;
 using AIMathProject.Application.Dto.Notification;
+using AIMathProject.Infrastructure.PaymentServices.SePay.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -134,6 +135,7 @@ builder.Services.AddScoped<IRevenueRepository<RevenueStatisticsDto>, RevenueStat
 builder.Services.AddScoped<IExerciseRepository<ExerciseExtraForLessonDto>, ExerciseRepository>();
 builder.Services.AddScoped<IExerciseSummaryRepository<ExerciseWithChapterDto>, ExerciseRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
+builder.Services.AddScoped<ISepayServices, SePayServices>();
 builder.Services.AddScoped<IPaymentRepository<PaymentDto>, PaymentRepository>();
 builder.Services.AddScoped<IErrorReportRepository<ErrorReportDto>, ErrorReportRepository>();
 builder.Services.AddScoped<IPlanRepository<PlansDto>, PlanRepository>();

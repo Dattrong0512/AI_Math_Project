@@ -1238,7 +1238,7 @@
             
              **Example Request:**
              ```http
-             POST /payment/plan/2/user/1
+             POST api/payment/plan/2/user/1
              ```
             
              **Response:**
@@ -1257,6 +1257,45 @@
             Handles the VnPay payment callback and displays the payment result.
             Used only by back-end, front-end doesn't care     
             </summary>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.CreatePaymentPlansUrlSepay(System.Int32,System.Int32)">
+             <summary>
+             Generates a SePay payment URL for purchasing a study plan.
+             </summary>
+             <remarks>
+             *Only logged in users can use this api*
+             This API creates a SePay payment URL for a specific study plan purchase by a user.
+            
+             **Request:**
+             Send a request with the following route parameters:
+             - **idPlan**: The ID of the study plan to be purchased.
+             - **idUser**: The ID of the user making the payment.
+            
+             **Example Request:**
+             ```http
+             POST api/payment/sepay/plan/1/user/1
+             ```
+            
+             **Response:**
+             ```json
+             {
+                 "paymentUrl": "https://sandbox.vnpayment.vn/payment/link-to-pay",
+                 "method": "SePay",
+                 "orderDescription": "Thanh toan Goi 1 coin cho nguoi dung 1"
+                 "amount": 10000
+             }
+             </remarks>
+             <param name="idPlan">The ID of the study plan.</param>
+             <param name="idUser">The ID of the user making the payment.</param>
+             <returns>Returns a SePay payment URL and related payment details.</returns>
+        </member>
+        <member name="M:AIMathProject.API.Controllers.PaymentController.PaymentCallBackSePay(AIMathProject.Infrastructure.PaymentServices.SePay.Model.SePayWebhookModel)">
+            <summary>
+            This API Serves for callback from SePay after payment is completed.
+            Front-end doesn't care about this API, it is only used by back-end to handle payment results.
+            </summary>
+            <param name="payload"></param>
+            <returns></returns>
         </member>
         <member name="M:AIMathProject.API.Controllers.PaymentController.CreatePaymentTokenPackage(System.Int32,System.Int32)">
              <summary>

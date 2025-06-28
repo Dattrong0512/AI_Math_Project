@@ -10777,25 +10777,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bach Yen\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Hi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Test\\AIMathProject.Test.csproj",
+      "projectUniqueName": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Test\\AIMathProject.Test.csproj",
       "projectName": "AIMathProject.Test",
-      "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Test\\AIMathProject.Test.csproj",
-      "packagesPath": "C:\\Users\\Bach Yen\\.nuget\\packages\\",
-      "outputPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Test\\obj\\",
+      "projectPath": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Test\\AIMathProject.Test.csproj",
+      "packagesPath": "C:\\Users\\Hi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Bach Yen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10804,24 +10802,23 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.API\\AIMathProject.API.csproj": {
-              "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.API\\AIMathProject.API.csproj"
+            "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\AIMathProject.API.csproj": {
+              "projectPath": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.API\\AIMathProject.API.csproj"
             },
-            "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj": {
-              "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj"
+            "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj": {
+              "projectPath": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Application\\AIMathProject.Application.csproj"
             },
-            "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj": {
-              "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj"
+            "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj": {
+              "projectPath": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Domain\\AIMathProject.Domain.csproj"
             },
-            "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj": {
-              "projectPath": "J:\\Study\\GraduationProject\\be\\current\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj"
+            "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Hi\\Desktop\\AI_Math_Project\\AIMathProject.Infrastructure\\AIMathProject.Infrastructure.csproj"
             }
           }
         }
@@ -10835,7 +10832,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -10886,7 +10884,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
